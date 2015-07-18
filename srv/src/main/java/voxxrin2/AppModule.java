@@ -2,6 +2,8 @@ package voxxrin2;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.google.common.base.Charsets;
+import com.google.common.base.Predicates;
+import com.google.common.collect.ImmutableList;
 import com.google.common.collect.ImmutableSet;
 import restx.config.ConfigLoader;
 import restx.config.ConfigSupplier;
@@ -11,6 +13,7 @@ import restx.security.*;
 
 import javax.inject.Named;
 import java.nio.file.Paths;
+import java.util.regex.Pattern;
 
 @Module
 public class AppModule {
@@ -29,6 +32,15 @@ public class AppModule {
     public ConfigSupplier appConfigSupplier(ConfigLoader configLoader) {
         // Load settings.properties in voxxrin2 package as a set of config entries
         return configLoader.fromResource("voxxrin2/settings");
+    }
+
+    @Provides
+    public CORSAuthorizer CORSAuthorizer() {
+        StdCORSAuthorizer.Builder builder = StdCORSAuthorizer.builder();
+        return builder.setOriginMatcher(Predicates.<CharSequence>alwaysTrue())
+                .setPathMatcher(Predicates.<CharSequence>alwaysTrue())
+                .setAllowedMethods(ImmutableList.of("GET", "POST", "PUT", "DELETE"))
+                .build();
     }
 
     @Provides
