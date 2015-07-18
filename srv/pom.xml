@@ -11,8 +11,8 @@
     <name>voxxrin2</name>
 
     <properties>
-        <maven.compiler.target>1.8</maven.compiler.target>
-        <maven.compiler.source>1.8</maven.compiler.source>
+        <maven.compiler.target>1.7</maven.compiler.target>
+        <maven.compiler.source>1.7</maven.compiler.source>
         <restx.version>0.34</restx.version>
         <project.war.overlay.groupId>voxxrin2</project.war.overlay.groupId>
         <project.war.overlay.artifactId>voxxrin2</project.war.overlay.artifactId>
@@ -82,6 +82,11 @@
         <dependency>
             <groupId>io.restx</groupId>
             <artifactId>restx-apidocs</artifactId>
+            <version>${restx.version}</version>
+        </dependency>
+        <dependency>
+            <groupId>io.restx</groupId>
+            <artifactId>restx-barbarywatch</artifactId>
             <version>${restx.version}</version>
         </dependency>
         <dependency>
