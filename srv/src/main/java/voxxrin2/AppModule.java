@@ -1,24 +1,22 @@
 package voxxrin2;
 
-import restx.config.ConfigLoader;
-import restx.config.ConfigSupplier;
-import restx.factory.Provides;
-
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.google.common.base.Charsets;
 import com.google.common.collect.ImmutableSet;
-import restx.security.*;
+import restx.config.ConfigLoader;
+import restx.config.ConfigSupplier;
 import restx.factory.Module;
 import restx.factory.Provides;
-import javax.inject.Named;
+import restx.security.*;
 
+import javax.inject.Named;
 import java.nio.file.Paths;
 
 @Module
 public class AppModule {
     @Provides
     public SignatureKey signatureKey() {
-         return new SignatureKey("voxxrin2 voxxrin2 ee144d01-614c-4bc7-a7c4-2a78f507a363 -7912789517386278224".getBytes(Charsets.UTF_8));
+        return new SignatureKey("voxxrin2 voxxrin2 ee144d01-614c-4bc7-a7c4-2a78f507a363 -7912789517386278224".getBytes(Charsets.UTF_8));
     }
 
     @Provides
