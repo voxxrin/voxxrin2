@@ -1,0 +1,13 @@
+<div ng-controller="EventsListCtrl">
+
+    <div class="list">
+
+        <a class="item item-thumbnail-left" ng-repeat="event in events">
+            <img src="http://www.bdx.io/images/2ea70105.logo_header.png">
+            <h2>[{{ event._id }}] - {{ event.name }}</h2>
+            <p>{{ event.location }}</p>
+            <p>{{ event.description }}</p>
+        </a>
+
+    </div>
+</div>
