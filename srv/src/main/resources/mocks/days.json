@@ -1,0 +1,37 @@
+[
+  {
+    "@class": "voxxrin2.domain.Day",
+    "name": "02 Février 2015",
+    "date": "2015-02-02T00:00:00.000Z",
+    "event": "ref://event/55ab7653c2e679af96bc3135",
+    "_id": "55ab7d7bc2e699ddfa00a274"
+  },
+  {
+    "@class": "voxxrin2.domain.Day",
+    "name": "03 Février 2015",
+    "date": "2015-02-03T00:00:00.000Z",
+    "event": "ref://event/55ab7653c2e679af96bc3135",
+    "_id": "55ab7dbbc2e699ddfa00a275"
+  },
+  {
+    "@class": "voxxrin2.domain.Day",
+    "name": "16 Avril 2014",
+    "date": "2014-04-16T00:00:00.000Z",
+    "event": "ref://event/55ab7649c2e679af96bc3134",
+    "_id": "55ab7dc7c2e699ddfa00a276"
+  },
+  {
+    "@class": "voxxrin2.domain.Day",
+    "name": "17 Avril 2014",
+    "date": "2014-04-17T00:00:00.000Z",
+    "event": "ref://event/55ab7649c2e679af96bc3134",
+    "_id": "55ab7dd9c2e699ddfa00a277"
+  },
+  {
+    "@class": "voxxrin2.domain.Day",
+    "name": "18 Avril 2014",
+    "date": "2014-04-18T00:00:00.000Z",
+    "event": "ref://event/55ab7649c2e679af96bc3134",
+    "_id": "55ab7de9c2e699ddfa00a278"
+  }
+]

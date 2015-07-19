@@ -1,7 +1,9 @@
 package voxxrin2.persistence;
 
+import org.bson.types.ObjectId;
+import org.joda.time.DateTime;
 import restx.jongo.JongoCollection;
-import voxxrin2.domain.Referenceable;
+import voxxrin2.domain.technical.Referenceable;
 
 public abstract class DataService<T extends Referenceable> {
 
@@ -17,8 +19,12 @@ public abstract class DataService<T extends Referenceable> {
         return collection.get().find().as(clazz);
     }
 
-    public Iterable<T> find(String query) {
-        return collection.get().find(query).as(clazz);
+    public Iterable<T> findAll(String query, Object... params) {
+        return collection.get().find(query, params).as(clazz);
+    }
+
+    public T find(String query, Object... params) {
+        return collection.get().findOne(query, params).as(clazz);
     }
 
     public T save(T entity) {
@@ -27,6 +33,13 @@ public abstract class DataService<T extends Referenceable> {
         return entity;
     }
 
-    protected abstract void beforeEntitySave(T entity);
+    protected void beforeEntitySave(T entity) {
+        DateTime now = DateTime.now();
+        if (entity.getKey() == null) {
+            entity.setCreationDate(now);
+            entity.setKey(new ObjectId().toString());
+        }
+        entity.setUpdateDate(now);
+    }
 
 }

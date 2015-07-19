@@ -1,6 +1,7 @@
 package voxxrin2.domain;
 
 import org.joda.time.DateTime;
+import voxxrin2.domain.technical.Referenceable;
 
 public class Event extends Referenceable {
 

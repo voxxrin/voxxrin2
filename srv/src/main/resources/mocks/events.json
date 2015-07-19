@@ -1,16 +1,24 @@
 [
   {
-    "name": "bdx.io - 2015",
-    "description": "La communauté des développeurs est très active à Bordeaux. Ces derniers se réunissent régulièrement pour de nombreux évènements comme les présentations du JUG, du BordeauxJS, les apéros Ruby, les coding goûter ou encore les DB Talks. Pour autant, il manquait un évènement fédérateur, de plus grande ampleur, permettant de rassembler toute la communauté du développement autour de conférences techniques. C’est l’ambition de BDX.IO dont la première occurence s’est tenue en octobre 2014 et dont la seconde édition aura lieu le 16 octobre 2015.",
-    "location": "ENSEIRB-MATMECA - Pessac",
-    "from": "2015-10-16T09:00:00.000+02:00",
-    "to": "2015-10-16T19:00:00.000+02:00"
+    "_id" : "55ab7653c2e679af96bc3135",
+    "@class" : "voxxrin2.domain.Event",
+    "creationDate" : "2015-07-19T12:07:12.357+02:00",
+    "updateDate" : "2015-07-19T12:07:48.290+02:00",
+    "name" : "bdx.io - 2015",
+    "from" : "2015-10-16T09:00:00.000+02:00",
+    "to" : "2015-10-16T19:00:00.000+02:00",
+    "description" : "La communauté des développeurs est très active à Bordeaux. Ces derniers se réunissent régulièrement pour de nombreux évènements comme les présentations du JUG, du BordeauxJS, les apéros Ruby, les coding goûter ou encore les DB Talks. Pour autant, il manquait un évènement fédérateur, de plus grande ampleur, permettant de rassembler toute la communauté du développement autour de conférences techniques. C’est l’ambition de BDX.IO dont la première occurence s’est tenue en octobre 2014 et dont la seconde édition aura lieu le 16 octobre 2015.",
+    "location" : "ENSEIRB-MATMECA - Pessac"
   },
   {
-    "name": "bdx.io - 2014",
-    "description": "La communauté des développeurs est très active à Bordeaux. Ces derniers se réunissent régulièrement pour de nombreux évènements comme les présentations du JUG, du BordeauxJS, les apéros Ruby, les coding goûter ou encore les DB Talks. Pour autant, il manquait un évènement fédérateur, de plus grande ampleur, permettant de rassembler toute la communauté du développement autour de conférences techniques. C’est l’ambition de BDX.IO dont la première occurence s’est tenue en octobre 2014 et dont la seconde édition aura lieu le 16 octobre 2015.",
-    "location": "ENSEIRB-MATMECA - Pessac",
-    "from": "2014-10-15T09:00:00.000+02:00",
-    "to": "2014-10-15T19:00:00.000+02:00"
+    "_id" : "55ab7649c2e679af96bc3134",
+    "@class" : "voxxrin2.domain.Event",
+    "creationDate" : "2015-07-19T12:04:57.710+02:00",
+    "updateDate" : "2015-07-19T12:04:57.710+02:00",
+    "name" : "bdx.io - 2014",
+    "from" : "2014-10-15T09:00:00.000+02:00",
+    "to" : "2014-10-15T19:00:00.000+02:00",
+    "description" : "La communauté des développeurs est très active à Bordeaux. Ces derniers se réunissent régulièrement pour de nombreux évènements comme les présentations du JUG, du BordeauxJS, les apéros Ruby, les coding goûter ou encore les DB Talks. Pour autant, il manquait un évènement fédérateur, de plus grande ampleur, permettant de rassembler toute la communauté du développement autour de conférences techniques. C’est l’ambition de BDX.IO dont la première occurence s’est tenue en octobre 2014 et dont la seconde édition aura lieu le 16 octobre 2015.",
+    "location" : "ENSEIRB-MATMECA - Pessac"
   }
 ]
