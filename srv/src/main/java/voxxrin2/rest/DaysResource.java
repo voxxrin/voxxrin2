@@ -5,26 +5,30 @@ import restx.annotations.GET;
 import restx.annotations.POST;
 import restx.annotations.RestxResource;
 import restx.factory.Component;
+import restx.security.PermitAll;
 import voxxrin2.domain.Day;
-import voxxrin2.domain.Presentation;
+import voxxrin2.domain.Type;
+import voxxrin2.domain.technical.ElementURI;
 import voxxrin2.persistence.DaysDataService;
-import voxxrin2.persistence.PresentationsDataService;
 
 @Component
 @RestxResource
+@PermitAll
 public class DaysResource {
 
     private final DaysDataService daysDataService;
-    private final PresentationsDataService presentationsDataService;
 
-    public DaysResource(DaysDataService daysDataService,
-                        PresentationsDataService presentationsDataService) {
+    public DaysResource(DaysDataService daysDataService) {
         this.daysDataService = daysDataService;
-        this.presentationsDataService = presentationsDataService;
+    }
+
+    @GET("/days")
+    public Iterable<Day> getDays() {
+        return daysDataService.findAll();
     }
 
     @GET("/days/{id}")
-    public Day getEventDays(String id) {
+    public Day getDay(String id) {
         return daysDataService.find("{ _id: # }", new ObjectId(id));
     }
 
@@ -33,8 +37,8 @@ public class DaysResource {
         return daysDataService.save(day);
     }
 
-    @GET("/days/{id}/presentations")
-    public Iterable<Presentation> getPresentations(String id) {
-        return presentationsDataService.findAll("{ day: # }", new ObjectId(id));
+    @GET("/events/{eventId}/days")
+    public Iterable<Day> getEventDays(String eventId) {
+        return daysDataService.findAll("{ event: # }", ElementURI.of(Type.event, eventId).toString());
     }
 }
