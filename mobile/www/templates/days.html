@@ -2,7 +2,7 @@
 
     <div class="list">
 
-        <a class="item item-thumbnail-left" ng-repeat="day in days">
+        <a class="item item-thumbnail-left" ng-repeat="day in days" ng-click="goToPresentations(day)">
             <h2>[{{ day.event.name }}] - {{ day.name }}</h2>
         </a>
 

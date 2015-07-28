@@ -1,0 +1,10 @@
+<div ng-controller="PrensentationsListCtrl">
+
+    <div class="list">
+
+        <a class="item item-thumbnail-left" ng-repeat="prez in presentations" ng-click="goToPresentation(prez)">
+            <h2>{{ prez.title }}</h2>
+        </a>
+
+    </div>
+</div>

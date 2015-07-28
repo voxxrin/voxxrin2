@@ -1,0 +1,13 @@
+<div ng-controller="PresentationDetailsCtrl">
+
+    <h2>{{ presentation.title }}</h2>
+    <p>{{ presentation.summary }}</p>
+    <p>{{ presentation.kind }}</p>
+    <p>{{ presentation.from | date }}</p>
+    <p>{{ presentation.to | date }}</p>
+    <div ng-repeat="speaker in presentation.speakers">
+        <img style="width: 100px" ng-src="{{ speaker.avatarUrl }}">
+        <p>{{ speaker.firstName }} {{ speaker.lastName }} ({{ speaker.company }})</p>
+    </div>
+
+</div>

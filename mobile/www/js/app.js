@@ -40,6 +40,14 @@ angular.module('voxxrin', ['ionic', 'ngResource'])
             .state('days', {
                 url: '/events/{eventId}/days',
                 templateUrl: 'templates/days.html'
+            })
+            .state('presentations', {
+                url: '/days/{dayId}/presentations',
+                templateUrl: 'templates/presentations.html'
+            })
+            .state('presentation', {
+                url: '/presentations/{id}',
+                templateUrl: 'templates/presentation.html'
             });
 
         // if none of the above states are matched, use this as the fallback

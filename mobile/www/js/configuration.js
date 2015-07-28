@@ -3,5 +3,6 @@
 angular.module('voxxrin')
     .constant('configuration', {
 
-        backendUrl: 'http://localhost:8080'
+        backendUrl: 'http://192.168.0.15:8080'
+
     });
