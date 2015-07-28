@@ -51,6 +51,6 @@ angular.module('voxxrin', ['ionic', 'ngResource'])
             });
 
         // if none of the above states are matched, use this as the fallback
-        $urlRouterProvider.otherwise('/');
+        $urlRouterProvider.otherwise('/events');
 
     });

@@ -1,10 +1,15 @@
 <div ng-controller="PrensentationsListCtrl">
 
-    <div class="list">
+    <h3>[ {{ day.event.name }} ] {{ day.name }}</h3>
 
-        <a class="item item-thumbnail-left" ng-repeat="prez in presentations" ng-click="goToPresentation(prez)">
-            <h2>{{ prez.title }}</h2>
-        </a>
+    <ion-content class="has-subheader">
 
-    </div>
+        <ion-list>
+            <ion-item ng-repeat="prez in presentations" class="item-thumbnail-left" ng-click="goToPresentation(prez)">
+                <h2>[{{ prez.kind }}] {{ prez.title }}</h2>
+            </ion-item>
+        </ion-list>
+
+    </ion-content>
+
 </div>
