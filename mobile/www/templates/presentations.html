@@ -7,6 +7,8 @@
         <ion-list>
             <ion-item ng-repeat="prez in presentations" ng-click="goToPresentation(prez)">
                 <h2>[{{ prez.kind }}] {{ prez.title }}</h2>
+                <p>{{ prez.speakers[0].firstName }} {{ prez.speakers[0].lastName }} ({{ prez.speakers[0].company }})</p>
+                <p>{{ prez.speakers[0].twitterId }}</p>
             </ion-item>
         </ion-list>
 
