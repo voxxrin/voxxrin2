@@ -5,7 +5,7 @@
     <ion-content class="has-subheader">
 
         <ion-list>
-            <ion-item ng-repeat="prez in presentations" class="item-thumbnail-left" ng-click="goToPresentation(prez)">
+            <ion-item ng-repeat="prez in presentations" ng-click="goToPresentation(prez)">
                 <h2>[{{ prez.kind }}] {{ prez.title }}</h2>
             </ion-item>
         </ion-list>
