@@ -1,1 +1,38 @@
-/* Empty. Add your own CSS if you like */
+.keynote {
+    background-color: orange;
+    border: 0;
+    color: white;
+}
+
+.lunch {
+    background-color: darkgreen;
+    border: 0;
+    color: white;
+}
+
+.hands-on {
+    background-color: #0092a1;
+    border: 0;
+    color: white;
+}
+
+.university {
+    background-color: #dc2e2e;
+    color: white;
+    border: 0;
+}
+
+.quickie {
+    background-color: #8dbd4f;
+    color: white;
+    border: none;
+}
+
+.event .title {
+    padding-left: 15px;
+    font-weight: bold;
+}
+
+.event .sub {
+    padding-left: 15px;
+}

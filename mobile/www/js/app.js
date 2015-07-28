@@ -37,6 +37,10 @@ angular.module('voxxrin', ['ionic', 'ngResource'])
                 url: '/events',
                 templateUrl: 'templates/events.html'
             })
+            .state('planning', {
+                url: '/events/{eventId}/planning',
+                templateUrl: 'templates/planning.html'
+            })
             .state('days', {
                 url: '/events/{eventId}/days',
                 templateUrl: 'templates/days.html'

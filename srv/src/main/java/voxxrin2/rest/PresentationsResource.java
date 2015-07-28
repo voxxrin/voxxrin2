@@ -47,9 +47,13 @@ public class PresentationsResource {
         return presentations;
     }
 
+    @GET("/events/{eventId}/presentations")
+    public Iterable<Presentation> getEventPresentations(String eventId) {
+        return presentationsDataService.findAll("{ event: # }", ElementURI.of(Type.event, eventId).toString());
+    }
+
     @GET("/days/{dayId}/presentations")
     public Iterable<Presentation> getDayPresentations(String dayId) {
         return presentationsDataService.findAll("{ day: # }", ElementURI.of(Type.day, dayId).toString());
     }
-
 }

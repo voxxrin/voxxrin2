@@ -7,6 +7,7 @@
 
     <link href="lib/ionic/css/ionic.css" rel="stylesheet">
     <link href="css/style.css" rel="stylesheet">
+    <link href="css/ConferencePlanning.css" rel="stylesheet">
 
     <!-- IF using Sass (run gulp sass first), then uncomment below and remove the CSS includes above
     <link href="css/ionic.app.css" rel="stylesheet">
@@ -14,7 +15,10 @@
 
     <!-- ionic/angularjs js -->
     <script src="lib/ionic/js/ionic.bundle.js"></script>
-    <script src="lib/ionic/js/angular/angular-resource.min.js"></script>
+    <script src="lib/ionic/js/ionic-angular.min.js"></script>
+    <script src="lib/angular-resource/angular-resource.min.js"></script>
+    <script src="lib/moment/min/moment.min.js"></script>
+    <script src="lib/lodash/lodash.min.js"></script>
 
     <!-- cordova script (this will be a 404 during development) -->
     <script src="cordova.js"></script>
@@ -30,6 +34,10 @@
     <script src="js/controllers/DaysListCtrl.js"></script>
     <script src="js/controllers/PresentationsListCtrl.js"></script>
     <script src="js/controllers/PresentationDetailsCtrl.js"></script>
+    <script src="js/controllers/PlanningCtrl.js"></script>
+
+    <script src="js/directives/Event.js"></script>
+    <script src="js/directives/ConferencePlanning.js"></script>
 </head>
 <body ng-app="voxxrin">
 <!--
