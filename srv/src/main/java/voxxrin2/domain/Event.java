@@ -15,6 +15,8 @@ public class Event extends Referenceable {
 
     private String location;
 
+    private String imageUrl;
+
     public String getName() {
         return name;
     }
@@ -57,6 +59,15 @@ public class Event extends Referenceable {
 
     public Event setName(final String name) {
         this.name = name;
+        return this;
+    }
+
+    public String getImageUrl() {
+        return imageUrl;
+    }
+
+    public Event setImageUrl(final String imageUrl) {
+        this.imageUrl = imageUrl;
         return this;
     }
 }
