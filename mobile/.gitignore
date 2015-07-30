@@ -6,3 +6,4 @@ platforms/
 plugins/
 *.iml
 www/lib
+www/js/configuration.js
