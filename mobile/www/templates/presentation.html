@@ -4,15 +4,39 @@
 
     <ion-content class="has-subheader">
 
-        <h2>{{ presentation.title }}</h2>
-        <p>{{ presentation.summary }}</p>
-        <p>{{ presentation.location.fullName }}</p>
-        <p>{{ presentation.kind }}</p>
-        <p>{{ presentation.from | date }}</p>
-        <p>{{ presentation.to | date }}</p>
-        <div ng-repeat="speaker in presentation.speakers">
-            <img style="width: 100px" ng-src="{{ speaker.avatarUrl }}">
-            <p>{{ speaker.firstName }} {{ speaker.lastName }} ({{ speaker.company }})</p>
+        <div class="list card">
+
+            <div class="item item-body">
+
+                <h2>[{{ presentation.kind }}] {{ presentation.title }}</h2>
+                <p>{{ presentation.location.fullName }}</p>
+                <p>From {{ presentation.from | date:formats.fullDateTime }} to {{ presentation.to | date:formats.fullDateTime }}</p>
+                <p>{{ presentation.summary }}</p>
+            </div>
+
+            <div ng-repeat="speaker in presentation.speakers">
+                <div class="item item-avatar">
+                    <img style="width: 100px; weight: auto;" ng-src="{{ speaker.avatarUrl }}">
+                    <h2>{{ speaker.firstName }} {{ speaker.lastName }}</h2>
+                    <p>{{ speaker.company }}</p>
+                </div>
+            </div>
+
+            <div class="item tabs tabs-secondary tabs-icon-left">
+                <a class="tab-item">
+                    <i class="icon ion-thumbsup"></i>
+                    Like
+                </a>
+                <a class="tab-item">
+                    <i class="icon ion-chatbox"></i>
+                    Comment
+                </a>
+                <a class="tab-item">
+                    <i class="icon ion-share"></i>
+                    Share
+                </a>
+            </div>
+
         </div>
 
     </ion-content>

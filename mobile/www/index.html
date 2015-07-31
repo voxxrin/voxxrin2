@@ -34,6 +34,7 @@
     <script src="js/services/Day.js"></script>
     <script src="js/services/Presentation.js"></script>
     <script src="js/directives/Header.js"></script>
+    <script src="js/controllers/GlobalCtrl.js"></script>
     <script src="js/controllers/NavigationCtrl.js"></script>
     <script src="js/controllers/EventsListCtrl.js"></script>
     <script src="js/controllers/DaysListCtrl.js"></script>
@@ -55,8 +56,10 @@
   Templates are in the /templates folder (but you could also
   have templates inline in this html file if you'd like).
 -->
-<div ng-controller="NavigationCtrl">
-    <ion-nav-view></ion-nav-view>
+<div ng-controller="GlobalCtrl">
+    <div ng-controller="NavigationCtrl">
+        <ion-nav-view></ion-nav-view>
+    </div>
 </div>
 </body>
 </html>

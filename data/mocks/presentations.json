@@ -65,7 +65,8 @@
     "day": "ref://day/55ab7dbbc2e699ddfa00a275",
     "location": "ref://room/55bbec0a0364a0b8d0e4025d",
     "speakers": [
-      "ref://speaker/55b7f2d4fa2dee16b727d710"
+      "ref://speaker/55b7f2d4fa2dee16b727d710",
+      "ref://speaker/55b7f2d47095fb79b28ff1b5"
     ],
     "title": "Consectetur ad ea fugiat mollit elit nulla commodo qui voluptate ullamco ipsum.",
     "summary": "Non deserunt qui cupidatat quis ullamco quis ad irure nisi et elit nulla.",
