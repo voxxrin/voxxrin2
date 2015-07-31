@@ -1,10 +1,12 @@
 <div ng-controller="PlanningCtrl">
 
-    <conference-planning events="eventsList" options="options">
-        <event>
-            <span class="title">{{ event.title }}</span> <br/>
-            <span class="sub">{{ event.speaker }} - {{ event.type }} - {{ placeMapping[event.place] }}</span>
-        </event>
-    </conference-planning>
+    <ion-content overflow-scroll="true">
+        <conference-planning events="eventsList" options="options">
+            <event>
+                <span class="title">{{ event.title }}</span> <br/>
+                <span class="sub">{{ event.speaker }} - {{ event.type }} - {{ placeMapping[event.place] }}</span>
+            </event>
+        </conference-planning>
+    </ion-content>
 
 </div>
