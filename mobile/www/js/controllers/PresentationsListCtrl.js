@@ -1,12 +1,24 @@
 'use strict';
 
 angular.module('voxxrin')
-    .controller('PresentationsListCtrl', function ($stateParams, $state, $scope, Day, Presentation) {
+    .controller('PresentationsListCtrl', function ($stateParams, $scope, Day, Presentation) {
 
-        $scope.day = Day.get({ id: $stateParams.dayId });
-        $scope.presentations = Presentation.fromDay($stateParams.dayId);
+        var slotFormat = 'HH[h]mm';
 
-        $scope.goToPresentation = function (presentation) {
-            $state.go('presentation', {id: presentation._id});
+        var computeSlots = function (presentations) {
+            var slots = $scope.slots = {};
+            _.each(presentations, function (prez) {
+                var from = moment(prez.from);
+                var to = moment(prez.to);
+                var slotName = from.format(slotFormat) + '-' + to.format(slotFormat);
+                if (!slots[slotName]) {
+                    slots[slotName] = [];
+                }
+                slots[slotName].push(prez);
+            });
         };
+
+        $scope.day = Day.get({id: $stateParams.dayId});
+        Presentation.fromDay($stateParams.dayId).$promise.then(computeSlots);
+
     });

@@ -1,7 +1,7 @@
 'use strict';
 
 angular.module('voxxrin')
-    .controller('PlanningCtrl', function ($stateParams, $state, $scope, Event, Presentation) {
+    .controller('PlanningCtrl', function ($stateParams, $scope, Event, Presentation) {
 
         var computePlanningModel = function (presentations) {
             $scope.events = _.map(presentations, function (prez) {

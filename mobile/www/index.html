@@ -33,6 +33,8 @@
     <script src="js/services/Event.js"></script>
     <script src="js/services/Day.js"></script>
     <script src="js/services/Presentation.js"></script>
+    <script src="js/directives/Header.js"></script>
+    <script src="js/controllers/NavigationCtrl.js"></script>
     <script src="js/controllers/EventsListCtrl.js"></script>
     <script src="js/controllers/DaysListCtrl.js"></script>
     <script src="js/controllers/PresentationsListCtrl.js"></script>
@@ -45,14 +47,16 @@
   The nav bar that will be updated as we navigate between views.
 -->
 <!--<ion-nav-bar class="bar-stable">-->
-    <!--<ion-nav-back-button>-->
-    <!--</ion-nav-back-button>-->
+<!--<ion-nav-back-button>-->
+<!--</ion-nav-back-button>-->
 <!--</ion-nav-bar>-->
 <!--
   The views will be rendered in the <ion-nav-view> directive below
   Templates are in the /templates folder (but you could also
   have templates inline in this html file if you'd like).
 -->
-<ion-nav-view></ion-nav-view>
+<div ng-controller="NavigationCtrl">
+    <ion-nav-view></ion-nav-view>
+</div>
 </body>
 </html>

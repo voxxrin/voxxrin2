@@ -1,6 +1,8 @@
 <div ng-controller="PlanningCtrl">
 
-    <ion-content overflow-scroll="true">
+    <header title="Planning" event="event"></header>
+
+    <ion-content class="has-subheader">
         <conference-planning events="events" options="options">
             <event>
                 <span class="title">{{ event.title }}</span>

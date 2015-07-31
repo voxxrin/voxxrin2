@@ -29,10 +29,6 @@ angular.module('voxxrin', ['ionic', 'ngResource', 'AngularConferencePlanning'])
         // Each state's controller can be found in controllers.js
         $stateProvider
 
-            .state('home', {
-                url: '/',
-                templateUrl: 'templates/home.html'
-            })
             .state('events', {
                 url: '/events',
                 templateUrl: 'templates/events.html'

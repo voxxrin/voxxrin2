@@ -1,10 +1,12 @@
 <div ng-controller="EventsListCtrl">
 
-    <ion-content>
+    <header title="Voxxrin"></header>
+
+    <ion-content class="has-subheader">
 
         <ion-list>
             <ion-item ng-repeat="event in events" ng-click="goToDays(event)" class="item-thumbnail-left" ng-click="goToDays(event)">
-                <img ng-src="{{ event.imageUrl }}" style="width: 75px">
+                <img ng-src="{{ event.imageUrl }}" style="width: auto; height: auto">
                 <h2>{{ event.name }}</h2>
                 <p>{{ event.location }}</p>
                 <p>{{ event.description }}</p>
