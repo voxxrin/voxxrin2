@@ -6,8 +6,8 @@
     <title></title>
 
     <link href="lib/ionic/css/ionic.css" rel="stylesheet">
-    <link href="css/style.css" rel="stylesheet">
-    <link href="css/ConferencePlanning.css" rel="stylesheet">
+    <link href="css/slots.css" rel="stylesheet">
+    <link href="lib/angular-conference-planning/dist/styles/angular-conference-planning.dist.css" rel="stylesheet">
 
     <!-- IF using Sass (run gulp sass first), then uncomment below and remove the CSS includes above
     <link href="css/ionic.app.css" rel="stylesheet">
@@ -17,8 +17,11 @@
     <script src="lib/ionic/js/ionic.bundle.js"></script>
     <script src="lib/ionic/js/ionic-angular.min.js"></script>
     <script src="lib/angular-resource/angular-resource.min.js"></script>
+
+    <!-- ionic/vendor js -->
     <script src="lib/moment/min/moment.min.js"></script>
     <script src="lib/lodash/lodash.min.js"></script>
+    <script src="lib/angular-conference-planning/dist/scripts/angular-conference-planning.dist.js"></script>
 
     <!-- cordova script (this will be a 404 during development) -->
     <script src="cordova.js"></script>
@@ -36,8 +39,6 @@
     <script src="js/controllers/PresentationDetailsCtrl.js"></script>
     <script src="js/controllers/PlanningCtrl.js"></script>
 
-    <script src="js/directives/Event.js"></script>
-    <script src="js/directives/ConferencePlanning.js"></script>
 </head>
 <body ng-app="voxxrin">
 <!--

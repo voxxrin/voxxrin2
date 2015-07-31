@@ -5,7 +5,7 @@ angular.module('voxxrin')
 
         var computePlanningModel = function (presentations) {
             $scope.events = [];
-
+            // TODO
         };
 
         $scope.event = Event.get({id: $stateParams.eventId});
