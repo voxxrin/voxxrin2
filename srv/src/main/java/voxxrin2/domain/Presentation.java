@@ -18,6 +18,8 @@ public class Presentation extends Referenceable {
 
     private List<Reference<Speaker>> speakers;
 
+    private Reference<Room> location;
+
     private DateTime from;
 
     private DateTime to;
@@ -93,6 +95,15 @@ public class Presentation extends Referenceable {
 
     public Presentation setTitle(final String title) {
         this.title = title;
+        return this;
+    }
+
+    public Reference<Room> getLocation() {
+        return location;
+    }
+
+    public Presentation setLocation(final Reference<Room> location) {
+        this.location = location;
         return this;
     }
 }

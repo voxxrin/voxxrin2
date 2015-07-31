@@ -25,7 +25,7 @@ public class AppModule {
     @Provides
     @Named("restx.admin.password")
     public String restxAdminPassword() {
-        return "admin";
+        return "voxxrin2015";
     }
 
     @Provides

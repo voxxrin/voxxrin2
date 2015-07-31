@@ -5,6 +5,7 @@ public enum Type {
     event,
     day,
     presentation,
-    speaker
+    speaker,
+    room
 
 }
