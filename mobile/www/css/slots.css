@@ -10,7 +10,7 @@
     color: white;
 }
 
-.hands-on {
+.labs {
     background-color: #0092a1;
     border: 0;
     color: white;
@@ -22,7 +22,7 @@
     border: 0;
 }
 
-.quickie {
+.lightning {
     background-color: #8dbd4f;
     color: white;
     border: none;
@@ -31,6 +31,9 @@
 .event .title {
     padding-left: 15px;
     font-weight: bold;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
 }
 
 .event .sub {

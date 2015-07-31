@@ -3,13 +3,14 @@
     "_id": "55b7f4d99c3b7ec6bcaa62e9",
     "event": "ref://event/55ab7653c2e679af96bc3135",
     "day": "ref://day/55ab7dbbc2e699ddfa00a275",
+    "location": "ref://room/55bbec0a0364a0b8d0e4025c",
     "speakers": [
       "ref://speaker/55b7f2d4fa2dee16b727d710"
     ],
     "title": "Enim occaecat occaecat consectetur ut ullamco.",
     "summary": "Enim aute officia voluptate ea id minim elit incididunt et sit nisi voluptate.",
-    "from": "2015-07-28T21:32:09.308Z",
-    "to": "2015-07-28T21:32:09.311Z",
+    "from": "2015-07-28T07:00:00.000Z",
+    "to": "2015-07-28T09:00:00.000Z",
     "kind": "LABS",
     "@class": "voxxrin2.domain.Presentation"
   },
@@ -17,69 +18,74 @@
     "_id": "55b7f4d992930cfb919d6181",
     "event": "ref://event/55ab7653c2e679af96bc3135",
     "day": "ref://day/55ab7dbbc2e699ddfa00a275",
+    "location": "ref://room/55bbec0a0364a0b8d0e4025d",
     "speakers": [
       "ref://speaker/55b7f2d4fa2dee16b727d710"
     ],
-    "title": "Ea consectetur proident elit officia ad ipsum voluptate nostrud exercitation aliquip sint aute ea id.",
+    "title": "Ea consectetur proident elit officia",
     "summary": "Enim elit elit non ut amet dolore non aute duis consectetur fugiat Lorem labore.",
-    "from": "2015-07-28T21:32:09.313Z",
-    "to": "2015-07-28T21:32:09.313Z",
-    "kind": "CONFERENCE",
+    "from": "2015-07-28T09:00:00.000Z",
+    "to": "2015-07-28T11:00:00.000Z",
+    "kind": "UNIVERSITY",
     "@class": "voxxrin2.domain.Presentation"
   },
   {
     "_id": "55b7f4d94536efd429f30777",
     "event": "ref://event/55ab7653c2e679af96bc3135",
     "day": "ref://day/55ab7dbbc2e699ddfa00a275",
+    "location": "ref://room/55bbec0a0364a0b8d0e4025f",
     "speakers": [
       "ref://speaker/55b7f2d4fa2dee16b727d710"
     ],
     "title": "Proident Lorem laboris tempor laboris laborum ea cillum mollit Lorem aliquip magna.",
     "summary": "Excepteur qui enim adipisicing officia aliquip cupidatat ad occaecat.",
-    "from": "2015-07-28T21:32:09.313Z",
-    "to": "2015-07-28T21:32:09.313Z",
-    "kind": "CONFERENCE",
+    "from": "2015-07-28T07:00:00.000Z",
+    "to": "2015-07-28T09:00:00.000Z",
+    "kind": "UNIVERSITY",
     "@class": "voxxrin2.domain.Presentation"
   },
   {
     "_id": "55b7f4d902d44051548c217c",
     "event": "ref://event/55ab7653c2e679af96bc3135",
     "day": "ref://day/55ab7dbbc2e699ddfa00a275",
+    "location": "ref://room/55bbec0a0364a0b8d0e4025b",
     "speakers": [
       "ref://speaker/55b7f2d4fa2dee16b727d710"
     ],
     "title": "Fugiat dolor labore excepteur Lorem esse excepteur eu minim.",
     "summary": "Veniam incididunt ex occaecat non ullamco anim.",
-    "from": "2015-07-28T21:32:09.317Z",
-    "to": "2015-07-28T21:32:09.317Z",
-    "kind": "CONFERENCE",
+    "from": "2015-07-28T13:00:00.000Z",
+    "to": "2015-07-28T15:00:00.000Z",
+    "kind": "UNIVERSITY",
     "@class": "voxxrin2.domain.Presentation"
   },
   {
     "_id": "55b7f4d904f0c7c74052d7f7",
     "event": "ref://event/55ab7653c2e679af96bc3135",
     "day": "ref://day/55ab7dbbc2e699ddfa00a275",
+    "location": "ref://room/55bbec0a0364a0b8d0e4025d",
     "speakers": [
       "ref://speaker/55b7f2d4fa2dee16b727d710"
     ],
     "title": "Consectetur ad ea fugiat mollit elit nulla commodo qui voluptate ullamco ipsum.",
     "summary": "Non deserunt qui cupidatat quis ullamco quis ad irure nisi et elit nulla.",
-    "from": "2015-07-28T21:32:09.317Z",
-    "to": "2015-07-28T21:32:09.317Z",
-    "kind": "CONFERENCE",
+    "from": "2015-07-28T13:00:00.000Z",
+    "to": "2015-07-28T15:30:00.000Z",
+    "kind": "UNIVERSITY",
     "@class": "voxxrin2.domain.Presentation"
   },
   {
     "_id": "55b7f4d9ef973da24b8cb9bb",
     "event": "ref://event/55ab7653c2e679af96bc3135",
     "day": "ref://day/55ab7dbbc2e699ddfa00a275",
+    "location": "ref://room/55bbec0a0364a0b8d0e40261",
     "speakers": [
       "ref://speaker/55b7f2d4fa2dee16b727d710"
     ],
     "title": "Nostrud consequat anim excepteur tempor elit eu fugiat do excepteur esse.",
     "summary": "Velit fugiat eiusmod consectetur proident veniam ea labore deserunt officia.",
-    "from": "2015-07-28T21:32:09.320Z",
-    "to": "2015-07-28T21:32:09.320Z",
+    "from": "2015-07-28T11:00:00.000Z",
+    "to": "2015-07-28T14:00:00.000Z",
     "kind": "LABS",
     "@class": "voxxrin2.domain.Presentation"
   },
@@ -87,13 +93,14 @@
     "_id": "55b7f4d9833577528b383d26",
     "event": "ref://event/55ab7653c2e679af96bc3135",
     "day": "ref://day/55ab7dbbc2e699ddfa00a275",
+    "location": "ref://room/55bbec0a0364a0b8d0e4025c",
     "speakers": [
       "ref://speaker/55b7f2d4fa2dee16b727d710"
     ],
     "title": "Magna est veniam ex in adipisicing dolor.",
     "summary": "Lorem Lorem cupidatat laborum proident esse nisi.",
-    "from": "2015-07-28T21:32:09.320Z",
-    "to": "2015-07-28T21:32:09.320Z",
+    "from": "2015-07-28T16:00:00.000Z",
+    "to": "2015-07-28T17:00:00.000Z",
     "kind": "LIGHTNING",
     "@class": "voxxrin2.domain.Presentation"
   },
@@ -101,13 +108,14 @@
     "_id": "55b7f4d9a0294b2cba8a4b5d",
     "event": "ref://event/55ab7653c2e679af96bc3135",
     "day": "ref://day/55ab7dbbc2e699ddfa00a275",
+    "location": "ref://room/55bbec0a0364a0b8d0e40260",
     "speakers": [
       "ref://speaker/55b7f2d4fa2dee16b727d710"
     ],
     "title": "Cupidatat pariatur irure ullamco amet.",
     "summary": "Ipsum officia esse nisi sint eu veniam tempor culpa sit nulla labore occaecat dolor Lorem.",
-    "from": "2015-07-28T21:32:09.321Z",
-    "to": "2015-07-28T21:32:09.322Z",
+    "from": "2015-07-28T08:00:00.000Z",
+    "to": "2015-07-28T09:00:00.000Z",
     "kind": "LABS",
     "@class": "voxxrin2.domain.Presentation"
   },
@@ -115,13 +123,14 @@
     "_id": "55b7f4d927b3638b0d6c6cdb",
     "event": "ref://event/55ab7653c2e679af96bc3135",
     "day": "ref://day/55ab7dbbc2e699ddfa00a275",
+    "location": "ref://room/55bbec0a0364a0b8d0e4025e",
     "speakers": [
       "ref://speaker/55b7f2d4fa2dee16b727d710"
     ],
     "title": "Enim labore do magna ad aute est magna.",
     "summary": "Reprehenderit nulla aute ea laboris cillum consequat dolor esse ullamco occaecat ut.",
-    "from": "2015-07-28T21:32:09.322Z",
-    "to": "2015-07-28T21:32:09.322Z",
+    "from": "2015-07-28T14:00:00.000Z",
+    "to": "2015-07-28T17:00:00.000Z",
     "kind": "LABS",
     "@class": "voxxrin2.domain.Presentation"
   },
@@ -129,84 +138,30 @@
     "_id": "55b7f4d954d0c18470ff0053",
     "event": "ref://event/55ab7653c2e679af96bc3135",
     "day": "ref://day/55ab7dbbc2e699ddfa00a275",
+    "location": "ref://room/55bbec0a0364a0b8d0e4025f",
     "speakers": [
       "ref://speaker/55b7f2d4fa2dee16b727d710"
     ],
     "title": "Commodo ea quis do nisi minim dolore in.",
     "summary": "Ea tempor laboris consectetur ut eu cillum eiusmod mollit dolor non ullamco nulla proident voluptate.",
-    "from": "2015-07-28T21:32:09.325Z",
-    "to": "2015-07-28T21:32:09.325Z",
-    "kind": "CONFERENCE",
+    "from": "2015-07-28T15:15:00.000Z",
+    "to": "2015-07-28T16:15:00.000Z",
+    "kind": "UNIVERSITY",
     "@class": "voxxrin2.domain.Presentation"
   },
   {
     "_id": "55b7f4d9cd70a1bdba0c522d",
     "event": "ref://event/55ab7653c2e679af96bc3135",
     "day": "ref://day/55ab7dbbc2e699ddfa00a275",
+    "location": "ref://room/55bbec0a0364a0b8d0e4025a",
     "speakers": [
       "ref://speaker/55b7f2d4fa2dee16b727d710"
     ],
     "title": "Eiusmod cillum occaecat aliqua aliqua nisi tempor amet in officia esse.",
     "summary": "Non quis ad qui esse amet.",
-    "from": "2015-07-28T21:32:09.328Z",
-    "to": "2015-07-28T21:32:09.328Z",
+    "from": "2015-07-28T17:00:00.000Z",
+    "to": "2015-07-28T18:00:00.000Z",
     "kind": "LIGHTNING",
-    "@class": "voxxrin2.domain.Presentation"
-  },
-  {
-    "_id": "55b7f4d9d1c39502b7f31022",
-    "event": "ref://event/55ab7653c2e679af96bc3135",
-    "day": "ref://day/55ab7dbbc2e699ddfa00a275",
-    "speakers": [
-      "ref://speaker/55b7f2d4fa2dee16b727d710"
-    ],
-    "title": "Ex voluptate cupidatat aliqua nostrud tempor et excepteur minim excepteur reprehenderit.",
-    "summary": "Consectetur esse eu veniam ea ex nulla tempor pariatur ut culpa duis non elit.",
-    "from": "2015-07-28T21:32:09.332Z",
-    "to": "2015-07-28T21:32:09.333Z",
-    "kind": "LABS",
-    "@class": "voxxrin2.domain.Presentation"
-  },
-  {
-    "_id": "55b7f4d904d409f0d9d8badb",
-    "event": "ref://event/55ab7653c2e679af96bc3135",
-    "day": "ref://day/55ab7dbbc2e699ddfa00a275",
-    "speakers": [
-      "ref://speaker/55b7f2d4fa2dee16b727d710"
-    ],
-    "title": "Magna veniam consectetur Lorem aliqua exercitation.",
-    "summary": "Ex ea ex nulla velit quis ipsum eiusmod deserunt ex adipisicing do sunt.",
-    "from": "2015-07-28T21:32:09.335Z",
-    "to": "2015-07-28T21:32:09.335Z",
-    "kind": "CONFERENCE",
-    "@class": "voxxrin2.domain.Presentation"
-  },
-  {
-    "_id": "55b7f4d9700c5548db0824a3",
-    "event": "ref://event/55ab7653c2e679af96bc3135",
-    "day": "ref://day/55ab7dbbc2e699ddfa00a275",
-    "speakers": [
-      "ref://speaker/55b7f2d4fa2dee16b727d710"
-    ],
-    "title": "Nostrud ipsum laborum proident non reprehenderit exercitation quis qui aliqua quis.",
-    "summary": "Et ad magna culpa anim velit ut tempor reprehenderit elit occaecat esse proident minim.",
-    "from": "2015-07-28T21:32:09.335Z",
-    "to": "2015-07-28T21:32:09.335Z",
-    "kind": "CONFERENCE",
-    "@class": "voxxrin2.domain.Presentation"
-  },
-  {
-    "_id": "55b7f4d9bae6b5626449a94b",
-    "event": "ref://event/55ab7653c2e679af96bc3135",
-    "day": "ref://day/55ab7dbbc2e699ddfa00a275",
-    "speakers": [
-      "ref://speaker/55b7f2d4fa2dee16b727d710"
-    ],
-    "title": "Laboris excepteur labore eiusmod laboris laboris fugiat adipisicing velit.",
-    "summary": "Et anim pariatur quis sit voluptate proident.",
-    "from": "2015-07-28T21:32:09.335Z",
-    "to": "2015-07-28T21:32:09.335Z",
-    "kind": "LABS",
     "@class": "voxxrin2.domain.Presentation"
   }
 ]
