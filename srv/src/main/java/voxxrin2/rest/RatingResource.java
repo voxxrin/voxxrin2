@@ -10,6 +10,7 @@ import restx.annotations.RestxResource;
 import restx.factory.Component;
 import restx.http.HttpStatus;
 import restx.jongo.JongoCollection;
+import restx.security.PermitAll;
 import voxxrin2.domain.Presentation;
 import voxxrin2.domain.Rating;
 import voxxrin2.domain.Type;
@@ -20,6 +21,7 @@ import javax.inject.Named;
 
 @Component
 @RestxResource
+@PermitAll
 public class RatingResource {
 
     private final JongoCollection ratings;

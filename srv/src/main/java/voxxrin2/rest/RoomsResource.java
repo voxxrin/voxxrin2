@@ -5,6 +5,7 @@ import restx.annotations.GET;
 import restx.annotations.POST;
 import restx.annotations.RestxResource;
 import restx.factory.Component;
+import restx.security.PermitAll;
 import voxxrin2.domain.Room;
 import voxxrin2.persistence.RoomsDataService;
 
@@ -12,6 +13,7 @@ import java.util.List;
 
 @Component
 @RestxResource
+@PermitAll
 public class RoomsResource {
 
     private final RoomsDataService roomsDataService;
