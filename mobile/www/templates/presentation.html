@@ -8,9 +8,9 @@
 
             <div class="item item-body">
 
-                <h2>[{{ presentation.kind }}] {{ presentation.title }}</h2>
+                <h2><span ng-if="prez.kind">[{{ presentation.kind }}]</span> {{ presentation.title }}</h2>
                 <p>{{ presentation.location.fullName }}</p>
-                <p>From {{ presentation.from | date:formats.fullDateTime }} to {{ presentation.to | date:formats.fullDateTime }}</p>
+                <p>From <span class="underline">{{ presentation.from | date:formats.fullDateTime }}</span> to <span class="underline">{{ presentation.to | date:formats.fullDateTime }}</span></p>
                 <p>{{ presentation.summary }}</p>
 
                 <div class="row">
@@ -21,7 +21,7 @@
 
             </div>
 
-            <div ng-repeat="speaker in presentation.speakers">
+            <div class="speaker" ng-repeat="speaker in presentation.speakers">
                 <div class="item item-avatar">
                     <img style="width: 100px; weight: auto;" ng-src="{{ speaker.avatarUrl }}">
                     <h2>{{ speaker.firstName }} {{ speaker.lastName }}</h2>
