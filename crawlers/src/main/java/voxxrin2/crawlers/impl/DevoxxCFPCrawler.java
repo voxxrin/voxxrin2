@@ -1,5 +1,6 @@
 package voxxrin2.crawlers.impl;
 
+import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.databind.type.CollectionType;
 import com.github.kevinsawicki.http.HttpRequest;
 import com.google.common.base.Optional;
@@ -95,6 +96,9 @@ public class DevoxxCFPCrawler extends AbstractHttpCrawler {
             Optional<Room> room = findRoom(result, slot);
             if (!room.isPresent()) {
                 logger.error("No room found {}", slot.roomId);
+                continue;
+            }
+            if (slot.justABreak == null && slot.talk == null) {
                 continue;
             }
             List<Reference<Speaker>> speakers = new ArrayList<Reference<Speaker>>();
@@ -210,6 +214,8 @@ public class DevoxxCFPCrawler extends AbstractHttpCrawler {
         public long fromTimeMillis;
         public long toTimeMillis;
         public CFPTalk talk;
+        @JsonProperty("break")
+        public CFPBreak justABreak;
 
         public Presentation toStdPresentation(Day day, Event event, Room room, List<Reference<Speaker>> speakers) {
             return new Presentation()
@@ -221,7 +227,7 @@ public class DevoxxCFPCrawler extends AbstractHttpCrawler {
                     .setTo(new DateTime(toTimeMillis))
                     .setKind(talk != null ? talk.talkType : null)
                     .setSummary(talk != null ? talk.summary : null)
-                    .setTitle(talk != null ? talk.title : null);
+                    .setTitle(talk != null ? talk.title : justABreak.nameFR);
         }
     }
 
@@ -230,6 +236,11 @@ public class DevoxxCFPCrawler extends AbstractHttpCrawler {
         public String summary;
         public String talkType;
         public List<CFPTalkSpeaker> speakers;
+    }
+
+    private static class CFPBreak {
+        public String nameEN;
+        public String nameFR;
     }
 
     private static class CFPTalkSpeaker {
