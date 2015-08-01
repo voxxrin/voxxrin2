@@ -12,6 +12,7 @@ import org.joda.time.format.DateTimeFormatter;
 import org.slf4j.Logger;
 import voxxrin2.crawlers.AbstractHttpCrawler;
 import voxxrin2.crawlers.CrawlingResult;
+import voxxrin2.crawlers.HttpDataFiller;
 import voxxrin2.domain.*;
 import voxxrin2.domain.technical.Reference;
 
@@ -31,7 +32,8 @@ public class DevoxxCFPCrawler extends AbstractHttpCrawler {
     private static final String DAYS_URL = BASE_URL + "/schedules";
 
     public static void main(String[] args) throws IOException {
-        new DevoxxCFPCrawler().crawl();
+        CrawlingResult result = new DevoxxCFPCrawler().crawl();
+        new HttpDataFiller().fill(result);
     }
 
     private CollectionType buildCollectionType(Class<?> clazz) {
