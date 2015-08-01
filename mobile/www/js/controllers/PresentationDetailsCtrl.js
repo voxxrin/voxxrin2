@@ -6,7 +6,14 @@ angular.module('voxxrin')
         $scope.presentation = Presentation.get({id: $stateParams.id});
 
         var loadRates = function (presentationId) {
-            $scope.rates = Rating.query({presentationId: presentationId});
+            Rating.query({presentationId: presentationId}).$promise.then(function (ratings) {
+                var sortedRatings = $scope.ratings = ratings.sort(function (a, b) {
+                    return new Date(a) - new Date(b);
+                });
+                if (sortedRatings && sortedRatings.length > 0) {
+                    $scope.rate = _.last(sortedRatings).rate;
+                }
+            });
         };
 
         $scope.sendRate = function (presentation, rate) {
