@@ -4,13 +4,18 @@ import com.fasterxml.jackson.core.JsonGenerator;
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.JsonSerializer;
 import com.fasterxml.jackson.databind.SerializerProvider;
+import com.fasterxml.jackson.databind.ser.std.StdSerializer;
 import com.google.common.base.Optional;
 import restx.jackson.Views;
 import voxxrin2.domain.technical.Reference;
 
 import java.io.IOException;
 
-public class ReferenceSerializer extends JsonSerializer<Reference> {
+public class ReferenceSerializer extends StdSerializer<Reference> {
+
+    public ReferenceSerializer() {
+        super(Reference.class);
+    }
 
     @Override
     public void serialize(Reference value, JsonGenerator jgen, SerializerProvider provider) throws IOException, JsonProcessingException {
@@ -23,7 +28,7 @@ public class ReferenceSerializer extends JsonSerializer<Reference> {
                 provider.defaultSerializeValue(optional.get(), jgen);
             }
         } else {
-            jgen.writeNull();
+            jgen.writeString(value.getUri().toString());
         }
     }
 }

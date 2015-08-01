@@ -32,6 +32,9 @@ public class Reference<T extends Referenceable> implements Supplier<T> {
     }
 
     private T resolve() {
+        if (resolver.get() == null) {
+            return null;
+        }
         return resolver.get().resolve(uri);
     }
 
