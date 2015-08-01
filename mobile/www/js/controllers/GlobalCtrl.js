@@ -6,7 +6,14 @@ angular.module('voxxrin')
         angular.extend($scope, {
             formats: {
                 fullDateTime: 'dd/MM/yy - HH:mm'
+            },
+            platform: {
+                uuid: '-'
             }
         });
+
+        document.addEventListener("deviceready", function () {
+            $scope.platform.uuid = device.uuid;
+        }, false);
 
     });
