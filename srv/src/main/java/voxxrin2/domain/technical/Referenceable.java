@@ -20,8 +20,9 @@ public class Referenceable {
         return key;
     }
 
-    public void setKey(String key) {
+    public Referenceable setKey(String key) {
         this.key = key;
+        return this;
     }
 
     public DateTime getCreationDate() {
