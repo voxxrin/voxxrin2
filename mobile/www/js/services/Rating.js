@@ -3,7 +3,7 @@
 angular.module('voxxrin')
     .service('Rating', function (configuration, $resource) {
 
-        var rating = $resource(configuration.backendUrl + '/api/ratings/:presentationId', {}, {
+        var rating = $resource(configuration.backendUrl + '/api/ratings/:presentationId', { uuid: '@uuid', rate: '@rate'}, {
             'put': {method: 'PUT'}
         });
 
