@@ -2,7 +2,11 @@
 
     <header title="Presentations" event="day.event"></header>
 
-    <ion-content class="has-header">
+    <div class="bar bar-subheader">
+        <h2 class="title">{{ day.name }}</h2>
+    </div>
+
+    <ion-content class="has-subheader">
 
         <ion-list>
 
@@ -10,14 +14,14 @@
                 <div class="item item-divider">
                     {{ slot }}
                 </div>
-                <ion-item class="item-avatar" ng-repeat="prez in presentations" ng-click="goToPresentation(prez)">
+                <ion-item class="item-avatar item-text-wrap" ng-repeat="prez in presentations" ng-click="goToPresentation(prez)">
 
                     <img style="width: auto; height: auto" ng-src="{{ prez.speakers[0].avatarUrl }}">
                     <h2><span ng-if="prez.kind">[{{ prez.kind }}]</span> {{ prez.title }}</h2>
                     <p>{{ prez.location.fullName }}</p>
                     <div ng-if="prez.speakers[0]">
                         <p>{{ prez.speakers[0].firstName }} {{ prez.speakers[0].lastName }} ({{ prez.speakers[0].company }})</p>
-                        <p>{{ prez.speakers[0].twitterId }}</p>
+                        <p>{{ prez.speakers[0].twitterId | twitterId }}</p>
                     </div>
                 </ion-item>
             </div>

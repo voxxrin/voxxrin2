@@ -22,10 +22,11 @@
             </div>
 
             <div class="speaker" ng-repeat="speaker in presentation.speakers">
-                <div class="item item-avatar">
-                    <img style="width: 100px; weight: auto;" ng-src="{{ speaker.avatarUrl }}">
+                <div class="item item-avatar item-text-wrap">
+                    <img style="width: 100px; height: auto;" ng-src="{{ speaker.avatarUrl }}">
                     <h2>{{ speaker.firstName }} {{ speaker.lastName }}</h2>
                     <p>{{ speaker.company }}</p>
+                    <p>{{ speaker.twitterId | twitterId }}</p>
                     <p>{{ speaker.bio }}</p>
                 </div>
             </div>
