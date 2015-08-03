@@ -1,11 +1,11 @@
 <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <widget id="com.ionicframework.voxxrin2545796" version="0.0.1" xmlns="http://www.w3.org/ns/widgets" xmlns:cdv="http://cordova.apache.org/ns/1.0">
-  <name>voxxrin2</name>
+  <name>Voxxrin 2</name>
   <description>
-        An Ionic Framework and Cordova project.
+        The new voxxrin app
     </description>
-  <author email="hi@ionicframework" href="http://ionicframework.com/">
-      Ionic Framework Team
+    <author email="eoriou@gmail.com">
+      Elian ORIOU
     </author>
   <content src="index.html"/>
   <access origin="*"/>
