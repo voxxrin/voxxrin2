@@ -1,17 +1,16 @@
 package voxxrin2.auth;
 
-import com.google.common.base.Optional;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import restx.RestxRequest;
 import restx.RestxResponse;
 import restx.WebException;
 import restx.http.HttpStatus;
-import voxxrin2.domain.User;
 
 import java.io.IOException;
 import java.io.UnsupportedEncodingException;
 import java.net.URLEncoder;
+import java.util.List;
 import java.util.Map;
 
 public abstract class OAuthProvider {
@@ -26,7 +25,7 @@ public abstract class OAuthProvider {
         this.providerUrl = providerUrl;
     }
 
-    public abstract User authenticate(Optional<Map<String, ?>> params) throws IOException;
+    public abstract <T extends Map<String, ? extends List<String>>> Token authenticate(T params, RestxRequest request);
 
     public String getProvider() {
         return provider;
@@ -45,7 +44,7 @@ public abstract class OAuthProvider {
         }
     }
 
-    protected User redirectTo(final String url) {
+    protected Token redirectTo(final String url) {
         throw new WebException(HttpStatus.FOUND) {
             @Override
             public void writeTo(RestxRequest restxRequest, RestxResponse restxResponse) throws IOException {

@@ -1,28 +1,20 @@
 package voxxrin2.auth;
 
-import com.fasterxml.jackson.core.type.TypeReference;
-import com.fasterxml.jackson.databind.ObjectMapper;
-import com.google.common.base.Optional;
-import com.google.common.base.Splitter;
-import com.google.common.base.Strings;
 import com.google.common.collect.Maps;
-import com.google.common.io.CharStreams;
-import com.google.common.net.MediaType;
 import restx.RestxRequest;
 import restx.WebException;
-import restx.annotations.*;
+import restx.annotations.GET;
+import restx.annotations.POST;
+import restx.annotations.Param;
+import restx.annotations.RestxResource;
 import restx.factory.Component;
 import restx.http.HttpStatus;
-import restx.jackson.FrontObjectMapperFactory;
 import restx.security.PermitAll;
 import restx.security.RestxPrincipal;
 import restx.security.RestxSession;
-import voxxrin2.domain.User;
 import voxxrin2.utils.Functions;
 
-import javax.inject.Named;
 import java.io.IOException;
-import java.io.InputStreamReader;
 import java.util.List;
 import java.util.Map;
 
@@ -30,13 +22,9 @@ import java.util.Map;
 @RestxResource("/auth")
 public class AuthResource {
 
-    private ObjectMapper mapper;
-
     private Map<String, OAuthProvider> oAuthProviders;
 
-    public AuthResource(List<OAuthProvider> oAuthProviders,
-                        @Named(FrontObjectMapperFactory.MAPPER_NAME) ObjectMapper mapper) {
-        this.mapper = mapper;
+    public AuthResource(List<OAuthProvider> oAuthProviders) {
         this.oAuthProviders = Maps.uniqueIndex(oAuthProviders, Functions.PROVIDERS_LIST_TO_MAP_FN);
     }
 
@@ -46,35 +34,19 @@ public class AuthResource {
     }
 
     @PermitAll
-    @POST("/provider/{provider}")
-    public User authenticate(String provider, @Param(kind = Param.Kind.CONTEXT, value = "request") RestxRequest restxRequest) throws IOException {
-        User user = oAuthProviders.get(provider).authenticate(extractParams(restxRequest));
-        RestxSession.current().authenticateAs(user);
-        return user;
-    }
+    @GET("/{provider}")
+    @POST("/{provider}")
+    public Token authenticate(String provider, @Param(kind = Param.Kind.CONTEXT, value = "request") RestxRequest restxRequest) throws IOException {
 
-    private Optional<Map<String, ?>> extractParams(RestxRequest restxRequest) throws IOException {
-
-        if (Strings.isNullOrEmpty(restxRequest.getContentType())) {
-            return Optional.<Map<String, ?>>of(restxRequest.getQueryParams());
-        } else {
-            MediaType contentType = MediaType.parse(restxRequest.getContentType());
-
-            if (contentType.is(MediaType.JSON_UTF_8)) {
-                Map<String, String> params = mapper.readValue(restxRequest.getContentStream(), new TypeReference<Map<String, String>>() {
-                });
-                return Optional.<Map<String, ?>>of(params);
-            } else if (contentType.is(MediaType.FORM_DATA)) {
-                String paramString = CharStreams.toString(new InputStreamReader(restxRequest.getContentStream()));
-                if (paramString.isEmpty()) {
-                    return Optional.absent();
-                }
-                Map<String, String> params = Splitter.on('&').withKeyValueSeparator('=').split(paramString);
-                return Optional.<Map<String, ?>>fromNullable(params);
-            } else {
-                throw new WebException(HttpStatus.NOT_IMPLEMENTED, "content type not handled: " + contentType);
-            }
+        /* this endpoint is used for 2 purpose:
+        1) to obtain the twitter authenticate URL, to redirect the user to it
+        2) to check the user has properly signed in with twitter and performs the OAuth request
+        We distinguish the 2 cases based on the presence of oauth_token and oauth_verifier query strings
+         */
+        OAuthProvider oAuthProvider = oAuthProviders.get(provider);
+        if (oAuthProvider == null) {
+            throw new WebException(HttpStatus.NOT_FOUND);
         }
+        return oAuthProvider.authenticate(restxRequest.getQueryParams(), restxRequest);
     }
-
 }

@@ -3,6 +3,8 @@ package voxxrin2.domain;
 import com.google.common.collect.ImmutableSet;
 import restx.security.RestxPrincipal;
 
+import java.util.Map;
+
 public class User implements RestxPrincipal {
 
     private String login;
@@ -14,6 +16,8 @@ public class User implements RestxPrincipal {
     private String firstName;
 
     private String displayName;
+
+    private Map<String, String> providerInfo;
 
     @Override
     public String getName() {
@@ -62,6 +66,15 @@ public class User implements RestxPrincipal {
 
     public User setDisplayName(final String displayName) {
         this.displayName = displayName;
+        return this;
+    }
+
+    public Map<String, String> getProviderInfo() {
+        return providerInfo;
+    }
+
+    public User setProviderInfo(final Map<String, String> providerInfo) {
+        this.providerInfo = providerInfo;
         return this;
     }
 

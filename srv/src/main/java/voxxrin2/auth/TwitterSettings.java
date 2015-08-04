@@ -11,10 +11,4 @@ public interface TwitterSettings {
 
     @SettingsKey(key = "oauth.twitter.apiSecret")
     String oauthTwitterApiSecret();
-
-    @SettingsKey(key = "oauth.twitter.accessToken")
-    String oauthTwitterAccessToken();
-
-    @SettingsKey(key = "oauth.twitter.tokenSecret")
-    String oauthTwitterTokenSecret();
 }

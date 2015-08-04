@@ -3,7 +3,7 @@
 // the 2nd parameter is an array of 'requires'
 // 'starter.services' is found in services.js
 // 'starter.controllers' is found in controllers.js
-angular.module('voxxrin', ['ionic', 'ngResource', 'AngularConferencePlanning', 'ionic.rating'])
+angular.module('voxxrin', ['ionic', 'ngResource', 'AngularConferencePlanning', 'ionic.rating', 'satellizer'])
 
     .run(function ($ionicPlatform) {
         $ionicPlatform.ready(function () {
@@ -29,6 +29,10 @@ angular.module('voxxrin', ['ionic', 'ngResource', 'AngularConferencePlanning', '
         // Each state's controller can be found in controllers.js
         $stateProvider
 
+            .state('login', {
+                url: '/',
+                templateUrl: 'templates/login.html'
+            })
             .state('events', {
                 url: '/events',
                 templateUrl: 'templates/events.html'
@@ -51,6 +55,28 @@ angular.module('voxxrin', ['ionic', 'ngResource', 'AngularConferencePlanning', '
             });
 
         // if none of the above states are matched, use this as the fallback
-        $urlRouterProvider.otherwise('/events');
+        $urlRouterProvider.otherwise('/');
+
+    })
+    .config(function ($authProvider, configuration) {
+
+        // OAuth popup should expand to full screen with no location bar/toolbar.
+        var commonConfig = {
+            popupOptions: {
+                location: 'no',
+                toolbar: 'no',
+                width: window.screen.width,
+                height: window.screen.height
+            }
+        };
+
+        if (ionic.Platform.isIOS() || ionic.Platform.isAndroid()) {
+            $authProvider.platform = 'mobile';
+            commonConfig.redirectUri = 'http://localhost/';
+        }
+
+        $authProvider.twitter(angular.extend({}, commonConfig, {
+            url: configuration.backendUrl + '/api/auth/twitter'
+        }));
 
     });
