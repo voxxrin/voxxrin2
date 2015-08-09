@@ -1,16 +1,20 @@
 <div ng-controller="DaysListCtrl">
 
-    <header title="Days" event="currentEvent"></header>
+    <div ui-view>
 
-    <ion-content class="has-header">
+        <header title="Days" event="currentEvent"></header>
 
-        <ion-list>
+        <ion-content class="has-header">
 
-            <ion-item ng-repeat="day in days" ng-click="goToPresentations(day)">
-                <h2>[{{ day.event.name }}] - {{ day.name }}</h2>
-            </ion-item>
+            <ion-list>
 
-        </ion-list>
+                <ion-item ng-repeat="day in days" ng-click="goToPresentations(day)">
+                    <h2>[{{ day.event.name }}] - {{ day.name }}</h2>
+                </ion-item>
 
-    </ion-content>
+            </ion-list>
+
+        </ion-content>
+
+    </div>
 </div>

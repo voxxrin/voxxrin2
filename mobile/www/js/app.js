@@ -38,12 +38,14 @@ angular.module('voxxrin', [
                 templateUrl: 'templates/planning.html'
             })
             .state('days', {
-                url: '/events/{eventId}/days',
+                parent: 'events',
+                url: '/{eventId}/days',
                 templateUrl: 'templates/days.html'
             })
             .state('presentations', {
+                parent: 'days',
                 abstract: true,
-                url: '/days/{dayId}/presentations',
+                url: '/{dayId}/presentations',
                 templateUrl: 'templates/presentations.html'
             })
             .state('presentations.list', {
