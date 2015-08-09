@@ -2,13 +2,18 @@
 
     <header title="Presentation" event="presentation.event"></header>
 
-    <ion-content class="has-header">
+    <div class="bar bar-subheader">
+        <h2 class="title">{{ presentation.title }}</h2>
+    </div>
+
+    <ion-content class="has-subheader">
 
         <div class="list card">
 
             <div class="item item-body">
 
-                <h2><span ng-if="prez.kind">[{{ presentation.kind }}]</span> {{ presentation.title }}</h2>
+                <p><b>{{ presentation.title }}</b></p>
+                <p ng-if="prez.kind">[{{ presentation.kind }}]</p>
                 <p>{{ presentation.location.fullName }}</p>
                 <p>From <span class="underline">{{ presentation.from | date:formats.fullDateTime }}</span> to <span class="underline">{{ presentation.to | date:formats.fullDateTime }}</span></p>
                 <p>{{ presentation.summary }}</p>
@@ -33,8 +38,8 @@
 
             <div class="item tabs tabs-secondary tabs-icon-left">
                 <a class="tab-item">
-                    <i class="icon ion-thumbsup"></i>
-                    Like
+                    <i class="icon ion-star"></i>
+                    Star
                 </a>
                 <a class="tab-item">
                     <i class="icon ion-chatbox"></i>
@@ -43,6 +48,10 @@
                 <a class="tab-item">
                     <i class="icon ion-share"></i>
                     Share
+                </a>
+                <a class="tab-item">
+                    <i class="icon ion-ios-videocam"></i>
+                    Remind me
                 </a>
             </div>
 
