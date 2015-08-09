@@ -6,7 +6,9 @@
         <h2 class="title">{{ presentation.title }}</h2>
     </div>
 
-    <ion-content class="has-subheader">
+    <ion-content class="has-subheader"
+                 animation="slide-left-right"
+                 on-swipe-right="goToPreviousPrez(presentations, slots, presentation)" on-swipe-left="goToNextPrez(presentations, slots, presentation)">
 
         <div class="list card">
 
@@ -15,7 +17,7 @@
                 <p><b>{{ presentation.title }}</b></p>
                 <p ng-if="prez.kind">[{{ presentation.kind }}]</p>
                 <p>{{ presentation.location.fullName }}</p>
-                <p>From <span class="underline">{{ presentation.from | date:formats.fullDateTime }}</span> to <span class="underline">{{ presentation.to | date:formats.fullDateTime }}</span></p>
+                <p>{{ presentation.slot.name }} (From <span class="underline">{{ presentation.from | date:formats.fullDateTime }}</span> to <span class="underline">{{ presentation.to | date:formats.fullDateTime }}</span>)</p>
                 <p>{{ presentation.summary }}</p>
 
                 <div class="row">

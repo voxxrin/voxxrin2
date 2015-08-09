@@ -1,10 +1,10 @@
-// angular.module is a global place for creating, registering and retrieving Angular modules
-// 'starter' is the name of this angular module example (also set in a <body> attribute in index.html)
-// the 2nd parameter is an array of 'requires'
-// 'starter.services' is found in services.js
-// 'starter.controllers' is found in controllers.js
-angular.module('voxxrin', ['ionic', 'ngResource', 'AngularConferencePlanning', 'ionic.rating', 'ion-sticky'])
-
+angular.module('voxxrin', [
+    'ionic',
+    'ngResource',
+    'AngularConferencePlanning',
+    'ionic.rating',
+    'ion-sticky'
+])
     .run(function ($ionicPlatform) {
         $ionicPlatform.ready(function () {
             // Hide the accessory bar by default (remove this to show the accessory bar above the keyboard
@@ -42,12 +42,19 @@ angular.module('voxxrin', ['ionic', 'ngResource', 'AngularConferencePlanning', '
                 templateUrl: 'templates/days.html'
             })
             .state('presentations', {
+                abstract: true,
                 url: '/days/{dayId}/presentations',
                 templateUrl: 'templates/presentations.html'
             })
-            .state('presentation', {
-                url: '/presentations/{id}',
-                templateUrl: 'templates/presentation.html'
+            .state('presentations.list', {
+                parent: 'presentations',
+                url: '/list',
+                templateUrl: 'templates/presentations.list.html'
+            })
+            .state('presentations.details', {
+                parent: 'presentations',
+                url: '/{id}',
+                templateUrl: 'templates/presentations.details.html'
             });
 
         // if none of the above states are matched, use this as the fallback

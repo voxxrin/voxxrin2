@@ -1,0 +1,41 @@
+<div ng-controller="PresentationsListCtrl">
+
+    <header title="Presentations" event="day.event"></header>
+
+    <div class="bar bar-subheader">
+        <h2 class="title">{{ day.name }}</h2>
+    </div>
+
+    <ion-content class="has-subheader" ion-sticky>
+
+        <ion-list>
+
+            <div ng-repeat="(name, slot) in slots">
+                <div class="item item-divider">
+                    {{ name }}
+                </div>
+                <ion-item class="item-avatar item-text-wrap" ng-repeat="prez in slot.presentations" ng-click="goToPresentation(prez)">
+
+                    <!--item content-->
+                    <img style="width: auto; height: auto" ng-src="{{ prez.speakers[0].avatarUrl }}">
+                    <h2><span ng-if="prez.kind">[{{ prez.kind }}]</span> {{ prez.title }}</h2>
+                    <p>{{ prez.location.fullName }}</p>
+                    <div ng-if="prez.speakers[0]">
+                        <p>{{ prez.speakers[0].firstName }} {{ prez.speakers[0].lastName }} ({{ prez.speakers[0].company }})</p>
+                        <p>{{ prez.speakers[0].twitterId | twitterId }}</p>
+                    </div>
+
+                    <!--option buttons-->
+                    <ion-option-button> <i class="icon ion-star option-icon"></i> Star</ion-option-button>
+                    <ion-option-button> <i class="icon ion-chatbox option-icon"></i> Comment</ion-option-button>
+                    <ion-option-button> <i class="icon ion-share option-icon"></i> Share</ion-option-button>
+                    <ion-option-button> <i class="icon ion-ios-videocam option-icon"></i> Remind me</ion-option-button>
+
+                </ion-item>
+            </div>
+
+        </ion-list>
+
+    </ion-content>
+
+</div>

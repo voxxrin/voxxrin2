@@ -23,6 +23,10 @@ public abstract class DataService<T extends Referenceable> {
         return collection.get().find(query, params).as(clazz);
     }
 
+    public Iterable<T> findAllAndSort(String query, String sorting, Object... params) {
+        return collection.get().find(query, params).sort(sorting).as(clazz);
+    }
+
     public T find(String query, Object... params) {
         return collection.get().findOne(query, params).as(clazz);
     }

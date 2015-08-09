@@ -54,6 +54,6 @@ public class PresentationsResource {
 
     @GET("/days/{dayId}/presentations")
     public Iterable<Presentation> getDayPresentations(String dayId) {
-        return presentationsDataService.findAll("{ day: # }", ElementURI.of(Type.day, dayId).toString());
+        return presentationsDataService.findAllAndSort("{ day: # }", "{ from: 1 }", ElementURI.of(Type.day, dayId).toString());
     }
 }

@@ -16,11 +16,53 @@ angular.module('voxxrin')
         };
 
         $scope.goToPresentations = function (day) {
-            $state.go('presentations', {dayId: day._id});
+            $state.go('presentations.list', {dayId: day._id});
         };
 
         $scope.goToPresentation = function (presentation) {
-            $state.go('presentation', {id: presentation._id});
+            $state.go('presentations.details', {id: presentation._id});
         };
 
+        var selectPrez = function (slots, slot, way) {
+
+            var currentSlot = slots[slot.name];
+            var newPrezIndex;
+            var newSlotIndex;
+
+            if (way === '+') {
+                newPrezIndex = slot.index + 1;
+                newSlotIndex = currentSlot.index + 1;
+            } else if (way === '-') {
+                newPrezIndex = slot.index - 1;
+                newSlotIndex = currentSlot.index - 1;
+            } else return null;
+
+            if (newPrezIndex < currentSlot.presentations.length && newPrezIndex > 0) {
+                // current slot
+                return currentSlot.presentations[newPrezIndex];
+            } else {
+                currentSlot = _.find(slots, function (_slot) {
+                    return _slot.index === newSlotIndex;
+                });
+                if (way === '+') {
+                    return currentSlot.presentations[0];
+                } else if (way === '-') {
+                    return _.last(currentSlot.presentations);
+                }
+            }
+        };
+
+        $scope.goToPreviousPrez = function (presentations, slots, presentation) {
+            var selectedPrez = selectPrez(slots, presentation.slot, '-');
+            if (selectedPrez) {
+                $state.go('presentations.details', {id: selectedPrez._id});
+            }
+        };
+
+        $scope.goToNextPrez = function (presentations, slots, presentation) {
+            var selectedPrez = selectPrez(slots, presentation.slot, '+');
+            if (selectedPrez) {
+                $state.go('presentations.details', {id: selectedPrez._id});
+            }
+        };
     });

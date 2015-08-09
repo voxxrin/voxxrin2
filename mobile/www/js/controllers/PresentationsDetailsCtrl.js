@@ -3,7 +3,12 @@
 angular.module('voxxrin')
     .controller('PresentationDetailsCtrl', function ($stateParams, $scope, Presentation, Rating) {
 
-        $scope.presentation = Presentation.get({id: $stateParams.id});
+        $scope.$watch('presentations', function (presentations) {
+            if (presentations) {
+                $scope.presentation = presentations[$stateParams.id];
+                loadRates($scope.presentation._id);
+            }
+        });
 
         var loadRates = function (presentationId) {
             Rating.query({presentationId: presentationId}).$promise.then(function (ratings) {
@@ -21,6 +26,4 @@ angular.module('voxxrin')
                 loadRates(presentation._id);
             });
         };
-
-        loadRates($stateParams.id);
     });
