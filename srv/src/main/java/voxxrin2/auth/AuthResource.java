@@ -1,20 +1,28 @@
 package voxxrin2.auth;
 
+import com.fasterxml.jackson.core.type.TypeReference;
+import com.fasterxml.jackson.databind.ObjectMapper;
+import com.google.common.base.Optional;
+import com.google.common.base.Splitter;
+import com.google.common.base.Strings;
 import com.google.common.collect.Maps;
+import com.google.common.io.CharStreams;
+import com.google.common.net.MediaType;
 import restx.RestxRequest;
 import restx.WebException;
-import restx.annotations.GET;
-import restx.annotations.POST;
-import restx.annotations.Param;
-import restx.annotations.RestxResource;
+import restx.annotations.*;
 import restx.factory.Component;
 import restx.http.HttpStatus;
+import restx.jackson.FrontObjectMapperFactory;
 import restx.security.PermitAll;
 import restx.security.RestxPrincipal;
 import restx.security.RestxSession;
+import voxxrin2.domain.User;
 import voxxrin2.utils.Functions;
 
+import javax.inject.Named;
 import java.io.IOException;
+import java.io.InputStreamReader;
 import java.util.List;
 import java.util.Map;
 
@@ -22,10 +30,16 @@ import java.util.Map;
 @RestxResource("/auth")
 public class AuthResource {
 
-    private Map<String, OAuthProvider> oAuthProviders;
+    private final AuthService authService;
+    private final ObjectMapper mapper;
+    private final Map<String, OAuthProvider> oAuthProviders;
 
-    public AuthResource(List<OAuthProvider> oAuthProviders) {
-        this.oAuthProviders = Maps.uniqueIndex(oAuthProviders, Functions.PROVIDERS_LIST_TO_MAP_FN);
+    public AuthResource(List<OAuthProvider> oAuthProviders,
+                        AuthService authService,
+                        @Named(FrontObjectMapperFactory.MAPPER_NAME) ObjectMapper mapper) {
+        this.authService = authService;
+        this.mapper = mapper;
+        this.oAuthProviders = Maps.uniqueIndex(oAuthProviders, Functions.OAUTH_PROVIDER_MAP_INDEXER);
     }
 
     @GET("/current")
@@ -34,19 +48,47 @@ public class AuthResource {
     }
 
     @PermitAll
-    @GET("/{provider}")
-    @POST("/{provider}")
-    public Token authenticate(String provider, @Param(kind = Param.Kind.CONTEXT, value = "request") RestxRequest restxRequest) throws IOException {
+    @GET("/provider/{provider}")
+    @POST("/provider/{provider}")
+    public String authenticate(String provider,
+                               @Param(kind = Param.Kind.CONTEXT, value = "request") RestxRequest restxRequest) throws IOException {
+        Optional<Map<String, ?>> params = extractParams(restxRequest);
+        User user = oAuthProviders.get(provider).authenticate(params);
+        return authService.buildPostMessageHtml(user, restxRequest);
+    }
 
-        /* this endpoint is used for 2 purpose:
-        1) to obtain the twitter authenticate URL, to redirect the user to it
-        2) to check the user has properly signed in with twitter and performs the OAuth request
-        We distinguish the 2 cases based on the presence of oauth_token and oauth_verifier query strings
-         */
-        OAuthProvider oAuthProvider = oAuthProviders.get(provider);
-        if (oAuthProvider == null) {
-            throw new WebException(HttpStatus.NOT_FOUND);
+    @PermitAll
+    @GET("/validate")
+    public User validateToken() {
+        Optional<User> user = AuthModule.currentUser();
+        if (!user.isPresent()) {
+            throw new WebException(HttpStatus.UNAUTHORIZED, "Unknown user");
         }
-        return oAuthProvider.authenticate(restxRequest.getQueryParams(), restxRequest);
+        return user.get();
+    }
+
+    private Optional<Map<String, ?>> extractParams(RestxRequest restxRequest) throws IOException {
+
+        if (Strings.isNullOrEmpty(restxRequest.getContentType())) {
+            return Optional.<Map<String, ?>>of(restxRequest.getQueryParams());
+        } else {
+            MediaType contentType = MediaType.parse(restxRequest.getContentType());
+            if (contentType.is(MediaType.JSON_UTF_8)) {
+                return Optional.<Map<String, ?>>of(readJsonPayload(restxRequest));
+            } else if (contentType.is(MediaType.FORM_DATA)) {
+                String paramString = CharStreams.toString(new InputStreamReader(restxRequest.getContentStream()));
+                if (paramString.isEmpty()) {
+                    return Optional.absent();
+                }
+                return Optional.<Map<String, ?>>fromNullable(Splitter.on('&').withKeyValueSeparator('=').split(paramString));
+            } else {
+                throw new WebException(HttpStatus.NOT_IMPLEMENTED, "content type not handled: " + contentType);
+            }
+        }
+    }
+
+    private Map<String, ?> readJsonPayload(RestxRequest restxRequest) throws IOException {
+        return mapper.readValue(restxRequest.getContentStream(), new TypeReference<Map<String, String>>() {
+        });
     }
 }

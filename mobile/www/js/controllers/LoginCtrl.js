@@ -12,9 +12,8 @@ angular.module('voxxrin')
             }).catch(function (response) {
                 $ionicPopup.alert({
                     title: 'Error',
-                    content: response.data ? JSON.stringify(response.data) || JSON.stringify(response.data.message) : JSON.stringify(response)
+                    content: response.data ? JSON.stringify(response.data) : JSON.stringify(response)
                 })
             });
         };
-
     });

@@ -3,19 +3,12 @@ package voxxrin2.auth;
 import com.google.common.base.Optional;
 import com.google.common.base.Splitter;
 import com.google.common.collect.Iterables;
-import com.nimbusds.jose.JOSEException;
-import com.nimbusds.jose.JWSAlgorithm;
-import com.nimbusds.jose.JWSHeader;
-import com.nimbusds.jose.JWSSigner;
-import com.nimbusds.jose.crypto.MACSigner;
-import com.nimbusds.jwt.JWTClaimsSet;
-import com.nimbusds.jwt.SignedJWT;
-import org.joda.time.DateTime;
+import org.bson.types.ObjectId;
 import org.scribe.builder.ServiceBuilder;
 import org.scribe.builder.api.TwitterApi;
 import org.scribe.model.Verifier;
 import org.scribe.oauth.OAuthService;
-import restx.RestxRequest;
+import org.slf4j.Logger;
 import restx.factory.Component;
 import voxxrin2.domain.User;
 
@@ -23,24 +16,27 @@ import javax.inject.Named;
 import java.util.List;
 import java.util.Map;
 
+import static org.slf4j.LoggerFactory.getLogger;
+
 @Component
 public class TwitterOAuthProvider extends OAuthProvider {
 
-    private final TwitterSettings twitterSettings;
-    private OAuthService service;
+    private static final Logger logger = getLogger(TwitterOAuthProvider.class);
 
-    private static final JWSHeader JWT_HEADER = new JWSHeader(JWSAlgorithm.HS256);
+    private final OAuthService service;
 
     public TwitterOAuthProvider(@Named("restx.server.baseUrl") String serverUrl,
-                                TwitterSettings twitterSettings) {
+                                OAuthSettings twitterSettings) {
         super("twitter", null);
-        this.twitterSettings = twitterSettings;
         service = new ServiceBuilder().provider(TwitterApi.class)
                 .apiKey(twitterSettings.oauthTwitterApiKey())
                 .apiSecret(twitterSettings.oauthTwitterApiSecret())
-                .callback("http://localhost:8080/api/auth/twitter")
+                .callback(serverUrl + "/api/auth/provider/twitter")
                 .debugStream(System.out)
                 .build();
+        logger.info("Registered Twitter provider - key = {}, secret = {}, callback = {}",
+                twitterSettings.oauthTwitterApiKey(), twitterSettings.oauthTwitterApiSecret(),
+                serverUrl + "/api/auth/twitter");
     }
 
     @Override
@@ -48,44 +44,31 @@ public class TwitterOAuthProvider extends OAuthProvider {
         return service.getAuthorizationUrl(service.getRequestToken());
     }
 
-    public <T extends Map<String, ? extends List<String>>> Token authenticate(T params, RestxRequest request) {
+    public <T extends Map<String, ?>> User authenticate(Optional<T> params) {
 
-        Optional<String> oauth_token = extractFirstParam(params.get("oauth_token"));
-        Optional<String> oauth_verifier = extractFirstParam(params.get("oauth_verifier"));
+        Map<String, List<String>> castedParams = castParams(params);
+        Optional<String> oauth_token = extractFirstParam(castedParams.get("oauth_token"));
+        Optional<String> oauth_verifier = extractFirstParam(castedParams.get("oauth_verifier"));
 
-        if (!oauth_token.isPresent() || !oauth_verifier.isPresent()) {
-            org.scribe.model.Token requestToken = service.getRequestToken();
-            return redirectTo(service.getAuthorizationUrl(requestToken));
-        } else {
-            Verifier verifier = new Verifier(oauth_verifier.get());
-            org.scribe.model.Token token = new org.scribe.model.Token(oauth_token.get(), "");
-            org.scribe.model.Token accessToken = service.getAccessToken(token, verifier);
+        Verifier verifier = new Verifier(oauth_verifier.get());
+        org.scribe.model.Token token = new org.scribe.model.Token(oauth_token.get(), "");
+        org.scribe.model.Token accessToken = service.getAccessToken(token, verifier);
 
-            Map<String, String> userInfo = Splitter.on('&').withKeyValueSeparator('=').split(accessToken.getRawResponse());
-            User user = new User().setProviderInfo(userInfo).setDisplayName(userInfo.get("screen_name"));
+        Map<String, String> userInfo = Splitter.on('&').withKeyValueSeparator('=').split(accessToken.getRawResponse());
+        User user = new User()
+                .setProviderInfo(userInfo)
+                .setDisplayName(userInfo.get("screen_name"))
+                .setLogin(userInfo.get("screen_name"))
+                .setId(new ObjectId().toString());
 
-            return createToken(request.getClientAddress(), user.getName());
-        }
+        logger.error("logged user is {}", user.getDisplayName());
+
+        return user;
     }
 
-    public Token createToken(String host, String subject) {
-
-        JWTClaimsSet claim = new JWTClaimsSet();
-        claim.setSubject(subject);
-        claim.setIssuer(host);
-        claim.setIssueTime(DateTime.now().toDate());
-        claim.setExpirationTime(DateTime.now().plusDays(14).toDate());
-
-        JWSSigner signer = new MACSigner(twitterSettings.oauthTwitterApiSecret());
-        SignedJWT jwt = new SignedJWT(JWT_HEADER, claim);
-
-        try {
-            jwt.sign(signer);
-        } catch (JOSEException e) {
-            throw new IllegalStateException(e);
-        }
-
-        return new Token(jwt.serialize());
+    @SuppressWarnings("unchecked")
+    private <T extends Map<String, ?>> Map<String, List<String>> castParams(Optional<T> params) {
+        return (Map<String, List<String>>) params.get();
     }
 
     private Optional<String> extractFirstParam(List<String> list) {

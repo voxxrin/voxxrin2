@@ -3,9 +3,13 @@ package voxxrin2.domain;
 import com.google.common.collect.ImmutableSet;
 import restx.security.RestxPrincipal;
 
+import java.util.HashSet;
 import java.util.Map;
+import java.util.Set;
 
 public class User implements RestxPrincipal {
+
+    private String id;
 
     private String login;
 
@@ -18,6 +22,12 @@ public class User implements RestxPrincipal {
     private String displayName;
 
     private Map<String, String> providerInfo;
+
+    private Set<String> roles = new HashSet<>();
+
+    public String getId() {
+        return id;
+    }
 
     @Override
     public String getName() {
@@ -42,6 +52,11 @@ public class User implements RestxPrincipal {
 
     public String getDisplayName() {
         return displayName;
+    }
+
+    public User setId(final String id) {
+        this.id = id;
+        return this;
     }
 
     public User setLogin(final String login) {
@@ -80,6 +95,11 @@ public class User implements RestxPrincipal {
 
     @Override
     public ImmutableSet<String> getPrincipalRoles() {
-        return null;
+        return ImmutableSet.copyOf(roles);
+    }
+
+    public User setRoles(final Set<String> roles) {
+        this.roles = roles;
+        return this;
     }
 }
