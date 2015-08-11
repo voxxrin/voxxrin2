@@ -311,6 +311,23 @@ angular.module('ng-token-auth', ['ipCookie']).provider('$auth', function() {
                             }
                             return authUrl;
                         },
+                        handleLoadStop: function(authWindow) {
+                            _this = this;
+                            return authWindow.executeScript({
+                                code: 'requestCredentials()'
+                            }, function(response) {
+                                var data, ev;
+                                data = response[0];
+                                if (data) {
+                                    ev = new Event('message');
+                                    ev.data = data;
+                                    //_this.cancelOmniauthInAppBrowserListeners();
+                                    $window.dispatchEvent(ev);
+                                    _this.initDfd();
+                                    return authWindow.close();
+                                }
+                            });
+                        },
                         requestCredentials: function(authWindow) {
                             if (authWindow.closed) {
                                 this.cancel({
@@ -319,16 +336,12 @@ angular.module('ng-token-auth', ['ipCookie']).provider('$auth', function() {
                                 });
                                 return $rootScope.$broadcast('auth:window-closed');
                             } else {
-                                authWindow.postMessage("requestCredentials", "*");
-                                return this.t = $timeout(((function(_this) {
-                                    return function() {
-                                        return _this.requestCredentials(authWindow);
-                                    };
-                                })(this)), 500);
+                                var handleLoadStop = this.handleLoadStop.bind(this, authWindow);
+                                authWindow.addEventListener('loadstop', handleLoadStop);
                             }
                         },
                         createPopup: function(url) {
-                            return $window.open(url);
+                            return $window.open(url, '_blank');
                         },
                         resolveDfd: function() {
                             this.dfd.resolve(this.user);
