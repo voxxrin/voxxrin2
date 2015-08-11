@@ -1,0 +1,10 @@
+<div ng-controller="LoginCtrl">
+
+    <button class="button" ng-click="authenticate('twitter')">
+        <i class="icon ion-social-twitter"></i>
+        Twitter Login
+    </button>
+
+    <p ng-if="Session.isAuthenticated()">You're logged in with {{ Session.getCurrent().displayName }}</p>
+
+</div>

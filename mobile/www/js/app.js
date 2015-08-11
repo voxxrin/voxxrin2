@@ -3,7 +3,8 @@ angular.module('voxxrin', [
     'ngResource',
     'AngularConferencePlanning',
     'ionic.rating',
-    'ion-sticky'
+    'ion-sticky',
+    'ng-token-auth'
 ])
     .run(function ($ionicPlatform) {
         $ionicPlatform.ready(function () {
@@ -29,6 +30,10 @@ angular.module('voxxrin', [
         // Each state's controller can be found in controllers.js
         $stateProvider
 
+            .state('login', {
+                url: '/',
+                templateUrl: 'templates/login.html'
+            })
             .state('events', {
                 url: '/events',
                 templateUrl: 'templates/events.html'
@@ -60,6 +65,6 @@ angular.module('voxxrin', [
             });
 
         // if none of the above states are matched, use this as the fallback
-        $urlRouterProvider.otherwise('/events');
+        $urlRouterProvider.otherwise('/');
 
     });
