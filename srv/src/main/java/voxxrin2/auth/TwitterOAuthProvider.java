@@ -61,7 +61,7 @@ public class TwitterOAuthProvider extends OAuthProvider {
                 .setLogin(userInfo.get("screen_name"))
                 .setId(new ObjectId().toString());
 
-        logger.error("logged user is {}", user.getDisplayName());
+        logger.info("logged user is {}", user.getDisplayName());
 
         return user;
     }

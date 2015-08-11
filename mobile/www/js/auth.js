@@ -47,6 +47,7 @@ angular.module('voxxrin')
             authProviderPaths: {
                 twitter: '/auth/redirect/twitter'
             },
+            omniauthWindowType: 'inAppBrowser',
             handleLoginResponse: function (response) {
                 return response;
             },

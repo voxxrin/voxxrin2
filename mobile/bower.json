@@ -12,7 +12,6 @@
     "angular-resource": "1.4.3",
     "lodash": "3.7.0",
     "angular-conference-planning": "git@github.com:walien/angular-conference-planning.git#1.2.2",
-    "ng-token-auth": "0.0.28",
-    "angular-cookie": "~4.0.9"
+    "angular-cookie": "4.0.9"
   }
 }

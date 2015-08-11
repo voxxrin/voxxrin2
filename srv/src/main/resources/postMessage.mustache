@@ -2,14 +2,9 @@
 <html>
 <head>
     <meta charset="utf-8">
-</head>
-
-<body>
-<script>
-    window.addEventListener("message", function (ev) {
-
-        if (ev.data === "requestCredentials") {
-            ev.source.postMessage({
+    <script>
+        var requestCredentials = function() {
+            var obj = {
                 message: "deliverCredentials",
                 auth_token: '{{token}}',
                 uid: '{{uid}}',
@@ -20,11 +15,22 @@
                 login: '{{user.login}}',
                 displayName: '{{user.displayName}}',
                 socialLogin: true
-            }, '*');
-
+            };
             window.close();
-        }
-    });
-</script>
+            return obj;
+        };
+
+        window.addEventListener("message", function(ev) {
+            if (ev.data === "requestCredentials") {
+                ev.source.postMessage(requestCredentials(), '*');
+                window.close();
+            }
+        });
+    </script>
+</head>
+<body>
+    <h3>
+      Thanks you for signing up! Please close this window if it does not close automatically.
+    </h3>
 </body>
 </html>
