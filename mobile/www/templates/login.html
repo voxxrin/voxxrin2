@@ -1,10 +1,22 @@
 <div ng-controller="LoginCtrl">
 
-    <button class="button" ng-click="authenticate('twitter')">
-        <i class="icon ion-social-twitter"></i>
-        Twitter Login
-    </button>
+    <div ui-view>
 
-    <p ng-if="Session.isAuthenticated()">You're logged in with {{ Session.getCurrent().displayName }}</p>
+        <header title="Voxxrin"></header>
+
+        <ion-content class="has-header">
+
+            <button class="button button-calm" ng-click="authenticate('twitter')">
+                <i class="icon ion-social-twitter"></i>
+                Twitter Login
+            </button>
+
+            <button class="button button-dark" ng-click="goToHome()">
+                Nope thanks !
+            </button>
+
+        </ion-content>
+
+    </div>
 
 </div>
