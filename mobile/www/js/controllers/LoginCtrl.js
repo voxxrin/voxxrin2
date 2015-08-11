@@ -1,19 +1,20 @@
 'use strict';
 
 angular.module('voxxrin')
-    .controller('LoginCtrl', function ($scope, $auth, $ionicPopup) {
+    .controller('LoginCtrl', function ($scope, $auth, $ionicPopup, Session) {
 
-        $scope.authenticate = function (provider) {
-            $auth.authenticate(provider).then(function (result) {
-                $ionicPopup.alert({
-                    title: 'Success',
-                    content: 'You have successfully logged in!' + JSON.stringify(result)
+        angular.extend($scope, {
+            Session: Session,
+            authenticate: function (provider) {
+                $auth.authenticate(provider).then(function (result) {
+                    console.log('Social authentication success', result);
+                    Session.setCurrent(result);
+                }).catch(function () {
+                    $ionicPopup.alert({
+                        title: 'Error',
+                        content: 'Error during the social authentication...'
+                    })
                 });
-            }).catch(function (response) {
-                $ionicPopup.alert({
-                    title: 'Error',
-                    content: response.data ? JSON.stringify(response.data) : JSON.stringify(response)
-                })
-            });
-        };
+            }
+        });
     });
