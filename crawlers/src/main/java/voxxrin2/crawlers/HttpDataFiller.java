@@ -30,12 +30,16 @@ public class HttpDataFiller {
     private static final Logger logger = getLogger(HttpDataFiller.class);
     private static final ObjectMapper MAPPER = buildObjectMapper();
 
-    private static final String BASE_URL = "http://localhost:8080/api";
     private static final String EVENTS_URL = "/events";
     private static final String DAYS_URL = "/days";
     private static final String ROOMS_URL = "/rooms";
     private static final String SPEAKERS_URL = "/speakers";
     private static final String PRESENTATIONS_URL = "/presentations";
+    private final String baseUrl;
+
+    public HttpDataFiller(String baseUrl) {
+        this.baseUrl = baseUrl;
+    }
 
     public void fill(CrawlingResult result) throws JsonProcessingException {
 
@@ -59,8 +63,8 @@ public class HttpDataFiller {
     }
 
     private <T extends Referenceable> void send(String url, T entity) throws JsonProcessingException {
-        int code = HttpRequest.post(BASE_URL + url).acceptJson().send(MAPPER.writeValueAsString(entity)).code();
-        logger.info("Request sent to {} - Response code {}", BASE_URL + url, code);
+        int code = HttpRequest.post(baseUrl + url).acceptJson().send(MAPPER.writeValueAsString(entity)).code();
+        logger.info("Request sent to {} - Response code {}", baseUrl + url, code);
     }
 
     private static ObjectMapper buildObjectMapper() {

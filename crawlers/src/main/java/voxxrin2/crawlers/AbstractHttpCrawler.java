@@ -2,8 +2,10 @@ package voxxrin2.crawlers;
 
 import com.fasterxml.jackson.databind.DeserializationFeature;
 import com.fasterxml.jackson.databind.ObjectMapper;
+import com.fasterxml.jackson.databind.type.CollectionType;
 
 import java.io.IOException;
+import java.util.List;
 
 public abstract class AbstractHttpCrawler {
 
@@ -17,5 +19,9 @@ public abstract class AbstractHttpCrawler {
 
     protected void configureMapper(ObjectMapper mapper) {
         mapper.configure(DeserializationFeature.FAIL_ON_UNKNOWN_PROPERTIES, false);
+    }
+
+    protected CollectionType buildCollectionType(Class<?> clazz) {
+        return MAPPER.getTypeFactory().constructCollectionType(List.class, clazz);
     }
 }

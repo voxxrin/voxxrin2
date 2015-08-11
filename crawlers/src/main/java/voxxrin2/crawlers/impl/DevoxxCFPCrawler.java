@@ -34,11 +34,7 @@ public class DevoxxCFPCrawler extends AbstractHttpCrawler {
 
     public static void main(String[] args) throws IOException {
         CrawlingResult result = new DevoxxCFPCrawler().crawl();
-        new HttpDataFiller().fill(result);
-    }
-
-    private CollectionType buildCollectionType(Class<?> clazz) {
-        return MAPPER.getTypeFactory().constructCollectionType(List.class, clazz);
+        new HttpDataFiller(" http://localhost:8080/api").fill(result);
     }
 
     @Override
