@@ -1,7 +1,7 @@
 'use strict';
 
 angular.module('voxxrin')
-    .controller('LoginCtrl', function ($scope, $auth, $ionicPopup, Session) {
+    .controller('LoginCtrl', function ($scope, $state, $auth, $ionicPopup, Session) {
 
         angular.extend($scope, {
             Session: Session,
@@ -9,6 +9,7 @@ angular.module('voxxrin')
                 $auth.authenticate(provider).then(function (result) {
                     console.log('Social authentication success', result);
                     Session.setCurrent(result);
+                    $state.go('events');
                 }).catch(function () {
                     $ionicPopup.alert({
                         title: 'Error',
