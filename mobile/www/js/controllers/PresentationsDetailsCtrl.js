@@ -22,8 +22,12 @@ angular.module('voxxrin')
         };
 
         $scope.sendRate = function (presentation, rate) {
-            Rating.send(presentation, rate, $scope.platform.uuid).$promise.then(function () {
-                loadRates(presentation._id);
-            });
+            if ($scope.platform.uuid) {
+                Rating.send(presentation, rate, $scope.platform.uuid).$promise.then(function () {
+                    loadRates(presentation._id);
+                });
+            } else {
+                console.log('Device uuid is not defined !');
+            }
         };
     });

@@ -21,7 +21,7 @@
                     <h2><span ng-if="prez.kind">[{{ prez.kind }}]</span> {{ prez.title }}</h2>
                     <p>{{ prez.location.fullName }}</p>
                     <div ng-if="prez.speakers[0]">
-                        <p>{{ prez.speakers[0].firstName }} {{ prez.speakers[0].lastName }} ({{ prez.speakers[0].company }})</p>
+                        <p>{{ prez.speakers[0].firstName }} {{ prez.speakers[0].lastName }} <span ng-if="prez.speakers[0].company">({{ prez.speakers[0].company }})</span></p>
                         <p>{{ prez.speakers[0].twitterId | twitterId }}</p>
                     </div>
 

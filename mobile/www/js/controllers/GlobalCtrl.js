@@ -8,7 +8,7 @@ angular.module('voxxrin')
                 fullDateTime: 'dd/MM/yy - HH:mm'
             },
             platform: {
-                uuid: '-'
+                uuid: null
             }
         });
 

@@ -15,10 +15,10 @@
             <div class="item item-body">
 
                 <p><b>{{ presentation.title }}</b></p>
-                <p ng-if="prez.kind">[{{ presentation.kind }}]</p>
+                <p ng-if="presentation.kind">[{{ presentation.kind }}]</p>
                 <p>{{ presentation.location.fullName }}</p>
                 <p>{{ presentation.slot.name }} (From <span class="underline">{{ presentation.from | date:formats.fullDateTime }}</span> to <span class="underline">{{ presentation.to | date:formats.fullDateTime }}</span>)</p>
-                <p>{{ presentation.summary }}</p>
+                <p ng-bind-html="presentation.summary | trustedHtml"></p>
 
                 <div class="row">
                     <rating ng-model="rate" max="5"></rating>
@@ -34,7 +34,7 @@
                     <h2>{{ speaker.firstName }} {{ speaker.lastName }}</h2>
                     <p>{{ speaker.company }}</p>
                     <p>{{ speaker.twitterId | twitterId }}</p>
-                    <p>{{ speaker.bio }}</p>
+                    <p ng-bind-html="speaker.bio | trustedHtml"></p>
                 </div>
             </div>
 
