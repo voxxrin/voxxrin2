@@ -145,6 +145,7 @@ public class DevoxxCFPCrawler extends AbstractHttpCrawler {
 
         public Event toStdEvent() {
             return (Event) new Event()
+                    .setImageUrl("http://www.devoxx.com/download/attachments/5342010/logo_devoxx_france_big.jpg")
                     .setDescription(label)
                     .setLocation(localisation)
                     .setName(eventCode)
