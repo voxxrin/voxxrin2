@@ -4,13 +4,13 @@
   <description>
         The new voxxrin app
     </description>
-    <author email="eoriou@gmail.com">
+  <author email="eoriou@gmail.com">
       Elian ORIOU
     </author>
   <content src="index.html"/>
   <access origin="*"/>
   <allow-intent href="http://*/*"/>
-  <allow-navigation href="*" />
+  <allow-navigation href="*"/>
   <preference name="webviewbounce" value="false"/>
   <preference name="UIWebViewBounce" value="false"/>
   <preference name="DisallowOverscroll" value="true"/>
