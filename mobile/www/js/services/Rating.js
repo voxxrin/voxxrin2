@@ -8,14 +8,10 @@ angular.module('voxxrin')
         });
 
         return angular.extend(rating, {
-            send: function (presentation, rate, uuid) {
-                if (!uuid) {
-                    return null;
-                }
+            send: function (presentation, rate) {
                 return rating.put({
                     presentationId: presentation._id,
-                    rate: rate,
-                    uuid: uuid
+                    rate: rate
                 });
             }
         });

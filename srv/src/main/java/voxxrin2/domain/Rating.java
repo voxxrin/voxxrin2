@@ -5,7 +5,7 @@ import voxxrin2.domain.technical.Reference;
 
 public class Rating {
 
-    private String uuid;
+    private String userId;
 
     private Reference<Presentation> presentation;
 
@@ -13,12 +13,17 @@ public class Rating {
 
     private DateTime dateTime;
 
-    public String getUuid() {
-        return uuid;
-    }
-
     public Reference<Presentation> getPresentation() {
         return presentation;
+    }
+
+    public String getUserId() {
+        return userId;
+    }
+
+    public Rating setUserId(final String userId) {
+        this.userId = userId;
+        return this;
     }
 
     public int getRate() {
@@ -27,11 +32,6 @@ public class Rating {
 
     public DateTime getDateTime() {
         return dateTime;
-    }
-
-    public Rating setUuid(final String uuid) {
-        this.uuid = uuid;
-        return this;
     }
 
     public Rating setPresentation(final Reference<Presentation> presentation) {

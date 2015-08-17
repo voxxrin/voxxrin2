@@ -1,6 +1,5 @@
 package voxxrin2.rest;
 
-import com.google.common.base.Strings;
 import org.joda.time.DateTime;
 import restx.WebException;
 import restx.annotations.GET;
@@ -10,7 +9,7 @@ import restx.annotations.RestxResource;
 import restx.factory.Component;
 import restx.http.HttpStatus;
 import restx.jongo.JongoCollection;
-import restx.security.PermitAll;
+import voxxrin2.auth.AuthModule;
 import voxxrin2.domain.Presentation;
 import voxxrin2.domain.Rating;
 import voxxrin2.domain.Type;
@@ -21,7 +20,6 @@ import javax.inject.Named;
 
 @Component
 @RestxResource
-@PermitAll
 public class RatingResource {
 
     private final JongoCollection ratings;
@@ -39,11 +37,10 @@ public class RatingResource {
 
     @PUT("/ratings/{presentationId}")
     public Rating ratePresentation(@Param(kind = Param.Kind.PATH) String presentationId,
-                                   @Param(kind = Param.Kind.QUERY) String uuid,
                                    @Param(kind = Param.Kind.QUERY) int rate) {
 
-        if (Strings.isNullOrEmpty(uuid)) {
-            throw new WebException(HttpStatus.BAD_REQUEST);
+        if (!AuthModule.currentUser().isPresent()) {
+            throw new WebException(HttpStatus.UNAUTHORIZED);
         }
 
         Reference<Presentation> presentation = Reference.of(Type.presentation, presentationId);
@@ -55,7 +52,7 @@ public class RatingResource {
                 .setDateTime(DateTime.now())
                 .setPresentation(presentation)
                 .setRate(rate)
-                .setUuid(uuid);
+                .setUserId(AuthModule.currentUser().get().getId());
         ratings.get().save(rating);
 
         return rating;

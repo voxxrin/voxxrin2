@@ -1,6 +1,8 @@
 package voxxrin2.domain;
 
 import com.google.common.collect.ImmutableSet;
+import org.jongo.marshall.jackson.oid.Id;
+import org.jongo.marshall.jackson.oid.ObjectId;
 import restx.security.RestxPrincipal;
 
 import java.util.HashSet;
@@ -9,6 +11,8 @@ import java.util.Set;
 
 public class User implements RestxPrincipal {
 
+    @Id
+    @ObjectId
     private String id;
 
     private String login;
