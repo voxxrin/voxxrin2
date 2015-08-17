@@ -12,7 +12,13 @@ angular.module('voxxrin')
                 return _current;
             },
             setCurrent: function (session) {
+                console.log('current session', session);
                 _current = session;
+            },
+            destroy: function () {
+                var destroyed = JSON.stringify(_current);
+                _current = null;
+                console.log('current session destroyed', JSON.parse(destroyed));
             }
         };
     });

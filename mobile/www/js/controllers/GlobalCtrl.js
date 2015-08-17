@@ -1,7 +1,7 @@
 'use strict';
 
 angular.module('voxxrin')
-    .controller('GlobalCtrl', function ($scope) {
+    .controller('GlobalCtrl', function ($scope, $auth, Session) {
 
         angular.extend($scope, {
             formats: {
@@ -9,11 +9,13 @@ angular.module('voxxrin')
             },
             platform: {
                 uuid: null
-            }
+            },
+            Session: Session
         });
 
         document.addEventListener("deviceready", function () {
             $scope.platform.uuid = device.uuid;
         }, false);
 
+        $auth.validateUser();
     });

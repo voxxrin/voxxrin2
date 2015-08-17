@@ -1,8 +1,12 @@
 <div ng-controller="NavigationCtrl">
     <div class="bar bar-header bar-positive">
-        <button class="button button-stable" ng-click="goToHome()">
+        <button class="button button-stable" ng-click="goToEvents()">
             <i class="icon ion-home"></i>
         </button>
+        <button class="button button-stable" ng-click="goToLogin()">
+            <i class="icon ion-person"></i>
+        </button>
+
         <h1 class="title" ng-if="event">{{ event.name }} - {{ title }}</h1>
 
         <h1 class="title" ng-if="!event">{{ title }}</h1>

@@ -3,7 +3,11 @@
 angular.module('voxxrin')
     .controller('NavigationCtrl', function ($scope, $state) {
 
-        $scope.goToHome = function () {
+        $scope.goToLogin = function () {
+            $state.go('login');
+        };
+
+        $scope.goToEvents = function () {
             $state.go('events');
         };
 

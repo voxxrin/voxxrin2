@@ -6,14 +6,26 @@
 
         <ion-content class="has-header">
 
-            <button class="button button-calm" ng-click="authenticate('twitter')">
+            <button class="button button-full button-calm" ng-click="authenticate('twitter')" ng-if="!isAuthenticated">
                 <i class="icon ion-social-twitter"></i>
                 Twitter Login
             </button>
 
-            <button class="button button-dark" ng-click="goToHome()">
+            <button class="button button-full button-calm" ng-if="!isAuthenticated">
+                <i class="icon ion-social-linkedin"></i>
+                LinkedIn Login
+            </button>
+
+            <button class="button button-full button-calm" ng-click="logout()" ng-if="isAuthenticated">
+                <i class="icon ion-social-twitter"></i>
+                Twitter Logout
+            </button>
+
+            <button class="button button-full button-dark" ng-click="goToEvents()">
                 Nope thanks !
             </button>
+
+            <br/>
 
         </ion-content>
 
