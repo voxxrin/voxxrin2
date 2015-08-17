@@ -67,6 +67,11 @@ public class AuthResource {
         return user.get();
     }
 
+    @DELETE("/logout")
+    public void logout() {
+        RestxSession.current().clearPrincipal();
+    }
+
     private Optional<Map<String, ?>> extractParams(RestxRequest restxRequest) throws IOException {
 
         if (Strings.isNullOrEmpty(restxRequest.getContentType())) {
