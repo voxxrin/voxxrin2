@@ -1,5 +1,6 @@
 package voxxrin2.auth;
 
+import com.google.common.base.Optional;
 import com.google.common.collect.ImmutableMap;
 import com.nimbusds.jose.JOSEException;
 import com.nimbusds.jose.JWSAlgorithm;
@@ -28,10 +29,13 @@ public class AuthService {
     private static final JWSHeader JWT_HEADER = new JWSHeader(JWSAlgorithm.HS256);
 
     private final OAuthSettings oauthSettings;
+    private final UserService userService;
     private final Template tmpl;
 
-    public AuthService(OAuthSettings oauthSettings) {
+    public AuthService(OAuthSettings oauthSettings,
+                       UserService userService) {
         this.oauthSettings = oauthSettings;
+        this.userService = userService;
         this.tmpl = Mustaches.compile("postMessage.mustache");
     }
 
@@ -57,7 +61,9 @@ public class AuthService {
 
     public String buildPostMessageHtml(User user, RestxRequest restxRequest) {
 
-        Token token = createToken(restxRequest, user);
+        User dbUser = findOrCreateUser(user);
+
+        Token token = createToken(restxRequest, dbUser);
 
         StringWriter stringWriter = new StringWriter();
         tmpl.execute(ImmutableMap.of(
@@ -67,5 +73,16 @@ public class AuthService {
         stringWriter.flush();
 
         return stringWriter.toString();
+    }
+
+    private User findOrCreateUser(User user) {
+
+        Optional<User> userOptional = userService.findUserByName(user.getName());
+
+        if (userOptional.isPresent()) {
+            return userOptional.get();
+        } else {
+            return userService.registerUser(user, Optional.<String>absent());
+        }
     }
 }

@@ -5,9 +5,7 @@ import com.google.common.collect.Sets;
 import restx.admin.AdminModule;
 import restx.factory.Module;
 import restx.factory.Provides;
-import restx.security.BCryptCredentialsStrategy;
-import restx.security.CredentialsStrategy;
-import restx.security.RestxSession;
+import restx.security.*;
 import voxxrin2.domain.User;
 
 import javax.inject.Named;
@@ -29,6 +27,12 @@ public class AuthModule {
     }
 
     @Provides
+    public BasicPrincipalAuthenticator basicPrincipalAuthenticator(UserService userService,
+                                                                   SecuritySettings securitySettings) {
+        return new StdBasicPrincipalAuthenticator(userService, securitySettings);
+    }
+
+    @Provides
     @Named("restx.activation::restx.security.RestxSessionCookieFilter::RestxSessionCookieFilter")
     public String disableCookieAuthentication() {
         return "false";
@@ -43,6 +47,12 @@ public class AuthModule {
     @Provides
     public CredentialsStrategy credentialsStrategy() {
         return new BCryptCredentialsStrategy();
+    }
+
+    @Named("restx.admin.password")
+    @Provides
+    public String restxAdminPassword() {
+        return "voxxrin2015";
     }
 
     @Provides

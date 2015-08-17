@@ -8,7 +8,7 @@ import voxxrin2.persistence.ReferenceResolver;
 
 import java.io.IOException;
 
-@Component
+@Component(priority = -250)
 public class ReferenceResolverFilter implements RestxFilter, RestxHandler {
 
     private final ReferenceResolver referenceResolver;
