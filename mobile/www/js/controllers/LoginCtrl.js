@@ -1,7 +1,7 @@
 'use strict';
 
 angular.module('voxxrin')
-    .controller('LoginCtrl', function ($scope, $state, $auth, $ionicPopup, Session) {
+    .controller('LoginCtrl', function ($scope, $rootScope, $state, $auth, $ionicPopup, Session) {
 
         angular.extend($scope, {
             Session: Session,
