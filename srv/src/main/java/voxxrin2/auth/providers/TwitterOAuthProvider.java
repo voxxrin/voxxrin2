@@ -1,4 +1,4 @@
-package voxxrin2.auth;
+package voxxrin2.auth.providers;
 
 import com.google.common.base.Optional;
 import com.google.common.base.Splitter;
@@ -10,6 +10,8 @@ import org.scribe.model.Verifier;
 import org.scribe.oauth.OAuthService;
 import org.slf4j.Logger;
 import restx.factory.Component;
+import voxxrin2.auth.OAuthProvider;
+import voxxrin2.auth.OAuthSettings;
 import voxxrin2.domain.User;
 
 import javax.inject.Named;
