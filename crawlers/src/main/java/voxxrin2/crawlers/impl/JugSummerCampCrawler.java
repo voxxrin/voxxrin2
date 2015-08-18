@@ -101,7 +101,7 @@ public class JugSummerCampCrawler extends AbstractHttpCrawler {
 
         public Day toStdDay(Event event) {
             Reference<Event> eventRef = Reference.of(Type.event, event.getKey());
-            DateTimeFormatter fmt = DateTimeFormat.forStyle("MM");
+            DateTimeFormatter fmt = DateTimeFormat.forPattern("dd/MM/yyyy");
             return (Day) new Day()
                     .setEvent(eventRef)
                     .setDate(event.getFrom())

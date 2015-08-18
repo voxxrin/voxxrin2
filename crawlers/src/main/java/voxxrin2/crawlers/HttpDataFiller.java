@@ -63,7 +63,10 @@ public class HttpDataFiller {
     }
 
     private <T extends Referenceable> void send(String url, T entity) throws JsonProcessingException {
-        int code = HttpRequest.post(baseUrl + url).acceptJson().send(MAPPER.writeValueAsString(entity)).code();
+        int code = HttpRequest
+                .post(baseUrl + url).acceptJson()
+                .basic("admin", System.getProperty("voxxrin.http.basic.pwd"))
+                .send(MAPPER.writeValueAsString(entity)).code();
         logger.info("Request sent to {} - Response code {}", baseUrl + url, code);
     }
 

@@ -6,6 +6,7 @@ import com.github.kevinsawicki.http.HttpRequest;
 import com.google.common.base.Optional;
 import com.google.common.base.Predicate;
 import com.google.common.collect.Iterables;
+import org.assertj.core.util.Strings;
 import org.bson.types.ObjectId;
 import org.joda.time.DateTime;
 import org.joda.time.format.DateTimeFormat;
@@ -82,8 +83,8 @@ public class DevoxxCFPCrawler extends AbstractHttpCrawler {
                 logger.error("empty slots here {}", dayLink.href);
             } else {
                 crawlSlots(cfpDay.slots, stdDay, result);
+                result.getDays().add(stdDay);
             }
-            result.getDays().add(stdDay);
         }
     }
 
@@ -199,7 +200,7 @@ public class DevoxxCFPCrawler extends AbstractHttpCrawler {
             CFPSlot slot = Iterables.getFirst(slots, null);
             String name = "";
             if (slot != null) {
-                DateTimeFormatter fmt = DateTimeFormat.forStyle("MM");
+                DateTimeFormatter fmt = DateTimeFormat.forPattern("dd/MM/yyyy");
                 name = fmt.print(new DateTime(slot.fromTimeMillis));
             }
             return (Day) new Day().setEvent(eventRef).setName(name).setKey(new ObjectId().toString());
