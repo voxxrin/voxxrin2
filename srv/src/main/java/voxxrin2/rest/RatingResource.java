@@ -50,12 +50,17 @@ public class RatingResource {
             throw new WebException(HttpStatus.NOT_FOUND);
         }
 
+        String userId = AuthModule.currentUser().get().getId();
         Rating rating = new Rating()
                 .setDateTime(DateTime.now())
                 .setPresentation(presentation)
                 .setRate(rate)
-                .setUserId(AuthModule.currentUser().get().getId());
-        ratings.get().save(rating);
+                .setUserId(userId);
+
+        ratings.get()
+                .update("{ presentation: #, userId: # }", presentation.getUri().toString(), userId)
+                .upsert()
+                .with(rating);
 
         return rating;
     }
