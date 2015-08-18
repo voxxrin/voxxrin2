@@ -25,7 +25,9 @@
                 Nope thanks !
             </button>
 
-            <br/>
+            <button class="button button-full button-balanced" ng-if="isAuthenticated">
+                Hello <b>{{ Session.getCurrent().displayName }}</b> !
+            </button>
 
         </ion-content>
 
