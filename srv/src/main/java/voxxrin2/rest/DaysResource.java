@@ -13,7 +13,6 @@ import voxxrin2.persistence.DaysDataService;
 
 @Component
 @RestxResource
-@PermitAll
 public class DaysResource {
 
     private final DaysDataService daysDataService;
@@ -23,11 +22,13 @@ public class DaysResource {
     }
 
     @GET("/days")
+    @PermitAll
     public Iterable<Day> getDays() {
         return daysDataService.findAll();
     }
 
     @GET("/days/{id}")
+    @PermitAll
     public Day getDay(String id) {
         return daysDataService.find("{ _id: # }", new ObjectId(id));
     }
@@ -38,6 +39,7 @@ public class DaysResource {
     }
 
     @GET("/events/{eventId}/days")
+    @PermitAll
     public Iterable<Day> getEventDays(String eventId) {
         return daysDataService.findAll("{ event: # }", ElementURI.of(Type.event, eventId).toString());
     }

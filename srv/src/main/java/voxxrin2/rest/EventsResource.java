@@ -11,7 +11,6 @@ import voxxrin2.persistence.EventsDataService;
 
 @Component
 @RestxResource
-@PermitAll
 public class EventsResource {
 
     private final EventsDataService eventsDataService;
@@ -21,11 +20,13 @@ public class EventsResource {
     }
 
     @GET("/events")
+    @PermitAll
     public Iterable<Event> getAllEvents() {
         return eventsDataService.findAll();
     }
 
     @GET("/events/{id}")
+    @PermitAll
     public Event getEvent(String id) {
         return eventsDataService.find("{ _id: # }", new ObjectId(id));
     }

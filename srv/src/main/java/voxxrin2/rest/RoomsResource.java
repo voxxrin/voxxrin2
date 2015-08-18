@@ -13,7 +13,6 @@ import java.util.List;
 
 @Component
 @RestxResource
-@PermitAll
 public class RoomsResource {
 
     private final RoomsDataService roomsDataService;
@@ -23,11 +22,13 @@ public class RoomsResource {
     }
 
     @GET("/rooms")
+    @PermitAll
     public Iterable<Room> getRooms() {
         return roomsDataService.findAll();
     }
 
     @GET("/rooms/{id}")
+    @PermitAll
     public Room getRoom(String id) {
         return roomsDataService.find("{ _id : # }", new ObjectId(id));
     }

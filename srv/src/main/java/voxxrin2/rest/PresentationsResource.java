@@ -15,7 +15,6 @@ import java.util.List;
 
 @Component
 @RestxResource
-@PermitAll
 public class PresentationsResource {
 
     private final PresentationsDataService presentationsDataService;
@@ -25,11 +24,13 @@ public class PresentationsResource {
     }
 
     @GET("/presentations")
+    @PermitAll
     public Iterable<Presentation> getPresentations() {
         return presentationsDataService.findAll();
     }
 
     @GET("/presentations/{id}")
+    @PermitAll
     public Presentation getPresentation(String id) {
         return presentationsDataService.find("{ _id: # }", new ObjectId(id));
     }
@@ -48,11 +49,13 @@ public class PresentationsResource {
     }
 
     @GET("/events/{eventId}/presentations")
+    @PermitAll
     public Iterable<Presentation> getEventPresentations(String eventId) {
         return presentationsDataService.findAll("{ event: # }", ElementURI.of(Type.event, eventId).toString());
     }
 
     @GET("/days/{dayId}/presentations")
+    @PermitAll
     public Iterable<Presentation> getDayPresentations(String dayId) {
         return presentationsDataService.findAllAndSort("{ day: # }", "{ from: 1 }", ElementURI.of(Type.day, dayId).toString());
     }

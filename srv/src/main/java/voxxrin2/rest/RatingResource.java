@@ -9,6 +9,7 @@ import restx.annotations.RestxResource;
 import restx.factory.Component;
 import restx.http.HttpStatus;
 import restx.jongo.JongoCollection;
+import restx.security.PermitAll;
 import voxxrin2.auth.AuthModule;
 import voxxrin2.domain.Presentation;
 import voxxrin2.domain.Rating;
@@ -29,6 +30,7 @@ public class RatingResource {
     }
 
     @GET("/ratings/{presentationId}")
+    @PermitAll
     public Iterable<Rating> getRatings(@Param(kind = Param.Kind.PATH) String presentationId) {
         return ratings.get()
                 .find("{ presentation: # }", ElementURI.of(Type.presentation, presentationId).toString())

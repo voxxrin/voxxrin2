@@ -19,7 +19,7 @@ public class DBUserRepository extends JongoUserRepository<User> {
 
         @Override
         public String getUserRef(User user) {
-            return user.getLogin();
+            return user.getId();
         }
 
         @Override

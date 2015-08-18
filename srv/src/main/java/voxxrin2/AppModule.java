@@ -21,12 +21,6 @@ public class AppModule {
     }
 
     @Provides
-    @Named("restx.admin.password")
-    public String restxAdminPassword() {
-        return "voxxrin2015";
-    }
-
-    @Provides
     public ConfigSupplier appConfigSupplier(ConfigLoader configLoader) {
         // Load settings.properties in voxxrin2 package as a set of config entries
         return configLoader.fromResource("voxxrin2/settings");

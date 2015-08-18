@@ -13,7 +13,6 @@ import java.util.List;
 
 @Component
 @RestxResource
-@PermitAll
 public class SpeakerResource {
 
     private final SpeakersDataService speakersDataService;
@@ -23,11 +22,13 @@ public class SpeakerResource {
     }
 
     @GET("/speakers")
+    @PermitAll
     public Iterable<Speaker> getSpeakers() {
         return speakersDataService.findAll();
     }
 
     @GET("/speakers/{id}")
+    @PermitAll
     public Speaker getSpeaker(String id) {
         return speakersDataService.find("{ _id : # }", new ObjectId(id));
     }
