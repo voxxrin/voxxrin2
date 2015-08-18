@@ -67,6 +67,7 @@ public class AuthService {
 
         StringWriter stringWriter = new StringWriter();
         tmpl.execute(ImmutableMap.of(
+                "displayName", user.getDisplayName(),
                 "token", token.getToken(),
                 "uid", UUID.randomUUID().toString(),
                 "user", user), stringWriter);
@@ -80,9 +81,16 @@ public class AuthService {
         Optional<User> userOptional = userService.findUserByName(user.getName());
 
         if (userOptional.isPresent()) {
-            return userOptional.get();
+            return updateUserWith(userOptional.get(), user);
         } else {
             return userService.registerUser(user, Optional.<String>absent());
         }
+    }
+
+    private User updateUserWith(User dbUser, User from) {
+        dbUser.setLastLoginTime(DateTime.now());
+        dbUser.setProviderInfo(from.getProviderInfo());
+        userService.updateUser(dbUser);
+        return dbUser;
     }
 }

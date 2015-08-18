@@ -32,4 +32,7 @@ public class UserService extends StdUserService<User> {
         return dbUser;
     }
 
+    public User updateUser(User user) {
+        return repository.updateUser(user);
+    }
 }

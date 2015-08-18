@@ -1,6 +1,7 @@
 package voxxrin2.domain;
 
 import com.google.common.collect.ImmutableSet;
+import org.joda.time.DateTime;
 import org.jongo.marshall.jackson.oid.Id;
 import org.jongo.marshall.jackson.oid.ObjectId;
 import restx.security.RestxPrincipal;
@@ -29,6 +30,8 @@ public class User implements RestxPrincipal {
 
     private Set<String> roles = new HashSet<>();
 
+    private DateTime lastLoginTime;
+
     public String getId() {
         return id;
     }
@@ -56,6 +59,10 @@ public class User implements RestxPrincipal {
 
     public String getDisplayName() {
         return displayName;
+    }
+
+    public DateTime getLastLoginTime() {
+        return lastLoginTime;
     }
 
     public User setId(final String id) {
@@ -94,6 +101,11 @@ public class User implements RestxPrincipal {
 
     public User setProviderInfo(final Map<String, String> providerInfo) {
         this.providerInfo = providerInfo;
+        return this;
+    }
+
+    public User setLastLoginTime(final DateTime lastLoginTime) {
+        this.lastLoginTime = lastLoginTime;
         return this;
     }
 
