@@ -1,9 +1,10 @@
 'use strict';
 
 angular.module('voxxrin')
-    .controller('PresentationsAbstractCtrl', function ($stateParams, $scope, Day, Presentation) {
+    .controller('PresentationsAbstractCtrl', function ($stateParams, $scope, $ionicPopup, Day, Presentation, Reminder) {
 
         var slotFormat = 'HH[h]mm';
+        var emailRegexp = /.+@.+[.].+/;
 
         var buildPresentationsMap = function (presentations) {
             return _.indexBy(presentations, '_id');
@@ -41,7 +42,41 @@ angular.module('voxxrin')
             $scope.slots = buildSlots(presentations);
         };
 
-        $scope.day = Day.get({id: $stateParams.dayId});
+        angular.extend($scope, {
+            day: Day.get({id: $stateParams.dayId}),
+            reminder: {},
+            openReminder: function (presentation) {
+                $ionicPopup.show({
+                    template: '<input type="email" ng-model="reminder.email">',
+                    title: 'We will notify you about the release of the video concerning this presentation',
+                    subTitle: 'Enter your email',
+                    scope: $scope,
+                    buttons: [
+                        { text: 'Cancel' },
+                        {
+                            text: '<b>OK</b>',
+                            type: 'button-positive',
+                            onTap: function (e) {
+                                if (!$scope.reminder.email || !$scope.reminder.email.match(emailRegexp)) {
+                                    e.preventDefault();
+                                } else {
+                                    return $scope.reminder.email;
+                                }
+                            }
+                        }
+                    ]
+                }).then(function (email) {
+                    Reminder.save({
+                        presentationId: presentation._id,
+                        email: email
+                    });
+                });
+            },
+            star: function (presentation) {
+                // TODO
+            }
+        });
+
         Presentation.fromDay($stateParams.dayId).$promise.then(computeModel);
 
     });
