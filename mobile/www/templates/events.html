@@ -1,8 +1,6 @@
 <div ng-controller="EventsListCtrl">
 
-    <div ui-view>
-
-        <header title="Liste des conférences"></header>
+    <div ui-view title="Liste des conférences">
 
         <!-- Striped Bar -->
         <div class="tabs-striped tabs-top tabs-background-primary tabs-color-light">
@@ -24,16 +22,29 @@
         <ion-content class="has-tabs-top">
 
             <ion-list>
-                <ion-item ng-repeat="event in events" ng-click="goToDays(event)" class="item-thumbnail-left" ng-click="goToDays(event)">
-                    <img ng-src="{{ event.imageUrl }}" style="width: auto; height: auto">
-                    <h2>{{ event.name }}</h2>
-                    <p>{{ event.location }}</p>
-                    <!--<p ng-bind-html="event.description | untrustedHtml"></p>-->
+                <ion-item ng-repeat="event in events" ng-click="goToDays(event)" class="row item" ng-click="goToDays(event)">
+                    <div class="col-25 content-avatar">
+                         <span class="avatar element-centered">
+                            <img ng-src="{{ event.imageUrl }}">
+                        </span>
+                    </div>
+
+                    <div class="col-67 content-desc">
+                        <h3 class="title primary-title">{{ event.name }}</h3>
+                        <span class="info-item"><i class="icon ion-location"></i> {{ event.location }}</span>
+                        <span class="info-item"><i class="icon ion-calendar"></i> {{ event.location }}</span>
+                        <!--<p ng-bind-html="event.description | untrustedHtml"></p>-->
+                    </div>
+
+                    <span class="icon-item-list">
+                        <i class="icon ion-ios-arrow-right"></i>
+                    </span>
+
                 </ion-item>
             </ion-list>
 
         </ion-content>
 
-    </div>
+    </ui-view>
 
 </div>

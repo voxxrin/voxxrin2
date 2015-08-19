@@ -15,6 +15,8 @@
 
 
     <!-- Components Styles -->
+    <link href="css/components.css" rel="stylesheet">
+    <link href="css/menu.css" rel="stylesheet">
     <link href="css/common.css" rel="stylesheet">
     <link href="css/slots.css" rel="stylesheet">
     <link href="css/speaker.css" rel="stylesheet">
@@ -91,9 +93,54 @@
   have templates inline in this html file if you'd like).
 -->
 <div ng-controller="GlobalCtrl">
-    <div ng-controller="NavigationCtrl">
-        <ion-nav-view></ion-nav-view>
-    </div>
+
+    <ion-side-menus>
+
+        <ion-side-menu-content>
+            <ion-nav-bar class="bar-primary">
+                <ion-nav-back-button class="button-icon ion-arrow-left-c">
+                </ion-nav-back-button>
+            </ion-nav-bar>
+            <ion-nav-buttons side="left">
+                <button class="button button-icon button-clear ion-navicon" ng-click="toggleLeft()">
+                </button>
+            </ion-nav-buttons>
+            <div ng-controller="NavigationCtrl">
+                <ion-nav-view></ion-nav-view>
+            </div>
+        </ion-side-menu-content>
+
+        <ion-side-menu side="left" class="menu-left">
+            <ion-header-bar class="header-menu">
+                <div class="col-50 element-centered text-center">
+                    <span class="avatar user">
+                        <img src="img/avatar-test.png">
+                    </span>
+                    <span class="user-connect">
+                       <h5 class="white-title"> <i class="icon ion-social-twitter"></i>Jean Dupont<h5>
+                    </span>
+                    </br>
+                    <button class="round-btn small-btn white-btn">
+                        <i class="icon ion-log-out"></i>
+                    </button>
+                </div>
+            </ion-header-bar>
+            <ion-content class="menu-list">
+                <ion-list>
+                    <ion-item menu-close href="#/events">
+                        <i class="icon ion-bookmark"></i>Conférences
+                    </ion-item>
+
+                    <ion-item menu-close href="#/settings">
+                        <i class="ion-gear-a"></i>Configuration
+                    </ion-item>
+                </ion-list>
+            </ion-content>
+            <ion-footer-bar align-title="left" class="footer-login">
+                <span class="legal-mention text-center">© Voxxrin - 2015 - v2.0</span>
+            </ion-footer-bar>
+        </ion-side-menu>
+    </ion-side-menus>
 </div>
 </body>
 </html>

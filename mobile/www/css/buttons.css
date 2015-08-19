@@ -10,7 +10,7 @@
 
 /* --- Size ---*/
 
-.small-btn  { height: ; width: ;}
+.small-btn  { height: 34px; width: 34px; padding: 3px 5px; font-size: 18px; border-width: 2px !important;}
 .medium-btn  { height: 48px; width: 48px; padding: 3px; font-size: 24px;}
 .large-btn  { height: 68px; width: 68px; padding: 10px; font-size: 32px;}
 
@@ -27,20 +27,20 @@
 
 /* --- Colors ---*/
 
-.white-btn { color: #FFFFFF; border: 3px solid #FFFFFF;}
-.white-btn.activated { background: #FFFFFF; color: #e0223f; border: 0;}
+.white-btn { transition: 200ms; color: #FFFFFF; border: 3px solid #FFFFFF;}
+.white-btn.activated { transition: 200ms; background: #FFFFFF; color: #e0223f; border-color: #FFFFFF; }
 
-.primary-btn  { color: #e0223f; border: 3px solid #e0223f;}
-.primary-btn.activated { background: #e0223f; color: #FFFFFF; border: 0;}
+.primary-btn  { transition: 200ms; color: #e0223f; border: 3px solid #e0223f;}
+.primary-btn.activated { transition: 200ms; background: #e0223f;  color: #FFFFFF;  border-color: #e0223f;}
 
-.primary-dark-btn  { color: #95172a; border: 3px solid #95172a;}
-.primary-dark-btn .activated { background: #95172a; color: #FFFFFF; border: 0;}
+.primary-dark-btn  { transition: 200ms; color: #95172a; border: 3px solid #95172a;}
+.primary-dark-btn .activated { transition: 200ms; background: #95172a; color: #FFFFFF; border-color:  #95172a;}
 
-.secondary-btn  { color: #c7cacf; border: 3px solid #c7cacf;}
-.secondary-btn.activated { background: #c7cacf; color: #FFFFFF; border: 0;}
+.secondary-btn  { transition: 200ms; color: #c7cacf; border: 3px solid #c7cacf;}
+.secondary-btn.activated { transition: 200ms; background: #c7cacf; color: #FFFFFF; border-color: #c7cacf;}
 
-.secondary-dark-btn  { color: #686868; border: 3px solid #686868;}
-.secondary-dark-btn.activated { background:  #686868; color: #FFFFFF; border: 0;}
+.secondary-dark-btn  { transition: 200ms; color: #686868; border: 3px solid #686868;}
+.secondary-dark-btn.activated { transition: 200ms; background:  #686868; color: #FFFFFF; border-color: #686868;}
 
 
 

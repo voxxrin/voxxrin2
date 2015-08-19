@@ -1,0 +1,72 @@
+/* ======== MENU ======== */
+
+.menu-left {
+    background-color: #444444;
+}
+
+/* === Part Top === */
+
+.header-menu {
+    display: block;
+    width: 100%;
+    height: 40%;
+    min-height: 250px;
+    padding-top: 30px;
+    background: url("../img/bg-part-top-menu.png") no-repeat;
+    background-size: 100%;
+}
+
+/* === Part Bottom (menu) === */
+
+.menu-list { margin-top: 200px; }
+
+.menu-list .list { line-height: 0;}
+
+.menu-list .item {
+    width: 100%;
+    height: 48px;
+    margin: 0;
+    margin-top: -1px;
+    padding: 0;
+    background: transparent;
+    border: 1px solid #232222;
+    border-left: 0;
+    border-right: 0;
+    border-bottom: 0;
+}
+
+.menu-list .item:first-child {
+    border-top: 0;
+}
+
+.menu-list .item:last-child {
+    border-bottom:  1px solid #232222;
+}
+
+.menu-list .item-content {
+    transition: 250ms;
+    padding: 12px;
+    background: transparent;
+    color: #FFFFFF;
+}
+
+.menu-list .item-content.activated {
+    transition: 250ms;
+    background: #e0223f;
+    color: #FFFFFF;
+}
+
+.menu-list .item-content.activated i {
+    transition: 250ms;
+    color: #FFFFFF;
+}
+
+.menu-list .item-content i {
+    display: inline-block;
+    vertical-align: sub;
+    text-align: center;
+    width: 30px;
+    margin-right: 15px;
+    font-size: 24px;
+    color: #e0223f;
+}

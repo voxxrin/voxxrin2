@@ -1,5 +1,9 @@
 /* ======== BASES ======== */
 
+/* === Size - Colors Paragraph === */
+
+p { font-size: 14px !important;}
+
 /* === Size Title === */
 
 h1 { font-size: 34px;}
@@ -11,7 +15,7 @@ h5 { font-size: 14px;}
 /* === Color Title === */
 
 .white-title { color: #FFFFFF;}
-.primary-title { color: #e0223f:}
-.primary-dark-title { color: #95172a:}
-.secondary-title { color: #c7cacf:}
-.secondary-dark-title { color: #686868:}
+.primary-title { color: #e0223f;}
+.primary-dark-title { color: #95172a;}
+.secondary-title { color: #c7cacf;}
+.secondary-dark-title { color: #686868;}

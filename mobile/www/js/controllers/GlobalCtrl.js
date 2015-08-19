@@ -1,7 +1,7 @@
 'use strict';
 
 angular.module('voxxrin')
-    .controller('GlobalCtrl', function ($scope, $auth, Session) {
+    .controller('GlobalCtrl', function ($scope, $auth, Session, $ionicSideMenuDelegate) {
 
         angular.extend($scope, {
             formats: {
@@ -10,7 +10,10 @@ angular.module('voxxrin')
             platform: {
                 uuid: null
             },
-            Session: Session
+            Session: Session,
+            toggleLeft: function() {
+                $ionicSideMenuDelegate.toggleLeft();
+            }
         });
 
         document.addEventListener("deviceready", function () {

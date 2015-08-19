@@ -1,0 +1,113 @@
+/* ======== COMPONENTS ======== */
+
+/* === Avatar === */
+
+/* --- Avatar list --- */
+
+.avatar {
+    position: relative;
+    display: block;
+    width:74px;
+    height:74px;
+    overflow: hidden;
+    border-radius:100%;
+    background: #FFFFFF;
+}
+
+.avatar.with-border {
+    border: 1px solid #edf0f5;
+}
+
+.avatar img {
+    position: absolute;
+    width: 80% !important;
+    top:50%;
+    left:50%;
+    transform: translate(-50%,-50%);
+    -webkit-transform: translate(-50%,-50%);
+}
+
+/* --- Avatar for user menu --- */
+
+.avatar.user {
+    width:84px;
+    height:84px;
+    margin: 0 auto;
+}
+
+.avatar.user img {
+    width: 101% !important;
+}
+
+.user-connect i {
+    margin-right: 5px;
+}
+
+
+/* === List === */
+
+.list {
+    line-height: 0;
+}
+
+.item {
+    display: inline-block;
+    width: 100%;
+    padding: 15px 10px;
+    background-color: #edf0f5;
+    transition: 200ms;
+}
+
+.item.activated {
+    background-color: #f3dfe2;
+    transition: 200ms;
+}
+
+.row + .row { padding-top: 15px;}
+
+.content-avatar {
+    display: inline-block;
+    vertical-align: middle;
+    height: auto;
+}
+
+.content-desc {
+    display: inline-block;
+    vertical-align: middle;
+    padding-left: 10px;
+}
+
+.content-desc .title { font-weight: bold;}
+.content-desc .info-item {
+    display: block;
+    font-size: 14px;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+.content-desc .info-item i {
+    display: inline-block;
+    width: 10px;
+    height: 20px;
+    margin-right: 10px;
+    text-align: center;
+}
+
+/* --- Classic List --- */
+
+.icon-item-list {
+    position: absolute;
+    right: 15px;
+    top: 50%;
+    color: #c7cacf;
+    font-size: 24px;
+    transform: translate(0%,-50%);
+    -webkit-transform: translate(0%,-50%);
+}
+
+
+/* ==== Astract Item ==== */
+
+.abstract-item {
+    padding: 15px;
+}
+

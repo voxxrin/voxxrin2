@@ -1,10 +1,21 @@
 <div ng-controller="DaysListCtrl">
 
-    <div ui-view>
-
-        <header title="Days" event="currentEvent"></header>
+    <div ui-view title="Jours">
 
         <ion-content class="has-header">
+            <div class="row abstract-item">
+                <!-- TODO Branch infos -->
+
+                <div class="col-25">
+                    <span class="avatar with-border">
+                        <img src="../img/avatar-test.png">
+                    </span>
+                </div>
+                <div class="col-75 content-desc">
+                    <h4 class="title primary-title">Event name</h4>
+                    <span class="info-item"><i class="icon ion-location"></i>Palais des congrès, Porte Maillot PARIS</span>
+                </div>
+            </div>
 
             <ion-list>
 
