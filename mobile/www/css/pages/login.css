@@ -1,0 +1,54 @@
+/* ======== LOGIN ======== */
+
+.login-content {
+    background-color: #e0223f;
+    background: url(../../img/bg-login.png) no-repeat;
+    background-size: cover;
+}
+
+/* === Part Top === */
+
+.part-top-login {
+    display: block;
+    height: 260px;
+    width: 100%;
+    padding-top: 25%;
+    background: url(../../img/bg-part-top-login.png) no-repeat;
+    background-size: 100%;
+}
+
+.logo {
+    display: block;
+    height: 70px;
+    margin-bottom: 12px !important;
+    background: url("../../img/svg/logo.svg") no-repeat;
+    background-position: center center;
+}
+
+.part-top-login h5 {
+    padding-left: 12px;
+}
+
+/* === Part Bottom === */
+
+.connect-network {
+    margin-bottom: 30px;
+}
+
+.connect-network .sep-hrz {
+    margin-top: 15px !important;
+    margin-bottom: 15px !important;
+}
+
+/* === Part Footer === */
+
+.footer-login {
+    background: transparent;
+}
+
+.legal-mention {
+    width: 100%;
+    color: #FFFFFF;
+    font-size: 10px;
+    font-weight: bold;
+}

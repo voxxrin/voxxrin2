@@ -1,0 +1,11 @@
+/* ======== IMPORTS FONTS ======== */
+
+
+/* === Import Source Sans Pro  === */
+
+@font-face {
+    font-family: 'SourceSansPro';
+    src: url('../fonts/SourceSansPro-Regular.ttf');
+    font-weight: normal;
+    font-style: normal;
+}
