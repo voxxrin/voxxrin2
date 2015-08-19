@@ -2,9 +2,26 @@
 
     <div ui-view>
 
-        <header title="Voxxrin"></header>
+        <header title="Liste des conférences"></header>
 
-        <ion-content class="has-header">
+        <!-- Striped Bar -->
+        <div class="tabs-striped tabs-top tabs-background-primary tabs-color-light">
+            <div class="tabs">
+                <a class="tab-item active" href="#">
+                    À venir
+                </a>
+                <a class="tab-item" href="#">
+                    Passées
+                </a>
+                <a class="tab-item" href="#">
+                    Toutes
+                </a>
+            </div>
+        </div>
+
+        <!-- Striped Bar -->
+
+        <ion-content class="has-tabs-top">
 
             <ion-list>
                 <ion-item ng-repeat="event in events" ng-click="goToDays(event)" class="item-thumbnail-left" ng-click="goToDays(event)">

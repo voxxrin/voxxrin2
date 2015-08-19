@@ -4,6 +4,25 @@ body {
     font-family: 'SourceSansPro',"Helvetica Neue", "Roboto" ;
 }
 
+
+/* === Header === */
+
+
+/* --- Colors --- */
+
+.bar-primary { background: #e0223f;}
+.bar-primary .title { color: white;}
+
+
+/* === Striped Bar === */
+
+.tab-item { font-weight: bold;}
+
+/* --- Colors --- */
+
+.tabs-background-primary .tabs { background: #e0223f;}
+
+
 /* === Separators === */
 
 .sep-hrz {
