@@ -6,6 +6,8 @@ body {
 
 /* === Header === */
 
+.fix-has-subheader { padding-top: 7px;}
+
 
 /* --- Colors --- */
 
@@ -16,6 +18,7 @@ body {
 /* === Striped Bar === */
 
 .tab-item { font-weight: bold;}
+.tabs-striped .tabs { border-bottom: 0;}
 
 /* --- Colors --- */
 
