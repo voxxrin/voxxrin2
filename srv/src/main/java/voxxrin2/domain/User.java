@@ -26,6 +26,8 @@ public class User implements RestxPrincipal {
 
     private String displayName;
 
+    private String avatarUrl;
+
     private Map<String, String> providerInfo;
 
     private Set<String> roles = new HashSet<>();
@@ -63,6 +65,10 @@ public class User implements RestxPrincipal {
 
     public DateTime getLastLoginTime() {
         return lastLoginTime;
+    }
+
+    public String getAvatarUrl() {
+        return avatarUrl;
     }
 
     public User setId(final String id) {
@@ -106,6 +112,11 @@ public class User implements RestxPrincipal {
 
     public User setLastLoginTime(final DateTime lastLoginTime) {
         this.lastLoginTime = lastLoginTime;
+        return this;
+    }
+
+    public User setAvatarUrl(final String avatarUrl) {
+        this.avatarUrl = avatarUrl;
         return this;
     }
 

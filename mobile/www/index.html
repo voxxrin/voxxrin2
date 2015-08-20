@@ -111,7 +111,7 @@
             <ion-header-bar class="header-menu">
                 <div class="col-50 element-centered text-center" ng-if="Session.isAuthenticated()">
                     <span class="avatar user element-centered">
-                        <img ng-if="Session.getCurrent().providerInfo" ng-src="{{ Session.getCurrent().providerInfo['profile_image_url_https'] }}">
+                        <img ng-if="Session.getCurrent().avatarUrl" ng-src="{{ Session.getCurrent().avatarUrl }}">
                     </span>
                     <span class="user-connect">
                        <h5 class="white-title"><i class="icon ion-social-twitter"></i>{{ Session.getCurrent().displayName }}</h5>

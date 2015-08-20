@@ -74,6 +74,7 @@ public class TwitterOAuthProvider extends OAuthProvider {
         User user = new User()
                 .setProviderInfo(providerInfo)
                 .setDisplayName(providerInfo.get("name"))
+                .setAvatarUrl(providerInfo.get("profile_image_url_https"))
                 .setLogin(providerInfo.get("screen_name"))
                 .setTwitterId(providerInfo.get("screen_name"))
                 .setId(new ObjectId().toString());

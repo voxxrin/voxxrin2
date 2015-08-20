@@ -68,6 +68,7 @@ public class AuthService {
         StringWriter stringWriter = new StringWriter();
         tmpl.execute(ImmutableMap.of(
                 "displayName", user.getDisplayName(),
+                "avatarUrl", user.getAvatarUrl(),
                 "token", token.getToken(),
                 "uid", UUID.randomUUID().toString(),
                 "user", user), stringWriter);
