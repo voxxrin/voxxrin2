@@ -5,14 +5,8 @@
         <!-- Striped Bar -->
         <div class="tabs-striped tabs-top tabs-background-primary tabs-color-light">
             <div class="tabs">
-                <a class="tab-item active" href="#">
-                    {{ day.name }}
-                </a>
-                <a class="tab-item" href="#">
-                    {{ day.name }}
-                </a>
-                <a class="tab-item" href="#">
-                    {{ day.name }}
+                <a class="tab-item active" href="#" ng-repeat="currentDay in days">
+                    {{ currentDay.name }}
                 </a>
             </div>
         </div>
