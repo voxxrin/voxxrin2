@@ -46,31 +46,21 @@ angular.module('voxxrin')
             day: Day.get({id: $stateParams.dayId}),
             reminder: {},
             openReminder: function (presentation) {
-                $ionicPopup.show({
-                    template: '<input type="email" ng-model="reminder.email">',
-                    title: 'We will notify you about the release of the video concerning this presentation',
-                    subTitle: 'Enter your email',
-                    scope: $scope,
-                    buttons: [
-                        { text: 'Cancel' },
-                        {
-                            text: '<b>OK</b>',
-                            type: 'button-positive',
-                            onTap: function (e) {
-                                if (!$scope.reminder.email || !$scope.reminder.email.match(emailRegexp)) {
-                                    e.preventDefault();
-                                } else {
-                                    return $scope.reminder.email;
-                                }
-                            }
-                        }
-                    ]
-                }).then(function (email) {
-                    Reminder.save({
-                        presentationId: presentation._id,
-                        email: email
+                Reminder.save({presentationId: presentation._id})
+                    .$promise
+                    .then(function () {
+                        $ionicPopup.alert({
+                            title: 'Prevenez-moi.',
+                            template: 'Votre demande a été prise en compte : vous serez notifié quand la' +
+                            ' vidéo de cette présentation sera disponible !'
+                        });
+                    })
+                    .catch(function () {
+                        $ionicPopup.alert({
+                            title: 'Prevenez-moi !',
+                            template: 'Vous devez être connecté pour beneficier de cette fonctionnalité'
+                        });
                     });
-                });
             },
             star: function (presentation) {
                 // TODO

@@ -18,11 +18,11 @@ import javax.inject.Named;
 
 @Component
 @RestxResource
-public class ReminderResource {
+public class RemindMeResource {
 
     private final JongoCollection reminder;
 
-    public ReminderResource(@Named("reminder") JongoCollection reminder) {
+    public RemindMeResource(@Named("reminder") JongoCollection reminder) {
         this.reminder = reminder;
     }
 
@@ -37,15 +37,13 @@ public class ReminderResource {
     }
 
     @POST("/remindme")
-    public RemindMe requestReminder(@Param(kind = Param.Kind.QUERY) String presentationId,
-                                    @Param(kind = Param.Kind.QUERY) String email) {
+    public RemindMe requestReminder(@Param(kind = Param.Kind.QUERY) String presentationId) {
 
         User user = AuthModule.currentUser().get();
 
         Reference<Presentation> presentation = Reference.of(Type.presentation, presentationId);
         RemindMe remindMe = new RemindMe()
                 .setPresentation(presentation)
-                .setEmail(email)
                 .setUserId(user.getId());
 
         reminder.get()

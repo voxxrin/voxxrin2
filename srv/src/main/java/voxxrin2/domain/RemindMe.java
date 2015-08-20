@@ -8,8 +8,6 @@ public class RemindMe {
 
     private String userId;
 
-    private String email;
-
     public Reference<Presentation> getPresentation() {
         return presentation;
     }
@@ -25,15 +23,6 @@ public class RemindMe {
 
     public RemindMe setUserId(final String userId) {
         this.userId = userId;
-        return this;
-    }
-
-    public String getEmail() {
-        return email;
-    }
-
-    public RemindMe setEmail(final String email) {
-        this.email = email;
         return this;
     }
 }
