@@ -20,7 +20,7 @@ angular.module('voxxrin')
         };
 
         $scope.goToPresentations = function (day) {
-            $state.go('presentations.list', {dayId: day._id});
+            $state.go('presentations.list', {eventId: day.event._id, dayId: day._id});
         };
 
         $scope.goToPresentation = function (presentation) {

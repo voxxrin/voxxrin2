@@ -62,7 +62,7 @@ angular.module('voxxrin', [
             ////////////////////////
             .state('presentations', {
                 abstract: true,
-                url: '/{dayId}/presentations',
+                url: '/events/{eventId}/days/{dayId}/presentations',
                 templateUrl: 'templates/presentations.html'
             })
             .state('presentations.list', {
