@@ -5,7 +5,8 @@ angular.module('voxxrin')
 
         angular.extend($scope, {
             formats: {
-                fullDateTime: 'dd/MM/yy - HH:mm'
+                fullDateTime: 'dd/MM/yy - HH:mm',
+                fullDate: 'dd/MM/yy'
             },
             platform: {
                 uuid: null
@@ -13,6 +14,9 @@ angular.module('voxxrin')
             Session: Session,
             toggleLeft: function() {
                 $ionicSideMenuDelegate.toggleLeft();
+            },
+            logout: function () {
+                $auth.signOut();
             }
         });
 

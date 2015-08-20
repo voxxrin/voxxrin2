@@ -18,7 +18,11 @@
                             <i class="icon ion-social-twitter"></i>
                         </button>
 
-                        <button class="round-btn large-btn white-btn" ng-if="!isAuthenticated">
+                        <button class="round-btn large-btn white-btn" ng-click="logout()" ng-if="isAuthenticated">
+                            <i class="icon ion-log-out"></i>
+                        </button>
+
+                        <button class="round-btn large-btn white-btn">
                             <i class="icon ion-social-linkedin"></i>
                         </button>
                     </div>
@@ -35,22 +39,9 @@
                 </div>
             </div>
 
-
-
-
-            <button class="button button-full button-calm" ng-click="logout()" ng-if="isAuthenticated">
-                <i class="icon ion-social-twitter"></i>
-                Twitter Logout
-            </button>
-
-
-
-            <button class="button button-full button-balanced" ng-if="isAuthenticated">
-                Hello <b>{{ Session.getCurrent().displayName }}</b> !
-            </button>
-
             <ion-footer-bar align-title="left" class="footer-login">
             <span class="legal-mention text-center">© Voxxrin - 2015 - v2.0</span>
+
         </ion-footer-bar>
         </ion-content>
 

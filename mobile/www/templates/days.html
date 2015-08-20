@@ -4,18 +4,21 @@
 
         <ion-content>
             <div class="row abstract-item">
-                <!-- TODO Branch infos -->
 
                 <div class="col-25">
                     <span class="avatar with-border">
-                        <img src="../img/avatar-test.png">
+                        <img ng-src="{{ currentEvent.imageUrl }}">
                     </span>
                 </div>
                 <div class="col-75 content-desc">
-                    <h4 class="title primary-title">DevoxxFR2015</h4>
+                    <h4 class="title primary-title">{{ currentEvent.name }}</h4>
                     <span class="info-item secondary-dark-title">
                         <i class="icon ion-location"></i>
-                        <p>Palais des congrès, Porte Maillot PARIS</p>
+                        <p>{{ currentEvent.location }}</p>
+                    </span>
+                    <span class="info-item secondary-dark-title">
+                        <i class="icon ion-calendar"></i>
+                        <p>{{ currentEvent.from | date:formats.fullDate }}</p>
                     </span>
                 </div>
             </div>

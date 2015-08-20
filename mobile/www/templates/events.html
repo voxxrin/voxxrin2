@@ -1,6 +1,6 @@
 <div ng-controller="EventsListCtrl">
 
-    <ion-view view-title="Liste des conférences">
+    <ion-view view-title="Liste des conferences" cache-view="false">
 
         <!-- Striped Bar -->
         <div class="tabs-striped tabs-top tabs-background-primary tabs-color-light">
@@ -21,7 +21,7 @@
         <ion-content class="has-tabs-top">
 
             <ion-list>
-                <ion-item ng-repeat="event in events" ng-click="goToDays(event)" class="row item" ng-click="goToDays(event)">
+                <ion-item collection-repeat="event in events" ng-click="goToDays(event)" class="row item" ng-click="goToDays(event)">
                     <div class="col-25 content-avatar">
                          <span class="avatar element-centered">
                             <img ng-src="{{ event.imageUrl }}">
@@ -31,7 +31,7 @@
                     <div class="col-67 content-desc secondary-dark-title">
                         <h3 class="title primary-title">{{ event.name }}</h3>
                         <span class="info-item"><i class="icon inline ion-location"></i>{{ event.location }}</span>
-                        <span class="info-item"><i class="icon inline ion-calendar"></i>{{ event.location }}</span>
+                        <span class="info-item"><i class="icon inline ion-calendar"></i>{{ event.from | date:formats.fullDate }}</span>
                         <!--<p ng-bind-html="event.description | untrustedHtml"></p>-->
                     </div>
 

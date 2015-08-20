@@ -24,7 +24,7 @@
 
                 <div ng-repeat="(name, slot) in slots" class="list-divider">
                     <div class="item item-divider">
-                        <h3 class="white-title"><i class="icon inline medium ion-clock"></i>{{ name }}<h3>
+                        <h3 class="white-title"><i class="icon inline medium ion-clock"></i>{{ name }}</h3>
                     </div>
 
                     <ion-item class="item-text-wrap" ng-repeat="prez in slot.presentations" ng-click="goToPresentation(prez)">
@@ -33,7 +33,6 @@
                             <span class="col-20 avatar user-list">
                                 <img ng-src="{{ prez.speakers[0].avatarUrl }}">
                             </span>
-
 
                             <div class="col-75 content-desc secondary-dark-title">
                                 <h3 class="title primary-title">{{ prez.title }}</h3>

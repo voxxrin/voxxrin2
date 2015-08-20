@@ -79,7 +79,4 @@ angular.module('voxxrin', [
         // if none of the above states are matched, use this as the fallback
         $urlRouterProvider.otherwise('/');
 
-    })
-    .config(function ($ionicConfigProvider) {
-        $ionicConfigProvider.views.swipeBackEnabled(false);
     });
