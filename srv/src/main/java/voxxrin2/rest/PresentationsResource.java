@@ -3,6 +3,7 @@ package voxxrin2.rest;
 import org.bson.types.ObjectId;
 import restx.annotations.GET;
 import restx.annotations.POST;
+import restx.annotations.Produces;
 import restx.annotations.RestxResource;
 import restx.factory.Component;
 import restx.security.PermitAll;
@@ -25,12 +26,14 @@ public class PresentationsResource {
 
     @GET("/presentations")
     @PermitAll
+    @Produces("application/json;view=voxxrin2.serialization.Views$Presentations$List")
     public Iterable<Presentation> getPresentations() {
         return presentationsDataService.findAll();
     }
 
     @GET("/presentations/{id}")
     @PermitAll
+    @Produces("application/json;view=voxxrin2.serialization.Views$Presentations$Details")
     public Presentation getPresentation(String id) {
         return presentationsDataService.find("{ _id: # }", new ObjectId(id));
     }
@@ -50,12 +53,14 @@ public class PresentationsResource {
 
     @GET("/events/{eventId}/presentations")
     @PermitAll
+    @Produces("application/json;view=voxxrin2.serialization.Views$Presentations$List")
     public Iterable<Presentation> getEventPresentations(String eventId) {
         return presentationsDataService.findAll("{ event: # }", ElementURI.of(Type.event, eventId).toString());
     }
 
     @GET("/days/{dayId}/presentations")
     @PermitAll
+    @Produces("application/json;view=voxxrin2.serialization.Views$Presentations$List")
     public Iterable<Presentation> getDayPresentations(String dayId) {
         return presentationsDataService.findAllAndSort("{ day: # }", "{ from: 1 }", ElementURI.of(Type.day, dayId).toString());
     }

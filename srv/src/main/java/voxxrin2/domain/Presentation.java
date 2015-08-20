@@ -1,6 +1,8 @@
 package voxxrin2.domain;
 
+import com.fasterxml.jackson.annotation.JsonView;
 import org.joda.time.DateTime;
+import restx.jackson.Views;
 import voxxrin2.domain.technical.Reference;
 import voxxrin2.domain.technical.Referenceable;
 
@@ -12,8 +14,10 @@ public class Presentation extends Referenceable {
 
     private String summary;
 
+    @JsonView({Views.Private.class, voxxrin2.serialization.Views.Presentations.Details.class})
     private Reference<Day> day;
 
+    @JsonView({Views.Private.class, voxxrin2.serialization.Views.Presentations.Details.class})
     private Reference<Event> event;
 
     private List<Reference<Speaker>> speakers;

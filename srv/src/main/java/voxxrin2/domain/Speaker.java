@@ -1,5 +1,7 @@
 package voxxrin2.domain;
 
+import com.fasterxml.jackson.annotation.JsonView;
+import restx.jackson.Views;
 import voxxrin2.domain.technical.Referenceable;
 
 public class Speaker extends Referenceable {
@@ -10,6 +12,7 @@ public class Speaker extends Referenceable {
 
     private String company;
 
+    @JsonView({Views.Private.class, voxxrin2.serialization.Views.Presentations.Details.class})
     private String bio;
 
     private String avatarUrl;
