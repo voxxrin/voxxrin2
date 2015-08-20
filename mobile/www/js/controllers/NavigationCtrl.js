@@ -8,15 +8,15 @@ angular.module('voxxrin')
         };
 
         $scope.goToEvents = function () {
-            $state.go('events');
+            $state.go('events.list');
         };
 
         $scope.goToPlanning = function (event) {
-            $state.go('planning', {eventId: event._id});
+            $state.go('events.planning', {eventId: event._id});
         };
 
         $scope.goToDays = function (event) {
-            $state.go('days', {eventId: event._id});
+            $state.go('events.days', {eventId: event._id});
         };
 
         $scope.goToPresentations = function (day) {

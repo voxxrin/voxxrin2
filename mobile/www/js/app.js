@@ -34,21 +34,33 @@ angular.module('voxxrin', [
                 url: '/',
                 templateUrl: 'templates/login.html'
             })
+            ////////////////////////
+            // Events (list, planning, nested days)
+            ////////////////////////
             .state('events', {
                 url: '/events',
-                templateUrl: 'templates/events.html'
+                abstract: true,
+                template: "<ion-nav-view></ion-nav-view>"
             })
-            .state('planning', {
-                url: '/events/{eventId}/planning',
+            .state('events.planning', {
+                parent: 'events',
+                url: '/{eventId}/planning',
                 templateUrl: 'templates/planning.html'
             })
-            .state('days', {
+            .state('events.list', {
+                parent: 'events',
+                url: '/list',
+                templateUrl: 'templates/events.html'
+            })
+            .state('events.days', {
                 parent: 'events',
                 url: '/{eventId}/days',
                 templateUrl: 'templates/days.html'
             })
+            ////////////////////////
+            // Presentations
+            ////////////////////////
             .state('presentations', {
-                parent: 'days',
                 abstract: true,
                 url: '/{dayId}/presentations',
                 templateUrl: 'templates/presentations.html'

@@ -1,15 +1,16 @@
 <div ng-controller="PlanningCtrl">
 
-    <header title="Planning" event="event"></header>
+    <ion-view view-title="Planning">
 
-    <ion-content overflow-scroll="true" class="has-header">
-        <conference-planning events="events" options="options">
-            <event>
-                <span class="title">{{ event.title }}</span>
-                <br/>
-                <span class="sub">{{ event.speaker }} - {{ event.type }} - {{ placeMapping[event.place] }}</span>
-            </event>
-        </conference-planning>
-    </ion-content>
+        <ion-content overflow-scroll="true" class="has-header">
+            <conference-planning events="events" options="options">
+                <event>
+                    <span class="title">{{ event.title }}</span>
+                    <br/>
+                    <span class="sub">{{ event.speaker }} - {{ event.type }} - {{ placeMapping[event.place] }}</span>
+                </event>
+            </conference-planning>
+        </ion-content>
 
+    </ion-view>
 </div>
