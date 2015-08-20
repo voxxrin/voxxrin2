@@ -212,6 +212,27 @@
     -webkit-transform: translate(0%,-10%);
 }
 
+/* --- List Options --- */
+
+.item-options .button { min-width: 100px;}
+
+.item-options .button button { margin: 0 auto;}
+
+.item-options .button:nth-child(n+1) {background-color: #e0223f;}
+.item-options .button:nth-child(n+2) {background-color: #c61c36;}
+.item-options .button:nth-child(n+3) {background-color: #aa192f;}
+
+.item-options .button.activated {
+    transition: 200ms;
+    background: #c7cacf;
+}
+
+.item-options .button.activated button {
+    transition: 200ms;
+    background: #FFFFFF;
+    color: #e0223f;
+}
+
 
 /* -> Status List Divider <- */
 
