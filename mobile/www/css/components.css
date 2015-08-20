@@ -63,6 +63,10 @@
     transition: 200ms;
 }
 
+.add-padding-list.item {
+    padding-left: 20px;
+}
+
 .row + .row { padding-top: 15px;}
 
 .content-avatar {
@@ -80,15 +84,15 @@
 .content-desc .title { font-weight: bold;}
 .content-desc .info-item {
     display: block;
-    font-size: 14px;
+    font-size: 13px;
     overflow: hidden;
     text-overflow: ellipsis;
 }
 .content-desc .info-item i {
     display: inline-block;
-    width: 10px;
+    width: 10%;
     height: 20px;
-    margin-right: 10px;
+    font-size: 17px;
     text-align: center;
 }
 
@@ -96,7 +100,7 @@
 
 .icon-item-list {
     position: absolute;
-    right: 15px;
+    right: 5px;
     top: 50%;
     color: #c7cacf;
     font-size: 24px;
@@ -105,9 +109,17 @@
 }
 
 
-/* ==== Astract Item ==== */
+/* ==== Abstract Item ==== */
 
 .abstract-item {
     padding: 15px;
 }
+
+
+.abstract-item .content-desc .info-item P {
+    display: inline-block;
+    vertical-align: top;
+    width: 80%;
+}
+
 

@@ -13,14 +13,22 @@
                 </div>
                 <div class="col-75 content-desc">
                     <h4 class="title primary-title">Event name</h4>
-                    <span class="info-item"><i class="icon ion-location"></i>Palais des congrès, Porte Maillot PARIS</span>
+                    <span class="info-item secondary-dark-title">
+                        <i class="icon ion-location"></i>
+                        <p>Palais des congrès, Porte Maillot PARIS</p>
+                    </span>
                 </div>
             </div>
 
             <ion-list>
 
-                <ion-item ng-repeat="day in days" ng-click="goToPresentations(day)">
-                    <h2>[{{ day.event.name }}] - {{ day.name }}</h2>
+                <ion-item ng-repeat="day in days" ng-click="goToPresentations(day)" class="add-padding-list">
+
+                    <p><i class="icon ion-calendar"></i>{{ day.name }}</p>
+
+                     <span class="icon-item-list">
+                        <i class="icon ion-ios-arrow-right"></i>
+                    </span>
                 </ion-item>
 
             </ion-list>
