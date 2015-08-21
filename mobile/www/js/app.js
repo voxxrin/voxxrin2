@@ -4,6 +4,8 @@ angular.module('voxxrin', [
     'AngularConferencePlanning',
     'ionic.rating',
     'ion-sticky',
+    'ion-affix',
+    'angular-carousel',
     'ng-token-auth'
 ])
     .run(function ($ionicPlatform) {
@@ -33,6 +35,10 @@ angular.module('voxxrin', [
             .state('login', {
                 url: '/',
                 templateUrl: 'templates/login.html'
+            })
+            .state('settings', {
+                url: '/settings',
+                templateUrl: 'templates/settings.html'
             })
             ////////////////////////
             // Events (list, planning, nested days)

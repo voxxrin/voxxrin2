@@ -1,0 +1,24 @@
+/* ======== SETTINGS ======== */
+
+.list-settings .item-toggle {
+    background: transparent;
+    height: auto;
+    margin-top: 0;
+    color: #c7cacf;
+}
+
+.list-settings .item-toggle h3 {
+    display: inline-block;
+    vertical-align: middle;
+    margin-top: 2px;
+    max-width: 230px;
+    white-space: pre-line;
+}
+
+.list-settings .item-divider {
+    display: block;
+    height: 40px;
+    padding: 18px !important;
+    background: #edf0f5;
+    color: #e0223f;
+}

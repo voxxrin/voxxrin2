@@ -118,6 +118,8 @@
     border: 0;
 }
 
+.time-bar  .btn-actions button.activated { background: #e0223f; color: #FFFFFF; }
+
 .time-bar  .btn-actions button:last-child {
     margin-right: 0;
 }
@@ -153,3 +155,4 @@
 .content-rating .ion-ios-star { color: #e0223f; }
 .content-rating button { float: right; }
 .content-rating button.active { border-color: #e0223f; color: #e0223f; }
+.content-rating button.activated { background: #e0223f; color: #FFFFFF; }

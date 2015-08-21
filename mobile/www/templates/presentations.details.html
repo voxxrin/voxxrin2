@@ -45,7 +45,7 @@
                     <p ng-bind-html="presentation.summary | trustedHtml"></p>
 
                     <!-- Ratings -->
-                    <h2 class="font-bold primary-title">{{ ratings.length }} rates.</h2>
+                    <h2 class="font-bold primary-title">{{ ratings.length }} Notes.</h2>
                     <span class="sep-hrz secondary-sep"></span>
                     <div class="row content-rating">
                         <rating ng-model="rate" max="5"></rating>
@@ -56,9 +56,20 @@
                     </div>
                     <!-- END Ratings -->
 
+                    <!-- Followers -->
+                    <!-- TODO No finish skin carousel !-->
+                    <h2 class="font-bold primary-title">0 Assiste à la {{ presentation.kind }}</h2>
+                    <span class="sep-hrz secondary-sep"></span>
+                    <ul rn-carousel class="list-followers image">
+                        <li>slide #1</li>
+                        <li>slide #2</li>
+                        <li>slide #3</li>
+                    </ul>
+                    <!-- END Followers -->
                 </div>
 
-                <div class="speaker" ng-repeat="speaker in presentation.speakers">
+                <!-- END Comment !-->
+                <!-- <div class="speaker" ng-repeat="speaker in presentation.speakers">
                     <div class="item item-avatar item-text-wrap">
                         <img style="width: 100px; height: auto;" ng-src="{{ speaker.avatarUrl }}">
                         <h2>{{ speaker.firstName }} {{ speaker.lastName }}</h2>
@@ -85,7 +96,8 @@
                         <i class="icon ion-ios-videocam"></i>
                         Remind me
                     </a>
-                </div>
+                </div> !-->
+                <!-- END Comment !-->
 
             </div>
 

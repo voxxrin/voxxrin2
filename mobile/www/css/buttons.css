@@ -1,5 +1,14 @@
 /* ======== BUTTONS ======== */
 
+.label-btn {
+    display: block;
+    vertical-align: middle;
+    width: 100%;
+    font-size: 13px;
+    color:  #c7cacf;
+    font-weight: bold;
+    white-space: nowrap;
+}
 
 /* === Buttons === */
 

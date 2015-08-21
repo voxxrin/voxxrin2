@@ -7,8 +7,8 @@
 .avatar {
     position: relative;
     display: block;
-    width:74px;
-    height:74px;
+    width: 74px;
+    height: 74px;
     overflow: hidden;
     border-radius:100%;
     background: #FFFFFF;
@@ -30,8 +30,8 @@
 /* --- Avatar for user menu --- */
 
 .avatar.user {
-    width:84px;
-    height:84px;
+    width: 84px;
+    height: 84px;
     background: url("../img/no-image.png");
 }
 
@@ -46,10 +46,11 @@
 /* --- Avatar for List divider --- */
 
 .avatar.user-list {
-    width:70px;
-    height:70px;
+    width: 60px;
+    height: 60px;
     margin-right: 10px;
     background: url("../img/no-image.png");
+    background-size: 100%;
 }
 
 .avatar.user-list img {
@@ -91,15 +92,20 @@
 .content-desc {
     display: inline-block;
     vertical-align: middle;
-    padding-left: 5px;
+    padding-left: 10px;
 }
 
-.content-desc .title { font-weight: bold;}
+.content-desc .title {
+    max-width: 200px;
+    font-weight: bold;
+}
+
 .content-desc .info-item {
     display: block;
     font-size: 13px;
     overflow: hidden;
     text-overflow: ellipsis;
+    font-weight: bold;
 }
 .content-desc .info-item i {
     display: inline-block;
@@ -169,7 +175,7 @@
 }
 
 .list-divider .avatar {
-    min-width: 70px;
+    min-width: 60px;
 }
 
 .supplementary-infos {
@@ -191,7 +197,6 @@
     display: inline-block;
     vertical-align: middle;
     float: right;
-    padding-right: 5px;
 }
 
 .list-alerts .item-list-alert {
