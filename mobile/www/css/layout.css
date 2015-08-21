@@ -1,13 +1,13 @@
 /* ======== LAYOUT ======== */
 
 body {
-    font-family: 'Source Sans Pro', sans-serif;
+    font-family: 'Source Sans Pro';
 }
 
 /* === Header === */
 
 .fix-has-subheader { padding-top: 7px;}
-.has-big-subheader { padding-top: 145px;}
+.has-big-subheader { padding-top: 160px;}
 
 
 /* --- Colors --- */
