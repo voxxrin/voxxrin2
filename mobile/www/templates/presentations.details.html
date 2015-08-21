@@ -2,29 +2,59 @@
 
     <ion-view view-title="Presentation">
 
-        <div class="bar bar-subheader">
-            <h2 class="title">{{ presentation.title }}</h2>
+        <div class="bar bar-subheader part-top-presentation">
+            <div class="title-presentation">
+                <h4 class="title primary-title">{{ presentation.title }}</h4>
+                 <span class="avatar user-list">
+                    <img ng-src="{{ speaker.avatarUrl }}">
+                </span>
+                <div class="info-item supplementary-infos">
+                    <span class="prez-kind">{{ presentation.kind }}</span>
+                </div>
+            </div>
+
+            <div class="infos-bar content-desc ">
+                <span class="info-item"><i class="icon inline ion-location"></i>{{ presentation.location.fullName }}</span>
+                <span class="info-item"><i class="icon inline ion-person"></i>{{ presentation.speakers[0].firstName }} {{ presentation.speakers[0].lastName }}</span>
+            </div>
+
+            <div class="row time-bar">
+                <p><i class="icon ion-clock"></i> {{ presentation.slot.name }} <!-- (From <span class="underline">{{ presentation.from | date:formats.fullDateTime }}</span> to <span class="underline">{{ presentation.to | date:formats.fullDateTime }}</span>) !--></p>
+                <div class="btn-actions">
+                    <button class="btn small-btn secondary-btn">
+                        <i class="icon ion-videocamera"></i>
+                    </button>
+                    <button class="btn small-btn secondary-btn active">
+                        <i class="icon ion-calendar"></i>
+                    </button>
+                    <button class="btn small-btn secondary-btn">
+                        <i class="icon ion-android-share-alt"></i>
+                    </button>
+                </div>
+            </div>
         </div>
 
-        <ion-content class="has-subheader"
+        <ion-content class="has-big-subheader"
                      animation="slide-left-right"
                      on-swipe-right="goToPreviousPrez(presentations, slots, presentation)" on-swipe-left="goToNextPrez(presentations, slots, presentation)">
 
-            <div class="list card">
+            <div class="list card container-presentation-desc">
 
-                <div class="item item-body">
+                <div class="item item-body content-presentation-desc">
 
-                    <p><b>{{ presentation.title }}</b></p>
-                    <p ng-if="presentation.kind">[{{ presentation.kind }}]</p>
-                    <p>{{ presentation.location.fullName }}</p>
-                    <p>{{ presentation.slot.name }} (From <span class="underline">{{ presentation.from | date:formats.fullDateTime }}</span> to <span class="underline">{{ presentation.to | date:formats.fullDateTime }}</span>)</p>
                     <p ng-bind-html="presentation.summary | trustedHtml"></p>
 
-                    <div class="row">
+                    <!-- Ratings -->
+                    <h2 class="font-bold primary-title">{{ ratings.length }} rates.</h2>
+                    <span class="sep-hrz secondary-sep"></span>
+                    <div class="row content-rating">
                         <rating ng-model="rate" max="5"></rating>
-                        <button class="button button-small button-balanced" ng-click="sendRate(presentation, rate)">Send !</button>
+
+                        <button class="active round-btn small-btn secondary-btn" ng-click="sendRate(presentation, rate)">
+                            <i class="ion-plus-round"></i>
+                        </button>
                     </div>
-                    <span>{{ ratings.length }} rates.</span>
+                    <!-- END Ratings -->
 
                 </div>
 

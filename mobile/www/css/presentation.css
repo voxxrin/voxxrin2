@@ -1,3 +1,155 @@
+/* ======== COMPONENTS ======== */
+
 .option-icon {
     padding-right: 5px;
 }
+
+/* === Part Top === */
+
+.part-top-presentation {
+  padding: 0;
+}
+
+.part-top-presentation.bar-subheader {
+    height: auto !important;
+}
+
+/* --- Part Top / Title --- */
+
+.part-top-presentation .title-presentation {
+    position: relative;
+    display: block;
+    width: 100%;
+    padding: 5px;
+    padding-left: 90px;
+    background: #edf0f5;
+}
+
+.part-top-presentation .title-presentation .title {
+    position: relative;
+    display: inline-block;
+    vertical-align: middle;
+    height: auto;
+    min-height: 35px;
+    margin-top: 10px;
+    margin-bottom: 10px;
+    padding-right: 10px;
+    font-size: 13px !important;
+    white-space: inherit;
+    line-height: 1;
+    text-align: left;
+}
+
+.part-top-presentation .title-presentation  .avatar {
+    position: absolute;
+    bottom: -15px;
+    left: 20px;
+}
+
+/* --- Part Top / Supp infos --- */
+
+.part-top-presentation .title-presentation  .supplementary-infos {
+    position: absolute;
+    bottom: -20px;
+    right: 20px;
+}
+
+.part-top-presentation .title-presentation .supplementary-infos .prez-kind {
+    display: inline;
+    height: 10px;
+    margin: 2px;
+    padding: 5px;
+}
+
+.infos-bar {
+    display: block;
+    width: 100%;
+    height: auto;
+    padding: 18px 10px 10px 10px;
+    padding-left: 95px;
+    background: #FFFFFF;
+}
+
+.infos-bar .info-item {
+    display: block;
+    color: #686868;
+}
+
+/* --- Part Top / Time Actions --- */
+
+.time-bar {
+    position: relative;
+    width: 100%;
+    padding: 0;
+    background: #95172a;
+    color: #FFFFFF;
+    font-weight: bold;
+}
+
+.time-bar p {
+    display: inline-block;
+    width: 60%;
+    margin: 0;
+    padding: 4px 10px 2px 20px;
+    font-size: 12px !important;
+    overflow: hidden;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+}
+
+.time-bar i {
+    display: inline-block;
+    vertical-align: sub;
+    font-size: 20px;
+}
+
+.time-bar  .btn-actions  {
+    position: absolute;
+    top: 0;
+    right: 0;
+}
+
+.time-bar  .btn-actions button {
+    width: 50px;
+    margin: 0;
+    margin-right: -3px;
+    padding-left: 12px;
+    padding-top: 0px;
+    border: 0;
+}
+
+.time-bar  .btn-actions button:last-child {
+    margin-right: 0;
+}
+
+.time-bar  .btn-actions button.active {
+    background: #e0223f;
+    color: #FFFFFF;
+}
+
+
+/* === Content Desc Presentation ===*/
+
+
+.container-presentation-desc{
+    margin: 0 !important;
+    padding: 10px;
+}
+
+.content-presentation-desc {
+    background: #FFFFFF;
+    border: 0;
+    box-shadow: none;
+}
+
+
+/* === Content Ratings ===*/
+
+
+.content-rating { display: block;}
+.content-rating .rating { display: inline-block;}
+.content-rating .rating li { padding: 0;}
+.content-rating .ion-ios-star-outline { color: #c7cacf; }
+.content-rating .ion-ios-star { color: #e0223f; }
+.content-rating button { float: right; }
+.content-rating button.active { border-color: #e0223f; color: #e0223f; }

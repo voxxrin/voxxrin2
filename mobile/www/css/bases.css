@@ -2,15 +2,25 @@
 
 /* === Size - Colors Paragraph === */
 
-p { font-size: 14px !important;}
+p {
+    font-size: 13px;
+    line-height: 1.4;
+}
+
+/* === Size - Colors Links === */
+
+a {
+    text-decoration: none;
+    color: #e0223f;
+}
 
 /* === Size - Icon === */
 
-.icon { margin-right: 8px;}
+i.icon { margin-right: 8px;}
 
 .icon.inline {
     display: inline-block;
-    vertical-align: sub;
+    vertical-align: middle;
 }
 
 .icon.inline-block {

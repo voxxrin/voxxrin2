@@ -32,6 +32,7 @@
 .avatar.user {
     width:84px;
     height:84px;
+    background: url("../img/no-image.png");
 }
 
 .avatar.user img {
@@ -48,6 +49,7 @@
     width:70px;
     height:70px;
     margin-right: 10px;
+    background: url("../img/no-image.png");
 }
 
 .avatar.user-list img {
@@ -89,7 +91,7 @@
 .content-desc {
     display: inline-block;
     vertical-align: middle;
-    padding-left: 10px;
+    padding-left: 5px;
 }
 
 .content-desc .title { font-weight: bold;}
@@ -101,9 +103,9 @@
 }
 .content-desc .info-item i {
     display: inline-block;
-    width: 10%;
+    width: 5%;
     height: 20px;
-    font-size: 17px;
+    font-size: 15px;
     text-align: center;
 }
 
@@ -154,7 +156,13 @@
 }
 
 .list-divider { margin: -1px;}
-.list-divider .item {padding: 0;}
+
+.list-divider .item {
+    padding: 0;
+    border-left: 0;
+    border-right: 0;
+}
+
 .list-divider .item-content {
     padding: 10px;
     background: #edf0f5;
@@ -172,7 +180,7 @@
     display: inline-block;
     height: 22px;
     margin: 2px;
-    padding: 10px;
+    padding: 11px;
     background: #686868;
     border-radius: 50px;
     color: white;
@@ -183,6 +191,7 @@
     display: inline-block;
     vertical-align: middle;
     float: right;
+    padding-right: 5px;
 }
 
 .list-alerts .item-list-alert {
@@ -192,7 +201,7 @@
     background: #c7cacf;
     color: #FFFFFF;
     border-radius: 100%;
-    padding: 4px 6px;
+    padding: 5px 6px;
 }
 
 .list-alerts .item-list-alert i { font-size: 16px;}
