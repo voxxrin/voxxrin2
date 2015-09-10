@@ -4,7 +4,6 @@ angular.module('voxxrin', [
     'AngularConferencePlanning',
     'ionic.rating',
     'ion-sticky',
-    'ion-affix',
     'angular-carousel',
     'ng-token-auth'
 ])

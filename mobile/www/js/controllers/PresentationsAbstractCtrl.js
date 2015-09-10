@@ -1,10 +1,9 @@
 'use strict';
 
 angular.module('voxxrin')
-    .controller('PresentationsAbstractCtrl', function ($stateParams, $scope, $ionicPopup, Day, Presentation, Reminder) {
+    .controller('PresentationsAbstractCtrl', function ($rootScope, $stateParams, $scope, $ionicPopup, Day, Presentation, RemindMe) {
 
         var slotFormat = 'HH[h]mm';
-        var emailRegexp = /.+@.+[.].+/;
 
         var buildPresentationsMap = function (presentations) {
             return _.indexBy(presentations, '_id');
@@ -45,10 +44,11 @@ angular.module('voxxrin')
         angular.extend($scope, {
             day: Day.get({id: $stateParams.dayId}),
             reminder: {},
-            openReminder: function (presentation) {
-                Reminder.save({presentationId: presentation._id})
+            remindMe: function (presentation) {
+                RemindMe.save({presentationId: presentation._id})
                     .$promise
                     .then(function () {
+                        presentation.reminded = true;
                         $ionicPopup.alert({
                             title: 'Prevenez-moi.',
                             template: 'Votre demande a été prise en compte : vous serez notifié quand la' +
@@ -62,7 +62,7 @@ angular.module('voxxrin')
                         });
                     });
             },
-            star: function (presentation) {
+            favorite: function (presentation) {
                 // TODO
             }
         });

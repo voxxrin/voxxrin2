@@ -1,5 +1,6 @@
 package voxxrin2.rest;
 
+import com.google.common.base.Optional;
 import restx.annotations.GET;
 import restx.annotations.POST;
 import restx.annotations.Param;
@@ -20,24 +21,38 @@ import javax.inject.Named;
 @RestxResource
 public class RemindMeResource {
 
-    private final JongoCollection reminder;
+    private final JongoCollection remindMe;
 
-    public RemindMeResource(@Named("reminder") JongoCollection reminder) {
-        this.reminder = reminder;
+    public RemindMeResource(@Named("remindMe") JongoCollection remindMe) {
+        this.remindMe = remindMe;
+    }
+
+    public boolean isReminded(User user, String presentationId) {
+        return remindMe
+                .get()
+                .count("{ presentation: #, userId: # }", ElementURI.of(Type.presentation, presentationId).toString(), user.getId()) > 0;
     }
 
     @GET("/remindme")
-    public RemindMe getReminder(String presentationId) {
+    public Iterable<RemindMe> getRemindMe(Optional<String> presentationId) {
 
         User user = AuthModule.currentUser().get();
-        return reminder
-                .get()
-                .findOne("{ presentation: #, userId: # }", ElementURI.of(Type.presentation, presentationId).toString(), user.getId())
-                .as(RemindMe.class);
+
+        if (presentationId.isPresent()) {
+            return remindMe
+                    .get()
+                    .find("{ presentation: #, userId: # }", ElementURI.of(Type.presentation, presentationId.get()).toString(), user.getId())
+                    .as(RemindMe.class);
+        } else {
+            return remindMe
+                    .get()
+                    .find("{ userId: # }", user.getId())
+                    .as(RemindMe.class);
+        }
     }
 
     @POST("/remindme")
-    public RemindMe requestReminder(@Param(kind = Param.Kind.QUERY) String presentationId) {
+    public RemindMe requestRemindMe(@Param(kind = Param.Kind.QUERY) String presentationId) {
 
         User user = AuthModule.currentUser().get();
 
@@ -46,7 +61,7 @@ public class RemindMeResource {
                 .setPresentation(presentation)
                 .setUserId(user.getId());
 
-        reminder.get()
+        this.remindMe.get()
                 .update("{ presentation: #, userId: # }", presentation.getUri().toString(), user.getId())
                 .upsert()
                 .with(remindMe);

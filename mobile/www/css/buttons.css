@@ -31,6 +31,10 @@
     background: transparent;
 }
 
+.centered-btn {
+    margin: auto;
+}
+
 /* --- Size ---*/
 
 .small-btn  { height: 34px; width: 34px; padding: 3px 5px; font-size: 18px; border-width: 2px !important;}

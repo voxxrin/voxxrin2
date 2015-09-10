@@ -33,8 +33,8 @@
                                 <div class="info-item supplementary-infos">
                                     <span class="prez-kind" ng-if="prez.kind">{{prez.kind}}</span>
                                     <ul class="list-alerts">
-                                        <li class="item-list-alert"><i class="icon ion-videocamera"></i></li>
-                                        <li class="item-list-alert active"><i class="icon ion-calendar"></i></li>
+                                        <li class="item-list-alert" ng-class="{ 'active': prez.isReminded() }"><i class="icon ion-videocamera"></i></li>
+                                        <li class="item-list-alert" ng-class="{ 'active': prez.isFavorite() }"><i class="icon ion-calendar"></i></li>
                                     </ul>
                                 </div>
                                 <span class="info-item"><i class="icon inline ion-location"></i>{{ prez.location.fullName }}</span>
@@ -50,22 +50,22 @@
 
 
                             <!--option buttons-->
-                            <ion-option-button>
-                                <button class="round-btn medium-btn white-btn">
+                            <ion-option-button ng-disabled="prez.isFavorite()" ng-click="favorite(prez)">
+                                <div class="round-btn medium-btn white-btn centered-btn">
                                     <i class="icon small ion-calendar"></i>
-                                </button>
+                                </div>
                             </ion-option-button>
 
-                            <ion-option-button>
-                                <button class="round-btn medium-btn white-btn">
+                            <ion-option-button ng-disabled="prez.isReminded()"  ng-click="remindMe(prez)">
+                                <div class="round-btn medium-btn white-btn centered-btn">
                                     <i class="icon ion-videocamera"></i>
-                                </button>
+                                </div>
                             </ion-option-button>
 
-                            <ion-option-button>
-                                <button class="round-btn medium-btn white-btn">
+                            <ion-option-button class="round-btn medium-btn white-btn">
+                                <div class="round-btn medium-btn white-btn centered-btn">
                                     <i class="icon ion-android-share-alt"></i>
-                                </button>
+                                </div>
                             </ion-option-button>
 
                         </div>

@@ -14,6 +14,7 @@
     "angular-conference-planning": "git@github.com:walien/angular-conference-planning.git#1.2.2",
     "angular-cookie": "4.0.9",
     "ion-sticky": "1.0.3",
-    "ionic-rating": "~0.1.0"
+    "ionic-rating": "~0.1.0",
+    "angular-carousel": "~0.3.13"
   }
 }

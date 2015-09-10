@@ -21,10 +21,10 @@
             <div class="row time-bar">
                 <p><i class="icon ion-clock"></i> {{ presentation.slot.name }} <!-- (From <span class="underline">{{ presentation.from | date:formats.fullDateTime }}</span> to <span class="underline">{{ presentation.to | date:formats.fullDateTime }}</span>) !--></p>
                 <div class="btn-actions">
-                    <button class="btn small-btn secondary-btn">
+                    <button class="btn small-btn secondary-btn" ng-click="remindMe(presentation)" ng-disabled="presentation.isReminded()">
                         <i class="icon ion-videocamera"></i>
                     </button>
-                    <button class="btn small-btn secondary-btn active">
+                    <button class="btn small-btn secondary-btn" ng-click="favorite(presentation)" ng-disabled="presentation.isFavorite()">
                         <i class="icon ion-calendar"></i>
                     </button>
                     <button class="btn small-btn secondary-btn">
@@ -36,7 +36,7 @@
 
         <ion-content class="has-big-subheader"
                      animation="slide-left-right"
-                     on-swipe-right="goToPreviousPrez(presentations, slots, presentation)" on-swipe-left="goToNextPrez(presentations, slots, presentation)">
+                     on-swipe-right="goToPreviousPrez(slots, presentation)" on-swipe-left="goToNextPrez(slots, presentation)">
 
             <div class="list card container-presentation-desc">
 

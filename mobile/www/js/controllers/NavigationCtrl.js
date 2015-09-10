@@ -56,14 +56,14 @@ angular.module('voxxrin')
             }
         };
 
-        $scope.goToPreviousPrez = function (presentations, slots, presentation) {
+        $scope.goToPreviousPrez = function (slots, presentation) {
             var selectedPrez = selectPrez(slots, presentation.slot, '-');
             if (selectedPrez) {
                 $state.go('presentations.details', {id: selectedPrez._id});
             }
         };
 
-        $scope.goToNextPrez = function (presentations, slots, presentation) {
+        $scope.goToNextPrez = function (slots, presentation) {
             var selectedPrez = selectPrez(slots, presentation.slot, '+');
             if (selectedPrez) {
                 $state.go('presentations.details', {id: selectedPrez._id});

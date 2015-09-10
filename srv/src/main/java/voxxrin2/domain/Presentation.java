@@ -8,7 +8,7 @@ import voxxrin2.domain.technical.Referenceable;
 
 import java.util.List;
 
-public class Presentation extends Referenceable {
+public class Presentation extends Referenceable implements Favorite, Remindable {
 
     private String title;
 
@@ -29,6 +29,10 @@ public class Presentation extends Referenceable {
     private DateTime to;
 
     private String kind;
+
+    private boolean favorite;
+
+    private boolean reminded;
 
     public String getTitle() {
         return title;
@@ -109,5 +113,23 @@ public class Presentation extends Referenceable {
     public Presentation setLocation(final Reference<Room> location) {
         this.location = location;
         return this;
+    }
+
+    @Override
+    public boolean isFavorite() {
+        return favorite;
+    }
+
+    @Override
+    public boolean isReminded() {
+        return reminded;
+    }
+
+    public void setFavorite(boolean favorite) {
+        this.favorite = favorite;
+    }
+
+    public void setReminded(boolean reminded) {
+        this.reminded = reminded;
     }
 }
