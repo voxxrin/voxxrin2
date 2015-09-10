@@ -8,7 +8,7 @@ import voxxrin2.domain.technical.Referenceable;
 
 import java.util.List;
 
-public class Presentation extends Referenceable implements Favorite, Remindable {
+public class Presentation extends Referenceable implements Favoritable, Remindable {
 
     private String title;
 

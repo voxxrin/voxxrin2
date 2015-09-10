@@ -25,7 +25,7 @@
                     <button class="btn small-btn secondary-btn" ng-click="remindMe(presentation)" ng-class="{ 'active' : presentation.isReminded() }" ng-disabled="presentation.isReminded()">
                         <i class="icon ion-videocamera"></i>
                     </button>
-                    <button class="btn small-btn secondary-btn" ng-click="favorite(presentation)" ng-disabled="{ 'active' : presentation.isFavorite() }" ng-disabled="presentation.isFavorite()">
+                    <button class="btn small-btn secondary-btn" ng-click="favorite(presentation)" ng-class="{ 'active' : presentation.isFavorite() }" ng-disabled="presentation.isFavorite()">
                         <i class="icon ion-calendar"></i>
                     </button>
                     <button class="btn small-btn secondary-btn">

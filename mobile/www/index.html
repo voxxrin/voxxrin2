@@ -3,7 +3,8 @@
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="initial-scale=1, maximum-scale=1, user-scalable=no, width=device-width">
-    <meta http-equiv="Content-Security-Policy" content="default-src *; style-src 'self' 'unsafe-inline'; script-src 'self' 'unsafe-inline' 'unsafe-eval'">
+    <meta http-equiv="Content-Security-Policy"
+          content="default-src *; style-src 'self' 'unsafe-inline'; script-src 'self' 'unsafe-inline' 'unsafe-eval'">
     <title></title>
 
     <link href="lib/ionic/css/ionic.css" rel="stylesheet">
@@ -74,6 +75,7 @@
     <script src="js/services/Presentation.js"></script>
     <script src="js/services/Rating.js"></script>
     <script src="js/services/RemindMe.js"></script>
+    <script src="js/services/Favorite.js"></script>
     <script src="js/controllers/GlobalCtrl.js"></script>
     <script src="js/controllers/NavigationCtrl.js"></script>
     <script src="js/controllers/LoginCtrl.js"></script>
@@ -121,7 +123,8 @@
                         <img ng-if="Session.getCurrent().avatarUrl" ng-src="{{ Session.getCurrent().avatarUrl }}">
                     </span>
                     <span class="user-connect">
-                       <h5 class="white-title"><i class="icon ion-social-twitter"></i>{{ Session.getCurrent().displayName }}</h5>
+                       <h5 class="white-title"><i class="icon ion-social-twitter"></i>{{
+                           Session.getCurrent().displayName }}</h5>
                     </span>
                     </br>
                     <button class="round-btn small-btn white-btn" ng-click="logout()">

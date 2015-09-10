@@ -1,6 +1,6 @@
 package voxxrin2.domain;
 
-public interface Favorite {
+public interface Favoritable {
 
     boolean isFavorite();
 }

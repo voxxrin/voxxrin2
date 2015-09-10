@@ -1,7 +1,7 @@
 'use strict';
 
 angular.module('voxxrin')
-    .controller('PresentationsAbstractCtrl', function ($rootScope, $stateParams, $scope, $ionicPopup, Day, Presentation, RemindMe) {
+    .controller('PresentationsAbstractCtrl', function ($rootScope, $stateParams, $scope, $ionicPopup, Day, Presentation, RemindMe, Favorite) {
 
         var slotFormat = 'HH[h]mm';
 
@@ -49,11 +49,6 @@ angular.module('voxxrin')
                     .$promise
                     .then(function () {
                         presentation.reminded = true;
-                        $ionicPopup.alert({
-                            title: 'Prevenez-moi.',
-                            template: 'Votre demande a été prise en compte : vous serez notifié quand la' +
-                            ' vidéo de cette présentation sera disponible !'
-                        });
                     })
                     .catch(function () {
                         $ionicPopup.alert({
@@ -63,7 +58,17 @@ angular.module('voxxrin')
                     });
             },
             favorite: function (presentation) {
-                // TODO
+                Favorite.save({presentationId: presentation._id})
+                    .$promise
+                    .then(function () {
+                        presentation.favorite = true;
+                    })
+                    .catch(function () {
+                        $ionicPopup.alert({
+                            title: 'Favoriser !',
+                            template: 'Vous devez être connecté pour beneficier de cette fonctionnalité'
+                        });
+                    });
             }
         });
 

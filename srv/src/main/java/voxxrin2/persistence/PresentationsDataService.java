@@ -8,31 +8,31 @@ import restx.jongo.JongoCollection;
 import voxxrin2.auth.AuthModule;
 import voxxrin2.domain.Presentation;
 import voxxrin2.domain.User;
-import voxxrin2.rest.RemindMeResource;
+import voxxrin2.rest.SubscriptionResource;
 
 import javax.inject.Named;
 
 @Component
 public class PresentationsDataService extends DataService<Presentation> {
 
-    private final RemindMeResource remindMeResource;
+    private final SubscriptionResource subscriptionResource;
 
     private final Function<Presentation, Presentation> USER_PRESENTATION_FUNCTOR = new Function<Presentation, Presentation>() {
         @Override
         public Presentation apply(Presentation input) {
             Optional<User> user = AuthModule.currentUser();
             if (user.isPresent()) {
-                input.setReminded(remindMeResource.isReminded(user.get(), input.getKey()));
-                input.setFavorite(true);
+                input.setReminded(subscriptionResource.isReminded(user.get(), input.getKey()));
+                input.setFavorite(subscriptionResource.isFavorite(user.get(), input.getKey()));
             }
             return input;
         }
     };
 
     public PresentationsDataService(@Named("presentation") JongoCollection collection,
-                                    RemindMeResource remindMeResource) {
+                                    SubscriptionResource remindMeResource) {
         super(collection, Presentation.class);
-        this.remindMeResource = remindMeResource;
+        this.subscriptionResource = remindMeResource;
     }
 
     @Override
