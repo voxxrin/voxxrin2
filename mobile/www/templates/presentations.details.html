@@ -6,7 +6,7 @@
             <div class="title-presentation">
                 <h4 class="title primary-title">{{ presentation.title }}</h4>
                  <span class="avatar user-list">
-                    <img ng-src="{{ speaker.avatarUrl }}">
+                    <img ng-src="{{ presentation.speakers[0].avatarUrl }}">
                 </span>
                 <div class="info-item supplementary-infos">
                     <span class="prez-kind">{{ presentation.kind }}</span>
@@ -21,10 +21,10 @@
             <div class="row time-bar">
                 <p><i class="icon ion-clock"></i> {{ presentation.slot.name }} <!-- (From <span class="underline">{{ presentation.from | date:formats.fullDateTime }}</span> to <span class="underline">{{ presentation.to | date:formats.fullDateTime }}</span>) !--></p>
                 <div class="btn-actions">
-                    <button class="btn small-btn secondary-btn" ng-click="remindMe(presentation)" ng-disabled="presentation.isReminded()">
+                    <button class="btn small-btn secondary-btn" ng-click="remindMe(presentation)" ng-class="{ 'active' : presentation.isReminded() }" ng-disabled="presentation.isReminded()">
                         <i class="icon ion-videocamera"></i>
                     </button>
-                    <button class="btn small-btn secondary-btn" ng-click="favorite(presentation)" ng-disabled="presentation.isFavorite()">
+                    <button class="btn small-btn secondary-btn" ng-click="favorite(presentation)" ng-disabled="{ 'active' : presentation.isFavorite() }" ng-disabled="presentation.isFavorite()">
                         <i class="icon ion-calendar"></i>
                     </button>
                     <button class="btn small-btn secondary-btn">
