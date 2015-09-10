@@ -15,7 +15,8 @@
 
             <div class="infos-bar content-desc ">
                 <span class="info-item"><i class="icon inline ion-location"></i>{{ presentation.location.fullName }}</span>
-                <span class="info-item"><i class="icon inline ion-person"></i>{{ presentation.speakers[0].firstName }} {{ presentation.speakers[0].lastName }}</span>
+                <span class="info-item"><i class="icon inline ion-person"></i>{{ presentation.speakers | speakers }}</span>
+                <span class="info-item" ng-if="prez.speakers[0].company"><i class="icon inline ion-briefcase"></i>{{ presentation.speakers | companies }}</span>
             </div>
 
             <div class="row time-bar">
