@@ -9,13 +9,13 @@
                     <img ng-src="{{ presentation.speakers[0].avatarUrl }}">
                 </span>
                 <div class="info-item supplementary-infos">
-                    <span class="prez-kind">{{ presentation.kind }}</span>
+                    <span class="prez-kind">{{ presentation.kind | orDash }}</span>
                 </div>
             </div>
 
             <div class="infos-bar content-desc ">
                 <span class="info-item"><i class="icon inline ion-location"></i>{{ presentation.location.fullName }}</span>
-                <span class="info-item"><i class="icon inline ion-person"></i>{{ presentation.speakers | speakers }}</span>
+                <span class="info-item"><i class="icon inline ion-person"></i>{{ presentation.speakers | speakers | orDash }}</span>
                 <span class="info-item" ng-if="prez.speakers[0].company"><i class="icon inline ion-briefcase"></i>{{ presentation.speakers | companies }}</span>
             </div>
 
@@ -59,7 +59,7 @@
 
                     <!-- Followers -->
                     <!-- TODO No finish skin carousell!-->
-                    <h2 class="font-bold primary-title">0 Assiste à la {{ presentation.kind }}</h2>
+                    <h2 class="font-bold primary-title">0 Assiste à la presentation</h2>
                     <span class="sep-hrz secondary-sep"></span>
                     <ul rn-carousel class="list-followers image">
                         <li>slide #1</li>

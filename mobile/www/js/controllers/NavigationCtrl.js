@@ -1,7 +1,15 @@
 'use strict';
 
 angular.module('voxxrin')
-    .controller('NavigationCtrl', function ($scope, $state) {
+    .controller('NavigationCtrl', function ($scope, $state, $stateParams, $ionicHistory) {
+
+        $scope.goBack = function () {
+            if ($state.current.name === 'presentations.details') {
+                $scope.goToPresentations({event: {_id: $stateParams.eventId}, _id: $stateParams.dayId});
+            } else {
+                $ionicHistory.goBack();
+            }
+        };
 
         $scope.goToLogin = function () {
             $state.go('login');
@@ -41,17 +49,19 @@ angular.module('voxxrin')
                 newSlotIndex = currentSlot.index - 1;
             } else return null;
 
-            if (newPrezIndex < currentSlot.presentations.length && newPrezIndex > 0) {
+            if (newPrezIndex < currentSlot.presentations.length && newPrezIndex >= 0) {
                 // current slot
                 return currentSlot.presentations[newPrezIndex];
             } else {
                 currentSlot = _.find(slots, function (_slot) {
                     return _slot.index === newSlotIndex;
                 });
-                if (way === '+') {
-                    return currentSlot.presentations[0];
-                } else if (way === '-') {
-                    return _.last(currentSlot.presentations);
+                if (currentSlot) {
+                    if (way === '+') {
+                        return currentSlot.presentations[0];
+                    } else if (way === '-') {
+                        return _.last(currentSlot.presentations);
+                    }
                 }
             }
         };

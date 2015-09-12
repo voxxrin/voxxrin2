@@ -69,6 +69,7 @@
     <script src="js/filters/TrustedHtmlFilter.js"></script>
     <script src="js/filters/UntrustedHtmlFilter.js"></script>
     <script src="js/filters/SpeakersFilter.js"></script>
+    <script src="js/filters/OrDashFilter.js"></script>
     <script src="js/services/Session.js"></script>
     <script src="js/services/Event.js"></script>
     <script src="js/services/Day.js"></script>
@@ -88,30 +89,19 @@
 
 </head>
 <body ng-app="voxxrin">
-<!--
-  The nav bar that will be updated as we navigate between views.
--->
-<!--<ion-nav-bar class="bar-stable">-->
-<!--<ion-nav-back-button>-->
-<!--</ion-nav-back-button>-->
-<!--</ion-nav-bar>-->
-<!--
-  The views will be rendered in the <ion-nav-view> directive below
-  Templates are in the /templates folder (but you could also
-  have templates inline in this html file if you'd like).
--->
+
 <div ng-controller="GlobalCtrl">
 
-    <ion-side-menus enable-menu-with-back-views="true">
+    <ion-side-menus enable-menu-with-back-views="true" ng-controller="NavigationCtrl">
 
-        <ion-side-menu-content>
+        <ion-side-menu-content edge-drag-threshold="true">
             <ion-nav-bar class="bar-primary">
-                <ion-nav-back-button class="button-icon ion-ios-arrow-back"></ion-nav-back-button>
+                <ion-nav-back-button class="button-icon ion-ios-arrow-back" ng-click="goBack()"></ion-nav-back-button>
             </ion-nav-bar>
             <ion-nav-buttons side="left">
                 <button menu-toggle="left" class="button button-icon icon ion-navicon"></button>
             </ion-nav-buttons>
-            <div ng-controller="NavigationCtrl">
+            <div>
                 <ion-nav-view></ion-nav-view>
             </div>
         </ion-side-menu-content>
@@ -123,8 +113,7 @@
                         <img ng-if="Session.getCurrent().avatarUrl" ng-src="{{ Session.getCurrent().avatarUrl }}">
                     </span>
                     <span class="user-connect">
-                       <h5 class="white-title"><i class="icon ion-social-twitter"></i>{{
-                           Session.getCurrent().displayName }}</h5>
+                       <h5 class="white-title"><i class="icon ion-social-twitter"></i>{{ Session.getCurrent().displayName }}</h5>
                     </span>
                     </br>
                     <button class="round-btn small-btn white-btn" ng-click="logout()">
