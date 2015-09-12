@@ -7,7 +7,8 @@ angular.module('voxxrin', [
     'angular-carousel',
     'ng-token-auth'
 ])
-    .run(function ($ionicPlatform) {
+    .run(function ($rootScope, $ionicPlatform, $ionicLoading) {
+
         $ionicPlatform.ready(function () {
             // Hide the accessory bar by default (remove this to show the accessory bar above the keyboard
             // for form inputs)
@@ -21,6 +22,18 @@ angular.module('voxxrin', [
                 StatusBar.styleLightContent();
             }
         });
+
+        $rootScope.$on('loading:show', function () {
+            $ionicLoading.show();
+        });
+
+        $rootScope.$on('loading:hide', function () {
+            $ionicLoading.hide();
+        });
+    })
+
+    .config(function ($httpProvider) {
+        $httpProvider.interceptors.push('MainHttpRequestInterceptor');
     })
 
     .config(function ($stateProvider, $urlRouterProvider) {
