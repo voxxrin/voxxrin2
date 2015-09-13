@@ -3,8 +3,7 @@
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="initial-scale=1, maximum-scale=1, user-scalable=no, width=device-width">
-    <meta http-equiv="Content-Security-Policy"
-          content="default-src *; style-src 'self' 'unsafe-inline'; script-src 'self' 'unsafe-inline' 'unsafe-eval'">
+    <meta http-equiv="Content-Security-Policy" content="default-src *; style-src &apos;self&apos; &apos;unsafe-inline&apos;; script-src &apos;self&apos; &apos;unsafe-inline&apos; &apos;unsafe-eval&apos;">
     <title></title>
 
     <link href="lib/ionic/css/ionic.css" rel="stylesheet">
@@ -41,8 +40,11 @@
 
     <!-- ionic/angularjs js -->
     <script src="lib/ionic/js/ionic.bundle.js"></script>
+    <script src="lib/ionic-service-core/ionic-core.js"></script>
+    <script src="lib/ionic-service-push/ionic-push.js"></script>
     <script src="lib/ionic/js/ionic-angular.min.js"></script>
     <script src="lib/angular-resource/angular-resource.min.js"></script>
+    <script src="lib/ngCordova/dist/ng-cordova.js"></script>
 
     <!-- ionic/libs js -->
     <script src="lib/moment/min/moment.min.js"></script>
@@ -117,7 +119,7 @@
                     <span class="user-connect">
                        <h5 class="white-title"><i class="icon ion-social-twitter"></i>{{ Session.getCurrent().displayName }}</h5>
                     </span>
-                    </br>
+                    <br>
                     <button class="round-btn small-btn white-btn" ng-click="logout()">
                         <i class="icon ion-log-out"></i>
                     </button>
@@ -125,21 +127,21 @@
             </ion-header-bar>
             <ion-content class="menu-list">
                 <ion-list>
-                    <ion-item menu-close href="#/login">
+                    <ion-item menu-close="" href="#/login">
                         <i class="icon ion-home"></i>Accueil
                     </ion-item>
 
-                    <ion-item menu-close href="#/events/list">
-                        <i class="icon ion-bookmark"></i>Conférences
+                    <ion-item menu-close="" href="#/events/list">
+                        <i class="icon ion-bookmark"></i>Conf&#xE9;rences
                     </ion-item>
 
-                    <ion-item menu-close href="#/settings">
+                    <ion-item menu-close="" href="#/settings">
                         <i class="ion-gear-a"></i>Configuration
                     </ion-item>
                 </ion-list>
             </ion-content>
             <ion-footer-bar align-title="left" class="footer-login">
-                <span class="legal-mention text-center">© Voxxrin - 2015 - v2.0</span>
+                <span class="legal-mention text-center">&#xA9; Voxxrin - 2015 - v2.0</span>
             </ion-footer-bar>
         </ion-side-menu>
     </ion-side-menus>

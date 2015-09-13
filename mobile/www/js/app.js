@@ -1,5 +1,8 @@
 angular.module('voxxrin', [
     'ionic',
+    'ionic.service.core',
+    'ionic.service.push',
+    'ngCordova',
     'ngResource',
     'AngularConferencePlanning',
     'ionic.rating',
@@ -29,6 +32,27 @@ angular.module('voxxrin', [
 
         $rootScope.$on('loading:hide', function () {
             $ionicLoading.hide();
+        });
+    })
+
+    .run(function ($rootScope, $ionicPush, $log) {
+
+        $rootScope.$on('$cordovaPush:tokenReceived', function (event, data) {
+            $log.info('Ionic Push: Got token ', data.token, data.platform);
+            $rootScope.token = data.token;
+        });
+
+        $rootScope.$on('ionicUser:identified', function () {
+            $ionicPush.register({
+                canShowAlert: true,
+                canSetBadge: true,
+                canPlaySound: true,
+                canRunActionsOnWake: true,
+                onNotification: function (notification) {
+                    console.log(notification);
+                    return true;
+                }
+            });
         });
     })
 

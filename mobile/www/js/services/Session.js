@@ -1,7 +1,7 @@
 'use strict';
 
 angular.module('voxxrin')
-    .service('Session', function () {
+    .service('Session', function ($rootScope, $ionicUser) {
 
         var _current = null;
         return {
@@ -14,6 +14,14 @@ angular.module('voxxrin')
             setCurrent: function (session) {
                 console.log('current session', session);
                 _current = session;
+                $ionicUser.identify({
+                    user_id: session._id,
+                    name: session.name,
+                    image: session.avatarUrl,
+                    twitterId: session.twitterId
+                }).then(function () {
+                    $rootScope.$broadcast('ionicUser:identified');
+                });
             },
             destroy: function () {
                 var destroyed = JSON.stringify(_current);

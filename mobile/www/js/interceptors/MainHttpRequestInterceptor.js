@@ -3,7 +3,7 @@
 angular.module('voxxrin')
     .factory('MainHttpRequestInterceptor', function ($q, $rootScope) {
 
-        var ignoredUrls = [/.*\/api\/ratings.*/, /.*templates\/.*/];
+        var ignoredUrls = [/.*\/api\/ratings.*/, /.*templates\/.*/, /.*ionic\.io.*/ ];
         var nbRequests = 0;
 
         var isIgnored = function (url) {
