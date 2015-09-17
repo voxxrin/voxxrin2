@@ -2,6 +2,18 @@
 
     <ion-view view-title="Presentations">
 
+        <!-- Filters bar -->
+        <ion-nav-buttons side="right">
+            <span style="background:transparent; border: none" ng-if="Session.isAuthenticated()">
+                <label class="toggle">
+                    <input type="checkbox" ng-model="filters.favorite">
+                    <div class="track">
+                        <div class="handle"></div>
+                    </div>
+                </label>
+            </span>
+        </ion-nav-buttons>
+
         <!-- Striped Bar -->
         <div class="tabs-striped tabs-top tabs-background-primary tabs-color-light">
             <div class="tabs">
@@ -17,11 +29,11 @@
             <ion-list>
 
                 <div ng-repeat="(name, slot) in slots" class="list-divider">
-                    <div class="item item-divider">
+                    <div class="item item-divider" ng-show="filteredPrezs.length > 0">
                         <h3 class="white-title"><i class="icon inline medium ion-clock"></i>{{ name }}</h3>
                     </div>
 
-                    <ion-item class="item-text-wrap" ng-repeat="prez in slot.presentations | filter:favorites" ng-click="goToPresentation(prez)">
+                    <ion-item class="item-text-wrap" ng-repeat="prez in filteredPrezs = (slot.presentations | prezFilter:filters)" ng-click="goToPresentation(prez)">
 
                         <div class="row">
                             <span class="avatar user-list">
