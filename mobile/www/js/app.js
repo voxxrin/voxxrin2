@@ -1,6 +1,7 @@
 angular.module('voxxrin', [
     'ionic',
     'ionic.service.core',
+    'ionic.service.analytics',
     'ionic.service.push',
     'ngCordova',
     'ngResource',
@@ -10,7 +11,7 @@ angular.module('voxxrin', [
     'angular-carousel',
     'ng-token-auth'
 ])
-    .run(function ($rootScope, $ionicPlatform, $ionicLoading) {
+    .run(function ($rootScope, $ionicPlatform, $ionicLoading, $ionicAnalytics) {
 
         $ionicPlatform.ready(function () {
             // Hide the accessory bar by default (remove this to show the accessory bar above the keyboard
@@ -24,6 +25,8 @@ angular.module('voxxrin', [
                 // org.apache.cordova.statusbar required
                 StatusBar.styleLightContent();
             }
+
+            $ionicAnalytics.register();
         });
 
         $rootScope.$on('loading:show', function () {
@@ -39,7 +42,7 @@ angular.module('voxxrin', [
 
         $rootScope.$on('$cordovaPush:tokenReceived', function (event, data) {
             $log.info('Ionic Push: Got token ', data.token, data.platform);
-            $rootScope.token = data.token;
+            $rootScope.pushToken = data.token;
         });
 
         $rootScope.$on('ionicUser:identified', function () {
@@ -49,7 +52,7 @@ angular.module('voxxrin', [
                 canPlaySound: true,
                 canRunActionsOnWake: true,
                 onNotification: function (notification) {
-                    console.log(notification);
+                    alert(notification);
                     return true;
                 }
             });
