@@ -105,6 +105,7 @@
     font-size: 13px;
     overflow: hidden;
     text-overflow: ellipsis;
+    white-space: nowrap;
     font-weight: bold;
 }
 .content-desc .info-item i {
