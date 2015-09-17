@@ -6,7 +6,7 @@
             <div class="title-presentation">
                 <h4 class="title primary-title">{{ presentation.title }}</h4>
                  <span class="avatar user-list">
-                    <img ng-src="{{ presentation.speakers[0].avatarUrl }}">
+                    <img ng-src="{{ presentation.speakers[0].avatarUrl }}" err-src="img/default-avatar.png">
                 </span>
                 <div class="info-item supplementary-infos">
                     <span class="prez-kind">{{ presentation.kind | orDash }}</span>
@@ -24,7 +24,7 @@
                 <div class="btn-actions">
                     <button class="btn small-btn secondary-btn" ng-click="remindMe(presentation)" ng-class="{ 'active' : presentation.isReminded() }" ng-disabled="presentation.isReminded()">
                         <i class="icon ion-videocamera"></i>
-                    </button>
+                    </button>`
                     <button class="btn small-btn secondary-btn" ng-click="favorite(presentation)" ng-class="{ 'active' : presentation.isFavorite() }" ng-disabled="presentation.isFavorite()">
                         <i class="icon ion-calendar"></i>
                     </button>
