@@ -5,7 +5,8 @@ angular.module('voxxrin')
 
         $scope.days = Day.fromEvent($stateParams.eventId);
         $scope.filters = {
-            favorite: false
+            favorite: false,
+            reminded: false
         };
 
         $scope.isActiveDay = function (day) {
@@ -13,5 +14,16 @@ angular.module('voxxrin')
                 return ['active'];
             }
             return [];
+        };
+
+        $scope.toggleFilter = function (name) {
+            if ($scope.filters[name] === null) {
+                return;
+            }
+            $scope.filters[name] = !$scope.filters[name];
+        };
+
+        $scope.isFilterActive = function (name) {
+            return $scope.filters[name] != null ? $scope.filters[name] : false;
         };
     });

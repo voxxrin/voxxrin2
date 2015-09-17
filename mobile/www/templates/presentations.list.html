@@ -4,13 +4,14 @@
 
         <!-- Filters bar -->
         <ion-nav-buttons side="right">
-            <span style="background:transparent; border: none" ng-if="Session.isAuthenticated()">
-                <label class="toggle">
-                    <input type="checkbox" ng-model="filters.favorite">
-                    <div class="track">
-                        <div class="handle"></div>
-                    </div>
-                </label>
+            <span ng-if="Session.isAuthenticated()">
+                <button class="button button-light icon"
+                        ng-click="toggleFilter('favorite')"
+                        ng-class="isFilterActive('favorite') === true ? 'ion-ios-star' : 'ion-ios-star-outline'"></button>
+                <span></span>
+                <button class="button button-light icon"
+                        ng-click="toggleFilter('reminded')"
+                        ng-class="isFilterActive('reminded') === true ? 'ion-ios-videocam' : 'ion-ios-videocam-outline'"></button>
             </span>
         </ion-nav-buttons>
 
