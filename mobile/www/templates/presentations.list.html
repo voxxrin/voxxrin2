@@ -38,7 +38,8 @@
 
                         <div class="row">
                             <span class="avatar user-list">
-                                <img ng-src="{{ prez.speakers[0].avatarUrl }}" err-src="img/default-avatar.png">
+                                <img ng-src="{{ prez.speakers[0].avatarUrl }}" err-src="img/default-avatar.png" ng-if="prez.speakers[0].avatarUrl">
+                                <img ng-src="img/default-avatar.png" ng-if="!prez.speakers[0].avatarUrl">
                             </span>
 
                             <div class="col-75 content-desc secondary-dark-title">
