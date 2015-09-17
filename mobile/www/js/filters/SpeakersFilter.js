@@ -14,7 +14,9 @@ angular.module('voxxrin')
         return function (speakers) {
             var display = [];
             _.each(speakers, function (speaker) {
-                display.push(speaker.company);
+                if (display.indexOf(speaker.company) === -1) {
+                    display.push(speaker.company);
+                }
             });
             return display.join(', ');
         };
