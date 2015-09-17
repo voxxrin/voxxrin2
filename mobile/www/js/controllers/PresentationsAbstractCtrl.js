@@ -58,7 +58,7 @@ angular.module('voxxrin')
                     });
             },
             favorite: function (presentation) {
-                Favorite.save({presentationId: presentation._id})
+                Favorite.save({presentationId: presentation._id, deviceToken: $rootScope.pushToken})
                     .$promise
                     .then(function () {
                         presentation.favorite = true;

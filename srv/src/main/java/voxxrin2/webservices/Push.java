@@ -3,10 +3,8 @@ package voxxrin2.webservices;
 import com.github.kevinsawicki.http.HttpRequest;
 import com.google.common.collect.ImmutableMap;
 import com.samskivert.mustache.Template;
+import org.joda.time.DateTime;
 import org.slf4j.Logger;
-import restx.annotations.POST;
-import restx.annotations.Param;
-import restx.annotations.RestxResource;
 import restx.common.Mustaches;
 import restx.factory.Component;
 import voxxrin2.domain.technical.PushStatus;
@@ -14,7 +12,6 @@ import voxxrin2.domain.technical.PushStatus;
 import static org.slf4j.LoggerFactory.getLogger;
 
 @Component
-@RestxResource
 public class Push {
 
     private static final String IONIC_PUSH_URL = "https://push.ionic.io/api/v1/push";
@@ -32,13 +29,13 @@ public class Push {
         this.ionicAppPrivateKey = webServicesSettings.ionicAppPrivateKey();
     }
 
-    @POST("/push/send")
-    public PushStatus sendMsg(@Param(kind = Param.Kind.QUERY) String msg, @Param(kind = Param.Kind.QUERY) String token) {
+    public PushStatus sendMsg(String msg, String token, DateTime when) {
 
         String payload = tmpl.execute(
                 ImmutableMap.of(
                         "token", token,
-                        "msg", msg
+                        "msg", msg,
+                        "scheduled", when.getMillis()
                 )
         );
 

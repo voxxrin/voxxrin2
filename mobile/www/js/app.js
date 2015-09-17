@@ -52,7 +52,7 @@ angular.module('voxxrin', [
                 canPlaySound: true,
                 canRunActionsOnWake: true,
                 onNotification: function (notification) {
-                    alert(notification);
+                    console.log(notification);
                     return true;
                 }
             });

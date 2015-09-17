@@ -1,5 +1,6 @@
 package voxxrin2.webservices;
 
+import org.joda.time.DateTime;
 import org.junit.Test;
 import restx.factory.Factory;
 import restx.factory.Name;
@@ -13,7 +14,7 @@ public class PushTest {
     public void shouldPropertlySendPushNotification() throws Exception {
 
         Push push = Factory.getInstance().getComponent(Name.of(Push.class));
-        PushStatus status = push.sendMsg("Test", "DEV-822f12af-8a7a-471f-be17-e79507d3fddf");
+        PushStatus status = push.sendMsg("Test", "DEV-822f12af-8a7a-471f-be17-e79507d3fddf", DateTime.now());
 
         assertThat(status.isSent()).isTrue();
     }
