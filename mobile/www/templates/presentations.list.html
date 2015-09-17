@@ -45,8 +45,8 @@
                                 <div class="info-item supplementary-infos">
                                     <span class="prez-kind" ng-if="prez.kind">{{prez.kind}}</span>
                                     <ul class="list-alerts">
-                                        <li class="item-list-alert" ng-class="{ 'active': prez.isReminded() }"><i class="icon ion-videocamera"></i></li>
-                                        <li class="item-list-alert" ng-class="{ 'active': prez.isFavorite() }"><i class="icon ion-calendar"></i></li>
+                                        <li class="item-list-alert" ng-class="{ 'active': prez.isFavorite() }"><i class="icon ion-star"></i></li>
+                                        <li class="item-list-alert" ng-class="{ 'active': prez.isReminded() }"><i class="icon ion-ios-videocam"></i></li>
                                     </ul>
                                 </div>
                                 <span class="info-item"><i class="icon inline ion-location"></i>{{ prez.location.fullName }}</span>
@@ -64,13 +64,13 @@
                             <!--option buttons-->
                             <ion-option-button ng-disabled="prez.isFavorite()" ng-click="favorite(prez)">
                                 <div class="round-btn medium-btn white-btn centered-btn">
-                                    <i class="icon small ion-calendar"></i>
+                                    <i class="icon small ion-star"></i>
                                 </div>
                             </ion-option-button>
 
                             <ion-option-button ng-disabled="prez.isReminded()"  ng-click="remindMe(prez)">
                                 <div class="round-btn medium-btn white-btn centered-btn">
-                                    <i class="icon ion-videocamera"></i>
+                                    <i class="icon ion-ios-videocam"></i>
                                 </div>
                             </ion-option-button>
 
