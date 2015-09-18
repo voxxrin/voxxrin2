@@ -71,7 +71,7 @@ public class AuthService {
                 "avatarUrl", user.getAvatarUrl(),
                 "token", token.getToken(),
                 "uid", UUID.randomUUID().toString(),
-                "user", user), stringWriter);
+                "user", dbUser), stringWriter);
         stringWriter.flush();
 
         return stringWriter.toString();
