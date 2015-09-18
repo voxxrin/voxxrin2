@@ -23,6 +23,10 @@ public class JugSummerCampCrawler extends AbstractHttpCrawler {
     private static final String URL = "http://www.jugsummercamp.org/api/edition/6";
     private static final String JSC_NAME = "Jug SummerCamp - 2015";
 
+    private static DateTime transformDate(DateTime dateTime) {
+        return dateTime.minusHours(2);
+    }
+
     @Override
     protected CrawlingResult crawl() throws IOException {
 
@@ -94,7 +98,7 @@ public class JugSummerCampCrawler extends AbstractHttpCrawler {
                     .setImageUrl("http://www.jugsummercamp.org/assets/images/logo-summercamp.png")
                     .setName(JSC_NAME)
                     .setDescription(description)
-                    .setFrom(new DateTime(date))
+                    .setFrom(transformDate(new DateTime(date)))
                     .setLocation(place)
                     .setKey(new ObjectId().toString());
         }
@@ -105,7 +109,7 @@ public class JugSummerCampCrawler extends AbstractHttpCrawler {
             return (Day) new Day()
                     .setEvent(eventRef)
                     .setDate(event.getFrom())
-                    .setName(fmt.print(new DateTime(date)))
+                    .setName(fmt.print(transformDate(new DateTime(date))))
                     .setKey(new ObjectId().toString());
         }
     }
@@ -137,8 +141,8 @@ public class JugSummerCampCrawler extends AbstractHttpCrawler {
                     .setTitle(title)
                     .setDay(dayRef)
                     .setSummary(description)
-                    .setFrom(new DateTime(startDate))
-                    .setTo(new DateTime(endDate))
+                    .setFrom(transformDate(new DateTime(startDate)))
+                    .setTo(transformDate(new DateTime(endDate)))
                     .setKind(type.label)
                     .setLocation(null)
                     .setKey(new ObjectId().toString());
