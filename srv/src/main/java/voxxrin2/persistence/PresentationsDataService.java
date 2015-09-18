@@ -25,6 +25,8 @@ public class PresentationsDataService extends DataService<Presentation> {
                 input.setReminded(subscriptionResource.isReminded(user.get(), input.getKey()));
                 input.setFavorite(subscriptionResource.isFavorite(user.get(), input.getKey()));
             }
+            input.setRemindMeCount(subscriptionResource.getRemindMeCount(input.getKey()));
+            input.setFavoriteCount(subscriptionResource.getFavoriteCount(input.getKey()));
             return input;
         }
     };

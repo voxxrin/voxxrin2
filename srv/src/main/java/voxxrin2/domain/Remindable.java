@@ -4,4 +4,6 @@ public interface Remindable {
 
     boolean isReminded();
 
+    long getRemindMeCount();
+
 }

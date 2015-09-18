@@ -34,6 +34,10 @@ public class Presentation extends Referenceable implements Favoritable, Remindab
 
     private boolean reminded;
 
+    private long favoriteCount;
+
+    private long remindMeCount;
+
     public String getTitle() {
         return title;
     }
@@ -125,11 +129,31 @@ public class Presentation extends Referenceable implements Favoritable, Remindab
         return reminded;
     }
 
+    @Override
+    public long getFavoriteCount() {
+        return favoriteCount;
+    }
+
+    @Override
+    public long getRemindMeCount() {
+        return remindMeCount;
+    }
+
     public void setFavorite(boolean favorite) {
         this.favorite = favorite;
     }
 
     public void setReminded(boolean reminded) {
         this.reminded = reminded;
+    }
+
+    public Presentation setFavoriteCount(final long favoriteCount) {
+        this.favoriteCount = favoriteCount;
+        return this;
+    }
+
+    public Presentation setRemindMeCount(final long remindMeCount) {
+        this.remindMeCount = remindMeCount;
+        return this;
     }
 }

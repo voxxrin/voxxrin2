@@ -47,12 +47,24 @@ public class SubscriptionResource {
                 .count("{ presentation: #, userId: # }", ElementURI.of(Type.presentation, presentationId).toString(), user.getId()) > 0;
     }
 
+    private long getSubscriptionCount(String presentationId, JongoCollection collection) {
+        return collection.get().count("{ presentation: # }", ElementURI.of(Type.presentation, presentationId).toString());
+    }
+
     public boolean isReminded(User user, String presentationId) {
         return isSubscribed(user, presentationId, remindMe);
     }
 
     public boolean isFavorite(User user, String presentationId) {
         return isSubscribed(user, presentationId, favorite);
+    }
+
+    public long getRemindMeCount(String presentationId) {
+        return getSubscriptionCount(presentationId, remindMe);
+    }
+
+    public long getFavoriteCount(String presentationId) {
+        return getSubscriptionCount(presentationId, favorite);
     }
 
     @POST("/remindme")
