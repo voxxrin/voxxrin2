@@ -6,6 +6,7 @@ angular.module('voxxrin')
         $scope.$watch('presentations', function (presentations) {
             if (presentations) {
                 $scope.presentation = presentations[$stateParams.id];
+                $scope.fullPresentation = Presentation.get({ id: $stateParams.id });
                 loadRates($scope.presentation._id);
             }
         });

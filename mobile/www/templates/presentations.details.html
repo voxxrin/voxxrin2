@@ -6,7 +6,8 @@
             <div class="title-presentation">
                 <h4 class="title primary-title">{{ presentation.title }}</h4>
                  <span class="avatar user-list">
-                    <img ng-src="{{ presentation.speakers[0].avatarUrl }}" >
+                     <img ng-src="{{ presentation.speakers[0].avatarUrl }}" err-src="img/default-avatar.png" ng-if="presentation.speakers[0].avatarUrl">
+                     <img ng-src="img/default-avatar.png" ng-if="!presentation.speakers[0].avatarUrl">
                 </span>
                 <div class="info-item supplementary-infos">
                     <span class="prez-kind">{{ presentation.kind | orDash }}</span>
@@ -43,11 +44,28 @@
 
                 <div class="item item-body content-presentation-desc">
 
+                    <h2 class="font-bold primary-title">Résumé</h2>
                     <p ng-bind-html="presentation.summary | trustedHtml"></p>
+                    <span class="sep-hrz secondary-sep"></span>
+
+                    <!-- Speakers -->
+                    <div ng-if="presentation.speakers && presentation.speakers.length > 0">
+                        <h2 class="font-bold primary-title">Speakers</h2>
+                        <div class="list card">
+                            <div class="item item-avatar" ng-repeat="speaker in fullPresentation.speakers">
+                                <img ng-src="{{ speaker.avatarUrl }}">
+                                <h2 style="padding-left: 70px">{{ speaker.firstName }} {{ speaker.lastName }}</h2>
+                                <p>{{ speaker.bio }}</p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Favorites -->
+                    <h2 class="font-bold primary-title">{{ presentation.favoriteCount }} Favoris</h2>
+                    <span class="sep-hrz secondary-sep"></span>
 
                     <!-- Ratings -->
                     <h2 class="font-bold primary-title">{{ ratings.length }} Notes.</h2>
-                    <span class="sep-hrz secondary-sep"></span>
                     <div class="row content-rating">
                         <rating ng-model="rate" max="5"></rating>
 
@@ -59,13 +77,13 @@
 
                     <!-- Followers -->
                     <!-- TODO No finish skin carousell!-->
-                    <h2 class="font-bold primary-title">0 Assiste à la presentation</h2>
-                    <span class="sep-hrz secondary-sep"></span>
-                    <ul rn-carousel class="list-followers image">
-                        <li>slide #1</li>
-                        <li>slide #2</li>
-                        <li>slide #3</li>
-                    </ul>
+                    <!--<h2 class="font-bold primary-title">0 Assiste à la presentation</h2>-->
+                    <!--<span class="sep-hrz secondary-sep"></span>-->
+                    <!--<ul rn-carousel class="list-followers image">-->
+                        <!--<li>slide #1</li>-->
+                        <!--<li>slide #2</li>-->
+                        <!--<li>slide #3</li>-->
+                    <!--</ul>-->
                     <!-- END Followers -->
                 </div>
 

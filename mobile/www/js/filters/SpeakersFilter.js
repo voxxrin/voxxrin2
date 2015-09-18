@@ -1,6 +1,11 @@
 'use strict';
 
 angular.module('voxxrin')
+    .filter('speaker', function () {
+        return function (speaker) {
+            return speaker.firstName + ' ' + speaker.lastName;
+        };
+    })
     .filter('speakers', function () {
         return function (speakers) {
             var display = [];
