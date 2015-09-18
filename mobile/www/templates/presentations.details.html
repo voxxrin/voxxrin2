@@ -53,9 +53,11 @@
                         <h2 class="font-bold primary-title">Speakers</h2>
                         <div class="list card">
                             <div class="item item-avatar" ng-repeat="speaker in fullPresentation.speakers">
-                                <img ng-src="{{ speaker.avatarUrl }}">
+                                <img ng-src="{{ speaker.avatarUrl }}" err-src="img/default-avatar.png" ng-if="speaker.avatarUrl">
+                                <img ng-src="img/default-avatar.png" ng-if="!speaker.avatarUrl">
                                 <h2 style="padding-left: 70px">{{ speaker.firstName }} {{ speaker.lastName }}</h2>
-                                <p>{{ speaker.bio }}</p>
+                                <p>{{ speaker.twitterId | twitterId }}</p>
+                                <p ng-bind-html="speaker.bio | trustedHtml"></p>
                             </div>
                         </div>
                     </div>
