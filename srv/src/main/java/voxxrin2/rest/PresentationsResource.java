@@ -1,10 +1,7 @@
 package voxxrin2.rest;
 
 import org.bson.types.ObjectId;
-import restx.annotations.GET;
-import restx.annotations.POST;
-import restx.annotations.Produces;
-import restx.annotations.RestxResource;
+import restx.annotations.*;
 import restx.factory.Component;
 import restx.security.PermitAll;
 import voxxrin2.domain.Presentation;
@@ -39,11 +36,13 @@ public class PresentationsResource {
     }
 
     @POST("/presentations")
+    @Consumes("application/json;view=voxxrin2.serialization.Views$Presentations$Details")
     public Presentation savePresentation(Presentation presentation) {
         return presentationsDataService.save(presentation);
     }
 
     @POST("/presentations/several")
+    @Consumes("application/json;view=voxxrin2.serialization.Views$Presentations$Details")
     public List<Presentation> savePresentations(List<Presentation> presentations) {
         for (Presentation presentation : presentations) {
             presentationsDataService.save(presentation);
