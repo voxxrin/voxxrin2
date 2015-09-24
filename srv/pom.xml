@@ -16,6 +16,7 @@
         <restx.version>0.34</restx.version>
         <project.war.overlay.groupId>voxxrin2</project.war.overlay.groupId>
         <project.war.overlay.artifactId>voxxrin2</project.war.overlay.artifactId>
+        <project.war.resources.directory>../mobile/www</project.war.resources.directory>
     </properties>
 
     <dependencies>
@@ -169,7 +170,14 @@
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-war-plugin</artifactId>
-                <version>2.4</version>
+                <configuration>
+                    <webResources>
+                        <resource>
+                            <!-- this is relative to the pom.xml directory -->
+                            <directory>${project.war.resources.directory}</directory>
+                        </resource>
+                    </webResources>
+                </configuration>
             </plugin>
         </plugins>
     </build>
