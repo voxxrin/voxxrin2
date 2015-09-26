@@ -3,15 +3,15 @@
     <ion-view view-title="Presentations">
 
         <!-- Filters bar -->
-        <ion-nav-buttons side="right">
-            <span ng-if="Session.isAuthenticated()">
-                <button class="button button-light icon"
+        <ion-nav-buttons ng-if="Session.isAuthenticated()" side="right">
+            <span class="fav-actions">
+                <button class="round-btn fav-btn icon small-btn ion-ios-star"
                         ng-click="toggleFilter('favorite')"
-                        ng-class="isFilterActive('favorite') === true ? 'ion-ios-star' : 'ion-ios-star-outline'"></button>
+                        ng-class="isFilterActive('favorite') === true ? 'active' : ''"></button>
                 <span></span>
-                <button class="button button-light icon"
+                <button class="round-btn fav-btn icon small-btn ion-ios-videocam"
                         ng-click="toggleFilter('reminded')"
-                        ng-class="isFilterActive('reminded') === true ? 'ion-ios-videocam' : 'ion-ios-videocam-outline'"></button>
+                        ng-class="isFilterActive('reminded') === true ? 'active' : ''"></button>
             </span>
         </ion-nav-buttons>
 

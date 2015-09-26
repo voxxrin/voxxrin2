@@ -16,6 +16,10 @@ body {
 
 .back-text { display: none !important;}
 
+.fav-actions {
+    padding: 12px;
+}
+
 /* --- Colors --- */
 
 .bar-primary { background: #e0223f;}
