@@ -5,7 +5,6 @@ angular.module('voxxrin', [
     'ionic.service.push',
     'ngCordova',
     'ngResource',
-    'AngularConferencePlanning',
     'ionic.rating',
     'ion-sticky',
     'angular-carousel',
@@ -87,11 +86,6 @@ angular.module('voxxrin', [
                 abstract: true,
                 template: "<ion-nav-view></ion-nav-view>"
             })
-            .state('events.planning', {
-                parent: 'events',
-                url: '/{eventId}/planning',
-                templateUrl: 'templates/planning.html'
-            })
             .state('events.list', {
                 parent: 'events',
                 url: '/list',
@@ -110,6 +104,11 @@ angular.module('voxxrin', [
                 cache: false,
                 url: '/events/{eventId}/days/{dayId}/presentations',
                 templateUrl: 'templates/presentations.html'
+            })
+            .state('presentations.planning', {
+                parent: 'presentations',
+                url: '/planning',
+                templateUrl: 'templates/planning.html'
             })
             .state('presentations.list', {
                 parent: 'presentations',

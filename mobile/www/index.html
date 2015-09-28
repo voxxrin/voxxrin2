@@ -3,11 +3,12 @@
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="initial-scale=1, maximum-scale=1, user-scalable=no, width=device-width">
-    <meta http-equiv="Content-Security-Policy" content="default-src *; style-src &apos;self&apos; &apos;unsafe-inline&apos;; script-src &apos;self&apos; &apos;unsafe-inline&apos; &apos;unsafe-eval&apos;">
+    <meta http-equiv="Content-Security-Policy"
+          content="default-src *; style-src 'self' 'unsafe-inline'; script-src 'self' 'unsafe-inline' 'unsafe-eval'">
     <title></title>
 
     <link href="lib/ionic/css/ionic.css" rel="stylesheet">
-    <link href="lib/angular-conference-planning/dist/styles/angular-conference-planning.dist.css" rel="stylesheet">
+    <link href="lib/timeline.js/compiled/css/timeline.css" rel="stylesheet">
     <link href="lib/angular-carousel/dist/angular-carousel.css" rel="stylesheet">
     <link href="lib/ionic-rating/ionic-rating.css" rel="stylesheet">
 
@@ -48,9 +49,10 @@
     <script src="lib/ngCordova/dist/ng-cordova.js"></script>
 
     <!-- ionic/libs js -->
+    <script src="lib/jquery/dist/jquery.min.js"></script>
     <script src="lib/moment/min/moment.min.js"></script>
     <script src="lib/lodash/lodash.min.js"></script>
-    <script src="lib/angular-conference-planning/dist/scripts/angular-conference-planning.dist.js"></script>
+    <script src="lib/timeline.js/compiled/js/timeline-min.js"></script>
     <script src="lib/ionic-rating/ionic-rating.js"></script>
     <script src="lib/angular-cookie/angular-cookie.min.js"></script>
     <script src="lib/ion-sticky/ion-sticky.js"></script>
@@ -71,6 +73,7 @@
     <script src="js/interceptors/MainHttpRequestInterceptor.js"></script>
 
     <script src="js/directive/ErrorSource.js"></script>
+    <script src="js/directive/ConferencePlanning.js"></script>
     <script src="js/filters/TwitterIdFilter.js"></script>
     <script src="js/filters/TrustedHtmlFilter.js"></script>
     <script src="js/filters/UntrustedHtmlFilter.js"></script>

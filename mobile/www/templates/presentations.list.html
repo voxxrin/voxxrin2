@@ -3,8 +3,12 @@
     <ion-view view-title="Presentations">
 
         <!-- Filters bar -->
-        <ion-nav-buttons ng-if="Session.isAuthenticated()" side="right">
-            <span class="fav-actions">
+        <ion-nav-buttons side="right" class="fav-actions">
+
+            <button class="round-btn fav-btn icon small-btn ion-ios-calendar"
+                    ng-click="goToPlanning(day)"></button>
+
+            <span ng-if="Session.isAuthenticated()">
                 <button class="round-btn fav-btn icon small-btn ion-ios-star"
                         ng-click="toggleFilter('favorite')"
                         ng-class="isFilterActive('favorite') === true ? 'active' : ''"></button>

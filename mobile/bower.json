@@ -15,10 +15,11 @@
     "moment": "2.10.2",
     "angular-resource": "1.4.3",
     "lodash": "3.7.0",
-    "angular-conference-planning": "git@github.com:walien/angular-conference-planning.git#1.2.2",
     "angular-cookie": "4.0.9",
     "ion-sticky": "1.0.3",
-    "ionic-rating": "~0.1.0",
-    "angular-carousel": "~0.3.13"
+    "ionic-rating": "0.1.0",
+    "angular-carousel": "0.3.13",
+    "timeline.js": "git@github.com:NUKnightLab/TimelineJS3.git#3.3.2",
+    "jquery": "2.1.4"
   }
 }
