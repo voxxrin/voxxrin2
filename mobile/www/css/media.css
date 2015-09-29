@@ -1,0 +1,20 @@
+/* ======== MEDIA ======== */
+
+/* === > 732 === */
+
+@media screen and (min-width: 732px) {
+    .part-top-login {
+        min-height: 320px;
+        padding-top: 100px;
+    }
+
+    .part-bottom-login {
+        height: 45%;
+        margin-top: 50px;
+    }
+
+    .footer-login {
+        position: relative;
+        margin-top: -20px;
+    }
+}
