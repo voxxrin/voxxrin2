@@ -51,8 +51,8 @@
                                 <div class="info-item supplementary-infos">
                                     <span class="prez-kind" ng-if="prez.kind">{{prez.kind}}</span>
                                     <ul class="list-alerts">
-                                        <li class="item-list-alert" ng-class="{ 'active': prez.isFavorite() }"><i class="icon ion-star"></i></li>
-                                        <li class="item-list-alert" ng-class="{ 'active': prez.isReminded() }"><i class="icon ion-ios-videocam"></i></li>
+                                        <li class="item-list-alert" ng-class="{ 'active': prez.isFavorite() }"><span class="content-icon"><i class="icon ion-star"></i></span>-</li>
+                                        <li class="item-list-alert" ng-class="{ 'active': prez.isReminded() }"><span class="content-icon"><i class="icon ion-ios-videocam"></i></span>-</li>
                                     </ul>
                                 </div>
                                 <span class="info-item"><i class="icon inline ion-location"></i>{{ prez.location.fullName }}</span>
