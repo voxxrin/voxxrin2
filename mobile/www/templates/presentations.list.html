@@ -38,21 +38,21 @@
                         <h3 class="white-title"><i class="icon inline medium ion-clock"></i>{{ name }}</h3>
                     </div>
 
-                    <ion-item class="item-text-wrap" ng-repeat="prez in filteredPrezs = (slot.presentations | prezFilter:filters)" ng-click="goToPresentation(prez)">
+                    <ion-item class="item-text-wrap" ng-repeat="prez in filteredPrezs = (slot.presentations | prezFilter:filters)">
 
                         <div class="row">
-                            <span class="avatar user-list">
+                            <span class="avatar user-list" ng-click="goToPresentation(prez)">
                                 <img ng-src="{{ prez.speakers[0].avatarUrl }}" err-src="img/default-avatar.png" ng-if="prez.speakers[0].avatarUrl">
                                 <img ng-src="img/default-avatar.png" ng-if="!prez.speakers[0].avatarUrl">
                             </span>
 
-                            <div class="col-75 content-desc secondary-dark-title">
+                            <div class="col-75 content-desc secondary-dark-title" ng-click="goToPresentation(prez)">
                                 <h3 class="title primary-title">{{ prez.title }}</h3>
                                 <div class="info-item supplementary-infos">
                                     <span class="prez-kind" ng-if="prez.kind">{{prez.kind}}</span>
                                     <ul class="list-alerts">
-                                        <li class="item-list-alert" ng-class="{ 'active': prez.isFavorite() }"><span class="content-icon"><i class="icon ion-star"></i></span>-</li>
-                                        <li class="item-list-alert" ng-class="{ 'active': prez.isReminded() }"><span class="content-icon"><i class="icon ion-ios-videocam"></i></span>-</li>
+                                        <li class="item-list-alert" ng-class="{ 'active': prez.isFavorite() }"><span class="content-icon"><i class="icon ion-star"></i></span>{{ prez.favoriteCount }}</li>
+                                        <li class="item-list-alert" ng-class="{ 'active': prez.isReminded() }"><span class="content-icon"><i class="icon ion-ios-videocam"></i></span>{{ prez.remindMeCount }}</li>
                                     </ul>
                                 </div>
                                 <span class="info-item"><i class="icon inline ion-location"></i>{{ prez.location.fullName }}</span>
