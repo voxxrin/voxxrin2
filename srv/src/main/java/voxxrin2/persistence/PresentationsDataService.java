@@ -41,4 +41,9 @@ public class PresentationsDataService extends DataService<Presentation> {
     public Iterable<Presentation> findAllAndSort(String query, String sorting, Object... params) {
         return Iterables.transform(super.findAllAndSort(query, sorting, params), USER_PRESENTATION_FUNCTOR);
     }
+
+    @Override
+    public Presentation find(String query, Object... params) {
+        return USER_PRESENTATION_FUNCTOR.apply(super.find(query, params));
+    }
 }

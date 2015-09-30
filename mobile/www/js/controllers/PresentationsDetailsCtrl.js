@@ -3,6 +3,12 @@
 angular.module('voxxrin')
     .controller('PresentationDetailsCtrl', function ($stateParams, $scope, Presentation, Rating) {
 
+        $scope.$on('presentation:updated', function (event, presentation) {
+            Presentation.get({id: presentation._id}, function (_presentation) {
+                $scope.presentation = $scope.fullPresentation = $scope.weaveRefs($scope.presentation, _presentation);
+            });
+        });
+
         $scope.$watch('presentations', function (presentations) {
             if (presentations) {
                 $scope.presentation = presentations[$stateParams.id];

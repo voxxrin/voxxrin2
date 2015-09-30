@@ -5,6 +5,10 @@ angular.module('voxxrin')
 
         var slotFormat = 'HH[h]mm';
 
+        $scope.$on('presentation:updated', function (event, presentation) {
+            updateModel(presentation);
+        });
+
         var buildPresentationsMap = function (presentations) {
             return _.indexBy(presentations, '_id');
         };
@@ -41,14 +45,29 @@ angular.module('voxxrin')
             $scope.slots = buildSlots(presentations);
         };
 
+        var updateModel = function (presentation) {
+            Presentation.get({id: presentation._id}, function (_updatedPresentation) {
+                _updatedPresentation = $scope.weaveRefs(presentation, _updatedPresentation);
+                $scope.presentations[presentation._id] = _updatedPresentation;
+                var index = _.findIndex($scope.slots[presentation.slot.name].presentations, function (_prez) {
+                    return _prez._id === presentation._id;
+                });
+                $scope.slots[presentation.slot.name].presentations[index] = _updatedPresentation;
+            });
+        };
+
         angular.extend($scope, {
             day: Day.get({id: $stateParams.dayId}),
             reminder: {},
+            weaveRefs: function (oldPrez, newPrez) {
+                newPrez.slot = oldPrez.slot;
+                return newPrez;
+            },
             remindMe: function (presentation) {
                 RemindMe.save({presentationId: presentation._id})
                     .$promise
                     .then(function () {
-                        presentation.reminded = true;
+                        $rootScope.$broadcast('presentation:updated', presentation);
                     })
                     .catch(function () {
                         $ionicPopup.alert({
@@ -61,7 +80,7 @@ angular.module('voxxrin')
                 Favorite.save({presentationId: presentation._id, deviceToken: $rootScope.pushToken})
                     .$promise
                     .then(function () {
-                        presentation.favorite = true;
+                        $rootScope.$broadcast('presentation:updated', presentation);
                     })
                     .catch(function () {
                         $ionicPopup.alert({
