@@ -93,6 +93,7 @@
     display: inline-block;
     vertical-align: middle;
     padding-left: 10px;
+    width: 100%;
 }
 
 .content-desc .title {
