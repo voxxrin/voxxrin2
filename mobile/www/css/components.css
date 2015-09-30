@@ -201,6 +201,8 @@
     display: inline-block;
     vertical-align: middle;
     float: right;
+    position: absolute;
+    right: 20px
 }
 
 .list-alerts .item-list-alert {
