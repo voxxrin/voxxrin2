@@ -337,4 +337,9 @@
     width: 80%;
 }
 
+/* ==== Popup ====  */
 
+.popup-container { background-color: rgba(0, 0, 0, 0.7) !important;}
+.popup { color: #686868;}
+.popup-title { color: #e0223f;}
+.popup-buttons button { background: #e0223f !important; border: none; }
