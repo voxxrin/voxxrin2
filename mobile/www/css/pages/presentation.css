@@ -112,11 +112,14 @@
 .time-bar  .btn-actions button {
     width: 50px;
     margin: 0;
-    margin-right: -3px;
+    margin-right: -4px;
     padding-left: 12px;
     padding-top: 0px;
     border: 0;
+    border-right: 1px solid #afafaf ;
 }
+
+.time-bar  .btn-actions button:last-child { border-right: 0;}
 
 .time-bar  .btn-actions button.activated { background: #e0223f; color: #FFFFFF; }
 
