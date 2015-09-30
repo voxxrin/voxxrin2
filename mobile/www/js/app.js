@@ -8,7 +8,8 @@ angular.module('voxxrin', [
     'ionic.rating',
     'ion-sticky',
     'angular-carousel',
-    'ng-token-auth'
+    'ng-token-auth',
+    'ngIOS9UIWebViewPatch'
 ])
     .run(function ($rootScope, $ionicPlatform, $ionicLoading, $ionicAnalytics) {
 
