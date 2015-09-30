@@ -2,12 +2,16 @@
 
 /* === Desc === */
 
+
+.tl-storyslider  { height: 50% !important;}
 .tl-slide-scrollable-container { width: 100% !important;}
 .tl-slide-content{ width: 100% !important; padding-right: 20px !important; padding-left: 20px !important;}
 
 .tl-text { margin-top: 0 !important;}
 .tl-headline {font-size: 24px !important; color: #e0223f !important; line-height: 26px !important;}
 .tl-slidenav-icon {height: 100%; display: block;}
+
+.tl-text-content p { font-size: 12px !important;}
 
 /* === Time ===*/
 .tl-headline-date { padding-left: 0 !important; margin-bottom: 10px !important;}
@@ -39,9 +43,29 @@
 
 /* === Time Line ===*/
 
-.tl-timemarker-text h2 { font-size: 12px !important; margin-top: -3px !important; font-weight: bold !important; color: white !important;}
-.tl-timemarker .tl-timemarker-content-container .tl-timemarker-content { padding: 0 !important; background-color: #e0223f !important;}
-.tl-timemarker.tl-timemarker-active .tl-timemarker-content-container { border: none !important; box-shadow: none !important;}
 
-.tl-timeaxis-background { background-color: #95172a !important; color: white !important;}
+.tl-timegroup { font-size: 12px !important;}
+.tl-timegroup .tl-timegroup-message { margin-left: 25px !important;}
 
+.tl-timemarker-text h2 { font-size: 10px !important; margin-top: -3px !important; font-weight: bold !important; color: #686868 !important; }
+.tl-timemarker .tl-timemarker-content-container .tl-timemarker-content { padding: 0 !important;}
+.tl-timemarker.tl-timemarker-active .tl-timemarker-content-container { border: none !important;}
+
+.tl-timeaxis-background { background-color: #e0223f !important; color: white !important;}
+
+.tl-attribution { display: none !important;}
+
+.tl-timeaxis-tick { color: white !important;}
+
+/* === Sidebar Btn === */
+
+.tl-menubar {
+    position: initial !important;
+    height: 100% !important;
+}
+.tl-menubar-button {
+    display: inline-block !important;
+    height: 100% !important;
+    width: 33.33% !important;
+    padding-top: 10px !important;
+}
