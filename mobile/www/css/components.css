@@ -262,6 +262,7 @@
 .item-options .button { min-width: 100px;}
 
 .item-options .button button { margin: 0 auto;}
+.item-options .button[disabled] { opacity: 1;}
 
 .item-options .button:nth-child(n+1) {background-color: #e0223f;}
 .item-options .button:nth-child(n+2) {background-color: #c61c36;}
