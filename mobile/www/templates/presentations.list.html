@@ -70,13 +70,13 @@
                             <!--option buttons-->
                             <!-- TODO add class add-check on div when talks add fav or RemindMe !-->
                             <ion-option-button ng-disabled="prez.isFavorite()" ng-click="favorite(prez)">
-                                <div class="round-btn medium-btn white-btn centered-btn">
+                                <div class="round-btn medium-btn white-btn centered-btn" ng-class="{ 'add-check' : prez.isFavorite() }">
                                     <i class="icon small ion-star"></i>
                                 </div>
                             </ion-option-button>
 
                             <ion-option-button ng-disabled="prez.isReminded()"  ng-click="remindMe(prez)">
-                                <div class="round-btn medium-btn white-btn centered-btn">
+                                <div class="round-btn medium-btn white-btn centered-btn" ng-class="{ 'add-check' : prez.isReminded() }">
                                     <i class="icon ion-ios-videocam"></i>
                                 </div>
                             </ion-option-button>

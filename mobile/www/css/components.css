@@ -277,6 +277,10 @@
     border: 2px solid white;
 }
 
+.add-check-small {
+    background-color: #92d65d;
+    color: white;
+}
 
 /* -> Status List Divider <- */
 
