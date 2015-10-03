@@ -336,8 +336,20 @@ angular.module('ng-token-auth', ['ipCookie']).provider('$auth', function() {
                                 });
                                 return $rootScope.$broadcast('auth:window-closed');
                             } else {
-                                var handleLoadStop = this.handleLoadStop.bind(this, authWindow);
-                                authWindow.addEventListener('loadstop', handleLoadStop);
+                                // In CORDOVA mode (post message not supported) : execute directly
+                                // the requestCredentials() function
+                                if (window.cordova) {
+                                    var handleLoadStop = this.handleLoadStop.bind(this, authWindow);
+                                    authWindow.addEventListener('loadstop', handleLoadStop);
+                                } else {
+                                    // Otherwise, use post message to communicate between browser tabs
+                                    authWindow.postMessage("requestCredentials", "*");
+                                    return this.t = $timeout(((function (_this) {
+                                        return function () {
+                                            return _this.requestCredentials(authWindow);
+                                        };
+                                    })(this)), 500);
+                                }
                             }
                         },
                         createPopup: function(url) {
