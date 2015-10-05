@@ -25,6 +25,12 @@ body {
     padding-right: 5px;
 }
 
+/* --- Buttons --- */
+
+.ion-navicon { color: #95172a;}
+.ion-navicon.activated { color: #FFFFFF !important;}
+.menu-open .ion-navicon:before { content: '\f129'; font-size: 22px !important; color: #95172a;}
+
 /* --- Colors --- */
 
 .bar-primary { background: #e0223f;}
