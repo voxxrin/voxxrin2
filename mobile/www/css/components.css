@@ -103,7 +103,7 @@
 
 .content-desc .info-item {
     display: block;
-    min-height: 30px;
+    height: auto;
     font-size: 13px;
     overflow: hidden;
     text-overflow: ellipsis;
