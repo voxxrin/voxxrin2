@@ -16,12 +16,12 @@
 
             <div class="infos-bar content-desc ">
                 <!-- TODO add actions touch previous !-->
-                <span class="slide-nav prev"><i class="ion-chevron-left"></i></span>
+                <span class="slide-nav prev" ng-click="goToPreviousPrez(slots, presentation)"><i class="ion-chevron-left"></i></span>
                 <span class="info-item"><i class="icon inline ion-location"></i>{{ presentation.location.fullName }}</span>
                 <span class="info-item"><i class="icon inline ion-person"></i>{{ presentation.speakers | speakers | orDash }}</span>
                 <span class="info-item" ng-if="prez.speakers[0].company"><i class="icon inline ion-briefcase"></i>{{ presentation.speakers | companies }}</span>
                 <!-- TODO add actions touch next !-->
-                <span class="slide-nav next"><i class="ion-chevron-right"></i></span>
+                <span class="slide-nav next" ng-click="goToNextPrez(slots, presentation)"><i class="ion-chevron-right"></i></span>
             </div>
 
             <div class="row time-bar">
