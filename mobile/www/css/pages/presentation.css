@@ -23,6 +23,7 @@
     padding: 5px;
     padding-left: 90px;
     background: #edf0f5;
+    z-index: 1;
 }
 
 .part-top-presentation .title-presentation .title {
@@ -62,6 +63,7 @@
 }
 
 .infos-bar {
+    position: relative;
     display: block;
     width: 100%;
     height: auto;
@@ -74,6 +76,31 @@
     display: block;
     color: #686868;
 }
+
+.slide-nav {
+    position: absolute;
+    top: 50%;
+    background-color: #f0f3f8;
+    height: 30px;
+    width: 24px;
+    padding: 6px;
+    color: #bcbcbc;
+    font-size: 14px;
+    transform: translate(-50%, -50%);
+    -webkit-transform: translate(-50%, -50%);
+    z-index: 1;
+}
+
+.slide-nav.prev {
+    left: 12px;
+    border-radius: 0 10px 10px 0;
+}
+
+.slide-nav.next {
+    right: -12px;
+    border-radius: 10px 0 0 10px;
+}
+
 
 /* --- Part Top / Time Actions --- */
 
