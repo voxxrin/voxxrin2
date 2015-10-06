@@ -1,7 +1,8 @@
 'use strict';
 
 angular.module('voxxrin')
-    .controller('PresentationsAbstractCtrl', function ($rootScope, $stateParams, $scope, $ionicPopup, Day, Presentation, RemindMe, Favorite) {
+    .controller('PresentationsAbstractCtrl', function ($rootScope, $stateParams, $scope, $ionicPopup, Day,
+                                                       Presentation, RemindMe, Favorite, Calendar) {
 
         var slotFormat = 'HH[h]mm';
 
@@ -88,6 +89,9 @@ angular.module('voxxrin')
                             template: 'Vous devez être connecté pour beneficier de cette fonctionnalité'
                         });
                     });
+            },
+            addToCalendar: function (presentation) {
+                Calendar.createEvent(presentation);
             }
         });
 

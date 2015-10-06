@@ -33,8 +33,8 @@
                     <button class="btn small-btn secondary-btn" ng-click="remindMe(presentation)" ng-class="{ 'add-check-small' : presentation.isReminded() }" ng-disabled="presentation.isReminded()">
                         <i class="icon ion-ios-videocam"></i>
                     </button>
-                    <button class="btn small-btn secondary-btn">
-                        <i class="icon ion-android-share-alt"></i>
+                    <button class="btn small-btn secondary-btn" ng-click="addToCalendar(fullPresentation)">
+                        <i class="icon ion-android-calendar"></i>
                     </button>
                 </div>
             </div>
