@@ -6,7 +6,7 @@ import org.jongo.marshall.jackson.oid.Id;
 import org.jongo.marshall.jackson.oid.ObjectId;
 
 @JsonTypeInfo(use = JsonTypeInfo.Id.CLASS, include = JsonTypeInfo.As.PROPERTY, property = "@class")
-public class Referenceable {
+public class Referenceable implements Crawlable {
 
     @Id
     @ObjectId
@@ -15,6 +15,8 @@ public class Referenceable {
     private DateTime creationDate;
 
     private DateTime updateDate;
+
+    private String crawlId;
 
     public String getKey() {
         return key;
@@ -40,6 +42,16 @@ public class Referenceable {
 
     public Referenceable setCreationDate(final DateTime creationDate) {
         this.creationDate = creationDate;
+        return this;
+    }
+
+    @Override
+    public String getCrawlId() {
+        return crawlId;
+    }
+
+    public Referenceable setCrawlId(final String crawlId) {
+        this.crawlId = crawlId;
         return this;
     }
 }

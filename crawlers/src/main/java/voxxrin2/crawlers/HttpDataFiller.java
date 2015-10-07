@@ -16,12 +16,11 @@ import org.jongo.marshall.jackson.oid.ObjectIdSerializer;
 import org.slf4j.Logger;
 import restx.jackson.FixedPrecisionDeserializer;
 import restx.jackson.FixedPrecisionSerializer;
-import voxxrin2.domain.Day;
-import voxxrin2.domain.Presentation;
-import voxxrin2.domain.Room;
-import voxxrin2.domain.Speaker;
+import voxxrin2.domain.*;
 import voxxrin2.domain.technical.Referenceable;
 import voxxrin2.serialization.ReferenceSerializer;
+
+import java.util.UUID;
 
 import static org.slf4j.LoggerFactory.getLogger;
 
@@ -43,26 +42,33 @@ public class HttpDataFiller {
 
     public void fill(CrawlingResult result) throws JsonProcessingException {
 
-        send(EVENTS_URL, result.getEvent());
+        String crawlId = generateCrawlId(result.getEvent());
+
+        send(EVENTS_URL, result.getEvent(), crawlId);
 
         for (Day day : result.getDays()) {
-            send(DAYS_URL, day);
+            send(DAYS_URL, day, crawlId);
         }
 
         for (Room room : result.getRooms()) {
-            send(ROOMS_URL, room);
+            send(ROOMS_URL, room, crawlId);
         }
 
         for (Speaker speaker : result.getSpeakers()) {
-            send(SPEAKERS_URL, speaker);
+            send(SPEAKERS_URL, speaker, crawlId);
         }
 
         for (Presentation presentation : result.getPresentations()) {
-            send(PRESENTATIONS_URL, presentation);
+            send(PRESENTATIONS_URL, presentation, crawlId);
         }
     }
 
-    private <T extends Referenceable> void send(String url, T entity) throws JsonProcessingException {
+    private String generateCrawlId(Event event) {
+        return String.format("%s-%s", event.getName().replaceAll("\\s", ""), UUID.randomUUID().toString());
+    }
+
+    private <T extends Referenceable> void send(String url, T entity, String crawlId) throws JsonProcessingException {
+        entity.setCrawlId(crawlId);
         int code = HttpRequest
                 .post(baseUrl + url).acceptJson()
                 .basic("admin", System.getProperty("voxxrin.http.basic.pwd"))
