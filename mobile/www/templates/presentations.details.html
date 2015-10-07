@@ -50,16 +50,16 @@
 
                     <h2 class="font-bold primary-title">Résumé</h2>
                     <p ng-bind-html="presentation.summary | trustedHtml"></p>
-                    <span class="sep-hrz secondary-sep"></span>
 
                     <!-- Speakers -->
                     <div ng-if="presentation.speakers && presentation.speakers.length > 0">
+                        <span class="sep-hrz secondary-sep"></span>
                         <h2 class="font-bold primary-title">Speakers</h2>
                         <div class="list card">
                             <div class="item item-avatar" ng-repeat="speaker in fullPresentation.speakers">
                                 <img ng-src="{{ speaker.avatarUrl }}" err-src="img/default-avatar.png" ng-if="speaker.avatarUrl">
                                 <img ng-src="img/default-avatar.png" ng-if="!speaker.avatarUrl">
-                                <h2 style="padding-left: 70px">{{ speaker.firstName }} {{ speaker.lastName }}</h2>
+                                <h2 style="padding-left: 70px">{{ speaker.firstName }} {{ speaker.lastName }} <span ng-if="speaker.company">({{ speaker.company }})</span></h2>
                                 <p>{{ speaker.twitterId | twitterId }}</p>
                                 <p ng-bind-html="speaker.bio | trustedHtml"></p>
                             </div>
