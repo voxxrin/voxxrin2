@@ -38,6 +38,7 @@ public class Voxxrin1Crawler extends AbstractHttpCrawler {
     private static final String EVENT_ID = "bdxio15";
     private static final String EVENT_LOCATION = "Talence - ENSEIRB-MATMECA";
     private static final String EVENT_IMAGE_URL = "http://www.bdx.io/images/./2ea70105.logo_header.png";
+    private static final String DESTINATION_API_URL = "http://localhost:8080/api";
 
     /**
      * Static params
@@ -49,7 +50,7 @@ public class Voxxrin1Crawler extends AbstractHttpCrawler {
 
     public static void main(String[] args) throws IOException {
         CrawlingResult result = new Voxxrin1Crawler().crawl();
-        new HttpDataFiller("http://localhost:8080/api").fill(result);
+        new HttpDataFiller(DESTINATION_API_URL).fill(result);
     }
 
     @Override
