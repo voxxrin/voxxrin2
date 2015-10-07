@@ -20,11 +20,21 @@ import java.util.Map;
 
 public class JugSummerCampCrawler extends AbstractHttpCrawler {
 
+    /**
+     * Configure this area
+     */
+
     private static final String URL = "http://www.jugsummercamp.org/api/edition/6";
+    private static final String DESTINATION_API_URL = "http://localhost:8080/api";
     private static final String JSC_NAME = "Jug SummerCamp - 2015";
 
     private static DateTime transformDate(DateTime dateTime) {
         return dateTime.minusHours(2);
+    }
+
+    public static void main(String[] args) throws IOException {
+        CrawlingResult result = new JugSummerCampCrawler().crawl();
+        new HttpDataFiller(DESTINATION_API_URL).fill(result);
     }
 
     @Override
@@ -74,11 +84,6 @@ public class JugSummerCampCrawler extends AbstractHttpCrawler {
             presentationSpeakers.add(Reference.<Speaker>of(Type.speaker, stdSpeaker.getKey()));
         }
         return presentationSpeakers;
-    }
-
-    public static void main(String[] args) throws IOException {
-        CrawlingResult result = new JugSummerCampCrawler().crawl();
-        new HttpDataFiller("http://localhost:8080/api").fill(result);
     }
 
     private static class JSCPayload {

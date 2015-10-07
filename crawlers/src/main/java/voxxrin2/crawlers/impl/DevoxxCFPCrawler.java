@@ -1,12 +1,10 @@
 package voxxrin2.crawlers.impl;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
-import com.fasterxml.jackson.databind.type.CollectionType;
 import com.github.kevinsawicki.http.HttpRequest;
 import com.google.common.base.Optional;
 import com.google.common.base.Predicate;
 import com.google.common.collect.Iterables;
-import org.assertj.core.util.Strings;
 import org.bson.types.ObjectId;
 import org.joda.time.DateTime;
 import org.joda.time.format.DateTimeFormat;
@@ -28,14 +26,19 @@ public class DevoxxCFPCrawler extends AbstractHttpCrawler {
 
     private static final Logger logger = getLogger(DevoxxCFPCrawler.class);
 
+    /**
+     * Configure this area
+     */
     private static final String BASE_URL = "http://cfp.devoxx.fr/api/conferences/DevoxxFR2015";
+    private static final String DESTINATION_API_URL = "http://localhost:8080/api";
+
     private static final String ROOMS_URL = BASE_URL + "/rooms";
     private static final String SPEAKERS_URL = BASE_URL + "/speakers";
     private static final String DAYS_URL = BASE_URL + "/schedules";
 
     public static void main(String[] args) throws IOException {
         CrawlingResult result = new DevoxxCFPCrawler().crawl();
-        new HttpDataFiller(" http://localhost:8080/api").fill(result);
+        new HttpDataFiller(DESTINATION_API_URL).fill(result);
     }
 
     @Override
