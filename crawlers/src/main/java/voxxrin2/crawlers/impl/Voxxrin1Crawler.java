@@ -100,11 +100,14 @@ public class Voxxrin1Crawler extends AbstractHttpCrawler {
         List<Speaker> stdSpeakers = new ArrayList<>();
 
         for (VoxxrinSpeaker speaker : presentation.speakers) {
-            if (!speakers.containsKey(speaker.id)) {
+            Speaker cachedSpeaker = speakers.get(speaker.id);
+            if (cachedSpeaker == null) {
                 VoxxrinSpeaker fullSpeaker = MAPPER.readValue(HttpRequest.get(SPEAKERS_URL + "/" + speaker.id).body(), VoxxrinSpeaker.class);
                 Speaker stdSpeaker = fullSpeaker.toStdSpeaker();
                 stdSpeakers.add(stdSpeaker);
                 speakers.put(speaker.id, stdSpeaker);
+            } else {
+                stdSpeakers.add(cachedSpeaker);
             }
         }
 
