@@ -57,7 +57,6 @@
                                 </div>
                                 <span class="info-item"><i class="icon inline ion-location"></i>{{ prez.location.fullName }}</span>
                                 <span class="info-item"  ng-if="prez.speakers[0]"><i class="icon inline ion-person"></i>{{ prez.speakers | speakers }}</span>
-                                <span class="info-item" ng-if="prez.speakers[0].company"><i class="icon inline ion-briefcase"></i>{{ prez.speakers | companies }}</span>
                             </div>
 
                             <span class="status-line cat-1"></span>
@@ -68,7 +67,6 @@
 
 
                             <!--option buttons-->
-                            <!-- TODO add class add-check on div when talks add fav or RemindMe !-->
                             <ion-option-button ng-disabled="prez.isFavorite()" ng-click="favorite(prez)">
                                 <div class="round-btn medium-btn white-btn centered-btn" ng-class="{ 'add-check' : prez.isFavorite() }">
                                     <i class="icon small ion-star"></i>

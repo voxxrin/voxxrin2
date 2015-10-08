@@ -10,18 +10,9 @@ angular.module('voxxrin')
         return function (speakers) {
             var display = [];
             _.each(speakers, function (speaker) {
-                display.push(speaker.firstName + ' ' + speaker.lastName);
-            });
-            return display.join(', ');
-        };
-    })
-    .filter('companies', function () {
-        return function (speakers) {
-            var display = [];
-            _.each(speakers, function (speaker) {
-                if (display.indexOf(speaker.company) === -1) {
-                    display.push(speaker.company);
-                }
+                var identity = speaker.firstName + ' ' + speaker.lastName;
+                var company = speaker.company ? ' (' + speaker.company + ')' : '';
+                display.push(identity + company);
             });
             return display.join(', ');
         };
