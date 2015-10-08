@@ -11,7 +11,10 @@
 
             <div class="part-bottom-login">
                 <div class="text-center connect-network">
-                    <h4 class="white-title">Connectez-vous</h4>
+
+                    <h4 class="white-title" ng-if="!isAuthenticated">Connectez-vous</h4>
+                    <h4 class="white-title" ng-if="isAuthenticated">Déconnexion</h4>
+
                     <span class="col-50 element-centered sep-hrz primary-dark-sep"></span>
                     <div class="inline list-btn-large">
                         <button class="round-btn large-btn white-btn" ng-click="authenticate('twitter')" ng-if="!isAuthenticated">
