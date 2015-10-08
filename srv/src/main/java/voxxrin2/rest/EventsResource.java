@@ -1,6 +1,8 @@
 package voxxrin2.rest;
 
+import com.google.common.base.Optional;
 import org.bson.types.ObjectId;
+import org.joda.time.DateTime;
 import restx.annotations.GET;
 import restx.annotations.POST;
 import restx.annotations.RestxResource;
@@ -19,9 +21,22 @@ public class EventsResource {
         this.eventsDataService = dataService;
     }
 
+    private enum EventTemporality {
+        FUTURE, PAST
+    }
+
     @GET("/events")
     @PermitAll
-    public Iterable<Event> getAllEvents() {
+    public Iterable<Event> getAllEvents(Optional<String> mode) {
+
+        if (mode.isPresent()) {
+            if (EventTemporality.FUTURE.name().equalsIgnoreCase(mode.get())) {
+                return eventsDataService.findAll("{ to: { $gte: # } }", DateTime.now().toDate());
+            } else if (EventTemporality.PAST.name().equalsIgnoreCase(mode.get())) {
+                return eventsDataService.findAll("{ to: { $lte: # } }", DateTime.now().toDate());
+            }
+        }
+
         return eventsDataService.findAll();
     }
 
