@@ -12,10 +12,10 @@ angular.module('voxxrin')
                 success: function (title, text) {
                     _popup(title, text, 'success')
                 },
-                warning: function () {
+                warning: function (title, text) {
                     _popup(title, text, 'warning')
                 },
-                error: function () {
+                error: function (title, text) {
                     _popup(title, text, 'error')
                 }
             }

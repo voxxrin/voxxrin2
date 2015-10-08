@@ -1,8 +1,8 @@
 'use strict';
 
 angular.module('voxxrin')
-    .controller('PresentationsAbstractCtrl', function ($rootScope, $stateParams, $scope, $ionicPopup, Day,
-                                                       Presentation, RemindMe, Favorite, Calendar) {
+    .controller('PresentationsAbstractCtrl', function ($rootScope, $stateParams, $scope, Day, Presentation,
+                                                       RemindMe, Favorite, Calendar, Notification) {
 
         var slotFormat = 'HH[h]mm';
 
@@ -71,10 +71,7 @@ angular.module('voxxrin')
                         $rootScope.$broadcast('presentation:updated', presentation);
                     })
                     .catch(function () {
-                        $ionicPopup.alert({
-                            title: 'Prevenez-moi !',
-                            template: 'Vous devez être connecté pour beneficier de cette fonctionnalité'
-                        });
+                        Notification.popup.warning('Prevenez-moi !', 'Vous devez être connecté pour beneficier de cette fonctionnalité');
                     });
             },
             favorite: function (presentation) {
@@ -84,10 +81,7 @@ angular.module('voxxrin')
                         $rootScope.$broadcast('presentation:updated', presentation);
                     })
                     .catch(function () {
-                        $ionicPopup.alert({
-                            title: 'Favoriser !',
-                            template: 'Vous devez être connecté pour beneficier de cette fonctionnalité'
-                        });
+                        Notification.popup.warning('Favoriser !', 'Vous devez être connecté pour beneficier de cette fonctionnalité');
                     });
             },
             addToCalendar: function (presentation, event) {
