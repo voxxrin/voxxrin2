@@ -1,7 +1,7 @@
 'use strict';
 
 angular.module('voxxrin')
-    .controller('PresentationDetailsCtrl', function ($stateParams, $scope, Presentation, Rating) {
+    .controller('PresentationDetailsCtrl', function ($stateParams, $scope, Notification, Presentation, Rating) {
 
         $scope.$on('presentation:updated', function (event, presentation) {
             Presentation.get({id: presentation._id}, function (_presentation) {
@@ -31,6 +31,7 @@ angular.module('voxxrin')
         $scope.sendRate = function (presentation, rate) {
             Rating.send(presentation, rate).$promise.then(function () {
                 loadRates(presentation._id);
+                Notification.popup.success('Notation', 'Votre note à été prise en compte !');
             });
         };
     });
