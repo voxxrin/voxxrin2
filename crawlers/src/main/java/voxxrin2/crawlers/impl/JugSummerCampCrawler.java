@@ -141,6 +141,8 @@ public class JugSummerCampCrawler extends AbstractHttpCrawler {
         @JsonProperty("end-date")
         public long endDate;
 
+        public String id;
+
         public Presentation toStdPresentation(Event event, Day day) {
             Reference<Event> eventRef = Reference.of(Type.event, event.getKey());
             Reference<Day> dayRef = Reference.of(Type.day, day.getKey());
@@ -148,6 +150,7 @@ public class JugSummerCampCrawler extends AbstractHttpCrawler {
                     .setEvent(eventRef)
                     .setTitle(title)
                     .setDay(dayRef)
+                    .setExternalId(id)
                     .setSummary(description)
                     .setFrom(transformDate(new DateTime(startDate)))
                     .setTo(transformDate(new DateTime(endDate)))

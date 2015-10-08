@@ -166,6 +166,7 @@ public class Voxxrin1Crawler extends AbstractHttpCrawler {
         public String type;
         public String kind;
         public String title;
+        public String id;
 
         public List<VoxxrinSpeaker> speakers;
         public VoxxrinRoom room;
@@ -173,6 +174,7 @@ public class Voxxrin1Crawler extends AbstractHttpCrawler {
         public Presentation toStdPresentation(Event event, Day day, Room room, List<Reference<Speaker>> speakers) {
             return (Presentation) new Presentation()
                     .setTitle(title)
+                    .setExternalId(id)
                     .setSummary(summary)
                     .setDay(Reference.<Day>of(Type.day, day.getKey()))
                     .setEvent(Reference.<Event>of(Type.event, event.getKey()))

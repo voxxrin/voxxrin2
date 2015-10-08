@@ -257,6 +257,7 @@ public class DevoxxCFPCrawler extends AbstractHttpCrawler {
                     .setLocation(Reference.<Room>of(Type.room, room.getKey()))
                     .setFrom(new DateTime(fromTimeMillis))
                     .setTo(new DateTime(toTimeMillis))
+                    .setExternalId(talk != null ? talk.id : null)
                     .setKind(talk != null ? talk.talkType : null)
                     .setSummary(talk != null ? talk.summary : null)
                     .setTitle(talk != null ? talk.title : justABreak.nameFR);
@@ -267,6 +268,7 @@ public class DevoxxCFPCrawler extends AbstractHttpCrawler {
         public String title;
         public String summary;
         public String talkType;
+        public String id;
         public List<CFPTalkSpeaker> speakers;
     }
 
