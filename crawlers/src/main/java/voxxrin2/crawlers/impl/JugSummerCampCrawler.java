@@ -99,11 +99,14 @@ public class JugSummerCampCrawler extends AbstractHttpCrawler {
         public long date;
 
         public Event toStdEvent() {
+            DateTime from = transformDate(new DateTime(date));
             return (Event) new Event()
                     .setImageUrl("http://www.jugsummercamp.org/assets/images/logo-summercamp.png")
                     .setName(JSC_NAME)
                     .setDescription(description)
-                    .setFrom(transformDate(new DateTime(date)))
+                    .setFrom(from)
+                    // JSC generally lasts one day
+                    .setTo(from.plusDays(1).withTimeAtStartOfDay())
                     .setLocation(place)
                     .setKey(new ObjectId().toString());
         }
