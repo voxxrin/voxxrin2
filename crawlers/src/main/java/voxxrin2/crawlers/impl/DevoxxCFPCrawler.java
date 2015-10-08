@@ -29,7 +29,9 @@ public class DevoxxCFPCrawler extends AbstractHttpCrawler {
     /**
      * Configure this area
      */
-    private static final String BASE_URL = "http://cfp.devoxx.fr/api/conferences/DevoxxFR2015";
+    private static final String EVENT_CODE = "DevoxxFR2015";
+    private static final String BASE_URL = "http://cfp.devoxx.fr/api/conferences/" + EVENT_CODE;
+    private static final String EVENT_LOGO_URL = "http://www.devoxx.fr/wp-content/uploads/2014/02/devoxx_france_150px.png";
     private static final String DESTINATION_API_URL = "http://localhost:8080/api";
 
     private static final String ROOMS_URL = BASE_URL + "/rooms";
@@ -56,6 +58,9 @@ public class DevoxxCFPCrawler extends AbstractHttpCrawler {
         crawlSpeakers(cfpSpeakerLinks, crawlingResult);
         // Schedules
         crawlSchedules(cfpDayLinks, crawlingResult);
+
+        // Compute some extra data
+        setEventTemporalLimits(crawlingResult);
 
         return crawlingResult;
     }
@@ -101,7 +106,7 @@ public class DevoxxCFPCrawler extends AbstractHttpCrawler {
             if (slot.justABreak == null && slot.talk == null) {
                 continue;
             }
-            List<Reference<Speaker>> speakers = new ArrayList<Reference<Speaker>>();
+            List<Reference<Speaker>> speakers = new ArrayList<>();
             if (slot.talk != null && slot.talk.speakers != null) {
                 for (CFPTalkSpeaker cfpSpeaker : slot.talk.speakers) {
                     String href = cfpSpeaker.link.href;
@@ -134,6 +139,32 @@ public class DevoxxCFPCrawler extends AbstractHttpCrawler {
         });
     }
 
+    private void setEventTemporalLimits(CrawlingResult crawlingResult) {
+
+        DateTime from = null;
+        DateTime to = null;
+
+        for (Presentation presentation : crawlingResult.getPresentations()) {
+
+            if (from == null) {
+                from = presentation.getFrom();
+            }
+            if (to == null) {
+                to = presentation.getTo();
+            }
+            if (presentation.getFrom().isBefore(from)) {
+                from = presentation.getFrom();
+            }
+            if (presentation.getTo().isAfter(from)) {
+                to = presentation.getTo();
+            }
+        }
+
+        crawlingResult.getEvent()
+                .setFrom(from)
+                .setTo(to);
+    }
+
     private static class CFPLink {
         public String href;
     }
@@ -149,7 +180,7 @@ public class DevoxxCFPCrawler extends AbstractHttpCrawler {
 
         public Event toStdEvent() {
             return (Event) new Event()
-                    .setImageUrl("http://www.devoxx.com/download/attachments/5342010/logo_devoxx_france_big.jpg")
+                    .setImageUrl(EVENT_LOGO_URL)
                     .setDescription(label)
                     .setLocation(localisation)
                     .setName(eventCode)
