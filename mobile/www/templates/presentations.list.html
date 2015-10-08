@@ -75,15 +75,15 @@
                                 </div>
                             </ion-option-button>
 
-                            <ion-option-button ng-disabled="prez.isReminded()"  ng-click="remindMe(prez)">
+                            <ion-option-button ng-disabled="prez.isReminded()" ng-click="remindMe(prez)">
                                 <div class="round-btn medium-btn white-btn centered-btn" ng-class="{ 'add-check' : prez.isReminded() }">
                                     <i class="icon ion-ios-videocam"></i>
                                 </div>
                             </ion-option-button>
 
-                            <ion-option-button class="round-btn medium-btn white-btn">
+                            <ion-option-button class="round-btn medium-btn white-btn" ng-click="addToCalendar(prez, day.event)">
                                 <div class="round-btn medium-btn white-btn centered-btn">
-                                    <i class="icon ion-android-share-alt"></i>
+                                    <i class="icon ion-android-calendar"></i>
                                 </div>
                             </ion-option-button>
 

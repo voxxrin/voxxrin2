@@ -90,8 +90,8 @@ angular.module('voxxrin')
                         });
                     });
             },
-            addToCalendar: function (presentation) {
-                Calendar.createEvent(presentation);
+            addToCalendar: function (presentation, event) {
+                Calendar.createEntry(presentation, event);
             }
         });
 
