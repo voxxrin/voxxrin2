@@ -58,6 +58,25 @@ angular.module('voxxrin', [
         });
     })
 
+    .run(function ($rootScope, $state, $localstorage) {
+
+        // Manage intro
+        $rootScope.$on('$stateChangeStart', function (event, toState) {
+
+            if (toState.name === 'login') {
+
+                var skipIntro = $localstorage.getObject('intro.skip');
+                var introHasBeenShown = $rootScope.introHasBeenShown;
+
+                if (skipIntro !== true && introHasBeenShown !== true) {
+                    event.preventDefault();
+                    return $state.go('intro');
+                }
+            }
+        });
+
+    })
+
     .config(function ($httpProvider) {
         $httpProvider.interceptors.push('MainHttpRequestInterceptor');
     })
@@ -125,6 +144,6 @@ angular.module('voxxrin', [
             });
 
         // if none of the above states are matched, use this as the fallback
-        $urlRouterProvider.otherwise('/intro');
+        $urlRouterProvider.otherwise('/');
 
     });
