@@ -18,6 +18,10 @@ angular.module('voxxrin')
 
             var slotIndex = 0;
             var slots = {};
+
+            var kindClassIndex = 1;
+            var kindClasses = {};
+
             _.each(presentations, function (prez) {
                 var from = moment(prez.from);
                 var to = moment(prez.to);
@@ -32,6 +36,12 @@ angular.module('voxxrin')
                     name: slotName,
                     index: (slots[slotName].presentations.length)
                 };
+                var kindClass = kindClasses[prez.kind];
+                if (!kindClass) {
+                    kindClass = 'cat-' + (kindClassIndex++);
+                    kindClasses[prez.kind] = kindClass;
+                }
+                prez.kindClass = kindClass;
                 slots[slotName].presentations.push(prez);
             });
 
