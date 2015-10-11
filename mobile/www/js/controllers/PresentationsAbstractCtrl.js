@@ -72,6 +72,7 @@ angular.module('voxxrin')
             reminder: {},
             weaveRefs: function (oldPrez, newPrez) {
                 newPrez.slot = oldPrez.slot;
+                newPrez.kindClass = oldPrez.kindClass;
                 return newPrez;
             },
             remindMe: function (presentation) {
