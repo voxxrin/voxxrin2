@@ -31,13 +31,13 @@ public class EventsResource {
 
         if (mode.isPresent()) {
             if (EventTemporality.FUTURE.name().equalsIgnoreCase(mode.get())) {
-                return eventsDataService.findAll("{ to: { $gte: # } }", DateTime.now().toDate());
+                return eventsDataService.findAllAndSort("{ to: { $gte: # } }", "{ from: 1 }", DateTime.now().toDate());
             } else if (EventTemporality.PAST.name().equalsIgnoreCase(mode.get())) {
-                return eventsDataService.findAll("{ to: { $lte: # } }", DateTime.now().toDate());
+                return eventsDataService.findAllAndSort("{ to: { $lte: # } }", "{ from: 1 }", DateTime.now().toDate());
             }
         }
 
-        return eventsDataService.findAll();
+        return eventsDataService.findAllAndSort("{ from: 1 }");
     }
 
     @GET("/events/{id}")
