@@ -220,6 +220,7 @@ public class DevoxxCFPCrawler extends AbstractHttpCrawler {
                     .setCompany(company)
                     .setFirstName(firstName)
                     .setLastName(lastName)
+                    .setName(firstName + " " + lastName)
                     .setTwitterId(twitter)
                     .setUuid(uuid)
                     .setKey(new ObjectId().toString());
