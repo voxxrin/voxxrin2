@@ -52,8 +52,13 @@
 
         </carousel>
 
-        <div class="footer-intro text-center">
-            <button class="intro-btn btn-round round-btn-hrz">Skip intro</button>
+        <div class="footer-intro">
+
+            <div class="text-center">
+                <button class="intro-btn btn-round round-btn-hrz" ng-class="{ toggled: skipLater === true }" ng-click="toggleSkipLater()">Ne plus montrer</button>
+                <button class="intro-btn btn-round round-btn-hrz" ng-click="skip()">Passer</button>
+            </div>
+
         </div>
 
 

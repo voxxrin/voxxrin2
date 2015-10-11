@@ -84,6 +84,7 @@
 .fav-btn { transition: 250ms; background-color: #95172a; color: #e0223f; border: none;}
 .fav-btn.active { transition: 250ms; background-color: #FFFFFF; color: #e0223f; border: none;}
 
+.toggled { transition: 250ms; background-color: #95172a; color: white; border: lightgreen solid 1px;  }
 
 
 
