@@ -1,8 +1,25 @@
 /* ======== MEDIA ======== */
 
+/* === > 480 === */
+
+@media screen and (max-height: 480px) {
+    .intro .slick-slider {
+        height: 80%;
+    }
+
+    .content-carousel img {
+        width: 80%;
+    }
+}
+
 /* === > 732 === */
 
 @media screen and (min-width: 732px) {
+
+    .content-carousel {
+        width: 20% !important;
+    }
+
     .part-top-login {
         min-height: 320px;
         padding-top: 100px;

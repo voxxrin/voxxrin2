@@ -25,6 +25,12 @@
 
 /* === Round Buttons === */
 
+.round-btn-hrz {
+    display: inline-block;
+    border-radius: 50px;
+    padding: 10px;
+}
+
 .round-btn {
     display: inline-block;
     border-radius: 100%;
@@ -62,7 +68,7 @@
 .primary-btn.activated { transition: 200ms; background: #e0223f;  color: #FFFFFF;  border-color: #e0223f;}
 
 .primary-dark-btn  { transition: 200ms; color: #95172a; border: 3px solid #95172a;}
-.primary-dark-btn .activated { transition: 200ms; background: #95172a; color: #FFFFFF; border-color:  #95172a;}
+.primary-dark-btn.activated { transition: 200ms; background: #95172a; color: #FFFFFF; border-color:  #95172a;}
 
 .secondary-btn  { transition: 200ms; color: #c7cacf; border: 3px solid #c7cacf;}
 .secondary-btn.activated { transition: 200ms; background: #c7cacf; color: #FFFFFF; border-color: #c7cacf;}
@@ -71,6 +77,9 @@
 .secondary-dark-btn.activated { transition: 200ms; background:  #686868; color: #FFFFFF; border-color: #686868;}
 
 /* --- Specials Colors Btn ---*/
+
+.intro-btn { transition: 250ms; background-color: white; color: #e0223f; border: none;}
+.intro-btn.activated { transition: 250ms; background-color: #95172a; color: white; border: none;}
 
 .fav-btn { transition: 250ms; background-color: #95172a; color: #e0223f; border: none;}
 .fav-btn.active { transition: 250ms; background-color: #FFFFFF; color: #e0223f; border: none;}

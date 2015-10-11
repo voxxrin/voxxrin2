@@ -1,0 +1,38 @@
+/* ======== INTRO ======== */
+
+.intro { background-color: #e0223f;}
+
+.intro .slick-slider {
+    padding-top: 40px;
+    height: 85%;
+    margin-bottom: 0;
+}
+
+.footer-intro {
+    height: 15%;
+    padding-top: 30px;
+}
+
+.content-carousel {
+    margin: 0 auto;
+    width: 65%;
+}
+
+.content-carousel .text {
+    font-size: 15px;
+    color: white;
+    text-align: center;
+}
+
+.content-carousel img {
+    width: 100%;
+    margin: 0 auto;
+}
+
+/* Dotted Carousel */
+
+.slick-dots { bottom: -15px;}
+.slick-dots li button { width: 30px; height: 20px;}
+.slick-dots li button.activated:before  { color:  #95172a;}
+.slick-dots li button:before { font-size: 12px;}
+.slick-dots li.slick-active button:before { color: white; opacity: 1;}

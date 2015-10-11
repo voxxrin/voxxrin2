@@ -9,14 +9,16 @@
 
     <link href="lib/ionic/css/ionic.css" rel="stylesheet">
     <link href="lib/timeline.js/compiled/css/timeline.css" rel="stylesheet">
-    <link href="lib/angular-carousel/dist/angular-carousel.css" rel="stylesheet">
     <link href="lib/ionic-rating/ionic-rating.css" rel="stylesheet">
     <link rel="stylesheet" type="text/css" href="lib/sweetalert/dist/sweetalert.css">
+    <link href="lib/slick.js/slick/slick.css" rel="stylesheet">
+    <link href="lib/slick.js/slick/slick-theme.css" rel="stylesheet">
 
     <!-- Pages Styles -->
     <link href="css/pages/login.css" rel="stylesheet">
     <link href="css/pages/settings.css" rel="stylesheet">
     <link href="css/pages/presentation.css" rel="stylesheet">
+    <link href="css/pages/intro.css" rel="stylesheet">
 
 
     <!-- Components Styles -->
@@ -61,7 +63,6 @@
     <script src="lib/ion-sticky/ion-sticky.js"></script>
     <script src="lib/angular-touch/angular-touch.js"></script>
     <script src="lib/angular-carousel/dist/angular-carousel.js"></script>
-    <script src="lib/sweetalert/dist/sweetalert.min.js"></script>
 
     <!-- ionic/vendors js -->
     <script src="vendors/ng-token-auth.js"></script>
@@ -86,8 +87,6 @@
     <script src="js/filters/SpeakersFilter.js"></script>
     <script src="js/filters/OrDashFilter.js"></script>
     <script src="js/filters/PrezFilter.js"></script>
-    <script src="js/services/Notification.js"></script>
-    <script src="js/services/Calendar.js"></script>
     <script src="js/services/Session.js"></script>
     <script src="js/services/Event.js"></script>
     <script src="js/services/Day.js"></script>
@@ -126,7 +125,7 @@
         </ion-side-menu-content>
 
         <ion-side-menu side="left" class="menu-left">
-            <ion-header-bar class="header-menu" style="z-index: -1000">
+            <ion-header-bar class="header-menu">
                 <div class="col-50 element-centered text-center" ng-if="Session.isAuthenticated()">
                     <span class="avatar user element-centered">
                         <img ng-if="Session.getCurrent().avatarUrl" ng-src="{{ Session.getCurrent().avatarUrl }}">

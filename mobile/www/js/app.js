@@ -7,7 +7,6 @@ angular.module('voxxrin', [
     'ngResource',
     'ionic.rating',
     'ion-sticky',
-    'angular-carousel',
     'ng-token-auth',
     'ngIOS9UIWebViewPatch'
 ])
@@ -70,7 +69,10 @@ angular.module('voxxrin', [
         // Set up the various states which the app can be in.
         // Each state's controller can be found in controllers.js
         $stateProvider
-
+            .state('intro', {
+                url: '/intro',
+                templateUrl: 'templates/intro.html'
+            })
             .state('login', {
                 url: '/',
                 templateUrl: 'templates/login.html'
