@@ -6,6 +6,8 @@ import voxxrin2.domain.technical.Referenceable;
 
 public class Speaker extends Referenceable {
 
+    private String name;
+
     private String firstName;
 
     private String lastName;
@@ -20,6 +22,10 @@ public class Speaker extends Referenceable {
     private String twitterId;
 
     private String uuid;
+
+    public String getName() {
+        return name;
+    }
 
     public String getFirstName() {
         return firstName;
@@ -47,6 +53,11 @@ public class Speaker extends Referenceable {
 
     public String getUuid() {
         return uuid;
+    }
+
+    public Speaker setName(final String name) {
+        this.name = name;
+        return this;
     }
 
     public Speaker setTwitterId(final String twitterId) {

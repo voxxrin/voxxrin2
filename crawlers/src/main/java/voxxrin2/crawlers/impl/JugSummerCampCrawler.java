@@ -180,6 +180,7 @@ public class JugSummerCampCrawler extends AbstractHttpCrawler {
             return (Speaker) new Speaker()
                     .setFirstName(names[0])
                     .setLastName(names[1])
+                    .setName(name)
                     .setAvatarUrl(pictureUrl)
                     .setBio(description)
                     .setKey(new ObjectId().toString());

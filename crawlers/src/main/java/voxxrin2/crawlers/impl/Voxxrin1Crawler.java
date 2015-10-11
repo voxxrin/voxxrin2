@@ -207,6 +207,7 @@ public class Voxxrin1Crawler extends AbstractHttpCrawler {
                     .setAvatarUrl(BASE_URL + pictureURI)
                     .setBio(bio)
                     .setCompany(company)
+                    .setName(name)
                     .setFirstName(firstName)
                     .setLastName(lastName)
                     .setTwitterId(twitterId)

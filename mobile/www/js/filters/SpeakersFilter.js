@@ -10,7 +10,7 @@ angular.module('voxxrin')
         return function (speakers) {
             var display = [];
             _.each(speakers, function (speaker) {
-                var identity = speaker.firstName + ' ' + speaker.lastName;
+                var identity = speaker.name;
                 var company = speaker.company ? ' (' + speaker.company + ')' : '';
                 display.push(identity + company);
             });

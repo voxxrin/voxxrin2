@@ -56,7 +56,7 @@
                             <div class="item item-avatar" ng-repeat="speaker in fullPresentation.speakers">
                                 <img ng-src="{{ speaker.avatarUrl }}" err-src="img/default-avatar.png" ng-if="speaker.avatarUrl">
                                 <img ng-src="img/default-avatar.png" ng-if="!speaker.avatarUrl">
-                                <h2 style="padding-left: 70px">{{ speaker.firstName }} {{ speaker.lastName }} <span ng-if="speaker.company">({{ speaker.company }})</span></h2>
+                                <h2 style="padding-left: 70px">{{ speaker.name }} <span ng-if="speaker.company">({{ speaker.company }})</span></h2>
                                 <p>{{ speaker.twitterId | twitterId }}</p>
                                 <p ng-bind-html="speaker.bio | trustedHtml"></p>
                             </div>
