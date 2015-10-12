@@ -8,6 +8,7 @@ import restx.annotations.POST;
 import restx.annotations.RestxResource;
 import restx.factory.Component;
 import restx.security.PermitAll;
+import restx.security.RolesAllowed;
 import voxxrin2.domain.Event;
 import voxxrin2.persistence.EventsDataService;
 
@@ -47,6 +48,7 @@ public class EventsResource {
     }
 
     @POST("/events")
+    @RolesAllowed({"ADM", "restx-admin"})
     public Event saveEvent(Event event) {
         return eventsDataService.save(event);
     }

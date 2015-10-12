@@ -6,6 +6,7 @@ import restx.annotations.POST;
 import restx.annotations.RestxResource;
 import restx.factory.Component;
 import restx.security.PermitAll;
+import restx.security.RolesAllowed;
 import voxxrin2.domain.Day;
 import voxxrin2.domain.Type;
 import voxxrin2.domain.technical.ElementURI;
@@ -34,6 +35,7 @@ public class DaysResource {
     }
 
     @POST("/days")
+    @RolesAllowed({"ADM", "restx-admin"})
     public Day saveDay(Day day) {
         return daysDataService.save(day);
     }

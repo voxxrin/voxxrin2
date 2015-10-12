@@ -7,6 +7,7 @@ import restx.annotations.POST;
 import restx.annotations.RestxResource;
 import restx.factory.Component;
 import restx.security.PermitAll;
+import restx.security.RolesAllowed;
 import voxxrin2.domain.Speaker;
 import voxxrin2.persistence.SpeakersDataService;
 
@@ -36,12 +37,14 @@ public class SpeakerResource {
 
     @POST("/speakers")
     @Consumes("application/json;view=voxxrin2.serialization.Views$Presentations$Details")
+    @RolesAllowed({"ADM", "restx-admin"})
     public Speaker saveSpeaker(Speaker speaker) {
         return speakersDataService.save(speaker);
     }
 
     @POST("/speakers/several")
     @Consumes("application/json;view=voxxrin2.serialization.Views$Presentations$Details")
+    @RolesAllowed({"ADM", "restx-admin"})
     public List<Speaker> saveSpeakers(List<Speaker> speakers) {
         for (Speaker speaker : speakers) {
             speakersDataService.save(speaker);

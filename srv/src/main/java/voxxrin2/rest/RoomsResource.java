@@ -6,6 +6,7 @@ import restx.annotations.POST;
 import restx.annotations.RestxResource;
 import restx.factory.Component;
 import restx.security.PermitAll;
+import restx.security.RolesAllowed;
 import voxxrin2.domain.Room;
 import voxxrin2.persistence.RoomsDataService;
 
@@ -34,11 +35,13 @@ public class RoomsResource {
     }
 
     @POST("/rooms")
+    @RolesAllowed({"ADM", "restx-admin"})
     public Room saveRoom(Room room) {
         return roomsDataService.save(room);
     }
 
     @POST("/rooms/several")
+    @RolesAllowed({"ADM", "restx-admin"})
     public List<Room> saveRooms(List<Room> rooms) {
         for (Room room : rooms) {
             roomsDataService.save(room);

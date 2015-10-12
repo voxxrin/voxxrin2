@@ -4,6 +4,7 @@ import org.bson.types.ObjectId;
 import restx.annotations.*;
 import restx.factory.Component;
 import restx.security.PermitAll;
+import restx.security.RolesAllowed;
 import voxxrin2.domain.Presentation;
 import voxxrin2.domain.Type;
 import voxxrin2.domain.technical.ElementURI;
@@ -37,12 +38,14 @@ public class PresentationsResource {
 
     @POST("/presentations")
     @Consumes("application/json;view=voxxrin2.serialization.Views$Presentations$Details")
+    @RolesAllowed({"ADM", "restx-admin"})
     public Presentation savePresentation(Presentation presentation) {
         return presentationsDataService.save(presentation);
     }
 
     @POST("/presentations/several")
     @Consumes("application/json;view=voxxrin2.serialization.Views$Presentations$Details")
+    @RolesAllowed({"ADM", "restx-admin"})
     public List<Presentation> savePresentations(List<Presentation> presentations) {
         for (Presentation presentation : presentations) {
             presentationsDataService.save(presentation);
