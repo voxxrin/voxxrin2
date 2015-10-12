@@ -100,6 +100,10 @@ public class Voxxrin1Crawler extends AbstractHttpCrawler {
 
         List<Speaker> stdSpeakers = new ArrayList<>();
 
+        if (presentation.speakers == null) {
+            return stdSpeakers;
+        }
+
         for (VoxxrinSpeaker speaker : presentation.speakers) {
             Speaker cachedSpeaker = speakers.get(speaker.id);
             if (cachedSpeaker == null) {
