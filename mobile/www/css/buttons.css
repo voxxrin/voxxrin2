@@ -28,7 +28,7 @@
 .round-btn-hrz {
     display: inline-block;
     border-radius: 50px;
-    padding: 10px;
+    padding: 10px 15px;
 }
 
 .round-btn {
@@ -78,7 +78,7 @@
 
 /* --- Specials Colors Btn ---*/
 
-.intro-btn { transition: 250ms; background-color: white; color: #e0223f; border: none;}
+.intro-btn { transition: 250ms; margin-right: 15px; background-color: white; color: #e0223f; border: none;}
 .intro-btn.activated { transition: 250ms; background-color: #95172a; color: white; border: none;}
 
 .fav-btn { transition: 250ms; background-color: #95172a; color: #e0223f; border: none;}
