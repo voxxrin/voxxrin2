@@ -8,7 +8,16 @@
     }
 
     .content-carousel img {
-        width: 80%;
+        width: 65%;
+    }
+
+    .content-carousel .text {
+        font-size: 12px;
+    }
+
+    .round-btn-hrz {
+        font-size: 12px;
+        padding: 5px 10px;
     }
 }
 
