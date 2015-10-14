@@ -5,7 +5,8 @@ angular.module('voxxrin')
 
         $scope.$on('presentation:updated', function (event, presentation) {
             Presentation.get({id: presentation._id}, function (_presentation) {
-                $scope.presentation = $scope.fullPresentation = $scope.weaveRefs($scope.presentation, _presentation);
+                $scope.applySrvData($scope.presentation, _presentation);
+                $scope.applySrvData($scope.fullPresentation, _presentation);
             });
         });
 

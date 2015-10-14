@@ -58,22 +58,23 @@ angular.module('voxxrin')
 
         var updateModel = function (presentation) {
             Presentation.get({id: presentation._id}, function (_updatedPresentation) {
-                _updatedPresentation = $scope.weaveRefs(presentation, _updatedPresentation);
-                $scope.presentations[presentation._id] = _updatedPresentation;
                 var index = _.findIndex($scope.slots[presentation.slot.name].presentations, function (_prez) {
                     return _prez._id === presentation._id;
                 });
-                $scope.slots[presentation.slot.name].presentations[index] = _updatedPresentation;
+                $scope.applySrvData($scope.presentations[presentation._id], _updatedPresentation);
+                $scope.applySrvData($scope.slots[presentation.slot.name].presentations[index], _updatedPresentation);
             });
         };
 
         angular.extend($scope, {
             day: Day.get({id: $stateParams.dayId}),
             reminder: {},
-            weaveRefs: function (oldPrez, newPrez) {
-                newPrez.slot = oldPrez.slot;
-                newPrez.kindClass = oldPrez.kindClass;
-                return newPrez;
+            applySrvData: function (localPrez, srvPrez) {
+                localPrez.remindMeCount = srvPrez.remindMeCount;
+                localPrez.favoriteCount = srvPrez.favoriteCount;
+                localPrez.reminded = srvPrez.reminded;
+                localPrez.favorite = srvPrez.favorite;
+                return localPrez;
             },
             remindMe: function (presentation) {
                 RemindMe.save({presentationId: presentation._id})
