@@ -27,7 +27,7 @@ body {
 
 /* --- Buttons --- */
 
-.ion-navicon { color: #95172a;}
+.ion-navicon { color: #95172a !important;}
 .ion-navicon.activated { color: #FFFFFF !important;}
 .menu-open .ion-navicon:before { content: '\f129'; font-size: 22px !important; color: #95172a;}
 
@@ -45,6 +45,7 @@ body {
 
 .tab-item { font-weight: bold;}
 .tabs-striped .tabs { border-bottom: 0;}
+.tabs-top.tabs-striped .tab-item.active { border-width: 0px 0px 4px 0px !important;}
 
 /* --- Colors --- */
 

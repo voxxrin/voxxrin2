@@ -135,7 +135,7 @@
     position: relative;
     padding: 5px 5px 3px 12px !important;
     font-weight: bold !important;
-    background: #686868;
+    background: #95172a;
     color: #FFFFFF;
     border: 0;
     transition: 200ms;
@@ -348,3 +348,26 @@
 .popup { color: #686868;}
 .popup-title { color: #e0223f;}
 .popup-buttons button { background: #e0223f !important; border: none; }
+
+/* ==== SweetAlert ====*/
+
+.sweet-overlay { opacity: 3 !important;}
+.sweet-alert h2 { color: #e0223f; font-size: 24px;}
+.sweet-alert p { color: #686868;}
+
+.sa-confirm-button-container button {
+    margin-top: 15px;
+    padding: 5px 25px;
+    background: #e0223f !important;
+    color:white;
+    border-radius: 20px;
+}
+
+.sa-confirm-button-container button:hover {
+    transition: 200ms;
+    background: #95172a !important;
+}
+
+.sweet-alert .sa-icon.sa-warning {
+    border-color: #e0223f !important;
+}
