@@ -154,6 +154,8 @@
     transition: 200ms;
 }
 
+.item-divider h3 i { margin-top: -3px;}
+
 .list-divider .item-complex.activated .item-content {
     background: #e5e5e5 !important;
     transition: 200ms;
