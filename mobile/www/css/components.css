@@ -45,6 +45,19 @@
 
 /* --- Avatar for List divider --- */
 
+.avatar.entity-list {
+    width: 60px;
+    height: 60px;
+    margin-right: 10px;
+    background: white;
+    background-size: 70%;
+    border: 1px solid #afafaf;
+}
+
+.avatar.entity-list img {
+    width: 80% !important;
+}
+
 .avatar.user-list {
     width: 60px;
     height: 60px;
