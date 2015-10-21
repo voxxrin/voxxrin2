@@ -1,4 +1,4 @@
-package voxxrin2.crawlers.impl;
+package crawlers.impl;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.github.kevinsawicki.http.HttpRequest;
@@ -9,9 +9,9 @@ import org.bson.types.ObjectId;
 import org.joda.time.DateTime;
 import org.joda.time.format.DateTimeFormat;
 import org.joda.time.format.DateTimeFormatter;
-import voxxrin2.crawlers.AbstractHttpCrawler;
-import voxxrin2.crawlers.CrawlingResult;
-import voxxrin2.crawlers.HttpDataFiller;
+import crawlers.AbstractHttpCrawler;
+import crawlers.CrawlingResult;
+import crawlers.HttpDataFiller;
 import voxxrin2.domain.*;
 import voxxrin2.domain.technical.Reference;
 

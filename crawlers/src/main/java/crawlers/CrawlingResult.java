@@ -1,4 +1,4 @@
-package voxxrin2.crawlers;
+package crawlers;
 
 import voxxrin2.domain.*;
 

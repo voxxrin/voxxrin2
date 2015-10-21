@@ -5,7 +5,7 @@
     <modelVersion>4.0.0</modelVersion>
 
     <groupId>voxxrin2</groupId>
-    <artifactId>voxxrin2</artifactId>
+    <artifactId>srv</artifactId>
     <version>1.0-SNAPSHOT</version>
     <packaging>war</packaging>
     <name>voxxrin2</name>
@@ -20,6 +20,13 @@
     </properties>
 
     <dependencies>
+
+        <dependency>
+            <groupId>voxxrin2</groupId>
+            <artifactId>common</artifactId>
+            <version>${project.version}</version>
+        </dependency>
+
         <dependency>
             <groupId>io.restx</groupId>
             <artifactId>restx-core</artifactId>

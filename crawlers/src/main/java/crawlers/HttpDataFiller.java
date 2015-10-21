@@ -1,4 +1,4 @@
-package voxxrin2.crawlers;
+package crawlers;
 
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.DeserializationFeature;
@@ -11,6 +11,7 @@ import com.fasterxml.jackson.databind.module.SimpleModule;
 import com.fasterxml.jackson.datatype.guava.GuavaModule;
 import com.fasterxml.jackson.datatype.joda.JodaModule;
 import com.github.kevinsawicki.http.HttpRequest;
+import crawlers.CrawlingResult;
 import org.jongo.marshall.jackson.oid.ObjectIdDeserializer;
 import org.jongo.marshall.jackson.oid.ObjectIdSerializer;
 import org.slf4j.Logger;

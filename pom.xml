@@ -11,6 +11,7 @@
 
     <modules>
         <module>mobile</module>
+        <module>common</module>
         <module>srv</module>
         <module>crawlers</module>
     </modules>

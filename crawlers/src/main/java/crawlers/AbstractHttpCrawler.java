@@ -1,4 +1,4 @@
-package voxxrin2.crawlers;
+package crawlers;
 
 import com.fasterxml.jackson.databind.DeserializationFeature;
 import com.fasterxml.jackson.databind.ObjectMapper;
