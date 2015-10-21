@@ -12,6 +12,7 @@ import org.joda.time.format.DateTimeFormatter;
 import crawlers.AbstractHttpCrawler;
 import crawlers.CrawlingResult;
 import crawlers.HttpDataFiller;
+import restx.factory.Component;
 import voxxrin2.domain.*;
 import voxxrin2.domain.technical.Reference;
 
@@ -21,6 +22,7 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
+@Component
 public class Voxxrin1Crawler extends AbstractHttpCrawler {
 
     // 2015-10-16 09:00:00.0
@@ -48,13 +50,17 @@ public class Voxxrin1Crawler extends AbstractHttpCrawler {
     private static final String SPEAKERS_URL = EVENT_URL + "/speakers";
     private static final String DAYS_URL = EVENT_URL + "/day";
 
+    public Voxxrin1Crawler() {
+        super("voxxrin", ImmutableList.of("voxxrin-publisher"));
+    }
+
     public static void main(String[] args) throws IOException {
         CrawlingResult result = new Voxxrin1Crawler().crawl();
         new HttpDataFiller(DESTINATION_API_URL).fill(result);
     }
 
     @Override
-    protected CrawlingResult crawl() throws IOException {
+    public CrawlingResult crawl() throws IOException {
 
         VoxxrinEvent voxxrinEvent = MAPPER.readValue(HttpRequest.get(EVENT_URL).body(), VoxxrinEvent.class);
         Event stdEvent = voxxrinEvent.toStdEvent();

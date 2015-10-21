@@ -2,13 +2,14 @@ package crawlers.impl;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.github.kevinsawicki.http.HttpRequest;
+import com.google.common.collect.ImmutableList;
+import crawlers.AbstractHttpCrawler;
+import crawlers.CrawlingResult;
 import org.bson.types.ObjectId;
 import org.joda.time.DateTime;
 import org.joda.time.format.DateTimeFormat;
 import org.joda.time.format.DateTimeFormatter;
-import crawlers.AbstractHttpCrawler;
-import crawlers.CrawlingResult;
-import crawlers.HttpDataFiller;
+import restx.factory.Component;
 import voxxrin2.domain.*;
 import voxxrin2.domain.technical.Reference;
 
@@ -18,6 +19,7 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
+@Component
 public class JugSummerCampCrawler extends AbstractHttpCrawler {
 
     /**
@@ -25,20 +27,18 @@ public class JugSummerCampCrawler extends AbstractHttpCrawler {
      */
 
     private static final String URL = "http://www.jugsummercamp.org/api/edition/6";
-    private static final String DESTINATION_API_URL = "http://localhost:8080/api";
     private static final String JSC_NAME = "Jug SummerCamp - 2015";
+
+    public JugSummerCampCrawler() {
+        super("jsc", ImmutableList.of("jsc-publisher"));
+    }
 
     private static DateTime transformDate(DateTime dateTime) {
         return dateTime.minusHours(2);
     }
 
-    public static void main(String[] args) throws IOException {
-        CrawlingResult result = new JugSummerCampCrawler().crawl();
-        new HttpDataFiller(DESTINATION_API_URL).fill(result);
-    }
-
     @Override
-    protected CrawlingResult crawl() throws IOException {
+    public CrawlingResult crawl() throws IOException {
 
         JSCPayload payload = MAPPER.readValue(HttpRequest.get(URL).body(), JSCPayload.class);
         Event event = payload.toStdEvent();

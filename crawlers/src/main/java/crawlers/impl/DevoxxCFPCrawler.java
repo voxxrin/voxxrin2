@@ -4,15 +4,16 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 import com.github.kevinsawicki.http.HttpRequest;
 import com.google.common.base.Optional;
 import com.google.common.base.Predicate;
+import com.google.common.collect.ImmutableList;
 import com.google.common.collect.Iterables;
+import crawlers.AbstractHttpCrawler;
+import crawlers.CrawlingResult;
 import org.bson.types.ObjectId;
 import org.joda.time.DateTime;
 import org.joda.time.format.DateTimeFormat;
 import org.joda.time.format.DateTimeFormatter;
 import org.slf4j.Logger;
-import crawlers.AbstractHttpCrawler;
-import crawlers.CrawlingResult;
-import crawlers.HttpDataFiller;
+import restx.factory.Component;
 import voxxrin2.domain.*;
 import voxxrin2.domain.technical.Reference;
 
@@ -22,6 +23,7 @@ import java.util.List;
 
 import static org.slf4j.LoggerFactory.getLogger;
 
+@Component
 public class DevoxxCFPCrawler extends AbstractHttpCrawler {
 
     private static final Logger logger = getLogger(DevoxxCFPCrawler.class);
@@ -32,15 +34,13 @@ public class DevoxxCFPCrawler extends AbstractHttpCrawler {
     private static final String EVENT_CODE = "DevoxxFR2015";
     private static final String BASE_URL = "http://cfp.devoxx.fr/api/conferences/" + EVENT_CODE;
     private static final String EVENT_LOGO_URL = "http://www.devoxx.fr/wp-content/uploads/2014/02/devoxx_france_150px.png";
-    private static final String DESTINATION_API_URL = "http://localhost:8080/api";
 
     private static final String ROOMS_URL = BASE_URL + "/rooms";
     private static final String SPEAKERS_URL = BASE_URL + "/speakers";
     private static final String DAYS_URL = BASE_URL + "/schedules";
 
-    public static void main(String[] args) throws IOException {
-        CrawlingResult result = new DevoxxCFPCrawler().crawl();
-        new HttpDataFiller(DESTINATION_API_URL).fill(result);
+    public DevoxxCFPCrawler() {
+        super("devoxx", ImmutableList.of("devoxx-publisher"));
     }
 
     @Override
