@@ -50,7 +50,7 @@ public class TwitterOAuthProvider extends OAuthProvider {
                 .build();
         logger.info("Registered Twitter provider - key = {}, secret = {}, callback = {}",
                 twitterSettings.oauthTwitterApiKey(), twitterSettings.oauthTwitterApiSecret(),
-                serverUrl + "/api/auth/twitter");
+                serverUrl + "/api/auth/provider/twitter");
     }
 
     @Override
