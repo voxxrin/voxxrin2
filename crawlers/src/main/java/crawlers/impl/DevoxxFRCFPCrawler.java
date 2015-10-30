@@ -14,6 +14,7 @@ import org.joda.time.DateTime;
 import org.joda.time.format.DateTimeFormat;
 import org.joda.time.format.DateTimeFormatter;
 import org.slf4j.Logger;
+import restx.factory.Component;
 import voxxrin2.domain.*;
 import voxxrin2.domain.technical.Reference;
 
@@ -23,7 +24,8 @@ import java.util.List;
 
 import static org.slf4j.LoggerFactory.getLogger;
 
-public abstract class DevoxxFRCFPCrawler extends AbstractHttpCrawler {
+@Component
+public class DevoxxFRCFPCrawler extends AbstractHttpCrawler {
 
     private static final Logger logger = getLogger(DevoxxFRCFPCrawler.class);
 
