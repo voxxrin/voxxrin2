@@ -24,6 +24,7 @@ import java.util.Map;
 public class JugSummerCampCrawler extends AbstractHttpCrawler {
 
     private static final String BASE_URL = "http://www.jugsummercamp.org/api/edition/";
+    private static final String NAME = "JUG SummerCamp";
 
     public JugSummerCampCrawler() {
         super("jsc", ImmutableList.of("jsc-publisher"));
@@ -57,6 +58,12 @@ public class JugSummerCampCrawler extends AbstractHttpCrawler {
         result.getRooms().addAll(rooms.values());
 
         return result;
+    }
+
+    @Override
+    public CrawlingResult setup(CrawlingResult result, CrawlingConfiguration configuration) {
+        result.getEvent().setName(NAME);
+        return super.setup(result, configuration);
     }
 
     private Reference<Room> getRoom(Map<String, Room> rooms, JSCPresentation jscPresentation) {
