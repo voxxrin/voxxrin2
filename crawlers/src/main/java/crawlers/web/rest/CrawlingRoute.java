@@ -52,11 +52,6 @@ public class CrawlingRoute extends StdRoute {
         this.crawlers = Maps.uniqueIndex(crawlers, Functions.CRAWLERS_MAP_INDEXER);
     }
 
-    private void checkSecurity(RestxRequest req, AbstractHttpCrawler crawler) {
-        Iterable<Permission> rolePermissions = Iterables.transform(crawler.getRoles(), Functions.ROLE_TO_PERMISSION);
-        securityManager.check(req, allOf(isAuthenticated(), anyOf(Iterables.toArray(rolePermissions, Permission.class))));
-    }
-
     @Override
     public void handle(RestxRequestMatch match, RestxRequest req, RestxResponse resp, RestxContext ctx) throws IOException {
 
@@ -66,7 +61,7 @@ public class CrawlingRoute extends StdRoute {
 
         AbstractHttpCrawler crawler = findCrawlerOrThrow(configuration);
 
-//        checkSecurity(req, crawler);
+        checkSecurity(req, configuration);
 
         CrawlingResult result = null;
         try {
@@ -78,6 +73,13 @@ public class CrawlingRoute extends StdRoute {
         sendResultToVoxxrin(result, eventId);
 
         sendResultToClient(resp, result);
+    }
+
+    private void checkSecurity(RestxRequest req, CrawlingConfiguration configuration) {
+        String token = req.getQueryParam("token").get();
+        if (!configuration.getTokens().contains(token)) {
+            throw new WebException(HttpStatus.UNAUTHORIZED);
+        }
     }
 
     private AbstractHttpCrawler findCrawlerOrThrow(CrawlingConfiguration configuration) {

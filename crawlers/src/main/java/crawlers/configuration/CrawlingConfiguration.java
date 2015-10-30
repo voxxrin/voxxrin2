@@ -2,6 +2,9 @@ package crawlers.configuration;
 
 import org.jongo.marshall.jackson.oid.Id;
 
+import java.util.ArrayList;
+import java.util.List;
+
 public class CrawlingConfiguration {
 
     /**
@@ -31,6 +34,12 @@ public class CrawlingConfiguration {
 
     private String location;
 
+    /**
+     * Authorized tokens
+     */
+
+    private List<String> tokens = new ArrayList<>();
+
     public String getEventId() {
         return eventId;
     }
@@ -49,6 +58,10 @@ public class CrawlingConfiguration {
 
     public String getLocation() {
         return location;
+    }
+
+    public List<String> getTokens() {
+        return tokens;
     }
 
     public CrawlingConfiguration setLocation(final String location) {
@@ -73,6 +86,11 @@ public class CrawlingConfiguration {
 
     public CrawlingConfiguration setEventId(final String eventId) {
         this.eventId = eventId;
+        return this;
+    }
+
+    public CrawlingConfiguration setTokens(final List<String> tokens) {
+        this.tokens = tokens;
         return this;
     }
 }
