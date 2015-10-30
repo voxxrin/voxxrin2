@@ -1,5 +1,6 @@
 package voxxrin2.rest;
 
+import com.google.common.base.Optional;
 import org.joda.time.DateTime;
 import restx.WebException;
 import restx.annotations.GET;
@@ -37,6 +38,11 @@ public class RatingResource {
                 .as(Rating.class);
     }
 
+    private String buildPresentationBusinessRef(Presentation presentation) {
+        return String.format("%s:%s", presentation.getEventId(), presentation.getExternalId());
+    }
+
+
     @PUT("/ratings/{presentationId}")
     public Rating ratePresentation(@Param(kind = Param.Kind.PATH) String presentationId,
                                    @Param(kind = Param.Kind.QUERY) int rate) {
@@ -45,20 +51,22 @@ public class RatingResource {
             throw new WebException(HttpStatus.UNAUTHORIZED);
         }
 
-        Reference<Presentation> presentation = Reference.of(Type.presentation, presentationId);
-        if (!presentation.maybeGet().isPresent()) {
+        Optional<Presentation> presentation = Reference.<Presentation>of(Type.presentation, presentationId).maybeGet();
+        if (!presentation.isPresent()) {
             throw new WebException(HttpStatus.NOT_FOUND);
         }
 
         String userId = AuthModule.currentUser().get().getId();
+
+        String presentationRef = buildPresentationBusinessRef(presentation.get());
         Rating rating = new Rating()
                 .setDateTime(DateTime.now())
-                .setPresentation(presentation)
+                .setPresentationRef(presentationRef)
                 .setRate(rate)
                 .setUserId(userId);
 
         ratings.get()
-                .update("{ presentation: #, userId: # }", presentation.getUri().toString(), userId)
+                .update("{ presentationRef: #, userId: # }", presentationRef, userId)
                 .upsert()
                 .with(rating);
 

@@ -1,20 +1,19 @@
 package voxxrin2.domain;
 
 import org.joda.time.DateTime;
-import voxxrin2.domain.technical.Reference;
 
 public class Rating {
 
     private String userId;
 
-    private Reference<Presentation> presentation;
+    private String presentationRef;
 
     private int rate;
 
     private DateTime dateTime;
 
-    public Reference<Presentation> getPresentation() {
-        return presentation;
+    public String getPresentationRef() {
+        return presentationRef;
     }
 
     public String getUserId() {
@@ -34,8 +33,8 @@ public class Rating {
         return dateTime;
     }
 
-    public Rating setPresentation(final Reference<Presentation> presentation) {
-        this.presentation = presentation;
+    public Rating setPresentationRef(final String presentationRef) {
+        this.presentationRef = presentationRef;
         return this;
     }
 
