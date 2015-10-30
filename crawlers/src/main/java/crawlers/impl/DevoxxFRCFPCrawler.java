@@ -43,7 +43,7 @@ public class DevoxxFRCFPCrawler extends AbstractHttpCrawler {
         String speakersUrl = eventUrl + "/speakers";
         String daysUrl = eventUrl + "/schedules";
 
-        CFPEvent cfpEvent = MAPPER.readValue(HttpRequest.get(BASE_URL).body(), CFPEvent.class);
+        CFPEvent cfpEvent = MAPPER.readValue(HttpRequest.get(eventUrl).body(), CFPEvent.class);
         CFPRooms cfpRooms = MAPPER.readValue(HttpRequest.get(roomsUrl).body(), CFPRooms.class);
         List<CFPLinks> cfpSpeakerLinks = MAPPER.readValue(HttpRequest.get(speakersUrl).body(), buildCollectionType(CFPLinks.class));
         CFPLinks cfpDayLinks = MAPPER.readValue(HttpRequest.get(daysUrl).body(), CFPLinks.class);
