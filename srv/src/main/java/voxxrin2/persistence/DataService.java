@@ -50,4 +50,7 @@ public abstract class DataService<T extends Referenceable> {
         entity.setUpdateDate(now);
     }
 
+    public void removeCrawledEntities(String eventId) {
+        collection.get().remove("{ eventId: # }", eventId);
+    }
 }
