@@ -22,11 +22,11 @@ public class PresentationsDataService extends DataService<Presentation> {
         public Presentation apply(Presentation input) {
             Optional<User> user = AuthModule.currentUser();
             if (user.isPresent()) {
-                input.setReminded(subscriptionResource.isReminded(user.get(), input.getKey()));
-                input.setFavorite(subscriptionResource.isFavorite(user.get(), input.getKey()));
+                input.setReminded(subscriptionResource.isReminded(user.get(), input));
+                input.setFavorite(subscriptionResource.isFavorite(user.get(), input));
             }
-            input.setRemindMeCount(subscriptionResource.getRemindMeCount(input.getKey()));
-            input.setFavoriteCount(subscriptionResource.getFavoriteCount(input.getKey()));
+            input.setRemindMeCount(subscriptionResource.getRemindMeCount(input));
+            input.setFavoriteCount(subscriptionResource.getFavoriteCount(input));
             return input;
         }
     };

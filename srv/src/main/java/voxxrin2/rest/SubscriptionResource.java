@@ -41,30 +41,30 @@ public class SubscriptionResource {
         this.push = push;
     }
 
-    private boolean isSubscribed(User user, String presentationId, JongoCollection collection) {
+    private boolean isSubscribed(User user, Presentation presentation, JongoCollection collection) {
         return collection
                 .get()
-                .count("{ presentation: #, userId: # }", ElementURI.of(Type.presentation, presentationId).toString(), user.getId()) > 0;
+                .count("{ presentationRef: #, userId: # }", buildPresentationBusinessRef(presentation), user.getId()) > 0;
     }
 
-    private long getSubscriptionCount(String presentationId, JongoCollection collection) {
-        return collection.get().count("{ presentation: # }", ElementURI.of(Type.presentation, presentationId).toString());
+    private long getSubscriptionCount(Presentation presentation, JongoCollection collection) {
+        return collection.get().count("{ presentationRef: # }", buildPresentationBusinessRef(presentation));
     }
 
-    public boolean isReminded(User user, String presentationId) {
-        return isSubscribed(user, presentationId, remindMe);
+    public boolean isReminded(User user, Presentation presentation) {
+        return isSubscribed(user, presentation, remindMe);
     }
 
-    public boolean isFavorite(User user, String presentationId) {
-        return isSubscribed(user, presentationId, favorite);
+    public boolean isFavorite(User user, Presentation presentation) {
+        return isSubscribed(user, presentation, favorite);
     }
 
-    public long getRemindMeCount(String presentationId) {
-        return getSubscriptionCount(presentationId, remindMe);
+    public long getRemindMeCount(Presentation presentation) {
+        return getSubscriptionCount(presentation, remindMe);
     }
 
-    public long getFavoriteCount(String presentationId) {
-        return getSubscriptionCount(presentationId, favorite);
+    public long getFavoriteCount(Presentation presentation) {
+        return getSubscriptionCount(presentation, favorite);
     }
 
     @POST("/remindme")
@@ -72,13 +72,15 @@ public class SubscriptionResource {
 
         User user = AuthModule.currentUser().get();
 
-        Reference<Presentation> presentation = Reference.of(Type.presentation, presentationId);
+        Presentation presentation = Reference.<Presentation>of(Type.presentation, presentationId).get();
+        String presentationRef = buildPresentationBusinessRef(presentation);
+
         Subscription remindMe = new Subscription()
-                .setPresentation(presentation)
+                .setPresentationRef(presentationRef)
                 .setUserId(user.getId());
 
         this.remindMe.get()
-                .update("{ presentation: #, userId: # }", presentation.getUri().toString(), user.getId())
+                .update("{ presentationRef: #, userId: # }", presentationRef, user.getId())
                 .upsert()
                 .with(remindMe);
 
@@ -91,13 +93,15 @@ public class SubscriptionResource {
 
         User user = AuthModule.currentUser().get();
 
-        Reference<Presentation> presentation = Reference.of(Type.presentation, presentationId);
+        Presentation presentation = Reference.<Presentation>of(Type.presentation, presentationId).get();
+        String presentationRef = buildPresentationBusinessRef(presentation);
+
         Subscription favorite = new Subscription()
-                .setPresentation(presentation)
+                .setPresentationRef(presentationRef)
                 .setUserId(user.getId());
 
         this.favorite.get()
-                .update("{ presentation: #, userId: # }", presentation.getUri().toString(), user.getId())
+                .update("{ presentationRef: #, userId: # }", presentationRef, user.getId())
                 .upsert()
                 .with(favorite);
 
@@ -108,12 +112,15 @@ public class SubscriptionResource {
         return favorite;
     }
 
-    private void sendPushNotification(Reference<Presentation> presentation, String deviceToken) {
+    private String buildPresentationBusinessRef(Presentation presentation) {
+        return String.format("%s:%s", presentation.getEventId(), presentation.getExternalId());
+    }
 
-        Presentation resolvedPresentation = presentation.get();
-        String presentationTitle = resolvedPresentation.getTitle();
+    private void sendPushNotification(Presentation presentation, String deviceToken) {
+
+        String presentationTitle = presentation.getTitle();
         String msg = String.format("Le talk '%s' qui fait partie de vos favoris va bientôt commencer !", presentationTitle);
-        DateTime when = resolvedPresentation.getFrom().minusMinutes(NOTIFICATION_DELAY);
+        DateTime when = presentation.getFrom().minusMinutes(NOTIFICATION_DELAY);
 
         PushStatus status = push.sendMsg(msg, deviceToken, when);
 
