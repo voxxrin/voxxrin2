@@ -20,7 +20,7 @@ public class DBModule {
     @Provides
     @Named("mongo.db")
     public String dbName() {
-        return "crawlers";
+        return "voxxrin-crawlers";
     }
 
     @Provides
