@@ -68,12 +68,11 @@ public class HttpDataFiller {
 
     private void clearExistingData(String eventId) {
         String url = baseUrl + CRAWLED_ENTITIES_URL + "?eventId=" + eventId;
-        int code = HttpRequest.delete(url).code();
+        int code = HttpRequest
+                .delete(url)
+                .basic("admin", System.getProperty("voxxrin.http.basic.pwd"))
+                .code();
         logger.info("Cleaning existing crawled data (url = {}) - Response code {}", url, code);
-    }
-
-    private String generateCrawlId(Event event) {
-        return String.format("%s-%s", event.getName().replaceAll("\\s", ""), UUID.randomUUID().toString());
     }
 
     private <T extends Referenceable> void send(String url, T entity, String crawlId) throws JsonProcessingException {
