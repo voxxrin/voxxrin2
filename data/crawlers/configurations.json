@@ -1,0 +1,78 @@
+[
+  {
+    "_id": "dvxfr15",
+    "externalEventRef": "dvxfr15",
+    "crawlerId": "voxxrin1",
+    "location": "Palais des Congrès, Porte Maillot, Paris",
+    "imageUrl": "http://www.devoxx.fr/wp-content/uploads/2014/02/devoxx_france_150px.png",
+    "tokens": [
+      "EMJ9DZm0ER7Ev56E0IMsN8671m9X4M0P"
+    ]
+  },
+  {
+    "_id": "dvxpl15",
+    "externalEventRef": "dvxpl15",
+    "crawlerId": "voxxrin1",
+    "location": " ICE Krakow Congress Centre",
+    "imageUrl": "https://pbs.twimg.com/profile_images/522287264051630080/ZDoFIZo_.png",
+    "tokens": [
+      "YBWOBSTHE54M3d5QG8aounW2nU0th362"
+    ]
+  },
+  {
+    "_id": "bdxio15",
+    "externalEventRef": "bdxio15",
+    "crawlerId": "voxxrin1",
+    "location": "ENSEIRB-MATMECA - Talence",
+    "imageUrl": "http://www.bdx.io/images/./2ea70105.logo_header.png",
+    "tokens": [
+      "3314Rpuw6NZAUH26U38LSqGJ924fsV4I"
+    ]
+  },
+  {
+    "_id": "lkfr15",
+    "externalEventRef": "lkfr15",
+    "crawlerId": "voxxrin1",
+    "location": "MAS (Maison des Associations) - Paris",
+    "imageUrl": "http://leankanban.fr/wp-content/uploads/2015/03/lkfr-new-logo.png",
+    "tokens": [
+      "S0jXa77iEvxp95trA7GPldiRQTRKF72L"
+    ]
+  },
+  {
+    "_id": "ces763",
+    "externalEventRef": "ces763",
+    "crawlerId": "voxxrin1",
+    "location": "Université de Rouen",
+    "imageUrl": "http://www.codeursenseine.com/assets/img/logo-codeurs-en-seine.png",
+    "tokens": [
+      "7H6wfjKFCn97rRpDeC790mT99SHU0FZV"
+    ]
+  },
+  {
+    "_id": "mxt15",
+    "externalEventRef": "mxt15",
+    "crawlerId": "voxxrin1",
+    "location": "CPE Lyon",
+    "imageUrl": "http://www.mix-it.fr/public/images/mini-mixit.png",
+    "tokens": [
+      "hT600H7TRwg96Cr72T35c2341fydPuaG"
+    ]
+  },
+  {
+    "_id": "jsc15",
+    "externalEventRef": "6",
+    "crawlerId": "jsc",
+    "tokens": [
+      "5QMQoBlYvhjeq4gxSGw3Hq8ATWnevGot"
+    ]
+  },
+  {
+    "_id": "bzh15",
+    "externalEventRef": "bzh15",
+    "crawlerId": "voxxrin2",
+    "tokens": [
+      "CdxeNIjzmUK8yM7H7UK27E7gtpsI06L4"
+    ]
+  }
+]
