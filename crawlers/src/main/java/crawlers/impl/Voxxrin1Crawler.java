@@ -56,7 +56,7 @@ public class Voxxrin1Crawler extends AbstractHttpCrawler {
 
         for (VoxxrinDay voxxrinDay : voxxrinEvent.days) {
             Day stdDay = voxxrinDay.toStdDay(stdEvent);
-            VoxxrinDaySchedules schedules = MAPPER.readValue(HttpRequest.get(daysUrl + voxxrinDay.id).body(), VoxxrinDaySchedules.class);
+            VoxxrinDaySchedules schedules = MAPPER.readValue(HttpRequest.get(daysUrl + "/" + voxxrinDay.id).body(), VoxxrinDaySchedules.class);
             for (VoxxrinPresentation presentation : schedules.schedules) {
                 List<Speaker> stdSpeakers = registerSpeakers(speakers, presentation, speakersUrl);
                 Room stdRoom = registerRoom(rooms, presentation);
