@@ -5,13 +5,13 @@ import com.github.kevinsawicki.http.HttpRequest;
 import com.google.common.base.Function;
 import com.google.common.collect.ImmutableList;
 import com.google.common.collect.Iterables;
+import crawlers.AbstractHttpCrawler;
+import crawlers.CrawlingResult;
+import crawlers.configuration.CrawlingConfiguration;
 import org.bson.types.ObjectId;
 import org.joda.time.DateTime;
 import org.joda.time.format.DateTimeFormat;
 import org.joda.time.format.DateTimeFormatter;
-import crawlers.AbstractHttpCrawler;
-import crawlers.CrawlingResult;
-import crawlers.HttpDataFiller;
 import restx.factory.Component;
 import voxxrin2.domain.*;
 import voxxrin2.domain.technical.Reference;
@@ -34,29 +34,20 @@ public class Voxxrin1Crawler extends AbstractHttpCrawler {
         }
     };
 
-    /**
-     * Configure this area
-     */
-    private static final String EVENT_ID = "bdxio15";
-    private static final String EVENT_LOCATION = "Talence - ENSEIRB-MATMECA";
-    private static final String EVENT_IMAGE_URL = "http://www.bdx.io/images/./2ea70105.logo_header.png";
-
-    /**
-     * Static params
-     */
     private static final String BASE_URL = "http://app.voxxr.in/r";
-    private static final String EVENT_URL = BASE_URL + "/events/" + EVENT_ID;
-    private static final String SPEAKERS_URL = EVENT_URL + "/speakers";
-    private static final String DAYS_URL = EVENT_URL + "/day";
 
     public Voxxrin1Crawler() {
-        super("voxxrin", ImmutableList.of("voxxrin-publisher"));
+        super("voxxrin1", ImmutableList.of("voxxrin-publisher"));
     }
 
     @Override
-    public CrawlingResult crawl() throws IOException {
+    public CrawlingResult crawl(CrawlingConfiguration configuration) throws IOException {
 
-        VoxxrinEvent voxxrinEvent = MAPPER.readValue(HttpRequest.get(EVENT_URL).body(), VoxxrinEvent.class);
+        String eventUrl = BASE_URL + "/events/" + configuration.getExternalEventRef();
+        String speakersUrl = eventUrl + "/speakers";
+        String daysUrl = eventUrl + "/day";
+
+        VoxxrinEvent voxxrinEvent = MAPPER.readValue(HttpRequest.get(eventUrl).body(), VoxxrinEvent.class);
         Event stdEvent = voxxrinEvent.toStdEvent();
         CrawlingResult crawlingResult = new CrawlingResult(stdEvent);
 
@@ -65,9 +56,9 @@ public class Voxxrin1Crawler extends AbstractHttpCrawler {
 
         for (VoxxrinDay voxxrinDay : voxxrinEvent.days) {
             Day stdDay = voxxrinDay.toStdDay(stdEvent);
-            VoxxrinDaySchedules schedules = MAPPER.readValue(HttpRequest.get(DAYS_URL + "/" + voxxrinDay.id).body(), VoxxrinDaySchedules.class);
+            VoxxrinDaySchedules schedules = MAPPER.readValue(HttpRequest.get(daysUrl + voxxrinDay.id).body(), VoxxrinDaySchedules.class);
             for (VoxxrinPresentation presentation : schedules.schedules) {
-                List<Speaker> stdSpeakers = registerSpeakers(speakers, presentation);
+                List<Speaker> stdSpeakers = registerSpeakers(speakers, presentation, speakersUrl);
                 Room stdRoom = registerRoom(rooms, presentation);
                 crawlingResult.getPresentations().add(presentation.toStdPresentation(stdEvent, stdDay, stdRoom, toSpeakerRefs(stdSpeakers)));
             }
@@ -85,6 +76,14 @@ public class Voxxrin1Crawler extends AbstractHttpCrawler {
         return crawlingResult;
     }
 
+    @Override
+    public CrawlingResult setup(CrawlingResult result, CrawlingConfiguration configuration) {
+        result.getEvent()
+                .setLocation(configuration.getLocation())
+                .setImageUrl(configuration.getImageUrl());
+        return super.setup(result, configuration);
+    }
+
     private ImmutableList<Reference<Speaker>> toSpeakerRefs(List<Speaker> stdSpeakers) {
         return ImmutableList.copyOf(Iterables.transform(stdSpeakers, TO_SPEAKER_REF_FUNCTION));
     }
@@ -96,7 +95,7 @@ public class Voxxrin1Crawler extends AbstractHttpCrawler {
         return rooms.get(presentation.room.id);
     }
 
-    private List<Speaker> registerSpeakers(Map<String, Speaker> speakers, VoxxrinPresentation presentation) throws IOException {
+    private List<Speaker> registerSpeakers(Map<String, Speaker> speakers, VoxxrinPresentation presentation, String speakersUrl) throws IOException {
 
         List<Speaker> stdSpeakers = new ArrayList<>();
 
@@ -107,8 +106,9 @@ public class Voxxrin1Crawler extends AbstractHttpCrawler {
         for (VoxxrinSpeaker speaker : presentation.speakers) {
             Speaker cachedSpeaker = speakers.get(speaker.id);
             if (cachedSpeaker == null) {
-                VoxxrinSpeaker fullSpeaker = MAPPER.readValue(HttpRequest.get(SPEAKERS_URL + "/" + speaker.id).body(), VoxxrinSpeaker.class);
+                VoxxrinSpeaker fullSpeaker = MAPPER.readValue(HttpRequest.get(speakersUrl + "/" + speaker.id).body(), VoxxrinSpeaker.class);
                 Speaker stdSpeaker = fullSpeaker.toStdSpeaker();
+                stdSpeaker.setAvatarUrl(BASE_URL + fullSpeaker.pictureURI);
                 stdSpeakers.add(stdSpeaker);
                 speakers.put(speaker.id, stdSpeaker);
             } else {
@@ -131,8 +131,6 @@ public class Voxxrin1Crawler extends AbstractHttpCrawler {
         public Event toStdEvent() {
             return (Event) new Event()
                     .setName(title)
-                    .setLocation(EVENT_LOCATION)
-                    .setImageUrl(EVENT_IMAGE_URL)
                     .setDescription(description)
                     .setTo(to)
                     .setFrom(from)
@@ -208,7 +206,6 @@ public class Voxxrin1Crawler extends AbstractHttpCrawler {
 
         public Speaker toStdSpeaker() {
             return (Speaker) new Speaker()
-                    .setAvatarUrl(BASE_URL + pictureURI)
                     .setBio(bio)
                     .setCompany(company)
                     .setName(name)

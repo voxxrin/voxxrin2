@@ -5,6 +5,7 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.databind.type.CollectionType;
 import com.fasterxml.jackson.datatype.joda.JodaModule;
 import com.google.common.collect.ImmutableList;
+import crawlers.configuration.CrawlingConfiguration;
 
 import java.io.IOException;
 import java.util.List;
@@ -31,7 +32,11 @@ public abstract class AbstractHttpCrawler {
                 .build();
     }
 
-    public abstract CrawlingResult crawl() throws IOException;
+    public abstract CrawlingResult crawl(CrawlingConfiguration configuration) throws IOException;
+
+    public CrawlingResult setup(CrawlingResult result, CrawlingConfiguration configuration) {
+        return result;
+    }
 
     protected void configureMapper(ObjectMapper mapper) {
         mapper.configure(DeserializationFeature.FAIL_ON_UNKNOWN_PROPERTIES, false);

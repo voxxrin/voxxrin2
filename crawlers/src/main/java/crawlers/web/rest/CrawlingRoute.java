@@ -8,6 +8,8 @@ import com.google.common.collect.Maps;
 import crawlers.AbstractHttpCrawler;
 import crawlers.CrawlingResult;
 import crawlers.HttpDataFiller;
+import crawlers.configuration.CrawlingConfiguration;
+import crawlers.configuration.CrawlingConfigurationManager;
 import crawlers.utils.Functions;
 import crawlers.web.CrawlingSettings;
 import org.slf4j.Logger;
@@ -33,16 +35,19 @@ public class CrawlingRoute extends StdRoute {
     private final ImmutableMap<String, AbstractHttpCrawler> crawlers;
     private final RestxSecurityManager securityManager;
     private final CrawlingSettings settings;
+    private final CrawlingConfigurationManager configurationManager;
     private final ObjectMapper objectMapper;
 
     public CrawlingRoute(Set<AbstractHttpCrawler> crawlers,
                          RestxSecurityManager securityManager,
                          CrawlingSettings settings,
+                         CrawlingConfigurationManager configurationManager,
                          @Named(FrontObjectMapperFactory.MAPPER_NAME) ObjectMapper objectMapper) {
 
         super("crawling", new StdRestxRequestMatcher("PUT", "/crawl"));
         this.securityManager = securityManager;
         this.settings = settings;
+        this.configurationManager = configurationManager;
         this.objectMapper = objectMapper;
         this.crawlers = Maps.uniqueIndex(crawlers, Functions.CRAWLERS_MAP_INDEXER);
     }
@@ -55,25 +60,46 @@ public class CrawlingRoute extends StdRoute {
     @Override
     public void handle(RestxRequestMatch match, RestxRequest req, RestxResponse resp, RestxContext ctx) throws IOException {
 
-        String crawlerId = req.getQueryParam("crawlerId").get();
+        String eventId = req.getQueryParam("eventId").get();
 
-        AbstractHttpCrawler crawler = crawlers.get(crawlerId);
-        if (crawler == null) {
-            throw new WebException(HttpStatus.NOT_FOUND);
-        }
+        CrawlingConfiguration configuration = findConfigurationOrThrow(eventId);
+
+        AbstractHttpCrawler crawler = findCrawlerOrThrow(configuration);
 
         checkSecurity(req, crawler);
 
         CrawlingResult result = null;
         try {
-            result = crawler.crawl();
+            result = crawler.setup(crawler.crawl(configuration), configuration);
         } catch (IOException e) {
-            logger.error("Error occured during crawling (crawlerId = " + crawlerId + ")", e);
+            logger.error("Error occured during crawling (eventId = " + eventId + ")", e);
         }
 
-        sendResultToVoxxrin(result, crawlerId);
+        sendResultToVoxxrin(result, eventId);
 
         sendResultToClient(resp, result);
+    }
+
+    private AbstractHttpCrawler findCrawlerOrThrow(CrawlingConfiguration configuration) {
+
+        AbstractHttpCrawler crawler = crawlers.get(configuration.getCrawlerId());
+        if (crawler == null) {
+            logger.error("No crawler named {} found (handling event = {})", configuration.getCrawlerId(), configuration.getEventId());
+            throw new WebException(HttpStatus.NOT_FOUND);
+        }
+
+        return crawler;
+    }
+
+    private CrawlingConfiguration findConfigurationOrThrow(String eventId) {
+
+        CrawlingConfiguration configuration = configurationManager.findConfiguration(eventId);
+        if (configuration == null) {
+            logger.error("No configuration related to event {} found", eventId);
+            throw new WebException(HttpStatus.BAD_REQUEST);
+        }
+
+        return configuration;
     }
 
     private void sendResultToVoxxrin(CrawlingResult result, String crawlerId) {

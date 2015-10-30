@@ -4,6 +4,7 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 import com.github.kevinsawicki.http.HttpRequest;
 import com.google.common.collect.ImmutableList;
 import crawlers.AbstractHttpCrawler;
+import crawlers.configuration.CrawlingConfiguration;
 import crawlers.CrawlingResult;
 import org.bson.types.ObjectId;
 import org.joda.time.DateTime;
@@ -22,12 +23,7 @@ import java.util.Map;
 @Component
 public class JugSummerCampCrawler extends AbstractHttpCrawler {
 
-    /**
-     * Configure this area
-     */
-
-    private static final String URL = "http://www.jugsummercamp.org/api/edition/6";
-    private static final String JSC_NAME = "Jug SummerCamp - 2015";
+    private static final String BASE_URL = "http://www.jugsummercamp.org/api/edition/";
 
     public JugSummerCampCrawler() {
         super("jsc", ImmutableList.of("jsc-publisher"));
@@ -38,9 +34,11 @@ public class JugSummerCampCrawler extends AbstractHttpCrawler {
     }
 
     @Override
-    public CrawlingResult crawl() throws IOException {
+    public CrawlingResult crawl(CrawlingConfiguration configuration) throws IOException {
 
-        JSCPayload payload = MAPPER.readValue(HttpRequest.get(URL).body(), JSCPayload.class);
+        String eventUrl = BASE_URL + configuration.getExternalEventRef();
+
+        JSCPayload payload = MAPPER.readValue(HttpRequest.get(eventUrl).body(), JSCPayload.class);
         Event event = payload.toStdEvent();
 
         CrawlingResult result = new CrawlingResult(event);
@@ -102,7 +100,6 @@ public class JugSummerCampCrawler extends AbstractHttpCrawler {
             DateTime from = transformDate(new DateTime(date));
             return (Event) new Event()
                     .setImageUrl("http://www.jugsummercamp.org/assets/images/logo-summercamp.png")
-                    .setName(JSC_NAME)
                     .setDescription(description)
                     .setFrom(from)
                     // JSC generally lasts one day

@@ -7,13 +7,13 @@ import com.google.common.base.Predicate;
 import com.google.common.collect.ImmutableList;
 import com.google.common.collect.Iterables;
 import crawlers.AbstractHttpCrawler;
+import crawlers.configuration.CrawlingConfiguration;
 import crawlers.CrawlingResult;
 import org.bson.types.ObjectId;
 import org.joda.time.DateTime;
 import org.joda.time.format.DateTimeFormat;
 import org.joda.time.format.DateTimeFormatter;
 import org.slf4j.Logger;
-import restx.factory.Component;
 import voxxrin2.domain.*;
 import voxxrin2.domain.technical.Reference;
 
@@ -23,33 +23,28 @@ import java.util.List;
 
 import static org.slf4j.LoggerFactory.getLogger;
 
-@Component
-public class DevoxxCFPCrawler extends AbstractHttpCrawler {
+public abstract class DevoxxFRCFPCrawler extends AbstractHttpCrawler {
 
-    private static final Logger logger = getLogger(DevoxxCFPCrawler.class);
+    private static final Logger logger = getLogger(DevoxxFRCFPCrawler.class);
 
-    /**
-     * Configure this area
-     */
-    private static final String EVENT_CODE = "DevoxxFR2015";
-    private static final String BASE_URL = "http://cfp.devoxx.fr/api/conferences/" + EVENT_CODE;
-    private static final String EVENT_LOGO_URL = "http://www.devoxx.fr/wp-content/uploads/2014/02/devoxx_france_150px.png";
+    private static final String BASE_URL = "http://cfp.devoxx.fr/api/conferences/";
 
-    private static final String ROOMS_URL = BASE_URL + "/rooms";
-    private static final String SPEAKERS_URL = BASE_URL + "/speakers";
-    private static final String DAYS_URL = BASE_URL + "/schedules";
-
-    public DevoxxCFPCrawler() {
-        super("devoxx", ImmutableList.of("devoxx-publisher"));
+    public DevoxxFRCFPCrawler() {
+        super("devoxxfr", ImmutableList.of("devoxxfr-publisher"));
     }
 
     @Override
-    public CrawlingResult crawl() throws IOException {
+    public CrawlingResult crawl(CrawlingConfiguration configuration) throws IOException {
+
+        String eventUrl = BASE_URL + configuration.getExternalEventRef();
+        String roomsUrl = eventUrl + "/rooms";
+        String speakersUrl = eventUrl + "/speakers";
+        String daysUrl = eventUrl + "/schedules";
 
         CFPEvent cfpEvent = MAPPER.readValue(HttpRequest.get(BASE_URL).body(), CFPEvent.class);
-        CFPRooms cfpRooms = MAPPER.readValue(HttpRequest.get(ROOMS_URL).body(), CFPRooms.class);
-        List<CFPLinks> cfpSpeakerLinks = MAPPER.readValue(HttpRequest.get(SPEAKERS_URL).body(), buildCollectionType(CFPLinks.class));
-        CFPLinks cfpDayLinks = MAPPER.readValue(HttpRequest.get(DAYS_URL).body(), CFPLinks.class);
+        CFPRooms cfpRooms = MAPPER.readValue(HttpRequest.get(roomsUrl).body(), CFPRooms.class);
+        List<CFPLinks> cfpSpeakerLinks = MAPPER.readValue(HttpRequest.get(speakersUrl).body(), buildCollectionType(CFPLinks.class));
+        CFPLinks cfpDayLinks = MAPPER.readValue(HttpRequest.get(daysUrl).body(), CFPLinks.class);
 
         CrawlingResult crawlingResult = new CrawlingResult(cfpEvent.toStdEvent());
         // Rooms
@@ -180,7 +175,6 @@ public class DevoxxCFPCrawler extends AbstractHttpCrawler {
 
         public Event toStdEvent() {
             return (Event) new Event()
-                    .setImageUrl(EVENT_LOGO_URL)
                     .setDescription(label)
                     .setLocation(localisation)
                     .setName(eventCode)

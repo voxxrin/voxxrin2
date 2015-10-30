@@ -5,6 +5,8 @@ import voxxrin2.domain.technical.Referenceable;
 
 public class Event extends Referenceable {
 
+    private String eventId;
+
     private String name;
 
     private DateTime from;
@@ -16,6 +18,10 @@ public class Event extends Referenceable {
     private String location;
 
     private String imageUrl;
+
+    public String getEventId() {
+        return eventId;
+    }
 
     public String getName() {
         return name;
@@ -35,6 +41,11 @@ public class Event extends Referenceable {
 
     public String getLocation() {
         return location;
+    }
+
+    public Event setEventId(final String eventId) {
+        this.eventId = eventId;
+        return this;
     }
 
     public Event setLocation(final String location) {

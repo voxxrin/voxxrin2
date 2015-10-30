@@ -11,7 +11,6 @@ import com.fasterxml.jackson.databind.module.SimpleModule;
 import com.fasterxml.jackson.datatype.guava.GuavaModule;
 import com.fasterxml.jackson.datatype.joda.JodaModule;
 import com.github.kevinsawicki.http.HttpRequest;
-import crawlers.CrawlingResult;
 import org.jongo.marshall.jackson.oid.ObjectIdDeserializer;
 import org.jongo.marshall.jackson.oid.ObjectIdSerializer;
 import org.slf4j.Logger;
@@ -35,6 +34,7 @@ public class HttpDataFiller {
     private static final String ROOMS_URL = "/rooms";
     private static final String SPEAKERS_URL = "/speakers";
     private static final String PRESENTATIONS_URL = "/presentations";
+    private static final String CRAWLED_ENTITIES_URL = "/entities/crawled";
     private final String baseUrl;
 
     public HttpDataFiller(String baseUrl) {
@@ -43,25 +43,33 @@ public class HttpDataFiller {
 
     public void fill(CrawlingResult result) throws JsonProcessingException {
 
-        String crawlId = generateCrawlId(result.getEvent());
+        String eventId = result.getEvent().getEventId();
 
-        send(EVENTS_URL, result.getEvent(), crawlId);
+        clearExistingData(eventId);
+
+        send(EVENTS_URL, result.getEvent(), eventId);
 
         for (Day day : result.getDays()) {
-            send(DAYS_URL, day, crawlId);
+            send(DAYS_URL, day, eventId);
         }
 
         for (Room room : result.getRooms()) {
-            send(ROOMS_URL, room, crawlId);
+            send(ROOMS_URL, room, eventId);
         }
 
         for (Speaker speaker : result.getSpeakers()) {
-            send(SPEAKERS_URL, speaker, crawlId);
+            send(SPEAKERS_URL, speaker, eventId);
         }
 
         for (Presentation presentation : result.getPresentations()) {
-            send(PRESENTATIONS_URL, presentation, crawlId);
+            send(PRESENTATIONS_URL, presentation, eventId);
         }
+    }
+
+    private void clearExistingData(String eventId) {
+        String url = baseUrl + CRAWLED_ENTITIES_URL + "?eventId=" + eventId;
+        int code = HttpRequest.delete(url).code();
+        logger.info("Cleaning existing crawled data (url = {}) - Response code {}", url, code);
     }
 
     private String generateCrawlId(Event event) {
@@ -69,7 +77,7 @@ public class HttpDataFiller {
     }
 
     private <T extends Referenceable> void send(String url, T entity, String crawlId) throws JsonProcessingException {
-        entity.setCrawlId(crawlId);
+        entity.setEventId(crawlId);
         int code = HttpRequest
                 .post(baseUrl + url).acceptJson()
                 .basic("admin", System.getProperty("voxxrin.http.basic.pwd"))

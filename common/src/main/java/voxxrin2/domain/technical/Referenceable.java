@@ -16,7 +16,7 @@ public class Referenceable implements Crawlable {
 
     private DateTime updateDate;
 
-    private String crawlId;
+    private String eventId;
 
     public String getKey() {
         return key;
@@ -46,12 +46,12 @@ public class Referenceable implements Crawlable {
     }
 
     @Override
-    public String getCrawlId() {
-        return crawlId;
+    public String getEventId() {
+        return eventId;
     }
 
-    public Referenceable setCrawlId(final String crawlId) {
-        this.crawlId = crawlId;
+    public Referenceable setEventId(final String crawlId) {
+        this.eventId = crawlId;
         return this;
     }
 }
