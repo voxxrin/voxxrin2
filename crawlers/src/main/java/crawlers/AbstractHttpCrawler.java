@@ -35,6 +35,7 @@ public abstract class AbstractHttpCrawler {
     public abstract CrawlingResult crawl(CrawlingConfiguration configuration) throws IOException;
 
     public CrawlingResult setup(CrawlingResult result, CrawlingConfiguration configuration) {
+        result.getEvent().setEventId(configuration.getEventId());
         return result;
     }
 

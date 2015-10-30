@@ -66,7 +66,7 @@ public class CrawlingRoute extends StdRoute {
 
         AbstractHttpCrawler crawler = findCrawlerOrThrow(configuration);
 
-        checkSecurity(req, crawler);
+//        checkSecurity(req, crawler);
 
         CrawlingResult result = null;
         try {
