@@ -1,6 +1,7 @@
 package voxxrin2.rest;
 
 import restx.annotations.DELETE;
+import restx.annotations.Param;
 import restx.annotations.RestxResource;
 import restx.factory.Component;
 import restx.security.RolesAllowed;
@@ -20,7 +21,7 @@ public class EntityResource {
 
     @RolesAllowed({"ADM", "restx-admin"})
     @DELETE("/entities/crawled")
-    public void cleanCrawledData(String eventId) {
+    public void cleanCrawledData(@Param(kind = Param.Kind.QUERY) String eventId) {
         for (DataService dataService : dataServices) {
             dataService.removeCrawledEntities(eventId);
         }
