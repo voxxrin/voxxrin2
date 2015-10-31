@@ -33,8 +33,9 @@ public class RatingResource {
     @GET("/ratings/{presentationId}")
     @PermitAll
     public Iterable<Rating> getRatings(@Param(kind = Param.Kind.PATH) String presentationId) {
+        Presentation presentation = Reference.<Presentation>of(Type.presentation, presentationId).get();
         return ratings.get()
-                .find("{ presentation: # }", ElementURI.of(Type.presentation, presentationId).toString())
+                .find("{ presentationRef: # }", buildPresentationBusinessRef(presentation))
                 .as(Rating.class);
     }
 
