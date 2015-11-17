@@ -20,6 +20,8 @@ public class User implements RestxPrincipal {
 
     private String twitterId;
 
+    private String emailAddress;
+
     private String lastName;
 
     private String firstName;
@@ -49,6 +51,10 @@ public class User implements RestxPrincipal {
 
     public String getTwitterId() {
         return twitterId;
+    }
+
+    public String getEmailAddress() {
+        return emailAddress;
     }
 
     public String getLastName() {
@@ -83,6 +89,11 @@ public class User implements RestxPrincipal {
 
     public User setTwitterId(final String twitterId) {
         this.twitterId = twitterId;
+        return this;
+    }
+
+    public User setEmailAddress(final String emailAddress) {
+        this.emailAddress = emailAddress;
         return this;
     }
 

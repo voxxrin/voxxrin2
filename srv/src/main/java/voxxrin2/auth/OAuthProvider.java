@@ -26,7 +26,7 @@ public abstract class OAuthProvider {
         this.providerUrl = providerUrl;
     }
 
-    public abstract <T extends Map<String, ?>> User authenticate(Optional<T> params);
+    public abstract <T extends Map<String, ?>> User authenticate(Optional<T> params) throws IOException;
 
     public String getProvider() {
         return provider;

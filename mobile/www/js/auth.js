@@ -8,7 +8,8 @@ angular.module('voxxrin')
             tokenValidationPath: '/auth/validate',
             signOutUrl: '/auth/logout',
             authProviderPaths: {
-                twitter: '/auth/redirect/twitter'
+                twitter: '/auth/redirect/twitter',
+                linkedin: '/auth/redirect/linkedin'
             },
             omniauthWindowType: 'inAppBrowser',
             handleLoginResponse: function (response) {

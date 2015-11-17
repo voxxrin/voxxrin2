@@ -17,17 +17,19 @@
 
                     <span class="col-50 element-centered sep-hrz primary-dark-sep"></span>
                     <div class="inline list-btn-large">
+
                         <button class="round-btn large-btn white-btn" ng-click="authenticate('twitter')" ng-if="!isAuthenticated">
                             <i class="ion-social-twitter"></i>
+                        </button>
+
+                        <button class="round-btn large-btn white-btn" ng-click="authenticate('linkedin')">
+                            <i class="ion-social-linkedin"></i>
                         </button>
 
                         <button class="round-btn large-btn white-btn" ng-click="logout()" ng-if="isAuthenticated">
                             <i class="ion-log-out"></i>
                         </button>
 
-                        <!--<button class="round-btn large-btn white-btn">-->
-                            <!--<i class="ion-social-linkedin"></i>-->
-                        <!--</button>-->
                     </div>
 
                 </div>

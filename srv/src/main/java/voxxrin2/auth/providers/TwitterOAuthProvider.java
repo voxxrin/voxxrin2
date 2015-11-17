@@ -38,18 +38,20 @@ public class TwitterOAuthProvider extends OAuthProvider {
     private final ObjectMapper mapper;
 
     public TwitterOAuthProvider(@Named("restx.server.baseUrl") String serverUrl,
-                                OAuthSettings twitterSettings,
+                                OAuthSettings oAuthSettings,
                                 @Named(FrontObjectMapperFactory.MAPPER_NAME) ObjectMapper mapper) {
         super("twitter", null);
+
         this.mapper = mapper;
         this.service = new ServiceBuilder().provider(TwitterApi.class)
-                .apiKey(twitterSettings.oauthTwitterApiKey())
-                .apiSecret(twitterSettings.oauthTwitterApiSecret())
+                .apiKey(oAuthSettings.oauthTwitterApiKey())
+                .apiSecret(oAuthSettings.oauthTwitterApiSecret())
                 .callback(serverUrl + "/api/auth/provider/twitter")
                 .debugStream(System.out)
                 .build();
+
         logger.info("Registered Twitter provider - key = {}, secret = {}, callback = {}",
-                twitterSettings.oauthTwitterApiKey(), twitterSettings.oauthTwitterApiSecret(),
+                oAuthSettings.oauthTwitterApiKey(), oAuthSettings.oauthTwitterApiSecret(),
                 serverUrl + "/api/auth/provider/twitter");
     }
 
