@@ -77,24 +77,40 @@ angular.module('voxxrin')
                 return localPrez;
             },
             remindMe: function (presentation) {
-                RemindMe.save({presentationId: presentation._id})
-                    .$promise
-                    .then(function () {
-                        $rootScope.$broadcast('presentation:updated', presentation);
-                    })
-                    .catch(function () {
-                        Notification.popup.warning('Prevenez-moi !', 'Vous devez être connecté pour beneficier de cette fonctionnalité');
-                    });
+                if (presentation.isReminded()) {
+                    RemindMe.delete({presentationId: presentation._id})
+                        .$promise
+                        .then(function () {
+                            $rootScope.$broadcast('presentation:updated', presentation);
+                        });
+                } else {
+                    RemindMe.save({presentationId: presentation._id})
+                        .$promise
+                        .then(function () {
+                            $rootScope.$broadcast('presentation:updated', presentation);
+                        })
+                        .catch(function () {
+                            Notification.popup.warning('Prevenez-moi !', 'Vous devez être connecté pour beneficier de cette fonctionnalité');
+                        });
+                }
             },
             favorite: function (presentation) {
-                Favorite.save({presentationId: presentation._id, deviceToken: $rootScope.pushToken})
-                    .$promise
-                    .then(function () {
-                        $rootScope.$broadcast('presentation:updated', presentation);
-                    })
-                    .catch(function () {
-                        Notification.popup.warning('Favoriser !', 'Vous devez être connecté pour beneficier de cette fonctionnalité');
-                    });
+                if (presentation.isFavorite()) {
+                    Favorite.delete({presentationId: presentation._id})
+                        .$promise
+                        .then(function () {
+                            $rootScope.$broadcast('presentation:updated', presentation);
+                        });
+                } else {
+                    Favorite.save({presentationId: presentation._id, deviceToken: $rootScope.pushToken})
+                        .$promise
+                        .then(function () {
+                            $rootScope.$broadcast('presentation:updated', presentation);
+                        })
+                        .catch(function () {
+                            Notification.popup.warning('Favoriser !', 'Vous devez être connecté pour beneficier de cette fonctionnalité');
+                        });
+                }
             },
             addToCalendar: function (presentation, event) {
                 Calendar.createEntry(presentation, event);

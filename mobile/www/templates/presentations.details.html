@@ -24,10 +24,10 @@
             <div class="row time-bar">
                 <p><i class="icon ion-clock"></i> {{ presentation.slot.name }} <!-- (From <span class="underline">{{ presentation.from | date:formats.fullDateTime }}</span> to <span class="underline">{{ presentation.to | date:formats.fullDateTime }}</span>) !--></p>
                 <div class="btn-actions">
-                    <button class="btn small-btn secondary-btn" ng-click="favorite(presentation)" ng-class="{ 'add-check-small' : presentation.isFavorite() }" ng-disabled="presentation.isFavorite()">
+                    <button class="btn small-btn secondary-btn" ng-click="favorite(presentation)" ng-class="{ 'add-check-small' : presentation.isFavorite() }">
                         <i class="icon ion-star"></i>
                     </button>
-                    <button class="btn small-btn secondary-btn" ng-click="remindMe(presentation)" ng-class="{ 'add-check-small' : presentation.isReminded() }" ng-disabled="presentation.isReminded()">
+                    <button class="btn small-btn secondary-btn" ng-click="remindMe(presentation)" ng-class="{ 'add-check-small' : presentation.isReminded() }">
                         <i class="icon ion-ios-videocam"></i>
                     </button>
                     <button class="btn small-btn secondary-btn" ng-click="addToCalendar(fullPresentation, fullPresentation.event)">

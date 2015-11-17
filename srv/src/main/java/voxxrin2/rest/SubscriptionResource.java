@@ -3,17 +3,19 @@ package voxxrin2.rest;
 import com.google.common.base.Optional;
 import org.joda.time.DateTime;
 import org.slf4j.Logger;
+import restx.WebException;
+import restx.annotations.DELETE;
 import restx.annotations.POST;
 import restx.annotations.Param;
 import restx.annotations.RestxResource;
 import restx.factory.Component;
+import restx.http.HttpStatus;
 import restx.jongo.JongoCollection;
 import voxxrin2.auth.AuthModule;
 import voxxrin2.domain.Presentation;
 import voxxrin2.domain.Subscription;
 import voxxrin2.domain.Type;
 import voxxrin2.domain.User;
-import voxxrin2.domain.technical.ElementURI;
 import voxxrin2.domain.technical.PushStatus;
 import voxxrin2.domain.technical.Reference;
 import voxxrin2.webservices.Push;
@@ -29,15 +31,15 @@ public class SubscriptionResource {
     private static final Logger logger = getLogger(SubscriptionResource.class);
     private static final int NOTIFICATION_DELAY = 10;
 
-    private final JongoCollection remindMe;
-    private final JongoCollection favorite;
+    private final JongoCollection reminders;
+    private final JongoCollection favorites;
     private final Push push;
 
-    public SubscriptionResource(@Named("remindMe") JongoCollection remindMe,
-                                @Named("favorite") JongoCollection favorite,
+    public SubscriptionResource(@Named("remindMe") JongoCollection reminders,
+                                @Named("favorite") JongoCollection favorites,
                                 Push push) {
-        this.remindMe = remindMe;
-        this.favorite = favorite;
+        this.reminders = reminders;
+        this.favorites = favorites;
         this.push = push;
     }
 
@@ -52,64 +54,91 @@ public class SubscriptionResource {
     }
 
     public boolean isReminded(User user, Presentation presentation) {
-        return isSubscribed(user, presentation, remindMe);
+        return isSubscribed(user, presentation, reminders);
     }
 
     public boolean isFavorite(User user, Presentation presentation) {
-        return isSubscribed(user, presentation, favorite);
+        return isSubscribed(user, presentation, favorites);
     }
 
     public long getRemindMeCount(Presentation presentation) {
-        return getSubscriptionCount(presentation, remindMe);
+        return getSubscriptionCount(presentation, reminders);
     }
 
     public long getFavoriteCount(Presentation presentation) {
-        return getSubscriptionCount(presentation, favorite);
+        return getSubscriptionCount(presentation, favorites);
     }
 
     @POST("/remindme")
     public Subscription requestRemindMe(@Param(kind = Param.Kind.QUERY) String presentationId) {
+        return addOrUpdateSubscription(reminders, presentationId).subscription;
+    }
 
-        User user = AuthModule.currentUser().get();
-
-        Presentation presentation = Reference.<Presentation>of(Type.presentation, presentationId).get();
-        String presentationRef = buildPresentationBusinessRef(presentation);
-
-        Subscription remindMe = new Subscription()
-                .setPresentationRef(presentationRef)
-                .setUserId(user.getId());
-
-        this.remindMe.get()
-                .update("{ presentationRef: #, userId: # }", presentationRef, user.getId())
-                .upsert()
-                .with(remindMe);
-
-        return remindMe;
+    @DELETE("/remindme")
+    public Subscription deleteRemindMe(@Param(kind = Param.Kind.QUERY) String presentationId) {
+        return deleteSubscription(this.reminders, presentationId);
     }
 
     @POST("/favorite")
     public Subscription requestFavorite(@Param(kind = Param.Kind.QUERY) String presentationId,
                                         @Param(kind = Param.Kind.QUERY) Optional<String> deviceToken) {
 
+        SubscriptionDbWrite dbWrite = addOrUpdateSubscription(favorites, presentationId);
+
+        if (deviceToken.isPresent()) {
+            sendPushNotification(dbWrite.presentation, deviceToken.get());
+        }
+
+        return dbWrite.subscription;
+    }
+
+    @DELETE("/favorite")
+    public Subscription deleteFavorite(@Param(kind = Param.Kind.QUERY) String presentationId) {
+        return deleteSubscription(this.favorites, presentationId);
+    }
+
+    private SubscriptionDbWrite addOrUpdateSubscription(JongoCollection collection, String presentationId) {
+
         User user = AuthModule.currentUser().get();
 
         Presentation presentation = Reference.<Presentation>of(Type.presentation, presentationId).get();
         String presentationRef = buildPresentationBusinessRef(presentation);
 
-        Subscription favorite = new Subscription()
+        Subscription subscription = new Subscription()
                 .setPresentationRef(presentationRef)
                 .setUserId(user.getId());
 
-        this.favorite.get()
+        collection.get()
                 .update("{ presentationRef: #, userId: # }", presentationRef, user.getId())
                 .upsert()
-                .with(favorite);
+                .with(subscription);
 
-        if (deviceToken.isPresent()) {
-            sendPushNotification(presentation, deviceToken.get());
+        return new SubscriptionDbWrite(presentation, subscription);
+    }
+
+    private Subscription deleteSubscription(JongoCollection collection, String presentationId) {
+
+        User user = AuthModule.currentUser().get();
+        String presentationRef = getPresentationRef(presentationId);
+
+        Subscription existingSubscription = collection
+                .get()
+                .findOne("{ presentationRef: #, userId: # }", presentationRef, user.getId()).as(Subscription.class);
+
+        if (existingSubscription == null) {
+            throw new WebException(HttpStatus.NOT_FOUND);
         }
 
-        return favorite;
+        collection
+                .get()
+                .remove("{ presentationRef: #, userId: # }", presentationRef, user.getId());
+
+        return existingSubscription;
+    }
+
+    private String getPresentationRef(String presentationId) {
+        Presentation presentation = Reference.<Presentation>of(Type.presentation, presentationId).get();
+        return buildPresentationBusinessRef(presentation);
     }
 
     private String buildPresentationBusinessRef(Presentation presentation) {
@@ -126,5 +155,17 @@ public class SubscriptionResource {
 
         logger.info("Push notification sent to device id '{}' concerning favorited presentation '{}' (fired time = {}). " +
                 "Status = (code: {}, payload: {})", deviceToken, presentationTitle, when, status.getCode(), status.getPayload());
+    }
+
+    private static class SubscriptionDbWrite {
+
+        public Presentation presentation;
+
+        public Subscription subscription;
+
+        public SubscriptionDbWrite(Presentation presentation, Subscription subscription) {
+            this.presentation = presentation;
+            this.subscription = subscription;
+        }
     }
 }

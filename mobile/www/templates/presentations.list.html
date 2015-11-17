@@ -67,13 +67,13 @@
 
 
                             <!--option buttons-->
-                            <ion-option-button ng-disabled="prez.isFavorite()" ng-click="favorite(prez)">
+                            <ion-option-button ng-click="favorite(prez)">
                                 <div class="round-btn medium-btn white-btn centered-btn" ng-class="{ 'add-check' : prez.isFavorite() }">
                                     <i class="icon small ion-star"></i>
                                 </div>
                             </ion-option-button>
 
-                            <ion-option-button ng-disabled="prez.isReminded()" ng-click="remindMe(prez)">
+                            <ion-option-button ng-click="remindMe(prez)">
                                 <div class="round-btn medium-btn white-btn centered-btn" ng-class="{ 'add-check' : prez.isReminded() }">
                                     <i class="icon ion-ios-videocam"></i>
                                 </div>
