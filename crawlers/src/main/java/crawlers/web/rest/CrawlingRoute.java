@@ -3,7 +3,6 @@ package crawlers.web.rest;
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.google.common.collect.ImmutableMap;
-import com.google.common.collect.Iterables;
 import com.google.common.collect.Maps;
 import crawlers.AbstractHttpCrawler;
 import crawlers.CrawlingResult;
@@ -17,15 +16,12 @@ import restx.*;
 import restx.factory.Component;
 import restx.http.HttpStatus;
 import restx.jackson.FrontObjectMapperFactory;
-import restx.security.Permission;
-import restx.security.RestxSecurityManager;
 
 import javax.inject.Named;
 import java.io.IOException;
 import java.util.Set;
 
 import static org.slf4j.LoggerFactory.getLogger;
-import static restx.security.Permissions.*;
 
 @Component
 public class CrawlingRoute extends StdRoute {
@@ -33,19 +29,16 @@ public class CrawlingRoute extends StdRoute {
     private static final Logger logger = getLogger(CrawlingRoute.class);
 
     private final ImmutableMap<String, AbstractHttpCrawler> crawlers;
-    private final RestxSecurityManager securityManager;
     private final CrawlingSettings settings;
     private final CrawlingConfigurationManager configurationManager;
     private final ObjectMapper objectMapper;
 
     public CrawlingRoute(Set<AbstractHttpCrawler> crawlers,
-                         RestxSecurityManager securityManager,
                          CrawlingSettings settings,
                          CrawlingConfigurationManager configurationManager,
                          @Named(FrontObjectMapperFactory.MAPPER_NAME) ObjectMapper objectMapper) {
 
         super("crawling", new StdRestxRequestMatcher("PUT", "/crawl"));
-        this.securityManager = securityManager;
         this.settings = settings;
         this.configurationManager = configurationManager;
         this.objectMapper = objectMapper;
