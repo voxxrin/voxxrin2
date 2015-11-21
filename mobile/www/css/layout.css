@@ -7,6 +7,7 @@ body {
 /* === Header === */
 .bar-header {border: none;}
 .fix-has-subheader { padding-top: 7px;}
+.has-subheader { padding-top: 95px;}
 .has-big-subheader { padding-top: 160px;}
 .header-item { font-weight: bold !important;}
 
@@ -27,14 +28,20 @@ body {
 
 /* --- Buttons --- */
 
-.ion-navicon { color: #95172a !important;}
+.ion-navicon { color: white !important;}
 .ion-navicon.activated { color: #FFFFFF !important;}
-.menu-open .ion-navicon:before { content: '\f129'; font-size: 22px !important; color: #95172a;}
+.menu-open .ion-navicon:before { content: '\f129'; font-size: 22px !important; color: white;}
 
 /* --- Colors --- */
 
 .bar-primary { background: #e0223f;}
 .bar-primary .title { color: white;}
+
+.tabs-primary .tab-nav { padding-top: 0; color: #686868;}
+.tabs-primary .tab-nav a { border-right: 1px solid #e5e8ed; font-size: 12px;}
+.tabs-primary .tab-nav a:last-child { border-right: none; }
+.tabs-primary .tab-nav .tab-item-active { background-color: #e0223f; color: white; }
+
 
 /* === Container ===*/
 
@@ -46,6 +53,8 @@ body {
 .tab-item { font-weight: bold;}
 .tabs-striped .tabs { border-bottom: 0;}
 .tabs-top.tabs-striped .tab-item.active { border-width: 0px 0px 4px 0px !important;}
+
+.tabs-bottom .tabs { height: 75px;}
 
 /* --- Colors --- */
 
