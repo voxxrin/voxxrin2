@@ -11,9 +11,7 @@ body {
 .has-big-subheader { padding-top: 160px;}
 .header-item { font-weight: bold !important;}
 
-.bar .button.back-button {
-    color: #911629;
-}
+.bar .button.back-button { color: white;}
 
 .back-text { display: none !important;}
 
