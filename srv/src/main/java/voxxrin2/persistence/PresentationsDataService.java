@@ -44,6 +44,10 @@ public class PresentationsDataService extends DataService<Presentation> {
 
     @Override
     public Presentation find(String query, Object... params) {
-        return USER_PRESENTATION_FUNCTOR.apply(super.find(query, params));
+        Presentation input = super.find(query, params);
+        if (input != null) {
+            return USER_PRESENTATION_FUNCTOR.apply(input);
+        }
+        return null;
     }
 }
