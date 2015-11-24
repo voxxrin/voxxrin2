@@ -1,11 +1,11 @@
 .keynote {
-    background-color: orange;
-    border: 0;
-    color: white;
+     background-color: #ff7d2d;
+     border: 0;
+     color: white;
 }
 
 .lunch {
-    background-color: darkgreen;
+    background-color: #82d31e;
     border: 0;
     color: white;
 }
@@ -23,9 +23,73 @@
 }
 
 .lightning {
-    background-color: #8dbd4f;
+    background-color: #5a41bd;
     color: white;
     border: none;
+}
+
+
+/* === Stats Status Colors === */
+
+.keynote .nb {
+    background-color: #b45d1f;
+    border: 0;
+    color: white;
+}
+
+.item-type-talk.keynote:after{ content: '\f205'; color: #d15800;}
+.keynote .nb { background-color: #d15800;}
+
+.item-type-talk.keynote {
+    background: #ff5d00;
+    background: -moz-linear-gradient(left, #ff5d00 0%, #ff7d2d 100%);
+    background: -webkit-linear-gradient(left, #ff5d00 0%,#ff7d2d 100%);
+    background: linear-gradient(to right, #ff5d00 0%, rgba(255, 129, 50, 0.80) 100%);
+    filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#ff5d00', endColorstr='#ff7d2d',GradientType=1 );
+}
+
+.item-type-talk.lunch:after{ content: '\f2a8'; color: #4e8d1a;}
+.lunch .nb { background-color: #4e8d1a;}
+
+.item-type-talk.lunch  {
+    background: #82d31e;
+    background: -moz-linear-gradient(left, #82d31e 0%, #a3d168 100%);
+    background: -webkit-linear-gradient(left, #82d31e 0%,#a3d168 100%);
+    background: linear-gradient(to right, #82d31e 0%,#a3d168 100%);
+    filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#82d31e', endColorstr='#a3d168',GradientType=1 );
+}
+
+.item-type-talk.labs:after{ content: '\f3c5'; color: #006d7c;}
+.labs .nb { background-color: #006d7c;}
+
+.item-type-talk.labs {
+    background: #0092a1;
+    background: -moz-linear-gradient(left, #0092a1 0%, #4699a0 100%);
+    background: -webkit-linear-gradient(left, #0092a1 0%,#4699a0 100%);
+    background: linear-gradient(to right, #0092a1 0%,#4699a0 100%);
+    filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#0092a1', endColorstr='#4699a0',GradientType=1 );
+}
+
+.item-type-talk.university:after{ content: '\f357'; color: #ae2828;}
+.university .nb { background-color: #ae2828;}
+
+.item-type-talk.university {
+    background: #dc2e2e;
+    background: -moz-linear-gradient(left, #dc2e2e 0%, #db5555 100%);
+    background: -webkit-linear-gradient(left, #dc2e2e 0%,#db5555 100%);
+    background: linear-gradient(to right, #dc2e2e 0%,#db5555 100%);
+    filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#dc2e2e', endColorstr='#db5555',GradientType=1 );
+}
+
+.item-type-talk.lightning:after{ content: '\f262'; color: #443688;}
+.lightning .nb { background-color: #443688;}
+
+.item-type-talk.lightning {
+    background: #5a41bd;
+    background: -moz-linear-gradient(left, #5a41bd 0%, #8173bc 100%);
+    background: -webkit-linear-gradient(left, #5a41bd 0%,#8173bc 100%);
+    background: linear-gradient(to right, #5a41bd 0%,#8173bc 100%);
+    filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#5a41bd', endColorstr='#8173bc',GradientType=1 );
 }
 
 .event .title {
@@ -39,3 +103,4 @@
 .event .sub {
     padding-left: 15px;
 }
+

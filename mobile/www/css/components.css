@@ -14,6 +14,14 @@
     background: #FFFFFF;
 }
 
+.avatar.center { margin: 0 auto;}
+
+.avatar.small-avatar {
+    width: 44px;
+    min-width: 44px !important;
+    height: 44px;
+}
+
 .avatar.with-border {
     border: 1px solid #edf0f5;
 }
@@ -84,6 +92,9 @@
     background-color: #edf0f5;
     transition: 200ms;
 }
+
+.item.clear-padding { padding: 0;}
+.item.clear-padding.item-complex .item-content { padding: 0; background: #edf0f5;}
 
 .item.activated {
     background-color: #f3dfe2;

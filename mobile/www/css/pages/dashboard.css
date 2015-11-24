@@ -1,0 +1,133 @@
+/* ======== DASHBOARD ======== */
+
+/* === Statistiques === */
+
+.content-bloc { background-color: #F8F8F8;}
+.content-bloc.no-bg { background-color: transparent;}
+
+.bloc-stats.full-width {
+    width: 100%;
+}
+
+.bloc-stats .top-part {
+    display: block;
+    padding: 5px;
+    font-weight: bold;
+    font-size: 15px;
+}
+
+.bloc-stats .top-part.bg-primary { color: white; background-color: #e0223f;}
+.bloc-stats .top-part.bg-secondary { background-color: #F8F8F8; color: #7B7B7B; padding: 10px 12px 10px 10px;}
+
+.bloc-stats .top-part.add-margin {
+    margin-bottom: 10px;
+}
+
+.bloc-stats .top-part.inline-icon i {
+    display: inline-block;
+    vertical-align: middle;
+    font-size: 16px;
+    margin-right: 10px;
+}
+
+.bloc-stats .top-part i {
+    font-size: 24px;
+}
+
+.bloc-stats .content-part  p {
+    margin: 0;
+    background-color: #f2f2f2;
+    color: #686868;
+    padding: 5px;
+}
+
+.bloc-stats .content-part .nb {
+    margin: 10px 0 5px 0;
+    color: #686868;
+}
+
+
+.list-type-talk .item-type-talk {
+    display: block;
+    height: 40px;
+}
+
+.list-type-talk .item-type-talk .top-nb,
+.list-type-talk .item-type-talk .title,
+.list-type-talk .item-type-talk .nb {
+    display: inline-block;
+}
+
+
+.list-type-talk .top-nb {
+    display: inline-block;
+    height: 100%;
+    padding: 10px 13px;
+    background: linear-gradient(132deg,  rgba(255, 255, 255, 0.2), rgba(255, 255, 255, 0.2), rgba(255, 255, 255, 0.2), rgba(255, 255, 255, 0.2), rgba(255, 255, 255, 0.2),  rgba(255, 255, 255, 0.3), rgba(255, 255, 255, 0.2), rgba(255, 255, 255, 0.2), rgba(255, 255, 255, 0.2), rgba(255, 255, 255, 0.2));
+    background-size: 1000% 1000%;
+    -webkit-animation: gradientTopAnimate 5s ease infinite;
+    -moz-animation: gradientTopAnimate 5s ease infinite;
+    animation: gradientTopAnimate 5s ease infinite;
+    color: white;
+    font-weight: bold;
+}
+.item-type-talk { position: relative;}
+.item-type-talk:first-child .top-nb { border-top: none;}
+
+.item-type-talk:after {
+    position: absolute;
+    font-family: ionicons;
+    bottom: 9px;
+    right: 85px;
+    width: 20px;
+    text-align: center;
+    font-size: 24px;
+    z-index: 0;
+}
+
+.list-type-talk .title {
+    margin: 0;
+    padding-left: 10px;
+    font-size: 14px;
+    color: white;
+}
+
+.list-type-talk .nb {
+    background-color: white;
+    color: white;
+    font-weight: bold;
+    text-align: center;
+    border-radius: 50px;
+    z-index: 1;
+}
+
+
+/* === Planning === */
+
+.title-talk {
+    padding-top: 7px;
+    overflow: hidden;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+}
+
+.title-talk h4 {
+    margin-bottom: 10px;
+}
+
+.title-talk span {
+    display: block;
+    font-size: 12px;
+}
+
+.time-talks i {
+    display: block;
+    margin-bottom: 10px;
+    color: #e0223f;
+}
+
+.time-talks {
+    padding-top: 6px;
+    text-align: center;
+    font-size: 14px;
+}

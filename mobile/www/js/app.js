@@ -101,6 +101,13 @@ angular.module('voxxrin', [
                 templateUrl: 'templates/settings.html'
             })
             ////////////////////////
+            // Dashboard (setting event)
+            ////////////////////////
+            .state('dashboard', {
+                url: '/dashboard',
+                templateUrl: 'templates/dashboard.html'
+            })
+            ////////////////////////
             // Events (list, planning, nested days)
             ////////////////////////
             .state('events', {

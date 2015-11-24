@@ -47,6 +47,13 @@
 .medium-btn  { height: 48px; width: 48px; padding: 1px 11px; font-size: 24px;}
 .large-btn  { height: 68px; width: 68px; padding: 10px 15px !important; font-size: 32px;}
 
+/* --- Size ---*/
+
+.small-hrz-btn  { height: 34px; padding: 3px 15px; font-size: 14px; border-width: 2px !important;}
+.small-hrz-btn  i { margin-right: 10px;}
+.medium-hrz-btn  { height: 48px; padding: 1px 11px; font-size: 24px;}
+.large-hrz-btn  { height: 68px;  padding: 10px 15px !important; font-size: 32px;}
+
 /* --- Space ---*/
 
 .inline.list-btn-small button { margin-left: 20px;}
@@ -76,7 +83,11 @@
 .secondary-dark-btn  { transition: 200ms; color: #686868; border: 3px solid #686868;}
 .secondary-dark-btn.activated { transition: 200ms; background:  #686868; color: #FFFFFF; border-color: #686868;}
 
+
 /* --- Specials Colors Btn ---*/
+
+.primary-hrz-btn {transition: 200ms; color: #686868; background: #edf0f5; border: none;}
+.primary-hrz-btn.activated { transition: 200ms; background: #95172a;  color: #FFFFFF;}
 
 .intro-btn { transition: 250ms; margin-right: 15px; background-color: white; color: #e0223f; border: none;}
 .intro-btn.activated { transition: 250ms; background-color: #95172a; color: white; border: none;}
