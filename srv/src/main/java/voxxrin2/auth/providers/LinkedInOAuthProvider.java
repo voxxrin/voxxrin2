@@ -31,6 +31,7 @@ public class LinkedInOAuthProvider extends OAuthProvider {
 
     private static final String PROFILE_URL = "https://api.linkedin.com/v1/people/~:(id,first-name,last-name,email-address,formatted-name,picture-url)";
     private static final String LINKEDIN_OAUTH_BASE_URL = "https://www.linkedin.com/uas/oauth2";
+    private static final String API_CALLBACK_URL = "/api/auth/provider/linkedin";
 
     private final String apiSecret;
     private final String clientId;
@@ -41,20 +42,24 @@ public class LinkedInOAuthProvider extends OAuthProvider {
                                  OAuthSettings oAuthSettings,
                                  @Named(FrontObjectMapperFactory.MAPPER_NAME) ObjectMapper mapper) {
 
-        super("linkedin", LINKEDIN_OAUTH_BASE_URL + "/authorization" + "?" + "client_id=" + oAuthSettings.oauthLinkedinClientId() +
-                "&response_type=code" +
-                "&scope=r_basicprofile%20r_emailaddress" +
-                "&state=STATE" +
-                "&redirect_uri=" + encodeUrl(serverUrl + "/api/auth/provider/linkedin"));
+        super("linkedin", buildProviderUrl(serverUrl, oAuthSettings));
 
         this.apiSecret = oAuthSettings.oauthLinkedinApiSecret();
         this.clientId = oAuthSettings.oauthLinkedinClientId();
         this.mapper = mapper;
-        this.redirectUri = serverUrl + "/api/auth/provider/linkedin";
+        this.redirectUri = serverUrl + API_CALLBACK_URL;
 
         logger.info("Registered LinkedIn provider - clientId = {}, secret = {}, callback = {}",
                 oAuthSettings.oauthLinkedinClientId(), oAuthSettings.oauthLinkedinApiSecret(),
                 redirectUri);
+    }
+
+    private static String buildProviderUrl(String serverUrl, OAuthSettings oAuthSettings) {
+        return LINKEDIN_OAUTH_BASE_URL + "/authorization" + "?" + "client_id=" + oAuthSettings.oauthLinkedinClientId() +
+                "&response_type=code" +
+                "&scope=r_basicprofile%20r_emailaddress" +
+                "&state=STATE" +
+                "&redirect_uri=" + encodeUrl(serverUrl + API_CALLBACK_URL);
     }
 
     @Override
