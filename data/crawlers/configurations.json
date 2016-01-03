@@ -1,28 +1,8 @@
 [
   {
-    "_id": "dvxfr15",
-    "externalEventRef": "dvxfr15",
-    "crawlerId": "voxxrin1",
-    "location": "Palais des Congrès, Porte Maillot, Paris",
-    "imageUrl": "http://www.devoxx.fr/wp-content/uploads/2014/02/devoxx_france_150px.png",
-    "tokens": [
-      "EMJ9DZm0ER7Ev56E0IMsN8671m9X4M0P"
-    ]
-  },
-  {
-    "_id": "dvxpl15",
-    "externalEventRef": "dvxpl15",
-    "crawlerId": "voxxrin1",
-    "location": " ICE Krakow Congress Centre",
-    "imageUrl": "https://pbs.twimg.com/profile_images/522287264051630080/ZDoFIZo_.png",
-    "tokens": [
-      "YBWOBSTHE54M3d5QG8aounW2nU0th362"
-    ]
-  },
-  {
     "_id": "bdxio15",
     "externalEventRef": "bdxio15",
-    "crawlerId": "voxxrin1",
+    "crawlerId": "bdxio",
     "location": "ENSEIRB-MATMECA - Talence",
     "imageUrl": "http://www.bdx.io/images/./2ea70105.logo_header.png",
     "tokens": [
@@ -30,19 +10,21 @@
     ]
   },
   {
-    "_id": "lkfr15",
-    "externalEventRef": "lkfr15",
-    "crawlerId": "voxxrin1",
-    "location": "MAS (Maison des Associations) - Paris",
-    "imageUrl": "http://leankanban.fr/wp-content/uploads/2015/03/lkfr-new-logo.png",
+    "_id": "dvxpl15",
+    "externalEventRef": "dvxpl15",
+    "eventName": "Devoxx Poland 2015",
+    "crawlerId": "devoxxpl",
+    "location": " ICE Krakow Congress Centre",
+    "imageUrl": "https://pbs.twimg.com/profile_images/522287264051630080/ZDoFIZo_.png",
     "tokens": [
-      "S0jXa77iEvxp95trA7GPldiRQTRKF72L"
+      "YBWOBSTHE54M3d5QG8aounW2nU0th362"
     ]
   },
   {
     "_id": "ces763",
     "externalEventRef": "ces763",
-    "crawlerId": "voxxrin1",
+    "eventName": "Codeurs en seine 2015",
+    "crawlerId": "ces",
     "location": "Université de Rouen",
     "imageUrl": "http://www.codeursenseine.com/assets/img/logo-codeurs-en-seine.png",
     "tokens": [
@@ -75,6 +57,36 @@
     "location": "ISTIC - Rennes",
     "tokens": [
       "CdxeNIjzmUK8yM7H7UK27E7gtpsI06L4"
+    ]
+  },
+  {
+    "_id": "dvxfr15",
+    "externalEventRef": "dvxfr15",
+    "crawlerId": "devoxxfr",
+    "location": "Palais des Congrès, Porte Maillot, Paris",
+    "imageUrl": "http://www.devoxx.fr/wp-content/uploads/2014/02/devoxx_france_150px.png",
+    "tokens": [
+      "EMJ9DZm0ER7Ev56E0IMsN8671m9X4M0P"
+    ]
+  },
+  {
+    "_id": "lkfr15",
+    "externalEventRef": "lkfr15",
+    "crawlerId": "voxxrin1",
+    "location": "MAS (Maison des Associations) - Paris",
+    "imageUrl": "http://leankanban.fr/wp-content/uploads/2015/03/lkfr-new-logo.png",
+    "tokens": [
+      "S0jXa77iEvxp95trA7GPldiRQTRKF72L"
+    ]
+  },
+  {
+    "_id": "dvxfr16",
+    "externalEventRef": "dvxfr16",
+    "crawlerId": "devoxxfr",
+    "location": "Palais des Congrès, Porte Maillot, Paris",
+    "imageUrl": "http://www.devoxx.fr/wp-content/uploads/2014/02/devoxx_france_150px.png",
+    "tokens": [
+      "EMJ9DZm0ER7Ev56E0IMsN8671m9X4M0P"
     ]
   }
 ]
