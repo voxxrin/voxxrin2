@@ -176,4 +176,24 @@ public class Presentation extends Referenceable implements Favoritable, Remindab
         this.remindMeCount = remindMeCount;
         return this;
     }
+
+    @Override
+    public String toString() {
+        return "Presentation{" +
+                "title='" + title + '\'' +
+                ", summary='" + summary + '\'' +
+                ", day=" + day +
+                ", event=" + event +
+                ", speakers=" + speakers +
+                ", location=" + location +
+                ", from=" + from +
+                ", to=" + to +
+                ", kind='" + kind + '\'' +
+                ", externalId='" + externalId + '\'' +
+                ", favorite=" + favorite +
+                ", reminded=" + reminded +
+                ", favoriteCount=" + favoriteCount +
+                ", remindMeCount=" + remindMeCount +
+                '}';
+    }
 }

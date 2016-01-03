@@ -94,4 +94,18 @@ public class Speaker extends Referenceable {
         this.uuid = uuid;
         return this;
     }
+
+    @Override
+    public String toString() {
+        return "Speaker{" +
+                "name='" + name + '\'' +
+                ", firstName='" + firstName + '\'' +
+                ", lastName='" + lastName + '\'' +
+                ", company='" + company + '\'' +
+                ", bio='" + bio + '\'' +
+                ", avatarUrl='" + avatarUrl + '\'' +
+                ", twitterId='" + twitterId + '\'' +
+                ", uuid='" + uuid + '\'' +
+                '}';
+    }
 }
