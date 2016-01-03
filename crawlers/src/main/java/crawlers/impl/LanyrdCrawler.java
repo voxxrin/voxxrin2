@@ -42,9 +42,11 @@ public abstract class LanyrdCrawler extends AbstractHttpCrawler {
         String eventUrl = BASE_URL + String.format("/%s/schedule/", configuration.getExternalEventRef());
         Document root = Jsoup.parse(HttpRequest.get(eventUrl).body(), Charsets.UTF_8.name());
 
-        Event event = (Event) new Event().setKey(new ObjectId().toString());
+        Event event = (Event) new Event()
+                .setName(root.select(".url.summary").text())
+                .setKey(new ObjectId().toString());
+
         CrawlingResult result = new CrawlingResult(event);
-        result.getEvent().setName(configuration.getEventName());
 
         Map<DateTime, Day> allDays = new HashMap<>();
         Map<String, Room> allRooms = new HashMap<>();
@@ -53,11 +55,14 @@ public abstract class LanyrdCrawler extends AbstractHttpCrawler {
         Elements items = root.select(".schedule-item");
         for (Element el : items) {
 
+            String detailLink = el.select("h2 > a").first().attr("href");
+
             Presentation presentation = new Presentation()
                     .setTitle(el.select("h2 > a").first().text())
                     .setSummary(el.select(".desc > p").text())
                     .setEvent(Reference.<Event>of(Type.event, event.getKey()))
-                    .setKind("Talk");
+                    .setKind("Talk")
+                    .setExternalId(detailLink);
 
             DateTime start = DATE_TIME_FORMATTER.parseDateTime(el.select(".schedule-meta .dtstart > span").attr("title"));
             DateTime end = DATE_TIME_FORMATTER.parseDateTime(el.select(".schedule-meta .dtend > span").attr("title"));
@@ -77,6 +82,9 @@ public abstract class LanyrdCrawler extends AbstractHttpCrawler {
         result.getSpeakers().addAll(allSpeakers.values());
         result.getRooms().addAll(allRooms.values());
         result.getDays().addAll(allDays.values());
+
+        // Compute some extra data
+        setEventTemporalLimits(result);
 
         return result;
     }

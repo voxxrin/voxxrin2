@@ -181,32 +181,6 @@ public abstract class DevoxxCFPCrawler extends AbstractHttpCrawler {
         });
     }
 
-    private void setEventTemporalLimits(CrawlingResult crawlingResult) {
-
-        DateTime from = null;
-        DateTime to = null;
-
-        for (Presentation presentation : crawlingResult.getPresentations()) {
-
-            if (from == null) {
-                from = presentation.getFrom();
-            }
-            if (to == null) {
-                to = presentation.getTo();
-            }
-            if (presentation.getFrom().isBefore(from)) {
-                from = presentation.getFrom();
-            }
-            if (presentation.getTo().isAfter(from)) {
-                to = presentation.getTo();
-            }
-        }
-
-        crawlingResult.getEvent()
-                .setFrom(from)
-                .setTo(to);
-    }
-
     protected static class CFPLink {
         public String href;
     }

@@ -6,6 +6,8 @@ import com.fasterxml.jackson.databind.type.CollectionType;
 import com.fasterxml.jackson.datatype.joda.JodaModule;
 import com.google.common.collect.ImmutableList;
 import crawlers.configuration.CrawlingConfiguration;
+import org.joda.time.DateTime;
+import voxxrin2.domain.Presentation;
 
 import java.io.IOException;
 import java.util.List;
@@ -59,5 +61,31 @@ public abstract class AbstractHttpCrawler {
 
     public List<String> getRoles() {
         return roles;
+    }
+
+    protected void setEventTemporalLimits(CrawlingResult crawlingResult) {
+
+        DateTime from = null;
+        DateTime to = null;
+
+        for (Presentation presentation : crawlingResult.getPresentations()) {
+
+            if (from == null) {
+                from = presentation.getFrom();
+            }
+            if (to == null) {
+                to = presentation.getTo();
+            }
+            if (presentation.getFrom().isBefore(from)) {
+                from = presentation.getFrom();
+            }
+            if (presentation.getTo().isAfter(from)) {
+                to = presentation.getTo();
+            }
+        }
+
+        crawlingResult.getEvent()
+                .setFrom(from)
+                .setTo(to);
     }
 }
