@@ -71,8 +71,8 @@
   },
   {
     "_id": "lkfr15",
-    "externalEventRef": "lkfr15",
-    "crawlerId": "voxxrin1",
+    "externalEventRef": "2015/lkfr15",
+    "crawlerId": "lkfr",
     "location": "MAS (Maison des Associations) - Paris",
     "imageUrl": "http://leankanban.fr/wp-content/uploads/2015/03/lkfr-new-logo.png",
     "tokens": [
