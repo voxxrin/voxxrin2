@@ -6,7 +6,7 @@ import restx.annotations.Param;
 import restx.annotations.RestxResource;
 import restx.factory.Component;
 import restx.jongo.JongoCollection;
-import restx.security.PermitAll;
+import restx.security.RolesAllowed;
 
 import javax.inject.Named;
 import java.util.HashMap;
@@ -26,8 +26,7 @@ public class FairyticsResource {
     }
 
     @POST("/fairytics")
-//    @RolesAllowed({"ADM", "fairytics-publisher"})
-    @PermitAll
+    @RolesAllowed({"ADM", "fairytics-publisher"})
     public void onFairyticsData(@Param(kind = Param.Kind.BODY) HashMap<String, Object> payload) {
         logger.info("Received fairytics data {}", payload);
         fairytics.get().save(payload);
