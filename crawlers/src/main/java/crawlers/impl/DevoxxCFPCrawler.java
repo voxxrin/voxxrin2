@@ -6,6 +6,7 @@ import com.github.kevinsawicki.http.HttpRequest;
 import com.google.common.base.Optional;
 import com.google.common.base.Predicate;
 import com.google.common.collect.Iterables;
+import com.mongodb.util.JSONParseException;
 import crawlers.AbstractHttpCrawler;
 import crawlers.CrawlingResult;
 import crawlers.configuration.CrawlingConfiguration;
@@ -98,8 +99,12 @@ public abstract class DevoxxCFPCrawler extends AbstractHttpCrawler {
 
     protected void crawlSchedules(CFPLinks cfpDayLink, CrawlingResult result) throws IOException {
         for (CFPLink dayLink : cfpDayLink.links) {
-            CFPDay cfpDay = MAPPER.readValue(HttpRequest.get(dayLink.href).body(), CFPDay.class);
-            crawlDay(result, dayLink, cfpDay);
+            try {
+                CFPDay cfpDay = MAPPER.readValue(HttpRequest.get(dayLink.href).body(), CFPDay.class);
+                crawlDay(result, dayLink, cfpDay);
+            } catch (Exception e) {
+                logger.warn("Unable to retrieve info about day from {}", dayLink.href);
+            }
         }
     }
 

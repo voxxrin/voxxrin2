@@ -12,10 +12,10 @@ import voxxrin2.domain.Room;
 @Component
 public class BdxIOCFPCrawler extends DevoxxCFPCrawler {
 
-    private static final String BDXIO_CFP_BASE_URL = "http://cfp.bdx.io/api/conferences/";
+    private static final String BASE_URL = "http://cfp.bdx.io/api/conferences/";
 
     public BdxIOCFPCrawler() {
-        super("bdxio", ImmutableList.of("bdxio-publisher"), BDXIO_CFP_BASE_URL);
+        super("bdxio", ImmutableList.of("bdxio-publisher"), BASE_URL);
     }
 
     @Override
