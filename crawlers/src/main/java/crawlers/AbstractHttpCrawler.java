@@ -12,7 +12,9 @@ import java.util.List;
 
 public abstract class AbstractHttpCrawler {
 
-    { configureMapper(MAPPER); }
+    {
+        configureMapper(MAPPER);
+    }
 
     protected static final ObjectMapper MAPPER = new ObjectMapper();
 
@@ -35,6 +37,9 @@ public abstract class AbstractHttpCrawler {
     public abstract CrawlingResult crawl(CrawlingConfiguration configuration) throws IOException;
 
     public CrawlingResult setup(CrawlingResult result, CrawlingConfiguration configuration) {
+        if (configuration.getEventName() != null) {
+            result.getEvent().setName(configuration.getEventName());
+        }
         result.getEvent().setEventId(configuration.getEventId());
         return result;
     }

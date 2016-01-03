@@ -21,6 +21,12 @@ public class CrawlingConfiguration {
     private String externalEventRef;
 
     /**
+     * Overriden event name (if necessary)
+     */
+
+    private String eventName;
+
+    /**
      * Crawler used to extract data from external systems
      */
 
@@ -46,6 +52,10 @@ public class CrawlingConfiguration {
 
     public String getExternalEventRef() {
         return externalEventRef;
+    }
+
+    public String getEventName() {
+        return eventName;
     }
 
     public String getCrawlerId() {
@@ -81,6 +91,11 @@ public class CrawlingConfiguration {
 
     public CrawlingConfiguration setExternalEventRef(final String externalEventRef) {
         this.externalEventRef = externalEventRef;
+        return this;
+    }
+
+    public CrawlingConfiguration setEventName(final String eventName) {
+        this.eventName = eventName;
         return this;
     }
 
