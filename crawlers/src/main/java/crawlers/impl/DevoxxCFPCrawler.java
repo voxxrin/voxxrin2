@@ -6,7 +6,6 @@ import com.github.kevinsawicki.http.HttpRequest;
 import com.google.common.base.Optional;
 import com.google.common.base.Predicate;
 import com.google.common.collect.Iterables;
-import com.mongodb.util.JSONParseException;
 import crawlers.AbstractHttpCrawler;
 import crawlers.CrawlingResult;
 import crawlers.configuration.CrawlingConfiguration;
@@ -134,7 +133,20 @@ public abstract class DevoxxCFPCrawler extends AbstractHttpCrawler {
                     String href = cfpSpeaker.link.href;
                     final String uuid = href.substring(href.lastIndexOf("/") + 1);
                     Optional<Speaker> speaker = findSpeaker(result, uuid);
-                    if (speaker.isPresent()) {
+                    if (!speaker.isPresent()) {
+                        // Sometime, speaker has not been registered into CFP speakers repository
+                        // and are referenced ONLY from a slot => handling this case by retrieving "manualy"
+                        // the speaker following HREF
+                        logger.warn("Speaker {} not registered, trying to follow the link.", cfpSpeaker.link.href);
+                        try {
+                            CFPSpeaker speakerToRegister = MAPPER.readValue(HttpRequest.get(href).body(), CFPSpeaker.class);
+                            Speaker stdSpeaker = speakerToRegister.toStdSpeaker();
+                            result.getSpeakers().add(stdSpeaker);
+                            speakers.add(Reference.<Speaker>of(Type.speaker, stdSpeaker.getKey()));
+                        } catch (IOException e) {
+                            logger.warn("Definitely the speaker {} has not been found... aborting.", cfpSpeaker.link.href);
+                        }
+                    } else {
                         speakers.add(Reference.<Speaker>of(Type.speaker, speaker.get().getKey()));
                     }
                 }
