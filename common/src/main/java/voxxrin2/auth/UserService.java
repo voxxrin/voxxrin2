@@ -4,7 +4,6 @@ import com.google.common.base.Optional;
 import restx.factory.Component;
 import restx.security.CredentialsStrategy;
 import restx.security.StdUserService;
-import voxxrin2.auth.db.DBUserRepository;
 import voxxrin2.domain.User;
 
 import javax.inject.Named;

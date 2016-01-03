@@ -3,13 +3,13 @@ package crawlers.web;
 import com.google.common.base.Charsets;
 import com.google.common.base.Predicates;
 import com.google.common.collect.ImmutableList;
-import restx.config.ConfigLoader;
-import restx.config.ConfigSupplier;
 import restx.factory.Module;
 import restx.factory.Provides;
 import restx.security.CORSAuthorizer;
 import restx.security.SignatureKey;
 import restx.security.StdCORSAuthorizer;
+
+import javax.inject.Named;
 
 @Module
 public class AppModule {

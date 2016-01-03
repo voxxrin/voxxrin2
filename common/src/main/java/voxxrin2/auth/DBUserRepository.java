@@ -1,4 +1,4 @@
-package voxxrin2.auth.db;
+package voxxrin2.auth;
 
 import restx.factory.Component;
 import restx.jongo.JongoCollection;
