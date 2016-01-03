@@ -135,16 +135,11 @@ public abstract class DevoxxCFPCrawler extends AbstractHttpCrawler {
                     Optional<Speaker> speaker = findSpeaker(result, uuid);
                     if (!speaker.isPresent()) {
                         // Sometime, speaker has not been registered into CFP speakers repository
-                        // and are referenced ONLY from a slot => handling this case by retrieving "manualy"
+                        // and are referenced ONLY from a slot => handling this case by retrieving "manually"
                         // the speaker following HREF
-                        logger.warn("Speaker {} not registered, trying to follow the link.", cfpSpeaker.link.href);
-                        try {
-                            CFPSpeaker speakerToRegister = MAPPER.readValue(HttpRequest.get(href).body(), CFPSpeaker.class);
-                            Speaker stdSpeaker = speakerToRegister.toStdSpeaker();
-                            result.getSpeakers().add(stdSpeaker);
-                            speakers.add(Reference.<Speaker>of(Type.speaker, stdSpeaker.getKey()));
-                        } catch (IOException e) {
-                            logger.warn("Definitely the speaker {} has not been found... aborting.", cfpSpeaker.link.href);
+                        Speaker registeredSpeaker = addUnregisteredSpeaker(result, speakers, cfpSpeaker, href);
+                        if (registeredSpeaker != null) {
+                            speakers.add(Reference.<Speaker>of(Type.speaker, registeredSpeaker.getKey()));
                         }
                     } else {
                         speakers.add(Reference.<Speaker>of(Type.speaker, speaker.get().getKey()));
@@ -153,6 +148,19 @@ public abstract class DevoxxCFPCrawler extends AbstractHttpCrawler {
             }
             result.getPresentations().add(slot.toStdPresentation(currentDay, result.getEvent(), room.get(), speakers));
         }
+    }
+
+    private Speaker addUnregisteredSpeaker(CrawlingResult result, List<Reference<Speaker>> speakers, CFPTalkSpeaker cfpSpeaker, String href) {
+        logger.warn("Speaker {} not registered, trying to follow the link.", cfpSpeaker.link.href);
+        try {
+            CFPSpeaker speakerToRegister = MAPPER.readValue(HttpRequest.get(href).body(), CFPSpeaker.class);
+            Speaker stdSpeaker = speakerToRegister.toStdSpeaker();
+            result.getSpeakers().add(stdSpeaker);
+            return stdSpeaker;
+        } catch (IOException e) {
+            logger.warn("Definitely the speaker {} has not been found... aborting.", cfpSpeaker.link.href);
+        }
+        return null;
     }
 
     private Optional<Speaker> findSpeaker(CrawlingResult result, final String uuid) {
