@@ -58,6 +58,7 @@ public class CrawlingRoute extends StdRoute {
 
         CrawlingResult result = null;
         try {
+            logger.info("Start crawling event {} with crawler {}. Token used {}", eventId, crawler.getId(), req.getQueryParam("token").get());
             result = crawler.setup(crawler.crawl(configuration), configuration);
         } catch (IOException e) {
             logger.error("Error occured during crawling (eventId = " + eventId + ")", e);
