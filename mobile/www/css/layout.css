@@ -7,7 +7,7 @@ body {
 /* === Header === */
 .bar-header {border: none;}
 .fix-has-subheader { padding-top: 7px;}
-.has-subheader { padding-top: 95px;}
+.has-subheader { top: 88px;}
 .has-big-subheader { padding-top: 160px;}
 .header-item { font-weight: bold !important;}
 
