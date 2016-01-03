@@ -25,7 +25,7 @@ public class DaysResource {
     @GET("/days")
     @PermitAll
     public Iterable<Day> getDays() {
-        return daysDataService.findAll();
+        return daysDataService.findAllAndSort("{ date : 1 }");
     }
 
     @GET("/days/{id}")
@@ -43,6 +43,6 @@ public class DaysResource {
     @GET("/events/{eventId}/days")
     @PermitAll
     public Iterable<Day> getEventDays(String eventId) {
-        return daysDataService.findAll("{ event: # }", ElementURI.of(Type.event, eventId).toString());
+        return daysDataService.findAllAndSort("{ event: # }", "{ date : 1 }", ElementURI.of(Type.event, eventId).toString());
     }
 }
