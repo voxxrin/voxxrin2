@@ -1,15 +1,15 @@
 angular.module('voxxrin', [
-    'ionic',
-    'ionic.service.core',
-    'ionic.service.analytics',
-    'ionic.service.push',
-    'ngCordova',
-    'ngResource',
-    'ionic.rating',
-    'ion-sticky',
-    'ng-token-auth',
-    'ngIOS9UIWebViewPatch'
-])
+        'ionic',
+        'ionic.service.core',
+        'ionic.service.analytics',
+        'ionic.service.push',
+        'ngCordova',
+        'ngResource',
+        'ionic.rating',
+        'ion-sticky',
+        'ng-token-auth',
+        'ngIOS9UIWebViewPatch'
+    ])
     .run(function ($rootScope, $ionicPlatform, $ionicLoading, $ionicAnalytics) {
 
         $ionicPlatform.ready(function () {
