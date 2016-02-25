@@ -17,9 +17,9 @@ angular.module('voxxrin')
             return resource;
         };
 
-        var presentation = withPrototype($resource(configuration.backendUrl + '/api/presentations/:id'));
-        var dayPresentations = withPrototype($resource(configuration.backendUrl + '/api/days/:dayId/presentations'));
-        var eventPresentations = withPrototype($resource(configuration.backendUrl + '/api/events/:eventId/presentations'));
+        var presentation = withPrototype($resource(configuration.backendUrl() + '/api/presentations/:id'));
+        var dayPresentations = withPrototype($resource(configuration.backendUrl() + '/api/days/:dayId/presentations'));
+        var eventPresentations = withPrototype($resource(configuration.backendUrl() + '/api/events/:eventId/presentations'));
 
         return angular.extend(presentation, {
             fromDay: function (dayId) {

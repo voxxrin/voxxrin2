@@ -2,7 +2,7 @@ angular.module('voxxrin')
     .config(function ($authProvider, $injector, configuration) {
 
         $authProvider.configure({
-            apiUrl: configuration.backendUrl + '/api',
+            apiUrl: configuration.backendUrl() + '/api',
             storage: 'localStorage',
             emailRegistrationPath: '/users',
             tokenValidationPath: '/auth/validate',

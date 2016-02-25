@@ -12,17 +12,13 @@ angular.module('voxxrin')
                 uuid: null
             },
             Session: Session,
-            toggleLeft: function() {
+            toggleLeft: function () {
                 $ionicSideMenuDelegate.toggleLeft();
             },
             logout: function () {
                 $auth.signOut();
             }
         });
-
-        document.addEventListener("deviceready", function () {
-            $scope.platform.uuid = device.uuid;
-        }, false);
 
         $auth.validateUser();
     });
