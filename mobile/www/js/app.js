@@ -37,27 +37,6 @@ angular.module('voxxrin', [
         });
     })
 
-    .run(function ($rootScope, $ionicPush, $log) {
-
-        $rootScope.$on('$cordovaPush:tokenReceived', function (event, data) {
-            $log.info('Ionic Push: Got token ', data.token, data.platform);
-            $rootScope.pushToken = data.token;
-        });
-
-        $rootScope.$on('ionicUser:identified', function () {
-            $ionicPush.register({
-                canShowAlert: true,
-                canSetBadge: true,
-                canPlaySound: true,
-                canRunActionsOnWake: true,
-                onNotification: function (notification) {
-                    console.log(notification);
-                    return true;
-                }
-            });
-        });
-    })
-
     .run(function ($rootScope, $state, $localstorage) {
 
         // Manage intro
@@ -75,6 +54,41 @@ angular.module('voxxrin', [
             }
         });
 
+    })
+
+    .run(function ($rootScope, $log, $ionicPush) {
+
+        $rootScope.$on('ionicUser:identified', function (evt, ioUser) {
+
+            $ionicPush.init({
+                pluginConfig: {
+                    ios: {
+                        badge: true,
+                        sound: true
+                    },
+                    android: {
+                        icon: 'icon',
+                        forceShow: true
+                    }
+                },
+                onNotification: function (notification) {
+                    var payload = notification.payload;
+                    console.log(notification, payload);
+                },
+                onRegister: function (data) {
+                    if (ioUser) {
+                        $ionicPush.addTokenToUser(ioUser);
+                        if (ioUser.id) {
+                            console.log('saving user token');
+                            ioUser.save();
+                        }
+                    }
+                    $log.info('Registered PUSH token', data.token);
+                }
+            });
+
+            $ionicPush.register();
+        });
     })
 
     .config(function ($httpProvider) {

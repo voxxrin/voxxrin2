@@ -34,7 +34,8 @@
       "locator": "https://github.com/jrstarke/webview-debug.git",
       "id": "com.jamiestarke.webviewdebug"
     },
-    "cordova-plugin-inappbrowser"
+    "cordova-plugin-inappbrowser",
+    "phonegap-plugin-push"
   ],
   "cordovaPlatforms": [
     "ios",
