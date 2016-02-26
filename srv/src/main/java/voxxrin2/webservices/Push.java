@@ -80,15 +80,14 @@ public class Push {
 
         if (userIds.size() > 0) {
 
-            String skrinkTitle = presentation.getTitle().substring(0, Math.min(presentation.getTitle().length(), 25));
-            String msg = String.format("Une vidéo concernant le talk '%s' sur lequel vous vous êtes inscrit vient d'être publiée !", skrinkTitle);
+            String msg = String.format("Une vidéo concernant le talk '%s' sur lequel vous vous êtes inscrit vient d'être publiée !", presentation.getTitle());
 
             PushNotification notification = PushNotification.fromUserIds(msg, userIds, Optional.<DateTime>absent());
             notification.addPayloadContent("contentUrl", contentUrl);
             PushStatus status = send(notification);
 
             logger.info("Push notification sent to device userIds '{}' (count = {}) concerning favorited presentation '{}'. " +
-                    "Status = (code: {}, payload: {})", userIds, userIds.size(), skrinkTitle, status.getCode(), status.getPayload());
+                    "Status = (code: {}, payload: {})", userIds, userIds.size(), presentation.getTitle(), status.getCode(), status.getPayload());
 
             return status;
         }
