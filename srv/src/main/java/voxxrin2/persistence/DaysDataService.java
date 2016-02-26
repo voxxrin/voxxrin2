@@ -3,7 +3,6 @@ package voxxrin2.persistence;
 import restx.factory.Component;
 import restx.jongo.JongoCollection;
 import voxxrin2.domain.Day;
-import voxxrin2.domain.Event;
 
 import javax.inject.Named;
 

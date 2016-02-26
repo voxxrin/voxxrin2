@@ -11,8 +11,6 @@ import restx.security.CORSAuthorizer;
 import restx.security.SignatureKey;
 import restx.security.StdCORSAuthorizer;
 
-import javax.inject.Named;
-
 @Module
 public class AppModule {
     @Provides

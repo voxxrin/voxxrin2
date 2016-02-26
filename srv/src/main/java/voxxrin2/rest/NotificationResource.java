@@ -12,7 +12,6 @@ import restx.security.RolesAllowed;
 import voxxrin2.domain.Presentation;
 import voxxrin2.domain.Subscription;
 import voxxrin2.domain.Type;
-import voxxrin2.domain.technical.PushStatus;
 import voxxrin2.domain.technical.Reference;
 import voxxrin2.utils.Utils;
 import voxxrin2.webservices.Push;
@@ -35,7 +34,7 @@ public class NotificationResource {
     @PUT("/notify/favorite/{presentationId}")
     @RolesAllowed({"ADM", "restx-admin", "event-admin"})
     public Integer notifySubscribedUsers(@Param(kind = Param.Kind.PATH) String presentationId,
-                                            @Param(kind = Param.Kind.QUERY) String contentUrl) {
+                                         @Param(kind = Param.Kind.QUERY) String contentUrl) {
 
         Presentation presentation = Reference.<Presentation>of(Type.presentation, presentationId).get();
         Iterable<Subscription> subs = reminders.get()

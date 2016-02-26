@@ -15,7 +15,6 @@ import voxxrin2.auth.AuthModule;
 import voxxrin2.domain.Presentation;
 import voxxrin2.domain.Rating;
 import voxxrin2.domain.Type;
-import voxxrin2.domain.technical.ElementURI;
 import voxxrin2.domain.technical.Reference;
 
 import javax.inject.Named;

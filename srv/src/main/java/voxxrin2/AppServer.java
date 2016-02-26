@@ -1,14 +1,12 @@
 package voxxrin2;
 
 import com.google.common.base.Optional;
-import restx.server.WebServer;
 import restx.server.JettyWebServer;
+import restx.server.WebServer;
 
 /**
  * This class can be used to run the app.
- *
  * Alternatively, you can deploy the app as a war in a regular container like tomcat or jetty.
- *
  * Reading the port from system env PORT makes it compatible with heroku.
  */
 public class AppServer {
