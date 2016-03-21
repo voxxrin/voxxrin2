@@ -60,6 +60,16 @@
     ]
   },
   {
+    "_id": "bzh16",
+    "externalEventRef": "bzh16",
+    "crawlerId": "voxxrin1",
+    "imageUrl": "http://www.breizhcamp.org/img/logo.png",
+    "location": "Université de Rennes",
+    "tokens": [
+      "CdxeNIjzmUK8yM7H7UK27E7gtpsI06L4"
+    ]
+  },
+  {
     "_id": "dvxfr15",
     "externalEventRef": "dvxfr15",
     "crawlerId": "devoxxfr",
