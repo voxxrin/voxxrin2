@@ -18,6 +18,30 @@
 
             <div class="row">
 
+                <div class="col col-50 bloc-stats text-center">
+                    <div class="content-bloc">
+                        <span class="top-part bg-primary text-center"><i class="ion-mic-c"></i></span>
+                        <span class="content-part">
+                            <h2 class="nb">{{ stats.talksCount }}</h2>
+                            <p>Nombre de talks</p>
+                        </span>
+                    </div>
+                </div>
+
+                <div class="col col-50 bloc-stats text-center">
+                    <div class="content-bloc">
+                        <span class="top-part bg-primary text-center"><i class="ion-person"></i></span>
+                        <span class="content-part">
+                            <h2 class="nb">{{ stats.speakersCount }}</h2>
+                            <p>Nombre de speakers</p>
+                        </span>
+                    </div>
+                </div>
+
+            </div>
+
+            <div class="row">
+
                 <div class="col col-33 bloc-stats text-center">
                     <div class="content-bloc">
                         <span class="top-part bg-primary text-center"><i class="ion-star"></i></span>
@@ -55,7 +79,7 @@
                     <div class="content-bloc">
                         <span class="top-part bg-primary text-center"><i class="ion-podium"></i></span>
                         <span class="content-part">
-                            <h2 class="nb">{{ stats.topFavoritedPresentation ? stats.topFavoritedPresentation.title : '-' }})</h2>
+                            <h2 class="nb">{{ stats.topFavoritedPresentation ? stats.topFavoritedPresentation.title : '-' }}</h2>
                             <p>Talk le plus favorisé</p>
                         </span>
                     </div>
@@ -69,7 +93,7 @@
                     <div class="content-bloc">
                         <span class="top-part bg-primary text-center"><i class="ion-podium"></i></span>
                         <span class="content-part">
-                            <h2 class="nb">{{ stats.topRatedPresentation ? stats.topRatedPresentation.title : '-' }})</h2>
+                            <h2 class="nb">{{ stats.topRatedPresentation ? stats.topRatedPresentation.title : '-' }}</h2>
                             <p>Talk le mieux noté</p>
                         </span>
                     </div>
