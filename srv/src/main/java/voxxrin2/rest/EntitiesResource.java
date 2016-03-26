@@ -11,11 +11,11 @@ import java.util.Set;
 
 @Component
 @RestxResource
-public class EntityResource {
+public class EntitiesResource {
 
     private final Set<DataService> dataServices;
 
-    public EntityResource(Set<DataService> dataServices) {
+    public EntitiesResource(Set<DataService> dataServices) {
         this.dataServices = dataServices;
     }
 

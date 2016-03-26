@@ -11,11 +11,11 @@ import voxxrin2.persistence.RatingService;
 
 @Component
 @RestxResource
-public class RatingResource {
+public class RatingsResource {
 
     private final RatingService ratingService;
 
-    public RatingResource(RatingService ratingService) {
+    public RatingsResource(RatingService ratingService) {
         this.ratingService = ratingService;
     }
 

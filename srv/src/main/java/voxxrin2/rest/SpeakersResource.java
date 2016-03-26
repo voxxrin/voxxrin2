@@ -15,11 +15,11 @@ import java.util.List;
 
 @Component
 @RestxResource
-public class SpeakerResource {
+public class SpeakersResource {
 
     private final SpeakersDataService speakersDataService;
 
-    public SpeakerResource(SpeakersDataService speakersDataService) {
+    public SpeakersResource(SpeakersDataService speakersDataService) {
         this.speakersDataService = speakersDataService;
     }
 

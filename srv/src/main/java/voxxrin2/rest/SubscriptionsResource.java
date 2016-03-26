@@ -11,12 +11,12 @@ import voxxrin2.persistence.RemindersService;
 
 @Component
 @RestxResource
-public class SubscriptionResource {
+public class SubscriptionsResource {
 
     private final RemindersService remindersService;
     private final FavoritesService favoritesService;
 
-    public SubscriptionResource(RemindersService remindersService, FavoritesService favoritesService) {
+    public SubscriptionsResource(RemindersService remindersService, FavoritesService favoritesService) {
         this.remindersService = remindersService;
         this.favoritesService = favoritesService;
     }
