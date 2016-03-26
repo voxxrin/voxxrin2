@@ -4,12 +4,18 @@ public class AttachedContent {
 
     private String url;
 
+    private String description;
+
     private String userId;
 
     private String mimeType;
 
     public String getUrl() {
         return url;
+    }
+
+    public String getDescription() {
+        return description;
     }
 
     public String getUserId() {
@@ -34,4 +40,11 @@ public class AttachedContent {
         this.url = url;
         return this;
     }
+
+    public AttachedContent setDescription(final String description) {
+        this.description = description;
+        return this;
+    }
+
+
 }

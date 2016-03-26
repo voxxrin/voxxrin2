@@ -78,50 +78,22 @@
                             <i class="ion-plus-round"></i>
                         </button>
                     </div>
-                    <!-- END Ratings -->
+                    <span class="sep-hrz secondary-sep"></span>
 
-                    <!-- Followers -->
-                    <!-- TODO No finish skin carousell!-->
-                    <!--<h2 class="font-bold primary-title">0 Assiste à la presentation</h2>-->
-                    <!--<span class="sep-hrz secondary-sep"></span>-->
-                    <!--<ul rn-carousel class="list-followers image">-->
-                        <!--<li>slide #1</li>-->
-                        <!--<li>slide #2</li>-->
-                        <!--<li>slide #3</li>-->
-                    <!--</ul>-->
-                    <!-- END Followers -->
-                </div>
-
-                <!-- END Comment !-->
-                <!-- <div class="speaker" ng-repeat="speaker in presentation.speakers">
-                    <div class="item item-avatar item-text-wrap">
-                        <img style="width: 100px; height: auto;" ng-src="{{ speaker.avatarUrl }}">
-                        <h2>{{ speaker.firstName }} {{ speaker.lastName }}</h2>
-                        <p>{{ speaker.company }}</p>
-                        <p>{{ speaker.twitterId | twitterId }}</p>
-                        <p ng-bind-html="speaker.bio | trustedHtml"></p>
+                    <!-- Attached contents -->
+                    <div ng-if="fullPresentation.releasedContents && fullPresentation.releasedContents.length > 0">
+                        <h2 class="font-bold primary-title">Contenus associés</h2>
+                            <div class="list">
+                                <a class="item item-avatar item-icon-left" href="{{ content.url }}" target="_blank" ng-repeat="content in fullPresentation.releasedContents">
+                                    <img ng-src="img/content.png">
+                                    <h2 style="padding-left: 70px">
+                                        Contenu
+                                    </h2>
+                                    <p>{{ content.description }}</p>
+                                </a>
+                            </div>
                     </div>
                 </div>
-
-                <div class="item tabs tabs-secondary tabs-icon-left">
-                    <a class="tab-item">
-                        <i class="icon ion-star"></i>
-                        Star
-                    </a>
-                    <a class="tab-item">
-                        <i class="icon ion-chatbox"></i>
-                        Comment
-                    </a>
-                    <a class="tab-item">
-                        <i class="icon ion-share"></i>
-                        Share
-                    </a>
-                    <a class="tab-item" ng-click="openReminder(presentation)">
-                        <i class="icon ion-ios-videocam"></i>
-                        Remind me
-                    </a>
-                </div> !-->
-                <!-- END Comment !-->
 
             </div>
 

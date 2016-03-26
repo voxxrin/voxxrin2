@@ -52,6 +52,7 @@ public class Presentation extends Referenceable implements Favoritable, Remindab
      * External contents
      */
 
+    @JsonView({Views.Private.class, voxxrin2.serialization.Views.Presentations.Details.class})
     private List<AttachedContent> releasedContents;
 
     public String getTitle() {
