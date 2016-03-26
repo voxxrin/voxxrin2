@@ -2,7 +2,7 @@ package voxxrin2.domain;
 
 import org.joda.time.DateTime;
 
-public class Subscription {
+public class Subscription implements HasPresentationRef<Subscription> {
 
     private String presentationRef;
 
@@ -10,6 +10,7 @@ public class Subscription {
 
     private DateTime dateTime = DateTime.now();
 
+    @Override
     public String getPresentationRef() {
         return presentationRef;
     }
@@ -18,6 +19,7 @@ public class Subscription {
         return userId;
     }
 
+    @Override
     public Subscription setPresentationRef(final String presentationRef) {
         this.presentationRef = presentationRef;
         return this;

@@ -8,8 +8,10 @@ import restx.jongo.JongoCollection;
 import voxxrin2.auth.AuthModule;
 import voxxrin2.domain.Presentation;
 import voxxrin2.domain.User;
+import voxxrin2.utils.PresentationRef;
 
 import javax.inject.Named;
+import java.util.regex.Matcher;
 
 @Component
 public class PresentationsDataService extends DataService<Presentation> {
@@ -51,5 +53,18 @@ public class PresentationsDataService extends DataService<Presentation> {
             return USER_PRESENTATION_FUNCTOR.apply(input);
         }
         return null;
+    }
+
+    public Presentation findByRef(String presentationRef) {
+
+        Matcher matcher = PresentationRef.PATTERN.matcher(presentationRef);
+        if (!matcher.matches()) {
+            return null;
+        }
+
+        String eventId = matcher.group(1);
+        String externalId = matcher.group(2);
+
+        return find("{ eventId: #, externalId: # }", eventId, externalId);
     }
 }

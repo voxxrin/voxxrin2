@@ -6,7 +6,7 @@ import restx.jongo.JongoCollection;
 import voxxrin2.auth.AuthModule;
 import voxxrin2.domain.*;
 import voxxrin2.domain.technical.Reference;
-import voxxrin2.utils.Utils;
+import voxxrin2.utils.PresentationRef;
 
 public abstract class SubscriptionService {
 
@@ -17,12 +17,12 @@ public abstract class SubscriptionService {
     protected boolean isSubscribed(JongoCollection collection, User user, Presentation presentation) {
         return collection
                 .get()
-                .count("{ presentationRef: #, userId: # }", Utils.buildPresentationBusinessRef(presentation), user.getId()) > 0;
+                .count("{ presentationRef: #, userId: # }", PresentationRef.buildPresentationBusinessRef(presentation), user.getId()) > 0;
     }
 
     protected Iterable<Subscription> getSubscriptions(JongoCollection collection, Presentation presentation) {
         return collection.get()
-                .find("{ presentationRef: # }", Utils.buildPresentationBusinessRef(presentation))
+                .find("{ presentationRef: # }", PresentationRef.buildPresentationBusinessRef(presentation))
                 .as(Subscription.class);
     }
 
@@ -43,7 +43,7 @@ public abstract class SubscriptionService {
         User user = AuthModule.currentUser().get();
 
         Presentation presentation = Reference.<Presentation>of(Type.presentation, presentationId).get();
-        String presentationRef = Utils.buildPresentationBusinessRef(presentation);
+        String presentationRef = PresentationRef.buildPresentationBusinessRef(presentation);
 
         Subscription subscription = new Subscription()
                 .setPresentationRef(presentationRef)
@@ -61,7 +61,7 @@ public abstract class SubscriptionService {
     protected Subscription deleteSubscription(JongoCollection collection, String presentationId) {
 
         User user = AuthModule.currentUser().get();
-        String presentationRef = Utils.getPresentationRef(presentationId);
+        String presentationRef = PresentationRef.getPresentationRef(presentationId);
 
         Subscription existingSubscription = collection
                 .get()

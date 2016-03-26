@@ -2,7 +2,7 @@ package voxxrin2.domain;
 
 import org.joda.time.DateTime;
 
-public class Rating {
+public class Rating implements HasPresentationRef<Rating> {
 
     private String userId;
 
@@ -12,6 +12,7 @@ public class Rating {
 
     private DateTime dateTime;
 
+    @Override
     public String getPresentationRef() {
         return presentationRef;
     }
@@ -33,6 +34,7 @@ public class Rating {
         return dateTime;
     }
 
+    @Override
     public Rating setPresentationRef(final String presentationRef) {
         this.presentationRef = presentationRef;
         return this;

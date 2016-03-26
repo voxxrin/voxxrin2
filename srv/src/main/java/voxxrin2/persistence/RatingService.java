@@ -11,7 +11,7 @@ import voxxrin2.domain.Presentation;
 import voxxrin2.domain.Rating;
 import voxxrin2.domain.Type;
 import voxxrin2.domain.technical.Reference;
-import voxxrin2.utils.Utils;
+import voxxrin2.utils.PresentationRef;
 
 import javax.inject.Named;
 
@@ -24,10 +24,16 @@ public class RatingService {
         this.ratings = ratings;
     }
 
-    public Iterable<Rating> findAll(String presentationId) {
+    public Iterable<Rating> findPresentationRatings(String presentationId) {
         Presentation presentation = Reference.<Presentation>of(Type.presentation, presentationId).get();
         return ratings.get()
-                .find("{ presentationRef: # }", Utils.buildPresentationBusinessRef(presentation))
+                .find("{ presentationRef: # }", PresentationRef.buildPresentationBusinessRef(presentation))
+                .as(Rating.class);
+    }
+
+    public Iterable<Rating> findEventRatings(String eventId) {
+        return ratings.get()
+                .find("{ presentationRef: { $regex: # } }", String.format("%s:.*", eventId))
                 .as(Rating.class);
     }
 
@@ -44,7 +50,7 @@ public class RatingService {
 
         String userId = AuthModule.currentUser().get().getId();
 
-        String presentationRef = Utils.buildPresentationBusinessRef(presentation.get());
+        String presentationRef = PresentationRef.buildPresentationBusinessRef(presentation.get());
         Rating rating = new Rating()
                 .setDateTime(DateTime.now())
                 .setPresentationRef(presentationRef)
