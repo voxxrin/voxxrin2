@@ -66,7 +66,7 @@
                     <div class="content-bloc">
                         <span class="top-part bg-primary text-center"><i class="ion-speedometer"></i></span>
                         <span class="content-part">
-                            <h2 class="nb">{{ stats.ratingsAvg || 0 }} ({{ stats.ratingsCount || 0 }})</h2>
+                            <h2 class="nb">{{ stats.ratingsAvg || 0 | number: 1}} ({{ stats.ratingsCount || 0 }})</h2>
                             <p>Note moyenne</p>
                         </span>
                     </div>
@@ -79,8 +79,7 @@
                     <div class="content-bloc">
                         <span class="top-part bg-primary text-center"><i class="ion-podium"></i></span>
                         <span class="content-part">
-                            <h2 class="nb">{{ stats.topFavoritedPresentation ? stats.topFavoritedPresentation.title :
-                                '-' }}</h2>
+                            <h2 class="nb">{{ stats.topFavoritedPresentation ? stats.topFavoritedPresentation.title : '-' }}</h2>
                             <p>Talk le plus favorisé</p>
                         </span>
                     </div>
@@ -94,8 +93,7 @@
                     <div class="content-bloc">
                         <span class="top-part bg-primary text-center"><i class="ion-podium"></i></span>
                         <span class="content-part">
-                            <h2 class="nb">{{ stats.topRatedPresentation ? stats.topRatedPresentation.title : '-'
-                                }}</h2>
+                            <h2 class="nb">{{ stats.topRatedPresentation ? stats.topRatedPresentation.title : '-' }}</h2>
                             <p>Talk le mieux noté</p>
                         </span>
                     </div>
