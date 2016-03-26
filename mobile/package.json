@@ -27,10 +27,6 @@
     "cordova-plugin-splashscreen",
     "com.ionic.keyboard",
     {
-      "locator": "https://github.com/phonegap-build/PushPlugin.git",
-      "id": "com.phonegap.plugins.PushPlugin"
-    },
-    {
       "locator": "https://github.com/jrstarke/webview-debug.git",
       "id": "com.jamiestarke.webviewdebug"
     },
