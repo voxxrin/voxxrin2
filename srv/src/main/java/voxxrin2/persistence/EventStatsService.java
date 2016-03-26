@@ -1,13 +1,15 @@
 package voxxrin2.persistence;
 
 import com.google.common.base.Function;
+import com.google.common.collect.FluentIterable;
 import com.google.common.collect.ImmutableListMultimap;
 import com.google.common.collect.Lists;
 import com.google.common.collect.Multimaps;
-import org.bson.types.ObjectId;
+import com.google.common.math.DoubleMath;
 import restx.factory.Component;
 import voxxrin2.domain.*;
 
+import java.math.BigDecimal;
 import java.util.Collection;
 import java.util.List;
 import java.util.Map;
@@ -23,29 +25,21 @@ public class EventStatsService {
     };
 
     private final PresentationsDataService presentationsDataService;
-    private final EventsDataService eventsDataService;
     private final RemindersService remindersService;
     private final FavoritesService favoritesService;
     private final RatingService ratingService;
 
     public EventStatsService(PresentationsDataService presentationsDataService,
-                             EventsDataService eventsDataService,
                              RemindersService remindersService,
                              FavoritesService favoritesService,
                              RatingService ratingService) {
         this.presentationsDataService = presentationsDataService;
-        this.eventsDataService = eventsDataService;
         this.remindersService = remindersService;
         this.favoritesService = favoritesService;
         this.ratingService = ratingService;
     }
 
-    public EventStats build(String id) {
-
-        Event event = eventsDataService.find("{ _id: # }", new ObjectId(id));
-        if (event == null) {
-            return null;
-        }
+    public EventStats build(Event event) {
 
         EventStats eventStats = new EventStats();
         List<Subscription> reminders = Lists.newArrayList(remindersService.getReminders(event));
@@ -58,9 +52,26 @@ public class EventStatsService {
                 .setFavoritesCount(favorites.size())
                 .setRemindersCount(reminders.size())
                 .setRatingsCount(ratings.size())
+                .setRatingsAvg(computeAvg(ratings))
                 .setTopFavoritedPresentation(topOccurence(favorites))
                 .setTopRatedPresentation(topOccurence(ratings))
                 .setTopRemindedPresentation(topOccurence(reminders));
+    }
+
+    private BigDecimal computeAvg(List<Rating> ratings) {
+
+        if (ratings.size() == 0) {
+            return BigDecimal.ZERO;
+        }
+
+        FluentIterable<Integer> rates = FluentIterable.from(ratings).transform(new Function<Rating, Integer>() {
+            @Override
+            public Integer apply(Rating input) {
+                return input.getRate();
+            }
+        });
+
+        return BigDecimal.valueOf(DoubleMath.mean(rates.toList()));
     }
 
     private <T extends HasPresentationRef> Presentation topOccurence(List<T> elts) {

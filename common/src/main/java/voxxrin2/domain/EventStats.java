@@ -1,20 +1,32 @@
 package voxxrin2.domain;
 
+import java.math.BigDecimal;
+
 public class EventStats {
 
     private String eventId;
 
     private String eventName;
 
+    /**
+     * Subscriptions
+     */
+
     private int favoritesCount;
 
     private int remindersCount;
 
-    private int ratingsCount;
-
     private Presentation topFavoritedPresentation;
 
     private Presentation topRemindedPresentation;
+
+    /**
+     * Ratings
+     */
+
+    private int ratingsCount;
+
+    private BigDecimal ratingsAvg;
 
     private Presentation topRatedPresentation;
 
@@ -34,10 +46,6 @@ public class EventStats {
         return remindersCount;
     }
 
-    public int getRatingsCount() {
-        return ratingsCount;
-    }
-
     public Presentation getTopFavoritedPresentation() {
         return topFavoritedPresentation;
     }
@@ -46,12 +54,19 @@ public class EventStats {
         return topRemindedPresentation;
     }
 
+    public int getRatingsCount() {
+        return ratingsCount;
+    }
+
+    public BigDecimal getRatingsAvg() {
+        return ratingsAvg;
+    }
+
     public Presentation getTopRatedPresentation() {
         return topRatedPresentation;
     }
 
     public EventStats setEventId(final String eventId) {
-
         this.eventId = eventId;
         return this;
     }
@@ -71,11 +86,6 @@ public class EventStats {
         return this;
     }
 
-    public EventStats setRatingsCount(final int ratingsCount) {
-        this.ratingsCount = ratingsCount;
-        return this;
-    }
-
     public EventStats setTopFavoritedPresentation(final Presentation topFavoritedPresentation) {
         this.topFavoritedPresentation = topFavoritedPresentation;
         return this;
@@ -83,6 +93,16 @@ public class EventStats {
 
     public EventStats setTopRemindedPresentation(final Presentation topRemindedPresentation) {
         this.topRemindedPresentation = topRemindedPresentation;
+        return this;
+    }
+
+    public EventStats setRatingsCount(final int ratingsCount) {
+        this.ratingsCount = ratingsCount;
+        return this;
+    }
+
+    public EventStats setRatingsAvg(final BigDecimal ratingsAvg) {
+        this.ratingsAvg = ratingsAvg;
         return this;
     }
 

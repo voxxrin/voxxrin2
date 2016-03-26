@@ -136,6 +136,11 @@ public class User implements RestxPrincipal {
         return ImmutableSet.copyOf(roles);
     }
 
+    public boolean isAdmin() {
+        ImmutableSet<String> principalRoles = getPrincipalRoles();
+        return principalRoles.contains("ADM") || principalRoles.contains("restx-admin");
+    }
+
     public User setRoles(final Set<String> roles) {
         this.roles = roles;
         return this;
