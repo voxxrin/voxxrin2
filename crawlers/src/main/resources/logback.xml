@@ -2,7 +2,7 @@
     <contextListener class="ch.qos.logback.classic.jul.LevelChangePropagator">
         <resetJUL>true</resetJUL>
     </contextListener>
-    <property name="LOGS_FOLDER" value="${logs.base:-logs}" />
+    <property name="LOGS_FOLDER" value="${logs.crawlers.base:-logs}" />
 
     <appender name="errorFile" class="ch.qos.logback.core.rolling.RollingFileAppender">
         <File>${LOGS_FOLDER}/errors.log</File>
