@@ -12,8 +12,9 @@ angular.module('voxxrin')
             $state.go('login');
         };
 
-        $scope.toggleSkipLater = function () {
-            $scope.skipLater = !$scope.skipLater;
+        $scope.skipForever = function () {
+            $scope.skipLater = true;
             $localstorage.setObject('intro.skip', $scope.skipLater);
+            $state.go('login');
         };
     });
