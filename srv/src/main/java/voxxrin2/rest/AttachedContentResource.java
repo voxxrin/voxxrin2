@@ -8,8 +8,9 @@ import restx.annotations.Param;
 import restx.annotations.RestxResource;
 import restx.factory.Component;
 import restx.security.RolesAllowed;
-import voxxrin2.domain.Presentation;
+import voxxrin2.auth.AuthModule;
 import voxxrin2.domain.AttachedContent;
+import voxxrin2.domain.Presentation;
 import voxxrin2.domain.Subscription;
 import voxxrin2.domain.Type;
 import voxxrin2.domain.technical.Reference;
@@ -43,6 +44,7 @@ public class AttachedContentResource {
             return null;
         }
         Iterable<Subscription> subs = remindersService.getReminders(presentation);
+        content.setUserId(AuthModule.currentUser().get().getId());
         presentationsDataService.attachReleasedContent(presentation, content);
 
         ImmutableList<String> userIds = toUserIds(subs);
