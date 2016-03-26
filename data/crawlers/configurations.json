@@ -74,7 +74,7 @@
     "externalEventRef": "dvxfr15",
     "crawlerId": "devoxxfr",
     "location": "Palais des Congrès, Porte Maillot, Paris",
-    "imageUrl": "http://www.devoxx.fr/wp-content/uploads/2014/02/devoxx_france_150px.png",
+    "imageUrl": "https://cdn.rawgit.com/walien/static/master/devoxxfr_logo.jpg",
     "tokens": [
       "EMJ9DZm0ER7Ev56E0IMsN8671m9X4M0P"
     ]
@@ -94,7 +94,7 @@
     "externalEventRef": "dvxfr16",
     "crawlerId": "devoxxfr",
     "location": "Palais des Congrès, Porte Maillot, Paris",
-    "imageUrl": "http://www.devoxx.fr/wp-content/uploads/2014/02/devoxx_france_150px.png",
+    "imageUrl": "https://cdn.rawgit.com/walien/static/master/devoxxfr_logo.jpg",
     "tokens": [
       "EMJ9DZm0ER7Ev56E0IMsN8671m9X4M0P"
     ]
