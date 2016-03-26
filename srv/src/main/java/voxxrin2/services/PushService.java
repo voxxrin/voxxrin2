@@ -1,10 +1,9 @@
-package voxxrin2.webservices;
+package voxxrin2.services;
 
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.github.kevinsawicki.http.HttpRequest;
 import com.google.common.base.Optional;
-import com.google.common.collect.Lists;
 import org.joda.time.DateTime;
 import org.slf4j.Logger;
 import restx.factory.Component;
@@ -19,18 +18,18 @@ import java.util.List;
 import static org.slf4j.LoggerFactory.getLogger;
 
 @Component
-public class Push {
+public class PushService {
 
     private static final String IONIC_PUSH_URL = "https://push.ionic.io/api/v1/push";
-    private static final Logger logger = getLogger(Push.class);
-    private static final int NOTIFICATION_DELAY = 10;
+    private static final Logger logger = getLogger(PushService.class);
 
     private final String ionicAppId;
     private final String ionicAppPrivateKey;
     private final ObjectMapper mapper;
 
-    public Push(WebServicesSettings webServicesSettings,
-                @Named(FrontObjectMapperFactory.MAPPER_NAME) ObjectMapper mapper) {
+    public PushService(WebServicesSettings webServicesSettings,
+                       @Named(FrontObjectMapperFactory.MAPPER_NAME) ObjectMapper mapper) {
+
         this.mapper = mapper;
         this.ionicAppId = webServicesSettings.ionicAppId();
         this.ionicAppPrivateKey = webServicesSettings.ionicAppPrivateKey();
@@ -60,20 +59,6 @@ public class Push {
         }
 
         return PushStatus.of(-1, null);
-    }
-
-    public PushStatus sendSubscribedTalkBeginningNotification(Presentation presentation, String deviceToken) {
-
-        String presentationTitle = presentation.getTitle();
-        String msg = String.format("Le talk '%s' qui fait partie de vos favoris va bientôt commencer !", presentationTitle);
-        DateTime when = presentation.getFrom().minusMinutes(NOTIFICATION_DELAY);
-
-        PushStatus status = send(PushNotification.fromUserIds(msg, Lists.newArrayList(deviceToken), Optional.of(when)));
-
-        logger.info("Push notification sent to device id '{}' concerning favorited presentation '{}' (fired time = {}). " +
-                "Status = (code: {}, payload: {})", deviceToken, presentationTitle, when, status.getCode(), status.getPayload());
-
-        return status;
     }
 
     public PushStatus sendDigitalContentReleasingNotification(Presentation presentation, List<String> userIds, String contentUrl) {

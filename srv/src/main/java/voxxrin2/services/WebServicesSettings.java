@@ -1,4 +1,4 @@
-package voxxrin2.webservices;
+package voxxrin2.services;
 
 import restx.config.Settings;
 import restx.config.SettingsKey;

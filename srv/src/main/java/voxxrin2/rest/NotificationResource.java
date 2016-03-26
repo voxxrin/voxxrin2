@@ -7,28 +7,24 @@ import restx.annotations.PUT;
 import restx.annotations.Param;
 import restx.annotations.RestxResource;
 import restx.factory.Component;
-import restx.jongo.JongoCollection;
 import restx.security.RolesAllowed;
 import voxxrin2.domain.Presentation;
 import voxxrin2.domain.Subscription;
 import voxxrin2.domain.Type;
 import voxxrin2.domain.technical.Reference;
-import voxxrin2.utils.Utils;
-import voxxrin2.webservices.Push;
-
-import javax.inject.Named;
+import voxxrin2.persistence.RemindersService;
+import voxxrin2.services.PushService;
 
 @Component
 @RestxResource
 public class NotificationResource {
 
-    private final Push push;
-    private final JongoCollection reminders;
+    private final PushService push;
+    private final RemindersService remindersService;
 
-    public NotificationResource(Push push,
-                                @Named("remindMe") JongoCollection reminders) {
+    public NotificationResource(PushService push, RemindersService remindersService) {
         this.push = push;
-        this.reminders = reminders;
+        this.remindersService = remindersService;
     }
 
     @PUT("/notify/favorite/{presentationId}")
@@ -37,9 +33,7 @@ public class NotificationResource {
                                          @Param(kind = Param.Kind.QUERY) String contentUrl) {
 
         Presentation presentation = Reference.<Presentation>of(Type.presentation, presentationId).get();
-        Iterable<Subscription> subs = reminders.get()
-                .find("{ presentationRef: # }", Utils.buildPresentationBusinessRef(presentation))
-                .as(Subscription.class);
+        Iterable<Subscription> subs = remindersService.getReminders(presentation);
 
         ImmutableList<String> userIds = toUserIds(subs);
         push.sendDigitalContentReleasingNotification(presentation, userIds, contentUrl);

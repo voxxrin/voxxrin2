@@ -8,33 +8,35 @@ import restx.jongo.JongoCollection;
 import voxxrin2.auth.AuthModule;
 import voxxrin2.domain.Presentation;
 import voxxrin2.domain.User;
-import voxxrin2.rest.SubscriptionResource;
 
 import javax.inject.Named;
 
 @Component
 public class PresentationsDataService extends DataService<Presentation> {
 
-    private final SubscriptionResource subscriptionResource;
+    private final RemindersService remindersService;
+    private final FavoritesService favoritesService;
 
     private final Function<Presentation, Presentation> USER_PRESENTATION_FUNCTOR = new Function<Presentation, Presentation>() {
         @Override
         public Presentation apply(Presentation input) {
             Optional<User> user = AuthModule.currentUser();
             if (user.isPresent()) {
-                input.setReminded(subscriptionResource.isReminded(user.get(), input));
-                input.setFavorite(subscriptionResource.isFavorite(user.get(), input));
+                input.setReminded(remindersService.isReminded(user.get(), input));
+                input.setFavorite(favoritesService.isFavorite(user.get(), input));
             }
-            input.setRemindMeCount(subscriptionResource.getRemindMeCount(input));
-            input.setFavoriteCount(subscriptionResource.getFavoriteCount(input));
+            input.setRemindMeCount(remindersService.getRemindersCount(input));
+            input.setFavoriteCount(favoritesService.getFavoritesCount(input));
             return input;
         }
     };
 
     public PresentationsDataService(@Named("presentation") JongoCollection collection,
-                                    SubscriptionResource remindMeResource) {
+                                    RemindersService remindersService,
+                                    FavoritesService favoritesService) {
         super(collection, Presentation.class);
-        this.subscriptionResource = remindMeResource;
+        this.remindersService = remindersService;
+        this.favoritesService = favoritesService;
     }
 
     @Override
