@@ -61,17 +61,16 @@ public class PushService {
         return PushStatus.of(-1, null);
     }
 
-    public PushStatus sendDigitalContentReleasingNotification(Presentation presentation, List<String> userIds, String contentUrl) {
+    public PushStatus sendReleasedContentNotification(Presentation presentation, List<String> userIds) {
 
         if (userIds.size() > 0) {
 
-            String msg = String.format("Une vidéo concernant le talk '%s' sur lequel vous vous êtes inscrit vient d'être publiée !", presentation.getTitle());
+            String msg = String.format("Du contenu concernant le talk '%s' sur lequel vous vous êtes inscrit vient d'être publié par les organisateurs !", presentation.getTitle());
 
             PushNotification notification = PushNotification.fromUserIds(msg, userIds, Optional.<DateTime>absent());
-            notification.addPayloadContent("contentUrl", contentUrl);
             PushStatus status = send(notification);
 
-            logger.info("Push notification sent to device userIds '{}' (count = {}) concerning favorited presentation '{}'. " +
+            logger.info("Push notification sent to device userIds '{}' (count = {}) concerning reminded presentation '{}'. " +
                     "Status = (code: {}, payload: {})", userIds, userIds.size(), presentation.getTitle(), status.getCode(), status.getPayload());
 
             return status;

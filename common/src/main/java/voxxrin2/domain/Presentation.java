@@ -48,6 +48,12 @@ public class Presentation extends Referenceable implements Favoritable, Remindab
 
     private long remindMeCount;
 
+    /**
+     * External contents
+     */
+
+    private List<AttachedContent> releasedContents;
+
     public String getTitle() {
         return title;
     }
@@ -78,6 +84,10 @@ public class Presentation extends Referenceable implements Favoritable, Remindab
 
     public String getKind() {
         return kind;
+    }
+
+    public List<AttachedContent> getReleasedContents() {
+        return releasedContents;
     }
 
     public Presentation setKind(final String kind) {
@@ -174,6 +184,11 @@ public class Presentation extends Referenceable implements Favoritable, Remindab
 
     public Presentation setRemindMeCount(final long remindMeCount) {
         this.remindMeCount = remindMeCount;
+        return this;
+    }
+
+    public Presentation setReleasedContents(final List<AttachedContent> releasedContents) {
+        this.releasedContents = releasedContents;
         return this;
     }
 

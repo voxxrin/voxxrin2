@@ -3,9 +3,11 @@ package voxxrin2.persistence;
 import com.google.common.base.Function;
 import com.google.common.base.Optional;
 import com.google.common.collect.Iterables;
+import org.bson.types.ObjectId;
 import restx.factory.Component;
 import restx.jongo.JongoCollection;
 import voxxrin2.auth.AuthModule;
+import voxxrin2.domain.AttachedContent;
 import voxxrin2.domain.Presentation;
 import voxxrin2.domain.User;
 import voxxrin2.utils.PresentationRef;
@@ -16,6 +18,7 @@ import java.util.regex.Matcher;
 @Component
 public class PresentationsDataService extends DataService<Presentation> {
 
+    private final JongoCollection collection;
     private final RemindersService remindersService;
     private final FavoritesService favoritesService;
 
@@ -37,6 +40,7 @@ public class PresentationsDataService extends DataService<Presentation> {
                                     RemindersService remindersService,
                                     FavoritesService favoritesService) {
         super(collection, Presentation.class);
+        this.collection = collection;
         this.remindersService = remindersService;
         this.favoritesService = favoritesService;
     }
@@ -53,6 +57,14 @@ public class PresentationsDataService extends DataService<Presentation> {
             return USER_PRESENTATION_FUNCTOR.apply(input);
         }
         return null;
+    }
+
+    public Presentation attachReleasedContent(Presentation presentation, AttachedContent content) {
+        return collection.get()
+                .findAndModify("{ _id: # }", new ObjectId(presentation.getKey()))
+                .with("{ $push: { releasedContents: # }}", content)
+                .returnNew()
+                .as(Presentation.class);
     }
 
     public Presentation findByRef(String presentationRef) {
