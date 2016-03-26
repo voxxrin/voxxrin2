@@ -1,0 +1,88 @@
+<div ng-controller="EventAdminCtrl">
+
+    <ion-view view-title="Administration Evenement" hide-nav-bar="false">
+        <ion-content>
+
+            <div class="row abstract-item">
+
+                <div class="col-25">
+                    <span class="avatar with-border">
+                        <img ng-src="{{ currentEvent.imageUrl }}">
+                    </span>
+                </div>
+                <div class="col-60 content-desc">
+                    <h4 class="title primary-title">{{ currentEvent.name }}</h4>
+                </div>
+
+            </div>
+
+            <div class="row">
+
+                <div class="col col-33 bloc-stats text-center">
+                    <div class="content-bloc">
+                        <span class="top-part bg-primary text-center"><i class="ion-star"></i></span>
+                        <span class="content-part">
+                            <h2 class="nb">{{ stats.favoritesCount }}</h2>
+                            <p>Talks favorisés</p>
+                        </span>
+                    </div>
+                </div>
+
+                <div class="col col-33 bloc-stats text-center">
+                    <div class="content-bloc">
+                        <span class="top-part bg-primary text-center"><i class="ion-ios-videocam"></i></span>
+                        <span class="content-part">
+                            <h2 class="nb">{{ stats.remindersCount }}</h2>
+                            <p>Souscriptions PUSH</p>
+                        </span>
+                    </div>
+                </div>
+
+                <div class="col col-33 bloc-stats text-center">
+                    <div class="content-bloc">
+                        <span class="top-part bg-primary text-center"><i class="ion-speedometer"></i></span>
+                        <span class="content-part">
+                            <h2 class="nb">{{ stats.ratingsAvg || 0 }} ({{ stats.ratingsCount || 0 }})</h2>
+                            <p>Note moyenne</p>
+                        </span>
+                    </div>
+                </div>
+            </div>
+
+            <div class="row">
+
+                <div class="col bloc-stats text-center">
+                    <div class="content-bloc">
+                        <span class="top-part bg-primary text-center"><i class="ion-podium"></i></span>
+                        <span class="content-part">
+                            <h2 class="nb">{{ stats.topFavoritedPresentation ? stats.topFavoritedPresentation.title : '-' }})</h2>
+                            <p>Talk le plus favorisé</p>
+                        </span>
+                    </div>
+                </div>
+
+            </div>
+
+            <div class="row">
+
+                <div class="col bloc-stats text-center">
+                    <div class="content-bloc">
+                        <span class="top-part bg-primary text-center"><i class="ion-podium"></i></span>
+                        <span class="content-part">
+                            <h2 class="nb">{{ stats.topRatedPresentation ? stats.topRatedPresentation.title : '-' }})</h2>
+                            <p>Talk le mieux noté</p>
+                        </span>
+                    </div>
+                </div>
+
+            </div>
+
+            <div class="row">
+
+
+
+            </div>
+
+        </ion-content>
+    </ion-view>
+</div>

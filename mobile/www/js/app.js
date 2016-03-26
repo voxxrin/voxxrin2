@@ -122,7 +122,19 @@ angular.module('voxxrin', [
                 templateUrl: 'templates/dashboard.html'
             })
             ////////////////////////
-            // Events (list, planning, nested days)
+            // Admin
+            ////////////////////////
+            .state('admin', {
+                url: '/admin',
+                abstract: true,
+                template: "<ion-nav-view></ion-nav-view>"
+            })
+            .state('admin.event', {
+                url: '/event/{eventId}',
+                templateUrl: 'templates/admin.event.html'
+            })
+            ////////////////////////
+            // Events (list, nested days)
             ////////////////////////
             .state('events', {
                 url: '/events',
@@ -130,12 +142,10 @@ angular.module('voxxrin', [
                 template: "<ion-nav-view></ion-nav-view>"
             })
             .state('events.list', {
-                parent: 'events',
-                url: '/list',
+                url: '',
                 templateUrl: 'templates/events.html'
             })
             .state('events.days', {
-                parent: 'events',
                 url: '/{eventId}/days',
                 templateUrl: 'templates/days.html'
             })
@@ -149,17 +159,14 @@ angular.module('voxxrin', [
                 templateUrl: 'templates/presentations.html'
             })
             .state('presentations.planning', {
-                parent: 'presentations',
                 url: '/planning',
                 templateUrl: 'templates/planning.html'
             })
             .state('presentations.list', {
-                parent: 'presentations',
-                url: '/list',
+                url: '',
                 templateUrl: 'templates/presentations.list.html'
             })
             .state('presentations.details', {
-                parent: 'presentations',
                 url: '/{id}',
                 templateUrl: 'templates/presentations.details.html'
             });

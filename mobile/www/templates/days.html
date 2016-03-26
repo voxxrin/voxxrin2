@@ -10,7 +10,7 @@
                         <img ng-src="{{ currentEvent.imageUrl }}">
                     </span>
                 </div>
-                <div class="col-75 content-desc">
+                <div class="col-60 content-desc">
                     <h4 class="title primary-title">{{ currentEvent.name }}</h4>
                     <span class="info-item secondary-dark-title">
                         <i class="icon ion-location"></i>
@@ -19,6 +19,11 @@
                     <span class="info-item secondary-dark-title">
                         <i class="icon ion-calendar"></i>
                         <p>{{ currentEvent.from | date:formats.fullDate }}</p>
+                    </span>
+                    <span class="info-item secondary-dark-title" ng-if="Session.isAuthenticated() && isEventAdmin">
+                        <button class="button button-energized icon ion-ios-gear" ui-sref="admin.event({ eventId: currentEvent._id })">
+                            Administration
+                        </button>
                     </span>
                 </div>
             </div>

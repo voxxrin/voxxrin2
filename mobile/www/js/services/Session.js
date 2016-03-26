@@ -1,7 +1,9 @@
 'use strict';
 
 angular.module('voxxrin')
-    .service('Session', function ($rootScope, $log) {
+    .service('Session', function (configuration, $rootScope, $resource, $log) {
+
+        var resource = $resource(configuration.backendUrl() + '/api/auth/:id');
 
         var _current = null;
         return {
@@ -11,9 +13,13 @@ angular.module('voxxrin')
             getCurrent: function () {
                 return _current;
             },
+            getPrincipal: function () {
+                return _current.principal;
+            },
             setCurrent: function (session) {
 
                 _current = session;
+                _current.principal = resource.get({id: 'current'}).$promise;
                 session.isAuthenticated = true;
 
                 Ionic.io();

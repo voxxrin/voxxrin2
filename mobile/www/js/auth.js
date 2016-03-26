@@ -27,7 +27,6 @@ angular.module('voxxrin')
 
         $rootScope.$on('auth:validation-success', function (event, user) {
             Session.setCurrent(user);
-            $state.go('events.list');
         });
 
         $rootScope.$on('auth:login-success', function (event, user) {
