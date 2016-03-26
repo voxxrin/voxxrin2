@@ -8,11 +8,11 @@ import com.google.common.collect.Multimaps;
 import com.google.common.math.DoubleMath;
 import restx.factory.Component;
 import voxxrin2.domain.*;
+import voxxrin2.domain.technical.Reference;
+import voxxrin2.rest.PresentationsResource;
 
 import java.math.BigDecimal;
-import java.util.Collection;
-import java.util.List;
-import java.util.Map;
+import java.util.*;
 
 @Component
 public class EventStatsService {
@@ -25,15 +25,18 @@ public class EventStatsService {
     };
 
     private final PresentationsDataService presentationsDataService;
+    private final PresentationsResource presentationsResource;
     private final RemindersService remindersService;
     private final FavoritesService favoritesService;
     private final RatingService ratingService;
 
     public EventStatsService(PresentationsDataService presentationsDataService,
+                             PresentationsResource presentationsResource,
                              RemindersService remindersService,
                              FavoritesService favoritesService,
                              RatingService ratingService) {
         this.presentationsDataService = presentationsDataService;
+        this.presentationsResource = presentationsResource;
         this.remindersService = remindersService;
         this.favoritesService = favoritesService;
         this.ratingService = ratingService;
@@ -46,9 +49,13 @@ public class EventStatsService {
         List<Subscription> favorites = Lists.newArrayList(favoritesService.getFavorites(event));
         List<Rating> ratings = Lists.newArrayList(ratingService.findEventRatings(event.getEventId()));
 
+        ArrayList<Presentation> presentations = Lists.newArrayList(presentationsResource.getEventPresentations(event.getKey()));
+
         return eventStats
                 .setEventId(event.getEventId())
                 .setEventName(event.getName())
+                .setTalksCount(presentations.size())
+                .setSpeakersCount(speakersCount(presentations))
                 .setFavoritesCount(favorites.size())
                 .setRemindersCount(reminders.size())
                 .setRatingsCount(ratings.size())
@@ -56,6 +63,16 @@ public class EventStatsService {
                 .setTopFavoritedPresentation(topOccurence(favorites))
                 .setTopRatedPresentation(topOccurence(ratings))
                 .setTopRemindedPresentation(topOccurence(reminders));
+    }
+
+    private int speakersCount(ArrayList<Presentation> presentations) {
+        Set<String> speakers = new HashSet<>();
+        for (Presentation presentation : presentations) {
+            for (Reference<Speaker> speakerReference : presentation.getSpeakers()) {
+                speakers.add(speakerReference.getUri().getKey());
+            }
+        }
+        return speakers.size();
     }
 
     private BigDecimal computeAvg(List<Rating> ratings) {

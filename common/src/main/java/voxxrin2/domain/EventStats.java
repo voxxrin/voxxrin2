@@ -4,9 +4,17 @@ import java.math.BigDecimal;
 
 public class EventStats {
 
+    /**
+     * Event
+     */
+
     private String eventId;
 
     private String eventName;
+
+    private int talksCount;
+
+    private int speakersCount;
 
     /**
      * Subscriptions
@@ -36,6 +44,14 @@ public class EventStats {
 
     public String getEventName() {
         return eventName;
+    }
+
+    public int getTalksCount() {
+        return talksCount;
+    }
+
+    public int getSpeakersCount() {
+        return speakersCount;
     }
 
     public int getFavoritesCount() {
@@ -73,6 +89,16 @@ public class EventStats {
 
     public EventStats setEventName(final String eventName) {
         this.eventName = eventName;
+        return this;
+    }
+
+    public EventStats setTalksCount(final int talksCount) {
+        this.talksCount = talksCount;
+        return this;
+    }
+
+    public EventStats setSpeakersCount(final int speakersCount) {
+        this.speakersCount = speakersCount;
         return this;
     }
 
