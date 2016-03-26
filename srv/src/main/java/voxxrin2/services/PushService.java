@@ -22,6 +22,8 @@ public class PushService {
 
     private static final String IONIC_PUSH_URL = "https://push.ionic.io/api/v1/push";
     private static final Logger logger = getLogger(PushService.class);
+    private static final String RELEASED_CONTENT_PUSH_MSG = "Du contenu concernant le talk '%s' sur lequel vous vous " +
+            "êtes inscrit vient d'être publié par les organisateurs !";
 
     private final String ionicAppId;
     private final String ionicAppPrivateKey;
@@ -65,7 +67,7 @@ public class PushService {
 
         if (userIds.size() > 0) {
 
-            String msg = String.format("Du contenu concernant le talk '%s' sur lequel vous vous êtes inscrit vient d'être publié par les organisateurs !", presentation.getTitle());
+            String msg = String.format(RELEASED_CONTENT_PUSH_MSG, presentation.getTitle());
 
             PushNotification notification = PushNotification.fromUserIds(msg, userIds, Optional.<DateTime>absent());
             PushStatus status = send(notification);
