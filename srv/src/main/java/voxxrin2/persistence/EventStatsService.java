@@ -57,12 +57,23 @@ public class EventStatsService {
                 .setTalksCount(presentations.size())
                 .setSpeakersCount(speakersCount(presentations))
                 .setFavoritesCount(favorites.size())
+                .setUsersWithFavoritesCount(usersWithSubscriptionCount(favorites))
+                .setUsersWithRemindersCount(usersWithSubscriptionCount(reminders))
                 .setRemindersCount(reminders.size())
                 .setRatingsCount(ratings.size())
                 .setRatingsAvg(computeAvg(ratings))
                 .setTopFavoritedPresentation(topOccurence(favorites))
                 .setTopRatedPresentation(topOccurence(ratings))
                 .setTopRemindedPresentation(topOccurence(reminders));
+    }
+
+    private int usersWithSubscriptionCount(List<Subscription> subs) {
+        return FluentIterable.from(subs).transform(new Function<Subscription, String>() {
+            @Override
+            public String apply(Subscription input) {
+                return input.getUserId();
+            }
+        }).toSet().size();
     }
 
     private int speakersCount(ArrayList<Presentation> presentations) {

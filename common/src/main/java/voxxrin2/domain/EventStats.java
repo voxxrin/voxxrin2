@@ -22,7 +22,11 @@ public class EventStats {
 
     private int favoritesCount;
 
+    private int usersWithFavoritesCount;
+
     private int remindersCount;
+
+    private int usersWithRemindersCount;
 
     private Presentation topFavoritedPresentation;
 
@@ -56,6 +60,14 @@ public class EventStats {
 
     public int getFavoritesCount() {
         return favoritesCount;
+    }
+
+    public int getUsersWithFavoritesCount() {
+        return usersWithFavoritesCount;
+    }
+
+    public int getUsersWithRemindersCount() {
+        return usersWithRemindersCount;
     }
 
     public int getRemindersCount() {
@@ -104,6 +116,16 @@ public class EventStats {
 
     public EventStats setFavoritesCount(final int favoritesCount) {
         this.favoritesCount = favoritesCount;
+        return this;
+    }
+
+    public EventStats setUsersWithFavoritesCount(final int usersWithFavoritesCount) {
+        this.usersWithFavoritesCount = usersWithFavoritesCount;
+        return this;
+    }
+
+    public EventStats setUsersWithRemindersCount(final int usersWithRemindersCount) {
+        this.usersWithRemindersCount = usersWithRemindersCount;
         return this;
     }
 

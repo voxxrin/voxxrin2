@@ -47,7 +47,7 @@
                         <span class="top-part bg-primary text-center"><i class="ion-star"></i></span>
                         <span class="content-part">
                             <h2 class="nb">{{ stats.favoritesCount }}</h2>
-                            <p>Talks favorisés</p>
+                            <p>Favorisations de talks <br> ({{ stats.usersWithFavoritesCount || 0 }} utilisateurs)</p>
                         </span>
                     </div>
                 </div>
@@ -57,7 +57,7 @@
                         <span class="top-part bg-primary text-center"><i class="ion-ios-videocam"></i></span>
                         <span class="content-part">
                             <h2 class="nb">{{ stats.remindersCount }}</h2>
-                            <p>Souscriptions PUSH</p>
+                            <p>Souscriptions PUSH <br> ({{ stats.usersWithRemindersCount || 0 }} utilisateurs)</p>
                         </span>
                     </div>
                 </div>
@@ -66,8 +66,8 @@
                     <div class="content-bloc">
                         <span class="top-part bg-primary text-center"><i class="ion-speedometer"></i></span>
                         <span class="content-part">
-                            <h2 class="nb">{{ stats.ratingsAvg || 0 | number: 1}} ({{ stats.ratingsCount || 0 }})</h2>
-                            <p>Note moyenne</p>
+                            <h2 class="nb">{{ stats.ratingsAvg || 0 | number: 1 }}</h2>
+                            <p>Note moyenne <br> ({{ stats.ratingsCount || 0 }} notes)</p>
                         </span>
                     </div>
                 </div>
@@ -80,7 +80,7 @@
                         <span class="top-part bg-primary text-center"><i class="ion-podium"></i></span>
                         <span class="content-part">
                             <h2 class="nb">{{ stats.topFavoritedPresentation ? stats.topFavoritedPresentation.title : '-' }}</h2>
-                            <p>Talk le plus favorisé</p>
+                            <p>Talk le plus favorisé ({{ stats.topFavoritedPresentation ? stats.topFavoritedPresentation.favoriteCount : '-'}} notes)</p>
                         </span>
                     </div>
                 </div>
