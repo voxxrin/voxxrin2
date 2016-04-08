@@ -46,7 +46,7 @@
                 <div class="item item-body content-presentation-desc">
 
                     <h2 class="font-bold primary-title">Résumé</h2>
-                    <p ng-bind-html="presentation.summary | trustedHtml"></p>
+                    <p ng-bind-html="presentation.summary | untrustedHtml"></p>
 
                     <!-- Speakers -->
                     <div ng-if="presentation.speakers && presentation.speakers.length > 0">
@@ -58,7 +58,7 @@
                                 <img ng-src="img/default-avatar.png" ng-if="!speaker.avatarUrl">
                                 <h2 style="padding-left: 70px">{{ speaker.name }} <span ng-if="speaker.company">({{ speaker.company }})</span></h2>
                                 <p>{{ speaker.twitterId | twitterId }}</p>
-                                <p ng-bind-html="speaker.bio | trustedHtml"></p>
+                                <p ng-bind-html="speaker.bio | untrustedHtml"></p>
                             </div>
                         </div>
                     </div>
