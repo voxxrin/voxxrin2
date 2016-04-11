@@ -56,12 +56,13 @@ public class CrawlingRoute extends StdRoute {
 
         checkSecurity(req, configuration);
 
-        CrawlingResult result = null;
+        CrawlingResult result;
         try {
             logger.info("Start crawling event {} with crawler {}. Token used {}", eventId, crawler.getId(), req.getQueryParam("token").get());
             result = crawler.setup(crawler.crawl(configuration), configuration);
         } catch (IOException e) {
             logger.error("Error occured during crawling (eventId = " + eventId + ")", e);
+            throw new WebException(HttpStatus.INTERNAL_SERVER_ERROR);
         }
 
         sendResultToVoxxrin(result, eventId);
