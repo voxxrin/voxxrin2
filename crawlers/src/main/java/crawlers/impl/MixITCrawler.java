@@ -162,6 +162,7 @@ public class MixITCrawler extends AbstractHttpCrawler {
         public String firstname;
         public String lastname;
         public String longDescription;
+        public String hash;
         public String company;
         public String logo;
         public List<Link> userLinks;
@@ -175,6 +176,9 @@ public class MixITCrawler extends AbstractHttpCrawler {
             });
             String twitterId = twitter.isPresent() && twitter.get().value != null ?
                     twitter.get().value.replace("https://twitter.com/", "").replace("http://twitter.com/", "") : null;
+            if (logo == null && hash != null) {
+                logo = "https://www.gravatar.com/avatar/" + hash;
+            }
             return (Speaker) new Speaker()
                     .setName(firstname + " " + lastname)
                     .setTwitterId(twitterId)
