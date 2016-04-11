@@ -98,5 +98,16 @@
     "tokens": [
       "EMJ9DZm0ER7Ev56E0IMsN8671m9X4M0P"
     ]
+  },
+  {
+    "_id": "mxt16",
+    "externalEventRef": "mxt16",
+    "eventName": "Mix-IT 2016",
+    "crawlerId": "mxt",
+    "location": "CPE Lyon",
+    "imageUrl": "https://www.mix-it.fr/img/logo-mixit.svg",
+    "tokens": [
+      "hT600H7TRwg96Cr72T35c2341fydPuaG"
+    ]
   }
 ]
