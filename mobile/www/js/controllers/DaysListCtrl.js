@@ -8,11 +8,13 @@ angular.module('voxxrin')
 
         Event.get({id: $stateParams.eventId}).$promise.then(function (event) {
             $scope.currentEvent = event;
-            Session.getPrincipal().then(function (principal) {
-                var roles = principal.principalRoles;
-                if (principal.admin || (roles && roles.indexOf(event.eventId + '-admin') >= 0)) {
-                    $scope.isEventAdmin = true;
-                }
-            });
+            if (Session.getPrincipal) {
+                Session.getPrincipal().then(function (principal) {
+                    var roles = principal.principalRoles;
+                    if (principal.admin || (roles && roles.indexOf(event.eventId + '-admin') >= 0)) {
+                        $scope.isEventAdmin = true;
+                    }
+                });
+            }
         });
     });
