@@ -14,7 +14,7 @@ angular.module('voxxrin')
                 return _current;
             },
             getPrincipal: function () {
-                return _current.principal;
+                return _current ? _current.principal : null;
             },
             setCurrent: function (session) {
 

@@ -8,7 +8,7 @@ angular.module('voxxrin')
 
         Event.get({id: $stateParams.eventId}).$promise.then(function (event) {
             $scope.currentEvent = event;
-            if (Session.getPrincipal) {
+            if (Session.getPrincipal()) {
                 Session.getPrincipal().then(function (principal) {
                     var roles = principal.principalRoles;
                     if (principal.admin || (roles && roles.indexOf(event.eventId + '-admin') >= 0)) {
