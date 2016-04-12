@@ -1,9 +1,9 @@
 'use strict';
 
 angular.module('voxxrin')
-    .service('Session', function (configuration, $rootScope, $resource, $log) {
+    .service('Session', function ($rootScope, $resource, $log, ServerUrl) {
 
-        var resource = $resource(configuration.backendUrl() + '/api/auth/:id');
+        var resource = $resource(ServerUrl + '/api/auth/:id');
 
         var _current = null;
         return {

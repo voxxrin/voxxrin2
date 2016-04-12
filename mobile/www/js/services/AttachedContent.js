@@ -1,9 +1,9 @@
 'use strict';
 
 angular.module('voxxrin')
-    .service('AttachedContent', function (configuration, $resource) {
+    .service('AttachedContent', function ($resource, ServerUrl) {
 
-        var resource = $resource(configuration.backendUrl() + '/api/presentation/:presentationId/attachedContent');
+        var resource = $resource(ServerUrl + '/api/presentation/:presentationId/attachedContent');
 
         return angular.extend(resource, {
 

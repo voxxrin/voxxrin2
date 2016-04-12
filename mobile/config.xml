@@ -72,4 +72,5 @@
     <icon src="resources/ios/icon/icon-small@3x.png" />
     <plugin name="cordova-plugin-calendar" spec="https://github.com/EddyVerbruggen/Calendar-PhoneGap-Plugin.git" />
     <plugin name="com.jamiestarke.webviewdebug" spec="https://github.com/jrstarke/webview-debug.git" />
+    <plugin name="cordova-plugin-app-version" spec="https://github.com/whiteoctober/cordova-plugin-app-version.git" />
 </widget>

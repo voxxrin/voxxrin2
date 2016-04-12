@@ -1,9 +1,9 @@
 'use strict';
 
 angular.module('voxxrin')
-    .service('Stats', function ($resource, configuration) {
+    .service('Stats', function ($resource, ServerUrl) {
 
-        var resource = $resource(configuration.backendUrl() + '/api/stats/:type/:id');
+        var resource = $resource(ServerUrl + '/api/stats/:type/:id');
 
         return angular.extend(resource, {
             forEvent: function (id) {

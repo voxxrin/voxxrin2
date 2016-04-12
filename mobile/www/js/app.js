@@ -1,3 +1,5 @@
+var appVersion = 'dev';
+
 angular.module('voxxrin', [
         'ionic',
         'ionic.service.core',
@@ -5,6 +7,7 @@ angular.module('voxxrin', [
         'ionic.service.push',
         'ngCordova',
         'ngResource',
+        'config',
         'ionic.rating',
         'ion-sticky',
         'ng-token-auth',
@@ -23,6 +26,12 @@ angular.module('voxxrin', [
             if (window.StatusBar) {
                 // org.apache.cordova.statusbar required
                 StatusBar.styleLightContent();
+            }
+
+            if (window.cordova) {
+                cordova.getAppVersion(function (version) {
+                    appVersion = version;
+                });
             }
 
             $ionicAnalytics.register();

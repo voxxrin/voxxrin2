@@ -1,9 +1,9 @@
 'use strict';
 
 angular.module('voxxrin')
-    .service('Rating', function (configuration, $resource) {
+    .service('Rating', function ($resource, ServerUrl) {
 
-        var rating = $resource(configuration.backendUrl() + '/api/ratings/:presentationId', { presentationId: '@presentationId', uuid: '@uuid', rate: '@rate'}, {
+        var rating = $resource(ServerUrl + '/api/ratings/:presentationId', { presentationId: '@presentationId', uuid: '@uuid', rate: '@rate'}, {
             'put': {method: 'PUT'}
         });
 

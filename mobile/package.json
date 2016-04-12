@@ -1,7 +1,7 @@
 {
   "name": "voxxrin2",
   "version": "1.0.0",
-  "description": "voxxrin2: An Ionic project",
+  "description": "voxxrin2",
   "dependencies": {
     "gulp": "3.8.11",
     "gulp-sass": "2.0.4",
@@ -31,7 +31,11 @@
       "id": "com.jamiestarke.webviewdebug"
     },
     "cordova-plugin-inappbrowser",
-    "phonegap-plugin-push"
+    "phonegap-plugin-push",
+    {
+      "locator": "https://github.com/whiteoctober/cordova-plugin-app-version.git",
+      "id": "cordova-plugin-app-version"
+    }
   ],
   "cordovaPlatforms": [
     "ios",
