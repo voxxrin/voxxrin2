@@ -1,4 +1,6 @@
 #!/bin/bash
 
+pushd ..
 PATH=$(npm bin):$PATH
-phonegap serve 
+ionic serve
+popd
