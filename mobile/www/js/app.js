@@ -1,4 +1,4 @@
-var appVersion = 'dev';
+var appVersion = '';
 
 angular.module('voxxrin', [
         'ionic',
@@ -32,6 +32,8 @@ angular.module('voxxrin', [
                 cordova.getAppVersion(function (version) {
                     appVersion = version;
                 });
+            } else {
+                appVersion = 'dev';
             }
 
             $ionicAnalytics.register();
