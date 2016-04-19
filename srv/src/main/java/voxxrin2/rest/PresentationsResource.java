@@ -1,11 +1,14 @@
 package voxxrin2.rest;
 
+import com.google.common.base.Function;
+import com.google.common.collect.Iterables;
 import org.bson.types.ObjectId;
 import restx.annotations.*;
 import restx.factory.Component;
 import restx.security.PermitAll;
 import restx.security.RolesAllowed;
 import voxxrin2.domain.Presentation;
+import voxxrin2.domain.Subscriptions;
 import voxxrin2.domain.Type;
 import voxxrin2.domain.technical.ElementURI;
 import voxxrin2.persistence.PresentationsDataService;
@@ -65,5 +68,21 @@ public class PresentationsResource {
     @Produces("application/json;view=voxxrin2.serialization.Views$Presentations$List")
     public Iterable<Presentation> getDayPresentations(String dayId) {
         return presentationsDataService.findAllAndSort("{ day: # }", "{ from: 1 }", ElementURI.of(Type.day, dayId).toString());
+    }
+
+    @GET("/events/{eventId}/subscriptions")
+    @PermitAll
+    public Iterable<Subscriptions> getSubscriptions(@Param(kind = Param.Kind.PATH) String eventId) {
+        Iterable<Presentation> presentations = presentationsDataService
+                .findAllAndSort("{ event: # }", "{ from: 1 }", ElementURI.of(Type.event, eventId).toString());
+        return Iterables.transform(presentations, new Function<Presentation, Subscriptions>() {
+            @Override
+            public Subscriptions apply(Presentation input) {
+                return new Subscriptions()
+                        .setPresentationId(input.getKey())
+                        .setFavoriteCount(input.getFavoriteCount())
+                        .setRemindersCount(input.getRemindMeCount());
+            }
+        });
     }
 }

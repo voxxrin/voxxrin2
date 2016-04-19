@@ -1,5 +1,6 @@
 package voxxrin2.persistence;
 
+import com.google.common.base.Optional;
 import org.bson.types.ObjectId;
 import org.joda.time.DateTime;
 import restx.jongo.JongoCollection;
@@ -33,6 +34,10 @@ public abstract class DataService<T extends Referenceable> {
 
     public T find(String query, Object... params) {
         return collection.get().findOne(query, params).as(clazz);
+    }
+
+    public Optional<T> findById(String id) {
+        return Optional.fromNullable(collection.get().findOne(new ObjectId(id)).as(clazz));
     }
 
     public T save(T entity) {
