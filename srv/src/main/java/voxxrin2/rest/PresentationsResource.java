@@ -57,7 +57,7 @@ public class PresentationsResource {
     @PermitAll
     @Produces("application/json;view=voxxrin2.serialization.Views$Presentations$List")
     public Iterable<Presentation> getEventPresentations(String eventId) {
-        return presentationsDataService.findAll("{ event: # }", ElementURI.of(Type.event, eventId).toString());
+        return presentationsDataService.findAllAndSort("{ event: # }", "{ from: 1 }", ElementURI.of(Type.event, eventId).toString());
     }
 
     @GET("/days/{dayId}/presentations")
