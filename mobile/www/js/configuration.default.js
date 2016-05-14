@@ -7,6 +7,7 @@
 
     var ServerConfig = {
         backendUrl: function () {
+            console.log('failover local backend configuration : ', Envs.local);
             return Envs.local;
         }
     };
