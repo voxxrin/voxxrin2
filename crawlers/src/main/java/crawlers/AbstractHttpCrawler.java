@@ -4,9 +4,13 @@ import com.fasterxml.jackson.databind.DeserializationFeature;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.databind.type.CollectionType;
 import com.fasterxml.jackson.datatype.joda.JodaModule;
+import com.google.common.base.Optional;
+import com.google.common.base.Predicate;
 import com.google.common.collect.ImmutableList;
+import com.google.common.collect.Iterables;
 import crawlers.configuration.CrawlingConfiguration;
 import org.joda.time.DateTime;
+import voxxrin2.domain.Day;
 import voxxrin2.domain.Presentation;
 
 import java.io.IOException;
@@ -68,7 +72,7 @@ public abstract class AbstractHttpCrawler {
         DateTime from = null;
         DateTime to = null;
 
-        for (Presentation presentation : crawlingResult.getPresentations()) {
+        for (final Presentation presentation : crawlingResult.getPresentations()) {
 
             if (from == null) {
                 from = presentation.getFrom();
@@ -81,6 +85,16 @@ public abstract class AbstractHttpCrawler {
             }
             if (presentation.getTo().isAfter(from)) {
                 to = presentation.getTo();
+            }
+
+            Optional<Day> linkedDay = Iterables.tryFind(crawlingResult.getDays(), new Predicate<Day>() {
+                @Override
+                public boolean apply(Day input) {
+                    return input.getKey().equals(presentation.getDay().getUri().getKey());
+                }
+            });
+            if (linkedDay.isPresent() && linkedDay.get().getDate() == null) {
+                linkedDay.get().setDate(presentation.getFrom().withTimeAtStartOfDay());
             }
         }
 
