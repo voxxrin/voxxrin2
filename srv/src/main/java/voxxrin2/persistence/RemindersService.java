@@ -15,7 +15,7 @@ public class RemindersService extends SubscriptionService {
 
     private final JongoCollection reminders;
 
-    public RemindersService(@Named("remindMe") JongoCollection reminders) {
+    public RemindersService(@Named(Subscription.REMINDERS_COLLECTION) JongoCollection reminders) {
         this.reminders = reminders;
     }
 

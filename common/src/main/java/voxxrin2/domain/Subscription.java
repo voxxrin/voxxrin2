@@ -4,6 +4,9 @@ import org.joda.time.DateTime;
 
 public class Subscription implements HasPresentationRef<Subscription> {
 
+    public static final String FAVORITES_COLLECTION = "favorite";
+    public static final String REMINDERS_COLLECTION = "remindMe";
+
     private String presentationRef;
 
     private String userId;

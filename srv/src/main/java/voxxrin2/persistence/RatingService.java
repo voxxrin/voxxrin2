@@ -20,7 +20,7 @@ public class RatingService {
 
     private final JongoCollection ratings;
 
-    public RatingService(@Named("rating") JongoCollection ratings) {
+    public RatingService(@Named(Rating.COLLECTION) JongoCollection ratings) {
         this.ratings = ratings;
     }
 

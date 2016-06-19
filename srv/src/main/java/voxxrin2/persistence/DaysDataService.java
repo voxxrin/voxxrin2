@@ -9,7 +9,7 @@ import javax.inject.Named;
 @Component
 public class DaysDataService extends DataService<Day> {
 
-    public DaysDataService(@Named("day") JongoCollection collection) {
+    public DaysDataService(@Named(Day.COLLECTION) JongoCollection collection) {
         super(collection, Day.class);
     }
 

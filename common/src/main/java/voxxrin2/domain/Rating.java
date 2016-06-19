@@ -4,6 +4,8 @@ import org.joda.time.DateTime;
 
 public class Rating implements HasPresentationRef<Rating> {
 
+    public static final String COLLECTION = "rating";
+
     private String userId;
 
     private String presentationRef;

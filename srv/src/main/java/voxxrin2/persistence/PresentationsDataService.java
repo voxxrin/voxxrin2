@@ -36,7 +36,7 @@ public class PresentationsDataService extends DataService<Presentation> {
         }
     };
 
-    public PresentationsDataService(@Named("presentation") JongoCollection collection,
+    public PresentationsDataService(@Named(Presentation.COLLECTION) JongoCollection collection,
                                     RemindersService remindersService,
                                     FavoritesService favoritesService) {
         super(collection, Presentation.class);

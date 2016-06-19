@@ -6,6 +6,8 @@ import voxxrin2.domain.technical.Referenceable;
 
 public class Day extends Referenceable {
 
+    public static final String COLLECTION = "day";
+
     private String name;
 
     private DateTime date;

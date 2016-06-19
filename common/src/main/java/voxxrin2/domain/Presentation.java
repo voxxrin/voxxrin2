@@ -10,6 +10,8 @@ import java.util.List;
 
 public class Presentation extends Referenceable implements Favoritable, Remindable, HasExternalId {
 
+    public static final String COLLECTION = "presentation";
+
     /**
      * Pure data fields
      */

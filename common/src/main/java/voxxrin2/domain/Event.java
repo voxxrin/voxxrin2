@@ -5,6 +5,8 @@ import voxxrin2.domain.technical.Referenceable;
 
 public class Event extends Referenceable {
 
+    public static final String COLLECTION = "event";
+
     private String eventId;
 
     private String name;

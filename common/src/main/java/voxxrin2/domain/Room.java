@@ -4,6 +4,8 @@ import voxxrin2.domain.technical.Referenceable;
 
 public class Room extends Referenceable {
 
+    public static final String COLLECTION = "room";
+
     private String name;
 
     private String fullName;

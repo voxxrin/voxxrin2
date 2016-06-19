@@ -15,7 +15,7 @@ public class FavoritesService extends SubscriptionService {
 
     private final JongoCollection favorites;
 
-    public FavoritesService(@Named("favorite") JongoCollection favorites) {
+    public FavoritesService(@Named(Subscription.FAVORITES_COLLECTION) JongoCollection favorites) {
         this.favorites = favorites;
     }
 

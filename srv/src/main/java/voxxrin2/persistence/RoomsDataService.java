@@ -9,7 +9,7 @@ import javax.inject.Named;
 @Component
 public class RoomsDataService extends DataService<Room> {
 
-    public RoomsDataService(@Named("room") JongoCollection collection) {
+    public RoomsDataService(@Named(Room.COLLECTION) JongoCollection collection) {
         super(collection, Room.class);
     }
 }

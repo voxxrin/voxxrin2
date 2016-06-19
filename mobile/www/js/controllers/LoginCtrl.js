@@ -18,11 +18,11 @@ angular.module('voxxrin')
             }
         });
 
-        $rootScope.$on('auth:validation-success', function (event, user) {
+        $rootScope.$on('auth:validation-success', function () {
             $scope.isAuthenticated = true;
         });
 
-        $rootScope.$on('auth:login-success', function (event, user) {
+        $rootScope.$on('auth:login-success', function () {
             $scope.isAuthenticated = true;
         });
 

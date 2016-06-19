@@ -4,6 +4,8 @@ import voxxrin2.domain.technical.Referenceable;
 
 public class Speaker extends Referenceable {
 
+    public static final String COLLECTION = "speaker";
+
     private String name;
 
     private String firstName;
