@@ -67,8 +67,8 @@ A set of HTTP crawlers is already available, so If you want an application to be
 
 Contributions are welcome, fork the repo, push your changes to a branch and send a pull request :) !
 
-Principal commiters / providers of idea are:
+Principal commiters / providers of idea are : 
+
 * Elian ORIOU (@eoriou)
 * Frédéric CAMBLOR (@fcamblor)
 * Robin LOPEZ (@lopezrobin)
-
