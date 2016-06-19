@@ -19,7 +19,7 @@ Your conference companion !
 	* Most favored talk
 	* Most stared talk
 	* Best rated talk (and average rate)
-	* Pusblish content (talk video recording for instance ...)
+	* Publish content (talk video recording for instance ...)
 	* ...
 
 ## Conferences / Crawling
