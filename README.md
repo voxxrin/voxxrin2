@@ -4,6 +4,10 @@
 
 Your conference companion !
 
+It's licensed under the very commercial friendly Apache License 2.
+
+You can get more details from the web site at http://voxxr.in/
+
 ## Main features
 
 * Social authentication
@@ -78,6 +82,7 @@ Principal commiters / providers of idea are :
 Used technologies are :
 
 * server side
+    * Java 7
     * [restx.io](http://restx.io)
     * [MongoDB](https://www.mongodb.com)
     * [Nimbus (JOSE + JWT)](http://connect2id.com/products/nimbus-jose-jwt)
