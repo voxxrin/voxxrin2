@@ -1,6 +1,6 @@
 package voxxrin2.rest;
 
-import org.bson.types.ObjectId;
+import com.google.common.base.Optional;
 import restx.annotations.GET;
 import restx.annotations.POST;
 import restx.annotations.RestxResource;
@@ -8,8 +8,6 @@ import restx.factory.Component;
 import restx.security.PermitAll;
 import restx.security.RolesAllowed;
 import voxxrin2.domain.Day;
-import voxxrin2.domain.Type;
-import voxxrin2.domain.technical.ElementURI;
 import voxxrin2.persistence.DaysDataService;
 
 @Component
@@ -30,8 +28,8 @@ public class DaysResource {
 
     @GET("/days/{id}")
     @PermitAll
-    public Day getDay(String id) {
-        return daysDataService.find("{ _id: # }", new ObjectId(id));
+    public Optional<Day> getDay(String id) {
+        return daysDataService.findById(id);
     }
 
     @POST("/days")
@@ -43,6 +41,6 @@ public class DaysResource {
     @GET("/events/{eventId}/days")
     @PermitAll
     public Iterable<Day> getEventDays(String eventId) {
-        return daysDataService.findAllAndSort("{ event: # }", "{ date : 1 }", ElementURI.of(Type.event, eventId).toString());
+        return daysDataService.findByEvent(eventId);
     }
 }

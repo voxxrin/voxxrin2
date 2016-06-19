@@ -1,6 +1,6 @@
 package voxxrin2.rest;
 
-import org.bson.types.ObjectId;
+import com.google.common.base.Optional;
 import restx.annotations.Consumes;
 import restx.annotations.GET;
 import restx.annotations.POST;
@@ -31,8 +31,8 @@ public class SpeakersResource {
 
     @GET("/speakers/{id}")
     @PermitAll
-    public Speaker getSpeaker(String id) {
-        return speakersDataService.find("{ _id : # }", new ObjectId(id));
+    public Optional<Speaker> getSpeaker(String id) {
+        return speakersDataService.findById(id);
     }
 
     @POST("/speakers")

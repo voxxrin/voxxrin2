@@ -1,6 +1,6 @@
 package voxxrin2.rest;
 
-import org.bson.types.ObjectId;
+import com.google.common.base.Optional;
 import restx.annotations.GET;
 import restx.annotations.POST;
 import restx.annotations.RestxResource;
@@ -30,8 +30,8 @@ public class RoomsResource {
 
     @GET("/rooms/{id}")
     @PermitAll
-    public Room getRoom(String id) {
-        return roomsDataService.find("{ _id : # }", new ObjectId(id));
+    public Optional<Room> getRoom(String id) {
+        return roomsDataService.findById(id);
     }
 
     @POST("/rooms")

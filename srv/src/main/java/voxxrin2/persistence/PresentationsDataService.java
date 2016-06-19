@@ -9,7 +9,9 @@ import restx.jongo.JongoCollection;
 import voxxrin2.auth.AuthModule;
 import voxxrin2.domain.AttachedContent;
 import voxxrin2.domain.Presentation;
+import voxxrin2.domain.Type;
 import voxxrin2.domain.User;
+import voxxrin2.domain.technical.ElementURI;
 import voxxrin2.utils.PresentationRef;
 
 import javax.inject.Named;
@@ -78,5 +80,13 @@ public class PresentationsDataService extends DataService<Presentation> {
         String externalId = matcher.group(2);
 
         return find("{ eventId: #, externalId: # }", eventId, externalId);
+    }
+
+    public Iterable<Presentation> findByEvent(String eventId) {
+        return findAllAndSort("{ event: # }", "{ from: 1 }", ElementURI.of(Type.event, eventId).toString());
+    }
+
+    public Iterable<Presentation> findByDay(String dayId) {
+        return findAllAndSort("{ day: # }", "{ from: 1 }", ElementURI.of(Type.day, dayId).toString());
     }
 }
