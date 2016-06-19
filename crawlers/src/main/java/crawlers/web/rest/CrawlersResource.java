@@ -4,6 +4,7 @@ import crawlers.AbstractHttpCrawler;
 import restx.annotations.GET;
 import restx.annotations.RestxResource;
 import restx.factory.Component;
+import restx.security.PermitAll;
 
 import java.util.Set;
 
@@ -18,6 +19,7 @@ public class CrawlersResource {
     }
 
     @GET("/info")
+    @PermitAll
     public Iterable<AbstractHttpCrawler> getAllRegisteredCrawlers() {
         return crawlers;
     }
