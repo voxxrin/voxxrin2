@@ -1,0 +1,47 @@
+<div ng-controller="DaysListCtrl">
+
+    <ion-view view-title="Jours">
+
+        <ion-content>
+            <div class="row abstract-item">
+
+                <div class="col-25">
+                    <span class="avatar with-border">
+                        <img ng-src="{{ currentEvent.imageUrl }}">
+                    </span>
+                </div>
+                <div class="col-60 content-desc">
+                    <h4 class="title primary-title">{{ currentEvent.name }}</h4>
+                    <span class="info-item secondary-dark-title">
+                        <i class="icon ion-location"></i>
+                        <p>{{ currentEvent.location }}</p>
+                    </span>
+                    <span class="info-item secondary-dark-title">
+                        <i class="icon ion-calendar"></i>
+                        <p>{{ currentEvent.from | date:formats.fullDate }}</p>
+                    </span>
+                    <span class="info-item secondary-dark-title" ng-if="Session.isAuthenticated() && isEventAdmin">
+                        <button class="button button-energized icon ion-ios-gear" ui-sref="admin.event({ eventId: currentEvent._id })">
+                            Administration
+                        </button>
+                    </span>
+                </div>
+            </div>
+
+            <ion-list>
+
+                <ion-item ng-repeat="day in days" ng-click="goToPresentations(day)" class="add-padding-list">
+
+                    <p><i class="icon ion-calendar"></i>{{ day.name }}</p>
+
+                     <span class="icon-item-list">
+                        <i class="icon ion-ios-arrow-right"></i>
+                    </span>
+                </ion-item>
+
+            </ion-list>
+
+        </ion-content>
+
+    </ion-view>
+</div>

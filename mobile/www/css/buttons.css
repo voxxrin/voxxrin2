@@ -1,0 +1,104 @@
+/* ======== BUTTONS ======== */
+
+.label-btn {
+    display: block;
+    vertical-align: middle;
+    width: 100%;
+    font-size: 13px;
+    color:  #c7cacf;
+    font-weight: bold;
+    white-space: nowrap;
+}
+
+/* === Buttons === */
+
+.btn {
+    height: 100%;
+    border: 0;
+}
+
+/* --- Colors Btn ---*/
+
+.btn.secondary-btn { transition: 200ms; color: #FFFFFF;}
+.btn.secondary-btn.activated { transition: 200ms; background: #c7cacf; color: #e0223f;}
+
+
+/* === Round Buttons === */
+
+.round-btn-hrz {
+    display: inline-block;
+    border-radius: 50px;
+    padding: 10px 15px;
+}
+
+.round-btn {
+    display: inline-block;
+    border-radius: 100%;
+    background: transparent;
+}
+
+.centered-btn {
+    margin: auto;
+}
+
+/* --- Size ---*/
+
+.small-btn  { height: 34px; width: 34px; padding: 3px 5px; font-size: 18px; border-width: 2px !important;}
+.medium-btn  { height: 48px; width: 48px; padding: 1px 11px; font-size: 24px;}
+.large-btn  { height: 68px; width: 68px; padding: 10px 15px !important; font-size: 32px;}
+
+/* --- Size ---*/
+
+.small-hrz-btn  { height: 34px; padding: 3px 15px; font-size: 14px; border-width: 2px !important;}
+.small-hrz-btn  i { margin-right: 10px;}
+.medium-hrz-btn  { height: 48px; padding: 1px 11px; font-size: 24px;}
+.large-hrz-btn  { height: 68px;  padding: 10px 15px !important; font-size: 32px;}
+
+/* --- Space ---*/
+
+.inline.list-btn-small button { margin-left: 20px;}
+.inline.list-btn-small button:first-child { margin-left: 0;}
+
+.inline.list-btn-medium button { margin-left: 20px;}
+.inline.list-btn-medium button:first-child { margin-left: 0;}
+
+.inline.list-btn-large button { margin-left: 20px;}
+.inline.list-btn-large button:first-child { margin-left: 0;}
+
+
+/* --- Colors Round Btn ---*/
+
+.white-btn { transition: 200ms; color: #FFFFFF; border: 3px solid #FFFFFF;}
+.white-btn.activated { transition: 200ms; background: #FFFFFF; color: #e0223f; border-color: #FFFFFF;}
+
+.primary-btn  { transition: 200ms; color: #e0223f; border: 3px solid #e0223f;}
+.primary-btn.activated { transition: 200ms; background: #e0223f;  color: #FFFFFF;  border-color: #e0223f;}
+
+.primary-dark-btn  { transition: 200ms; color: #95172a; border: 3px solid #95172a;}
+.primary-dark-btn.activated { transition: 200ms; background: #95172a; color: #FFFFFF; border-color:  #95172a;}
+
+.secondary-btn  { transition: 200ms; color: #c7cacf; border: 3px solid #c7cacf;}
+.secondary-btn.activated { transition: 200ms; background: #c7cacf; color: #FFFFFF; border-color: #c7cacf;}
+
+.secondary-dark-btn  { transition: 200ms; color: #686868; border: 3px solid #686868;}
+.secondary-dark-btn.activated { transition: 200ms; background:  #686868; color: #FFFFFF; border-color: #686868;}
+
+
+/* --- Specials Colors Btn ---*/
+
+.primary-hrz-btn {transition: 200ms; color: #686868; background: #edf0f5; border: none;}
+.primary-hrz-btn.activated { transition: 200ms; background: #95172a;  color: #FFFFFF;}
+
+.intro-btn { transition: 250ms; margin-right: 15px; background-color: white; color: #e0223f; border: none;}
+.intro-btn.activated { transition: 250ms; background-color: #95172a; color: white; border: none;}
+
+.fav-btn { transition: 250ms; background-color: #95172a; color: #e0223f; border: none;}
+.fav-btn.active { transition: 250ms; background-color: #FFFFFF; color: #e0223f; border: none;}
+
+.toggled { transition: 250ms; background-color: #95172a; color: white;}
+
+
+
+
+
+

@@ -1,0 +1,49 @@
+<div ng-controller="EventsListCtrl">
+
+    <ion-view view-title="Liste des conferences" cache-view="false">
+
+        <!-- Striped Bar -->
+        <div class="tabs-striped tabs-top tabs-background-primary tabs-color-light">
+            <div class="tabs">
+                <a class="tab-item" ng-click="showEvents('future')" ng-class="{ active: isModeEnabled('future') }">
+                    À venir
+                </a>
+                <a class="tab-item" ng-click="showEvents('past')" ng-class="{ active: isModeEnabled('past') }">
+                    Passées
+                </a>
+                <a class="tab-item" ng-click="showEvents('all')" ng-class="{ active: isModeEnabled('all') }">
+                    Toutes
+                </a>
+            </div>
+        </div>
+        <!-- END Striped Bar -->
+
+        <ion-content class="has-tabs-top">
+
+            <ion-list>
+                <ion-item collection-repeat="event in events" ng-click="goToDays(event)" class="row item" ng-click="goToDays(event)">
+                    <div class="col-25 content-avatar">
+                         <span class="avatar element-centered">
+                            <img ng-src="{{ event.imageUrl }}">
+                        </span>
+                    </div>
+
+                    <div class="col-67 content-desc secondary-dark-title">
+                        <h3 class="title primary-title">{{ event.name }}</h3>
+                        <span class="info-item"><i class="icon inline ion-location"></i>{{ event.location }}</span>
+                        <span class="info-item"><i class="icon inline ion-calendar"></i>{{ event.from | date:formats.fullDate }}</span>
+                        <!--<p ng-bind-html="event.description | untrustedHtml"></p>-->
+                    </div>
+
+                    <span class="icon-item-list">
+                        <i class="icon ion-ios-arrow-right"></i>
+                    </span>
+
+                </ion-item>
+            </ion-list>
+
+        </ion-content>
+
+    </ion-view>
+
+</div>

@@ -1,0 +1,99 @@
+<div ng-controller="PresentationsListCtrl">
+
+    <ion-view view-title="{{ day.event.name }}">
+
+        <!-- Filters bar -->
+        <ion-nav-buttons side="right" class="fav-actions">
+
+            <button class="round-btn fav-btn icon small-btn ion-ios-calendar"
+                    ng-click="goToPlanning(day)"></button>
+
+            <span ng-if="Session.isAuthenticated()">
+                <button class="round-btn fav-btn icon small-btn ion-ios-star"
+                        ng-click="toggleFilter('favorite')"
+                        ng-class="isFilterActive('favorite') === true ? 'active' : ''"></button>
+                <span></span>
+                <button class="round-btn fav-btn icon small-btn ion-ios-videocam"
+                        ng-click="toggleFilter('reminded')"
+                        ng-class="isFilterActive('reminded') === true ? 'active' : ''"></button>
+            </span>
+        </ion-nav-buttons>
+
+        <!-- Striped Bar -->
+        <div class="tabs-striped tabs-top tabs-background-primary tabs-color-light">
+            <div class="tabs">
+                <a class="tab-item" ng-class="isActiveDay(currentDay)" href="#" ng-repeat="currentDay in days" ng-click="goToPresentations(currentDay)">
+                    {{ currentDay.name }}
+                </a>
+            </div>
+        </div>
+        <!-- END Striped Bar -->
+
+        <ion-content class="has-subheader fix-has-subheader">
+
+            <ion-list>
+
+                <div ng-repeat="(name, slot) in slots" class="list-divider">
+                    <div class="item item-divider" ng-show="filteredPrezs.length > 0">
+                        <h3 class="white-title"><i class="icon inline medium ion-clock"></i>{{ ::name }}</h3>
+                    </div>
+
+                    <ion-item class="item-text-wrap" ng-repeat="prez in filteredPrezs = (slot.presentations | prezFilter:filters)">
+
+                        <div class="row">
+                            <span class="avatar user-list" ng-click="goToPresentation(prez)">
+                                <img ng-src="{{ ::prez.speakers[0].avatarUrl }}" err-src="img/default-avatar.png" ng-if="prez.speakers[0].avatarUrl">
+                                <img ng-src="img/default-avatar.png" ng-if="!prez.speakers[0].avatarUrl">
+                            </span>
+
+                            <div class="col-75 content-desc secondary-dark-title" ng-click="goToPresentation(prez)">
+                                <h3 class="title primary-title">{{ ::prez.title }}</h3>
+                                <div class="info-item supplementary-infos">
+                                    <span class="prez-kind" ng-if="prez.kind">{{ ::prez.kind }}</span>
+                                    <ul class="list-alerts">
+                                        <li class="item-list-alert" ng-class="{ 'active': prez.isFavorite() }"><span class="content-icon"><i class="icon ion-star"></i></span>{{ prez.favoriteCount }}</li>
+                                        <li class="item-list-alert" ng-class="{ 'active': prez.isReminded() }"><span class="content-icon"><i class="icon ion-ios-videocam"></i></span>{{ prez.remindMeCount }}</li>
+                                    </ul>
+                                </div>
+                                <span class="info-item"><i class="icon inline ion-location"></i>{{ ::prez.location.fullName }}</span>
+                                <span class="info-item"  ng-if="prez.speakers[0]"><i class="icon inline ion-person"></i>{{ ::prez.speakers | speakers }}</span>
+                            </div>
+
+                            <span class="status-line" ng-class="prez.kindClass"></span>
+
+                            <span class="icon-item-divider-list ">
+                                <i class="icon ion-android-more-vertical"></i>
+                            </span>
+
+
+                            <!--option buttons-->
+                            <ion-option-button ng-click="favorite(prez)">
+                                <div class="round-btn medium-btn white-btn centered-btn" ng-class="{ 'add-check' : prez.isFavorite() }">
+                                    <i class="icon small ion-star"></i>
+                                </div>
+                            </ion-option-button>
+
+                            <ion-option-button ng-click="remindMe(prez)">
+                                <div class="round-btn medium-btn white-btn centered-btn" ng-class="{ 'add-check' : prez.isReminded() }">
+                                    <i class="icon ion-ios-videocam"></i>
+                                </div>
+                            </ion-option-button>
+
+                            <ion-option-button class="round-btn medium-btn white-btn" ng-click="addToCalendar(prez, day.event)">
+                                <div class="round-btn medium-btn white-btn centered-btn">
+                                    <i class="icon ion-android-calendar"></i>
+                                </div>
+                            </ion-option-button>
+
+                        </div>
+
+                    </ion-item>
+                </div>
+
+            </ion-list>
+
+        </ion-content>
+
+    </ion-view>
+
+</div>

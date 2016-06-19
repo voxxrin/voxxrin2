@@ -1,0 +1,104 @@
+<div ng-controller="PresentationDetailsCtrl">
+
+    <ion-view view-title="Presentation">
+
+        <div class="bar bar-subheader part-top-presentation">
+            <div class="title-presentation">
+                <h4 class="title primary-title">{{ presentation.title }}</h4>
+                 <span class="avatar user-list">
+                     <img ng-src="{{ presentation.speakers[0].avatarUrl }}" err-src="img/default-avatar.png" ng-if="presentation.speakers[0].avatarUrl">
+                     <img ng-src="img/default-avatar.png" ng-if="!presentation.speakers[0].avatarUrl">
+                </span>
+                <div class="info-item supplementary-infos">
+                    <span class="prez-kind">{{ presentation.kind | orDash }}</span>
+                </div>
+            </div>
+
+            <div class="infos-bar content-desc ">
+                <span class="slide-nav prev" ng-click="goToPreviousPrez(slots, presentation)"><i class="ion-chevron-left"></i></span>
+                <span class="info-item"><i class="icon inline ion-location"></i>{{ presentation.location.fullName }}</span>
+                <span class="info-item"><i class="icon inline ion-person"></i>{{ presentation.speakers | speakers | orDash }}</span>
+                <span class="slide-nav next" ng-click="goToNextPrez(slots, presentation)"><i class="ion-chevron-right"></i></span>
+            </div>
+
+            <div class="row time-bar">
+                <p><i class="icon ion-clock"></i> {{ presentation.slot.name }} <!-- (From <span class="underline">{{ presentation.from | date:formats.fullDateTime }}</span> to <span class="underline">{{ presentation.to | date:formats.fullDateTime }}</span>) !--></p>
+                <div class="btn-actions">
+                    <button class="btn small-btn secondary-btn" ng-click="favorite(presentation)" ng-class="{ 'add-check-small' : presentation.isFavorite() }">
+                        <i class="icon ion-star"></i>
+                    </button>
+                    <button class="btn small-btn secondary-btn" ng-click="remindMe(presentation)" ng-class="{ 'add-check-small' : presentation.isReminded() }">
+                        <i class="icon ion-ios-videocam"></i>
+                    </button>
+                    <button class="btn small-btn secondary-btn" ng-click="addToCalendar(fullPresentation, fullPresentation.event)">
+                        <i class="icon ion-android-calendar"></i>
+                    </button>
+                </div>
+            </div>
+        </div>
+
+        <ion-content class="has-big-subheader"
+                     animation="slide-left-right"
+                     on-swipe-right="goToPreviousPrez(slots, presentation)" on-swipe-left="goToNextPrez(slots, presentation)">
+
+            <div class="list card container-presentation-desc">
+
+                <div class="item item-body content-presentation-desc">
+
+                    <h2 class="font-bold primary-title">Résumé</h2>
+                    <p ng-bind-html="presentation.summary | untrustedHtml"></p>
+
+                    <!-- Speakers -->
+                    <div ng-if="presentation.speakers && presentation.speakers.length > 0">
+                        <span class="sep-hrz secondary-sep"></span>
+                        <h2 class="font-bold primary-title">Speakers</h2>
+                        <div class="list card">
+                            <div class="item item-avatar" ng-repeat="speaker in fullPresentation.speakers">
+                                <img ng-src="{{ speaker.avatarUrl }}" err-src="img/default-avatar.png" ng-if="speaker.avatarUrl">
+                                <img ng-src="img/default-avatar.png" ng-if="!speaker.avatarUrl">
+                                <h2 style="padding-left: 70px">{{ speaker.name }} <span ng-if="speaker.company">({{ speaker.company }})</span></h2>
+                                <p>{{ speaker.twitterId | twitterId }}</p>
+                                <p ng-bind-html="speaker.bio | untrustedHtml"></p>
+                            </div>
+                        </div>
+                    </div>
+                    <span class="sep-hrz secondary-sep"></span>
+
+                    <!-- Favorites -->
+
+                    <h2 class="font-bold primary-title">{{ presentation.favoriteCount }} Favoris</h2>
+                    <span class="sep-hrz secondary-sep"></span>
+
+                    <!-- Ratings -->
+                    <h2 class="font-bold primary-title">{{ ratings.length }} Notes.</h2>
+                    <div class="row content-rating">
+                        <rating ng-model="rate" max="5"></rating>
+
+                        <button class="active round-btn small-btn secondary-btn" ng-click="sendRate(presentation, rate)">
+                            <i class="ion-plus-round"></i>
+                        </button>
+                    </div>
+                    <span class="sep-hrz secondary-sep"></span>
+
+                    <!-- Attached contents -->
+                    <div ng-if="fullPresentation.releasedContents && fullPresentation.releasedContents.length > 0">
+                        <h2 class="font-bold primary-title">Contenus associés</h2>
+                            <div class="list">
+                                <a class="item item-avatar item-icon-left" href="{{ content.url }}" target="_blank" ng-repeat="content in fullPresentation.releasedContents">
+                                    <img ng-src="img/content.png">
+                                    <h2 style="padding-left: 70px">
+                                        Contenu
+                                    </h2>
+                                    <p>{{ content.description }}</p>
+                                </a>
+                            </div>
+                    </div>
+                </div>
+
+            </div>
+
+        </ion-content>
+
+    </ion-view>
+
+</div>

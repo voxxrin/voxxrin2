@@ -1,0 +1,151 @@
+/* ======== UTILS ======== */
+
+.font-italic {
+    font-style: italic !important;
+}
+
+.highlight-text-italic {
+    font-style: italic;
+}
+
+.font-bold {
+    font-weight: bold !important;
+}
+
+.highlight-text-bold {
+    font-weight: 400;
+}
+
+.font-norm {
+    font-weight: 300 !important;
+}
+
+.text-right {
+    text-align: right;
+}
+
+.text-center {
+    text-align: center;
+}
+
+.text-left {
+    text-align: left;
+}
+
+.text-justify {
+    text-align: justify;
+}
+
+.text-uppercase {
+    text-transform: uppercase;
+}
+
+.text-lowercase {
+    text-transform: lowercase;
+}
+
+.float-right {
+    float: right;
+}
+
+.float-left {
+    float: left;
+}
+
+.float-none {
+    float: none;
+}
+
+.element-centered {
+    margin: 0 auto;
+}
+
+.pos-relative {
+    position: relative;
+}
+
+.dir-rtl {
+    direction: rtl !important;
+}
+
+.dir-ltr {
+    direction: ltr !important;
+}
+
+.dspl-inbl {
+    display: inline-block;
+}
+
+.force-dspl-inbl {
+    display: inline-block !important;
+}
+
+.dspl-block {
+    display: block;
+}
+
+.force-dspl-block {
+    display: block !important;
+}
+
+.vert-align-top {
+    vertical-align: top;
+}
+
+.vert-align-middle {
+    vertical-align: middle;
+}
+
+.vert-align-bottom {
+    vertical-align: bottom;
+}
+
+.clear-line-height {
+    display: inline-block;
+    line-height: normal !important;
+}
+
+.clear-float {
+    clear: both;
+    visibility: hidden;
+    margin: 0;
+}
+.clickable-area {
+    cursor: pointer;
+}
+
+.clear-padding {
+    padding: 0;
+}
+
+.clear-padding-top {
+    padding-top: 0 !important;
+}
+
+.clear-padding-bottom {
+    padding-bottom: 0 !important;
+}
+
+.clear-padding-left {
+    padding-left: 0 !important;
+}
+
+.clear-padding-right {
+    padding-right: 0 !important;
+}
+
+.dspl-inbl {
+    display: inline-block;
+}
+
+.force-dspl-inbl {
+    display: inline-block !important;
+}
+
+.dspl-block {
+    display: block;
+}
+
+.force-dspl-block {
+    display: block !important;
+}

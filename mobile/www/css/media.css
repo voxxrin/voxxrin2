@@ -1,0 +1,46 @@
+/* ======== MEDIA ======== */
+
+/* === > 480 === */
+
+@media screen and (max-height: 480px) {
+    .intro .slick-slider {
+        height: 80%;
+    }
+
+    .content-carousel img {
+        width: 65%;
+    }
+
+    .content-carousel .text {
+        font-size: 12px;
+    }
+
+    .round-btn-hrz {
+        font-size: 12px;
+        padding: 5px 10px;
+    }
+}
+
+/* === > 732 === */
+
+@media screen and (min-width: 732px) {
+
+    .content-carousel {
+        width: 20% !important;
+    }
+
+    .part-top-login {
+        min-height: 320px;
+        padding-top: 100px;
+    }
+
+    .part-bottom-login {
+        height: 45%;
+        margin-top: 50px;
+    }
+
+    .footer-login {
+        position: relative;
+        margin-top: -20px;
+    }
+}

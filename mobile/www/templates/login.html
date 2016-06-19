@@ -1,0 +1,56 @@
+<div ng-controller="LoginCtrl">
+
+    <ion-view hide-nav-bar="true">
+
+        <ion-content class="login-content" scroll="false">
+
+            <div class="row part-top-login">
+                <h1 class="col-55 element-centered logo"></h1>
+                <h5 class="col-90 element-centered text-center white-title">Your conference companion</h5>
+            </div>
+
+            <div class="part-bottom-login">
+                <div class="text-center connect-network">
+
+                    <h4 class="white-title" ng-if="!isAuthenticated">Connectez-vous</h4>
+                    <h4 class="white-title" ng-if="isAuthenticated">Déconnexion</h4>
+
+                    <span class="col-50 element-centered sep-hrz primary-dark-sep"></span>
+                    <div class="inline list-btn-large">
+
+                        <button class="round-btn large-btn white-btn" ng-click="authenticate('twitter')" ng-if="!isAuthenticated">
+                            <i class="ion-social-twitter"></i>
+                        </button>
+
+                        <button class="round-btn large-btn white-btn" ng-click="authenticate('linkedin')" ng-if="!isAuthenticated">
+                            <i class="ion-social-linkedin"></i>
+                        </button>
+
+                        <button class="round-btn large-btn white-btn" ng-click="logout()" ng-if="isAuthenticated">
+                            <i class="ion-log-out"></i>
+                        </button>
+
+                    </div>
+
+                </div>
+
+                <span class="col-50 element-centered sep-hrz primary-dark-sep"></span>
+                </br>
+                <div class="text-center connect-network">
+                    <h5 class="white-title">Continuer</h5>
+                    <button class="round-btn medium-btn white-btn" ng-click="goToEvents()">
+                        <i class="icon ion-arrow-right-c"></i>
+                    </button>
+                </div>
+            </div>
+
+            <ion-footer-bar align-title="left" class="footer-login">
+            <span class="legal-mention text-center">© Voxxrin - 2015 - v2.0</span>
+
+        </ion-footer-bar>
+        </ion-content>
+
+
+    </div>
+
+</div>

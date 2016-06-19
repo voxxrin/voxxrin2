@@ -1,0 +1,71 @@
+/* ======== TIMELINE ======== */
+
+/* === Desc === */
+
+
+.tl-storyslider  { height: 50% !important;}
+.tl-slide-scrollable-container { width: 100% !important;}
+.tl-slide-content{ width: 100% !important; padding-right: 20px !important; padding-left: 20px !important;}
+
+.tl-text { margin-top: 0 !important;}
+.tl-headline {font-size: 24px !important; color: #e0223f !important; line-height: 26px !important;}
+.tl-slidenav-icon {height: 100%; display: block;}
+
+.tl-text-content p { font-size: 12px !important;}
+
+/* === Time ===*/
+.tl-headline-date { padding-left: 0 !important; margin-bottom: 10px !important;}
+.tl-headline-date:before { font-family: 'ionicons'; content: '\f26e'; font-size: 16px; color: #e0223f; margin-right: 10px;}
+
+
+/* === Slide Icons ===*/
+
+.tl-slidenav-content-container { width: 20px !important; background-color: #e0223f;}
+.tl-slidenav-icon { opacity: 1 !important;}
+.tl-slidenav-icon:before { position: absolute; top:50%; left: 50%; transform: translate(-50%,-50%); -webkit-transform: translate(-50%,-50%); font-size: 10px !important; color: white !important;}
+
+.tl-slidenav-previous { left: -10px !important;}
+.tl-slidenav-previous .tl-slidenav-content-container { border-radius: 0 20px 20px 0 !important;}
+
+.tl-slidenav-next { right: 10px !important;}
+.tl-slidenav-next .tl-slidenav-content-container { border-radius:  20px 0 0 20px !important;}
+
+/* === Indication ===*/
+
+.tl-message-container { background-color: rgba(0, 0, 0, 0.7) !important;}
+.tl-message-content { color: white !important;}
+.tl-icon-swipe-left { color: #e0223f !important;  }
+.tl-button { background-color: #e0223f !important; border-radius: 5px !important; color: white !important; }
+
+.tl-slide-content {
+    width: 100%;
+}
+
+/* === Time Line ===*/
+
+
+.tl-timegroup { font-size: 12px !important;}
+.tl-timegroup .tl-timegroup-message { margin-left: 25px !important;}
+
+.tl-timemarker-text h2 { font-size: 10px !important; margin-top: -3px !important; font-weight: bold !important; color: #686868 !important; }
+.tl-timemarker .tl-timemarker-content-container .tl-timemarker-content { padding: 0 !important;}
+.tl-timemarker.tl-timemarker-active .tl-timemarker-content-container { border: none !important;}
+
+.tl-timeaxis-background { background-color: #e0223f !important; color: white !important;}
+
+.tl-attribution { display: none !important;}
+
+.tl-timeaxis-tick { color: white !important;}
+
+/* === Sidebar Btn === */
+
+.tl-menubar {
+    position: initial !important;
+    height: 100% !important;
+}
+.tl-menubar-button {
+    display: inline-block !important;
+    height: 100% !important;
+    width: 33.33% !important;
+    padding-top: 10px !important;
+}

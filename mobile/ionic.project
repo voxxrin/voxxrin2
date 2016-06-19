@@ -1,0 +1,10 @@
+{
+  "name": "voxxrin2",
+  "app_id": "a58b11d4",
+  "proxies": [
+    {
+      "path": "/api",
+      "proxyUrl": "http://localhost:8080/api"
+    }
+  ]
+}

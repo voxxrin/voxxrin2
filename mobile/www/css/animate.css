@@ -1,0 +1,20 @@
+/* ======== ANIMATIONS ======== */
+
+/* === Gradient === */
+
+
+@-webkit-keyframes gradientTopAnimate {
+    0%{background-position:2% 0%}
+    50%{background-position:99% 100%}
+    100%{background-position:2% 0%}
+}
+@-moz-keyframes gradientTopAnimate {
+    0%{background-position:2% 0%}
+    50%{background-position:99% 100%}
+    100%{background-position:2% 0%}
+}
+@keyframes gradientTopAnimate {
+    0%{background-position:2% 0%}
+    50%{background-position:99% 100%}
+    100%{background-position:2% 0%}
+}

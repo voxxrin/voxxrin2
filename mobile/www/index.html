@@ -1,0 +1,194 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="initial-scale=1, maximum-scale=1, user-scalable=no, width=device-width">
+    <meta http-equiv="Content-Security-Policy"
+          content="default-src * file:; img-src * data: file:; style-src * 'self' 'unsafe-inline' file:; script-src * 'self' 'unsafe-inline' 'unsafe-eval' file:">
+    <title>Voxxrin - v2</title>
+
+    <link href="lib/ionic/css/ionic.css" rel="stylesheet">
+    <link href="lib/timeline.js/compiled/css/timeline.css" rel="stylesheet">
+    <link href="lib/ionic-rating/ionic-rating.css" rel="stylesheet">
+    <link rel="stylesheet" type="text/css" href="lib/sweetalert/dist/sweetalert.css">
+    <link href="lib/slick.js/slick/slick.css" rel="stylesheet">
+    <link href="lib/slick.js/slick/slick-theme.css" rel="stylesheet">
+
+    <!-- Pages Styles -->
+    <link href="css/pages/login.css" rel="stylesheet">
+    <link href="css/pages/settings.css" rel="stylesheet">
+    <link href="css/pages/presentation.css" rel="stylesheet">
+    <link href="css/pages/intro.css" rel="stylesheet">
+    <link href="css/pages/dashboard.css" rel="stylesheet">
+
+
+    <!-- Components Styles -->
+    <link href="css/components.css" rel="stylesheet">
+    <link href="css/menu.css" rel="stylesheet">
+    <link href="css/common.css" rel="stylesheet">
+    <link href="css/slots.css" rel="stylesheet">
+    <link href="css/speaker.css" rel="stylesheet">
+    <link href="css/timeline.css" rel="stylesheet">
+    <link href="css/animate.css" rel="stylesheet">
+
+
+    <!-- Layouts Styles -->
+    <link href="css/layout.css" rel="stylesheet">
+    <link href="css/buttons.css" rel="stylesheet">
+    <link href="css/bases.css" rel="stylesheet">
+    <link href="css/fonts.css" rel="stylesheet">
+    <link href="css/media.css" rel="stylesheet">
+
+    <!-- Utils Styles -->
+    <link href="css/utils.css" rel="stylesheet">
+
+    <!-- IF using Sass (run gulp sass first), then uncomment below and remove the CSS includes above
+    <link href="css/ionic.app.css" rel="stylesheet">
+    -->
+
+    <!-- ionic/angularjs js -->
+    <script src="lib/ionic/js/ionic.bundle.js"></script>
+    <script src="lib/ionic-service-core/ionic-core.js"></script>
+    <script src="lib/ionic-service-analytics/ionic-analytics.js"></script>
+    <script src="lib/ionic-service-push/ionic-push.js"></script>
+    <script src="lib/ionic/js/ionic-angular.min.js"></script>
+    <script src="lib/angular-resource/angular-resource.min.js"></script>
+    <script src="lib/ngCordova/dist/ng-cordova.js"></script>
+    <script src="lib/ionic-platform-web-client/dist/ionic.io.bundle.js"></script>
+
+    <!-- ionic/libs js -->
+    <script src="lib/jquery/dist/jquery.min.js"></script>
+    <script src="lib/moment/min/moment.min.js"></script>
+    <script src="lib/lodash/lodash.min.js"></script>
+    <script src="lib/timeline.js/compiled/js/timeline-min.js"></script>
+    <script src="lib/ionic-rating/ionic-rating.js"></script>
+    <script src="lib/angular-cookie/angular-cookie.min.js"></script>
+    <script src="lib/ion-sticky/ion-sticky.js"></script>
+    <script src="lib/angular-touch/angular-touch.js"></script>
+    <script src="lib/sweetalert/dist/sweetalert.min.js"></script>
+    <script src="lib/slick.js/slick/slick.min.js"></script>
+
+    <!-- ionic/vendors js -->
+    <script src="vendors/ng-token-auth.js"></script>
+
+    <!-- cordova script (this will be a 404 during development) -->
+    <!--<script src="cordova.js"></script>-->
+
+    <!-- your app's js -->
+    <script src="js/app.js"></script>
+    <script src="js/auth.js"></script>
+
+    <!-- server config file -->
+    <script>
+        var onServerConfigurationDownloadFail = function () {
+            console.log('Unable to retrieve the remote server configuration. Use the default one.');
+            var tag = document.createElement('script');
+            tag.setAttribute('type', 'text/javascript');
+            tag.setAttribute('src', 'js/configuration.default.js');
+            document.getElementsByTagName('head')[0].appendChild(tag);
+        };
+    </script>
+    <script onerror="onServerConfigurationDownloadFail()"
+            src="https://cdn.rawgit.com/voxxrin/static/master/configuration.js"></script>
+
+    <script src="js/interceptors/MainHttpRequestInterceptor.js"></script>
+    <script src="js/patches/ngIOS9UIWebViewPatch.js"></script>
+    <script src="js/directive/Carousel.js"></script>
+    <script src="js/directive/ErrorSource.js"></script>
+    <script src="js/directive/ConferencePlanning.js"></script>
+    <script src="js/filters/TwitterIdFilter.js"></script>
+    <script src="js/filters/TrustedHtmlFilter.js"></script>
+    <script src="js/filters/UntrustedHtmlFilter.js"></script>
+    <script src="js/filters/SpeakersFilter.js"></script>
+    <script src="js/filters/OrDashFilter.js"></script>
+    <script src="js/filters/PrezFilter.js"></script>
+    <script src="js/services/LocalStorage.js"></script>
+    <script src="js/services/Notification.js"></script>
+    <script src="js/services/Calendar.js"></script>
+    <script src="js/services/Session.js"></script>
+    <script src="js/services/Event.js"></script>
+    <script src="js/services/Day.js"></script>
+    <script src="js/services/Presentation.js"></script>
+    <script src="js/services/Rating.js"></script>
+    <script src="js/services/RemindMe.js"></script>
+    <script src="js/services/Favorite.js"></script>
+    <script src="js/services/Stats.js"></script>
+    <script src="js/services/AttachedContent.js"></script>
+    <script src="js/controllers/IntroCtrl.js"></script>
+    <script src="js/controllers/GlobalCtrl.js"></script>
+    <script src="js/controllers/NavigationCtrl.js"></script>
+    <script src="js/controllers/LoginCtrl.js"></script>
+    <script src="js/controllers/EventsListCtrl.js"></script>
+    <script src="js/controllers/EventAdminCtrl.js"></script>
+    <script src="js/controllers/DaysListCtrl.js"></script>
+    <script src="js/controllers/PresentationsAbstractCtrl.js"></script>
+    <script src="js/controllers/PresentationsListCtrl.js"></script>
+    <script src="js/controllers/PresentationsDetailsCtrl.js"></script>
+    <script src="js/controllers/PlanningCtrl.js"></script>
+
+</head>
+<body ng-app="voxxrin">
+
+<div ng-controller="GlobalCtrl">
+
+    <ion-side-menus enable-menu-with-back-views="true" ng-controller="NavigationCtrl">
+
+        <ion-side-menu-content edge-drag-threshold="true">
+            <ion-nav-bar class="bar-primary">
+                <ion-nav-back-button class="button-icon ion-ios-arrow-back" ng-click="goBack()"></ion-nav-back-button>
+                <ion-nav-buttons side="left">
+                    <button menu-toggle="left" class="button button-icon icon ion-navicon"></button>
+                </ion-nav-buttons>
+            </ion-nav-bar>
+
+            <div>
+                <ion-nav-view></ion-nav-view>
+            </div>
+        </ion-side-menu-content>
+
+        <ion-side-menu side="left" class="menu-left">
+            <ion-header-bar class="header-menu">
+                <div class="col-50 element-centered text-center" ng-if="Session.isAuthenticated()">
+                    <span class="avatar user element-centered">
+                        <img ng-if="Session.getCurrent().avatarUrl" ng-src="{{ Session.getCurrent().avatarUrl }}">
+                    </span>
+                    <span class="user-connect">
+                       <h5 class="white-title"><i class="icon ion-social-twitter"></i>{{ Session.getCurrent().displayName }}</h5>
+                    </span>
+                    <br>
+                    <button class="round-btn small-btn white-btn" ng-click="logout()">
+                        <i class="icon ion-log-out"></i>
+                    </button>
+                </div>
+            </ion-header-bar>
+            <ion-content class="menu-list">
+                <ion-list>
+                    <ion-item menu-close="" href="#/login">
+                        <i class="icon ion-home"></i>Accueil
+                    </ion-item>
+
+                    <ion-item menu-close="" href="#/events/list">
+                        <i class="icon ion-bookmark"></i>Conf&#xE9;rences
+                    </ion-item>
+
+                    <!--<ion-item menu-close="" href="#">-->
+                        <!--<i class="ion-gear-a"></i>Configuration-->
+                    <!--</ion-item>-->
+
+                    <ion-item menu-close="" href="#/intro">
+                        <i class="icon ion-tshirt"></i>Tutoriel
+                    </ion-item>
+                </ion-list>
+            </ion-content>
+            <ion-footer-bar align-title="left" class="footer-login">
+                <span class="legal-mention text-center">
+                    &#xA9; Voxxrin - 2015 - v2.0
+                    <br/>
+                    made by <a href="https://twitter.com/eoriou">@eoriou</a> and <a href="https://twitter.com/lopezrobin">@lopezrobin</a>
+                </span>
+            </ion-footer-bar>
+        </ion-side-menu>
+    </ion-side-menus>
+</div>
+</body>
+</html>

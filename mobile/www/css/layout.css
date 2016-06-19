@@ -1,0 +1,102 @@
+/* ======== LAYOUT ======== */
+
+body {
+    font-family: 'Source Sans Pro';
+}
+
+/* === Header === */
+.bar-header {border: none;}
+.fix-has-subheader { padding-top: 7px;}
+.has-subheader { top: 88px;}
+.has-big-subheader { padding-top: 160px;}
+.header-item { font-weight: bold !important;}
+
+.bar .button.back-button { color: white;}
+
+.back-text { display: none !important;}
+
+.fav-actions {
+    padding: 12px;
+}
+
+.buttons-right {
+    padding-top: 5px;
+    padding-right: 5px;
+}
+
+/* --- Buttons --- */
+
+.ion-navicon { color: white !important;}
+.ion-navicon.activated { color: #FFFFFF !important;}
+.menu-open .ion-navicon:before { content: '\f129'; font-size: 22px !important; color: white;}
+
+/* --- Colors --- */
+
+.bar-primary { background: #e0223f;}
+.bar-primary .title { color: white;}
+
+.tabs-primary .tab-nav { padding-top: 0; color: #686868;}
+.tabs-primary .tab-nav a { border-right: 1px solid #e5e8ed; font-size: 12px;}
+.tabs-primary .tab-nav a:last-child { border-right: none; }
+.tabs-primary .tab-nav .tab-item-active { background-color: #e0223f; color: white; }
+
+
+/* === Container ===*/
+
+.card { box-shadow: none !important;}
+
+
+/* === Striped Bar === */
+
+.tab-item { font-weight: bold;}
+.tabs-striped .tabs { border-bottom: 0;}
+.tabs-top.tabs-striped .tab-item.active { border-width: 0px 0px 4px 0px !important;}
+
+.tabs-bottom .tabs { height: 75px;}
+
+/* --- Colors --- */
+
+.tabs-background-primary .tabs { background: #e0223f;}
+
+/* === Separators === */
+
+.sep-hrz {
+    display: block;
+    width: 100%;
+    height: 1px;
+    margin: 5px 0;
+}
+
+.sep-vert {
+    display: inline-block;
+    height: 100%;
+    width: 1px;
+    margin: 0 5px;
+}
+
+.white-sep { background: #FFFFFF;}
+
+.primary-sep {background: #e0223f;}
+.primary-dark-sep {background: #95172a;}
+
+.secondary-sep {background: #eeeeee;}
+.secondary-dark-sep {background: #686868;}
+
+/* === Toogle ===*/
+
+.toggle.toggle-assertive input:checked + .track {
+    border-color: #e0223f;
+    background: #e0223f;
+}
+
+/* === Input ===*/
+
+.range {
+    background: transparent;
+}
+
+input[type=range] {
+    display: block;
+    width: 100%;
+    margin: 0;
+}
