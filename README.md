@@ -72,3 +72,44 @@ Principal commiters / providers of idea are :
 * Elian ORIOU (@eoriou)
 * Frédéric CAMBLOR (@fcamblor)
 * Robin LOPEZ (@lopezrobin)
+
+## Technologies
+
+Used technologies are :
+
+* server side
+    * [restx.io](http://restx.io)
+    * [MongoDB](https://www.mongodb.com)
+    * [Nimbus (JOSE + JWT)](http://connect2id.com/products/nimbus-jose-jwt)
+* client side
+    * [cordova](https://cordova.apache.org/)
+    * [ionic](http://ionicframework.com)
+    * [angularjs](https://angularjs.org)
+
+The app is compound by a multi-module maven artifact:
+##### common
+> The shared model. All POJOs + serialization logic are stored into this module.
+##### crawlers
+> All implemented crawlers and configuration manager. Each crawler much extends the AbstractHttpCrawler class.
+##### srv
+> The voxxrin backend providing a REST API. Based on the web fmwk [restx.io](http://restx.io) and connected to a NoSQL [MongoDB](https://www.mongodb.com) database.
+> Authentication is based on JWT (Json Web Token) & Social Providers (twitter, ...).
+##### mobile
+> The mobile / web app. Based on the mobile component fmwk [ionic](http://ionicframework.com).
+> Web resources are served by the backend but are configured to be deployed into a [cordova](https://cordova.apache.org/) application.
+
+## Bootstraping
+
+##### server
+Launch Java class ```voxxrin2.AppServer``` providing mandatory VM options with default values :
+```
+-Drestx.mode=prod
+-Doauth.twitter.apiKey=_
+-Doauth.twitter.apiSecret=_
+-Doauth.linkedin.clientId=_
+-Doauth.linkedin.apiSecret=_
+-Doauth.secrets.token=_
+```
+
+##### client
+In progress ...
