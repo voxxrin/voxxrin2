@@ -1,6 +1,4 @@
 #!/bin/bash
 
-pushd ..
 PATH=$(npm bin):$PATH
-ionic serve
-popd
+ionic run android
