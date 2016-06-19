@@ -1,4 +1,4 @@
-package crawlers.web;
+package crawlers;
 
 import restx.config.Settings;
 import restx.config.SettingsKey;
@@ -7,5 +7,8 @@ import restx.config.SettingsKey;
 public interface CrawlingSettings {
 
     @SettingsKey(key = "voxxrin.api.url")
-    public String voxxrinBackendUrl();
+    String voxxrinBackendUrl();
+
+    @SettingsKey(key = "voxxrin.http.basic.pwd")
+    String voxxrinAdminHttpBasic();
 }

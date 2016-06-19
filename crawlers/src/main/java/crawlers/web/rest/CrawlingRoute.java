@@ -10,7 +10,6 @@ import crawlers.HttpDataFiller;
 import crawlers.configuration.CrawlingConfiguration;
 import crawlers.configuration.CrawlingConfigurationManager;
 import crawlers.utils.Functions;
-import crawlers.web.CrawlingSettings;
 import org.slf4j.Logger;
 import restx.*;
 import restx.factory.Component;
@@ -29,18 +28,18 @@ public class CrawlingRoute extends StdRoute {
     private static final Logger logger = getLogger(CrawlingRoute.class);
 
     private final ImmutableMap<String, AbstractHttpCrawler> crawlers;
-    private final CrawlingSettings settings;
     private final CrawlingConfigurationManager configurationManager;
+    private final HttpDataFiller httpDataFiller;
     private final ObjectMapper objectMapper;
 
     public CrawlingRoute(Set<AbstractHttpCrawler> crawlers,
-                         CrawlingSettings settings,
                          CrawlingConfigurationManager configurationManager,
+                         HttpDataFiller httpDataFiller,
                          @Named(FrontObjectMapperFactory.MAPPER_NAME) ObjectMapper objectMapper) {
 
         super("crawling", new StdRestxRequestMatcher("PUT", "/crawl"));
-        this.settings = settings;
         this.configurationManager = configurationManager;
+        this.httpDataFiller = httpDataFiller;
         this.objectMapper = objectMapper;
         this.crawlers = Maps.uniqueIndex(crawlers, Functions.CRAWLERS_MAP_INDEXER);
     }
@@ -101,7 +100,7 @@ public class CrawlingRoute extends StdRoute {
 
     private void sendResultToVoxxrin(CrawlingResult result, String crawlerId) {
         try {
-            new HttpDataFiller(settings.voxxrinBackendUrl()).fill(result);
+            httpDataFiller.fill(result);
         } catch (JsonProcessingException e) {
             logger.error("Error occured during filling to backend (crawlerId = " + crawlerId + ")", e);
         }

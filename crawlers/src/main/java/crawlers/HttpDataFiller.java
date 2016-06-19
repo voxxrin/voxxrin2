@@ -14,20 +14,22 @@ import com.github.kevinsawicki.http.HttpRequest;
 import org.jongo.marshall.jackson.oid.ObjectIdDeserializer;
 import org.jongo.marshall.jackson.oid.ObjectIdSerializer;
 import org.slf4j.Logger;
+import restx.factory.Component;
 import restx.jackson.FixedPrecisionDeserializer;
 import restx.jackson.FixedPrecisionSerializer;
-import voxxrin2.domain.*;
+import voxxrin2.domain.Day;
+import voxxrin2.domain.Presentation;
+import voxxrin2.domain.Room;
+import voxxrin2.domain.Speaker;
 import voxxrin2.domain.technical.Referenceable;
 import voxxrin2.serialization.ReferenceSerializer;
 
-import java.util.UUID;
-
 import static org.slf4j.LoggerFactory.getLogger;
 
+@Component
 public class HttpDataFiller {
 
     private static final Logger logger = getLogger(HttpDataFiller.class);
-    private static final ObjectMapper MAPPER = buildObjectMapper();
 
     private static final String EVENTS_URL = "/events";
     private static final String DAYS_URL = "/days";
@@ -35,10 +37,14 @@ public class HttpDataFiller {
     private static final String SPEAKERS_URL = "/speakers";
     private static final String PRESENTATIONS_URL = "/presentations";
     private static final String CRAWLED_ENTITIES_URL = "/entities/crawled";
-    private final String baseUrl;
 
-    public HttpDataFiller(String baseUrl) {
-        this.baseUrl = baseUrl;
+    private final ObjectMapper mapper = buildObjectMapper();
+    private final String voxxrinBaseUrl;
+    private final String voxxrinBasicHash;
+
+    public HttpDataFiller(CrawlingSettings crawlingSettings) {
+        this.voxxrinBaseUrl = crawlingSettings.voxxrinBackendUrl();
+        this.voxxrinBasicHash = crawlingSettings.voxxrinAdminHttpBasic();
     }
 
     public void fill(CrawlingResult result) throws JsonProcessingException {
@@ -67,10 +73,10 @@ public class HttpDataFiller {
     }
 
     private void clearExistingData(String eventId) {
-        String url = baseUrl + CRAWLED_ENTITIES_URL + "?eventId=" + eventId;
+        String url = voxxrinBaseUrl + CRAWLED_ENTITIES_URL + "?eventId=" + eventId;
         int code = HttpRequest
                 .delete(url)
-                .basic("admin", System.getProperty("voxxrin.http.basic.pwd"))
+                .basic("admin", voxxrinBasicHash)
                 .code();
         logger.info("Cleaning existing crawled data (url = {}) - Response code {}", url, code);
     }
@@ -78,10 +84,12 @@ public class HttpDataFiller {
     private <T extends Referenceable> void send(String url, T entity, String crawlId) throws JsonProcessingException {
         entity.setEventId(crawlId);
         int code = HttpRequest
-                .post(baseUrl + url).acceptJson()
-                .basic("admin", System.getProperty("voxxrin.http.basic.pwd"))
-                .send(MAPPER.writeValueAsString(entity)).code();
-        logger.info("Request sent to {} - Response code {}", baseUrl + url, code);
+                .post(voxxrinBaseUrl + url)
+                .acceptJson()
+                .basic("admin", voxxrinBasicHash)
+                .send(mapper.writeValueAsString(entity))
+                .code();
+        logger.info("Request sent to {} - Response code {}", voxxrinBaseUrl + url, code);
     }
 
     private static ObjectMapper buildObjectMapper() {
