@@ -92,6 +92,7 @@ Used technologies are :
     * [angularjs](https://angularjs.org)
 
 The app is compound by a multi-module maven artifact:
+
 ##### common
 > The shared model. All POJOs + serialization logic are stored into this module.
 
@@ -101,6 +102,7 @@ The app is compound by a multi-module maven artifact:
 ##### srv
 > The voxxrin backend providing a REST API. Based on the web fmwk [restx.io](http://restx.io) and connected to a NoSQL [MongoDB](https://www.mongodb.com) database.
 > Authentication is based on JWT (Json Web Token) & Social Providers (twitter, ...).
+
 ##### mobile
 > The mobile / web app. Based on the mobile component fmwk [ionic](http://ionicframework.com).
 > Web resources are served by the backend but are configured to be deployed into a [cordova](https://cordova.apache.org/) application.
