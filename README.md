@@ -94,8 +94,10 @@ Used technologies are :
 The app is compound by a multi-module maven artifact:
 ##### common
 > The shared model. All POJOs + serialization logic are stored into this module.
+
 ##### crawlers
 > All implemented crawlers and configuration manager. Each crawler much extends the AbstractHttpCrawler class.
+
 ##### srv
 > The voxxrin backend providing a REST API. Based on the web fmwk [restx.io](http://restx.io) and connected to a NoSQL [MongoDB](https://www.mongodb.com) database.
 > Authentication is based on JWT (Json Web Token) & Social Providers (twitter, ...).
