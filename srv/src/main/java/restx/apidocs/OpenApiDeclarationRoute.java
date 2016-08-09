@@ -29,7 +29,7 @@ public class OpenApiDeclarationRoute extends StdJsonProducerEntityRoute {
 
     @Inject
     public OpenApiDeclarationRoute(@Named(FrontObjectMapperFactory.WRITER_NAME) ObjectWriter writer, Factory factory) {
-        super("ApiDeclarationRoute", Map.class, writer, new StdRestxRequestMatcher("GET", "/public/{router}"));
+        super("OpenApiDeclarationRoute", Map.class, writer, new StdRestxRequestMatcher("GET", "/public/{router}"));
         this.factory = factory;
     }
 
