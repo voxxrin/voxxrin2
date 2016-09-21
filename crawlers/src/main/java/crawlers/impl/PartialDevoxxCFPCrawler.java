@@ -4,6 +4,7 @@ import com.google.common.base.Optional;
 import com.google.common.base.Predicate;
 import com.google.common.collect.Iterables;
 import crawlers.CrawlingResult;
+import crawlers.configuration.CrawlingConfiguration;
 import org.bson.types.ObjectId;
 import voxxrin2.domain.Room;
 
@@ -16,9 +17,9 @@ public class PartialDevoxxCFPCrawler extends DevoxxCFPCrawler {
     }
 
     @Override
-    protected void crawlDay(CrawlingResult result, DevoxxCFPCrawler.CFPLink dayLink, DevoxxCFPCrawler.CFPDay cfpDay) {
+    protected void crawlDay(CrawlingResult result, DevoxxCFPCrawler.CFPLink dayLink, DevoxxCFPCrawler.CFPDay cfpDay, CrawlingConfiguration configuration) {
         populateRooms(result, cfpDay);
-        super.crawlDay(result, dayLink, cfpDay);
+        super.crawlDay(result, dayLink, cfpDay, configuration);
     }
 
     /**

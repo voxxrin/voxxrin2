@@ -40,6 +40,8 @@ public class CrawlingConfiguration {
 
     private String location;
 
+    private boolean forceHttps;
+
     /**
      * Authorized tokens
      */
@@ -68,6 +70,10 @@ public class CrawlingConfiguration {
 
     public String getLocation() {
         return location;
+    }
+
+    public boolean isForceHttps() {
+        return forceHttps;
     }
 
     public List<String> getTokens() {
@@ -106,6 +112,11 @@ public class CrawlingConfiguration {
 
     public CrawlingConfiguration setTokens(final List<String> tokens) {
         this.tokens = tokens;
+        return this;
+    }
+
+    public CrawlingConfiguration setForceHttps(final boolean forceHttps) {
+        this.forceHttps = forceHttps;
         return this;
     }
 }

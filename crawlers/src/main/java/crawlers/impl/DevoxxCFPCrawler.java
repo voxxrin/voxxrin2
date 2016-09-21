@@ -41,13 +41,13 @@ public abstract class DevoxxCFPCrawler extends AbstractHttpCrawler {
         String speakersUrl = eventUrl + "/speakers";
         String daysUrl = eventUrl + "/schedules";
 
-        CFPEvent cfpEvent = MAPPER.readValue(HttpRequest.get(eventUrl).body(), CFPEvent.class);
-        List<CFPLinks> cfpSpeakerLinks = MAPPER.readValue(HttpRequest.get(speakersUrl).body(), buildCollectionType(CFPLinks.class));
-        CFPLinks cfpDayLinks = MAPPER.readValue(HttpRequest.get(daysUrl).body(), CFPLinks.class);
+        CFPEvent cfpEvent = MAPPER.readValue(httpGet(eventUrl, configuration).body(), CFPEvent.class);
+        List<CFPLinks> cfpSpeakerLinks = MAPPER.readValue(httpGet(speakersUrl, configuration).body(), buildCollectionType(CFPLinks.class));
+        CFPLinks cfpDayLinks = MAPPER.readValue(httpGet(daysUrl, configuration).body(), CFPLinks.class);
 
         CFPRooms cfpRooms = new CFPRooms();
         try {
-            cfpRooms = MAPPER.readValue(HttpRequest.get(roomsUrl).body(), CFPRooms.class);
+            cfpRooms = MAPPER.readValue(httpGet(roomsUrl, configuration).body(), CFPRooms.class);
         } catch (JsonParseException e) {
             logger.warn("Unable to retrieve rooms");
         }
@@ -56,14 +56,20 @@ public abstract class DevoxxCFPCrawler extends AbstractHttpCrawler {
         // Rooms
         crawlRooms(cfpRooms, crawlingResult);
         // Speakers
-        crawlSpeakers(cfpSpeakerLinks, crawlingResult);
+        crawlSpeakers(cfpSpeakerLinks, crawlingResult, configuration);
         // Schedules
-        crawlSchedules(cfpDayLinks, crawlingResult);
+        crawlSchedules(cfpDayLinks, crawlingResult, configuration);
 
         // Compute some extra data
         setEventTemporalLimits(crawlingResult);
 
         return crawlingResult;
+    }
+
+    private HttpRequest httpGet(String url, CrawlingConfiguration configuration) {
+        return HttpRequest.get(configuration.isForceHttps() && !url.contains("https://") ? url.replaceAll("http", "https") : url)
+                .trustAllCerts()
+                .trustAllHosts();
     }
 
     @Override
@@ -84,40 +90,40 @@ public abstract class DevoxxCFPCrawler extends AbstractHttpCrawler {
         }
     }
 
-    protected void crawlSpeakers(List<CFPLinks> cfpSpeakerLinks, CrawlingResult crawlingResult) throws IOException {
+    protected void crawlSpeakers(List<CFPLinks> cfpSpeakerLinks, CrawlingResult crawlingResult, CrawlingConfiguration configuration) throws IOException {
         for (CFPLinks speakerLink : cfpSpeakerLinks) {
             CFPLink link = Iterables.getFirst(speakerLink.links, null);
             if (link == null) {
                 logger.error("link not found");
             } else {
-                CFPSpeaker cfpSpeaker = MAPPER.readValue(HttpRequest.get(link.href).body(), CFPSpeaker.class);
+                CFPSpeaker cfpSpeaker = MAPPER.readValue(httpGet(link.href, configuration).body(), CFPSpeaker.class);
                 crawlingResult.getSpeakers().add(cfpSpeaker.toStdSpeaker());
             }
         }
     }
 
-    protected void crawlSchedules(CFPLinks cfpDayLink, CrawlingResult result) throws IOException {
+    protected void crawlSchedules(CFPLinks cfpDayLink, CrawlingResult result, CrawlingConfiguration configuration) throws IOException {
         for (CFPLink dayLink : cfpDayLink.links) {
             try {
-                CFPDay cfpDay = MAPPER.readValue(HttpRequest.get(dayLink.href).body(), CFPDay.class);
-                crawlDay(result, dayLink, cfpDay);
+                CFPDay cfpDay = MAPPER.readValue(httpGet(dayLink.href, configuration).body(), CFPDay.class);
+                crawlDay(result, dayLink, cfpDay, configuration);
             } catch (Exception e) {
                 logger.warn("Unable to retrieve info about day from {}", dayLink.href);
             }
         }
     }
 
-    protected void crawlDay(CrawlingResult result, CFPLink dayLink, CFPDay cfpDay) {
+    protected void crawlDay(CrawlingResult result, CFPLink dayLink, CFPDay cfpDay, CrawlingConfiguration configuration) {
         Day stdDay = cfpDay.toStdDay(result.getEvent());
         if (cfpDay.slots == null || cfpDay.slots.isEmpty()) {
             logger.error("empty slots here {}", dayLink.href);
         } else {
-            crawlSlots(cfpDay.slots, stdDay, result);
+            crawlSlots(cfpDay.slots, stdDay, result, configuration);
             result.getDays().add(stdDay);
         }
     }
 
-    protected void crawlSlots(List<CFPSlot> slots, Day currentDay, CrawlingResult result) {
+    protected void crawlSlots(List<CFPSlot> slots, Day currentDay, CrawlingResult result, CrawlingConfiguration configuration) {
         for (final CFPSlot slot : slots) {
             Optional<Room> room = findRoom(result, slot);
             if (!room.isPresent()) {
@@ -137,7 +143,7 @@ public abstract class DevoxxCFPCrawler extends AbstractHttpCrawler {
                         // Sometime, speaker has not been registered into CFP speakers repository
                         // and are referenced ONLY from a slot => handling this case by retrieving "manually"
                         // the speaker following HREF
-                        Speaker registeredSpeaker = addUnregisteredSpeaker(result, speakers, cfpSpeaker, href);
+                        Speaker registeredSpeaker = addUnregisteredSpeaker(result, cfpSpeaker, href, configuration);
                         if (registeredSpeaker != null) {
                             speakers.add(Reference.<Speaker>of(Type.speaker, registeredSpeaker.getKey()));
                         }
@@ -150,10 +156,10 @@ public abstract class DevoxxCFPCrawler extends AbstractHttpCrawler {
         }
     }
 
-    private Speaker addUnregisteredSpeaker(CrawlingResult result, List<Reference<Speaker>> speakers, CFPTalkSpeaker cfpSpeaker, String href) {
+    private Speaker addUnregisteredSpeaker(CrawlingResult result, CFPTalkSpeaker cfpSpeaker, String href, CrawlingConfiguration configuration) {
         logger.warn("Speaker {} not registered, trying to follow the link.", cfpSpeaker.link.href);
         try {
-            CFPSpeaker speakerToRegister = MAPPER.readValue(HttpRequest.get(href).body(), CFPSpeaker.class);
+            CFPSpeaker speakerToRegister = MAPPER.readValue(httpGet(href, configuration).body(), CFPSpeaker.class);
             Speaker stdSpeaker = speakerToRegister.toStdSpeaker();
             result.getSpeakers().add(stdSpeaker);
             return stdSpeaker;
