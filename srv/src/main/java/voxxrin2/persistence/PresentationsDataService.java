@@ -61,6 +61,11 @@ public class PresentationsDataService extends DataService<Presentation> {
         return null;
     }
 
+    @Override
+    public Optional<Presentation> findById(String id) {
+        return super.findById(id).transform(USER_PRESENTATION_FUNCTOR);
+    }
+
     public Presentation attachReleasedContent(Presentation presentation, AttachedContent content) {
         return collection.get()
                 .findAndModify("{ _id: # }", new ObjectId(presentation.getKey()))
