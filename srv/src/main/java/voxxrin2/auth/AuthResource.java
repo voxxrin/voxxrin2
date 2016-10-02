@@ -8,6 +8,8 @@ import com.google.common.base.Strings;
 import com.google.common.collect.Maps;
 import com.google.common.io.CharStreams;
 import com.google.common.net.MediaType;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import restx.RestxRequest;
 import restx.WebException;
 import restx.annotations.*;
@@ -29,6 +31,8 @@ import java.util.Map;
 @Component
 @RestxResource("/auth")
 public class AuthResource {
+
+    private static final Logger logger = LoggerFactory.getLogger(AuthResource.class);
 
     private final AuthService authService;
     private final ObjectMapper mapper;
@@ -53,8 +57,12 @@ public class AuthResource {
     public String authenticate(String provider,
                                @Param(kind = Param.Kind.CONTEXT, value = "request") RestxRequest restxRequest) throws IOException {
         Optional<Map<String, ?>> params = extractParams(restxRequest);
-        User user = oAuthProviders.get(provider).authenticate(params);
-        return authService.buildPostMessageHtml(user, restxRequest);
+        Optional<User> user = oAuthProviders.get(provider).authenticate(params);
+        if (!user.isPresent()) {
+            logger.warn("OAuth login aborted. provider = {}, params = {}", provider, params);
+            return authService.buildAuthErrorHtml();
+        }
+        return authService.buildPostMessageHtml(user.get(), restxRequest);
     }
 
     @PermitAll

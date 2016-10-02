@@ -60,11 +60,15 @@ public class TwitterOAuthProvider extends OAuthProvider {
         return service.getAuthorizationUrl(service.getRequestToken());
     }
 
-    public <T extends Map<String, ?>> User authenticate(Optional<T> params) {
+    public <T extends Map<String, ?>> Optional<User> authenticate(Optional<T> params) {
 
         Map<String, List<String>> castedParams = castParams(params);
         Optional<String> oauth_token = extractFirstParam(castedParams.get("oauth_token"));
         Optional<String> oauth_verifier = extractFirstParam(castedParams.get("oauth_verifier"));
+
+        if (!oauth_verifier.isPresent() || !oauth_token.isPresent()) {
+            return Optional.absent();
+        }
 
         Verifier verifier = new Verifier(oauth_verifier.get());
         org.scribe.model.Token token = new org.scribe.model.Token(oauth_token.get(), "");
@@ -83,7 +87,7 @@ public class TwitterOAuthProvider extends OAuthProvider {
 
         logger.info("logged user is {}", user.getDisplayName());
 
-        return user;
+        return Optional.of(user);
     }
 
     private Map<String, String> retrieveAccountData(Token accessToken) {

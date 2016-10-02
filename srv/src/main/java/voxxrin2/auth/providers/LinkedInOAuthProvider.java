@@ -63,10 +63,10 @@ public class LinkedInOAuthProvider extends OAuthProvider {
     }
 
     @Override
-    public <T extends Map<String, ?>> User authenticate(Optional<T> params) throws IOException {
+    public <T extends Map<String, ?>> Optional<User> authenticate(Optional<T> params) throws IOException {
 
-        if (!params.isPresent()) {
-            throw new WebException(HttpStatus.BAD_REQUEST, "Missing parameters");
+        if (!params.isPresent() || !params.get().containsKey("code")) {
+            return Optional.absent();
         }
 
         String accessToken = getAccessToken(params.get());
@@ -103,7 +103,7 @@ public class LinkedInOAuthProvider extends OAuthProvider {
 
         logger.info("logged user is {}", user.getDisplayName());
 
-        return user;
+        return Optional.of(user);
     }
 
     private <T extends Map<String, ?>> String getAccessToken(T params) throws IOException {

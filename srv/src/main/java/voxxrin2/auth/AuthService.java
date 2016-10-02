@@ -30,13 +30,15 @@ public class AuthService {
 
     private final OAuthSettings oauthSettings;
     private final UserService userService;
-    private final Template tmpl;
+    private final Template successTmpl;
+    private final Template errorTmpl;
 
     public AuthService(OAuthSettings oauthSettings,
                        UserService userService) {
         this.oauthSettings = oauthSettings;
         this.userService = userService;
-        this.tmpl = Mustaches.compile("postMessage.mustache");
+        this.successTmpl = Mustaches.compile("tmpls/postMessage.success.mustache");
+        this.errorTmpl = Mustaches.compile("tmpls/postMessage.error.mustache");
     }
 
     public Token createToken(RestxRequest restxRequest, User user) {
@@ -66,12 +68,21 @@ public class AuthService {
         Token token = createToken(restxRequest, dbUser);
 
         StringWriter stringWriter = new StringWriter();
-        tmpl.execute(ImmutableMap.of(
+        successTmpl.execute(ImmutableMap.of(
                 "displayName", user.getDisplayName(),
                 "avatarUrl", user.getAvatarUrl(),
                 "token", token.getToken(),
                 "uid", UUID.randomUUID().toString(),
                 "user", dbUser), stringWriter);
+        stringWriter.flush();
+
+        return stringWriter.toString();
+    }
+
+    public String buildAuthErrorHtml() {
+
+        StringWriter stringWriter = new StringWriter();
+        errorTmpl.execute(ImmutableMap.of(), stringWriter);
         stringWriter.flush();
 
         return stringWriter.toString();
