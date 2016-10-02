@@ -5,7 +5,7 @@ angular.module('voxxrin')
 
         angular.extend($scope, {
             Session: Session,
-            isAuthenticated: false,
+            isAuthenticated: Session.isAuthenticated(),
             authenticate: function (provider) {
                 $auth.authenticate(provider).then(function () {
                     console.log('Social authentication success !');
