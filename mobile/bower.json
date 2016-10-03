@@ -6,7 +6,7 @@
   ],
   "devDependencies": {
     "ionic": "driftyco/ionic-bower#1.2.4",
-    "ionic-platform-web-client": "0.2.1",
+    "ionic-platform-web-client": "walien/ionic-platform-web-client#0.2.1",
     "ionic-service-push": "0.1.13",
     "ngCordova": "0.1.24-alpha",
     "ionic-service-analytics": "0.2.5"
