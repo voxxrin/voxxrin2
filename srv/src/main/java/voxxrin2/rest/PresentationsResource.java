@@ -3,13 +3,16 @@ package voxxrin2.rest;
 import com.google.common.base.Function;
 import com.google.common.base.Optional;
 import com.google.common.collect.Iterables;
+import org.bson.types.ObjectId;
 import restx.annotations.*;
 import restx.factory.Component;
 import restx.security.PermitAll;
 import restx.security.RolesAllowed;
 import voxxrin2.domain.Presentation;
 import voxxrin2.domain.Subscriptions;
+import voxxrin2.persistence.DaysDataService;
 import voxxrin2.persistence.PresentationsDataService;
+import voxxrin2.utils.Functions;
 
 import java.util.List;
 
@@ -18,9 +21,11 @@ import java.util.List;
 public class PresentationsResource {
 
     private final PresentationsDataService presentationsDataService;
+    private final DaysDataService daysDataService;
 
-    public PresentationsResource(PresentationsDataService presentationsDataService) {
+    public PresentationsResource(PresentationsDataService presentationsDataService, DaysDataService daysDataService) {
         this.presentationsDataService = presentationsDataService;
+        this.daysDataService = daysDataService;
     }
 
     @GET("/presentations")
@@ -58,6 +63,9 @@ public class PresentationsResource {
     @PermitAll
     @Produces("application/json;view=voxxrin2.serialization.Views$Presentations$List")
     public Iterable<Presentation> getEventPresentations(String eventId) {
+        if (!ObjectId.isValid(eventId)) {
+            return presentationsDataService.findByEventAlias(eventId);
+        }
         return presentationsDataService.findByEvent(eventId);
     }
 
@@ -65,6 +73,9 @@ public class PresentationsResource {
     @PermitAll
     @Produces("application/json;view=voxxrin2.serialization.Views$Presentations$List")
     public Iterable<Presentation> getDayPresentations(String dayId) {
+        if (!ObjectId.isValid(dayId)) {
+            dayId = daysDataService.findByAlias(dayId).transform(Functions.KEY_SUPPLIER).or("");
+        }
         return presentationsDataService.findByDay(dayId);
     }
 

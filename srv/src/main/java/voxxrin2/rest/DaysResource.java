@@ -1,6 +1,7 @@
 package voxxrin2.rest;
 
 import com.google.common.base.Optional;
+import org.bson.types.ObjectId;
 import restx.annotations.GET;
 import restx.annotations.POST;
 import restx.annotations.RestxResource;
@@ -29,7 +30,11 @@ public class DaysResource {
     @GET("/days/{id}")
     @PermitAll
     public Optional<Day> getDay(String id) {
-        return daysDataService.findById(id);
+        if (ObjectId.isValid(id)) {
+            return daysDataService.findById(id);
+        } else {
+            return daysDataService.findByAlias(id);
+        }
     }
 
     @POST("/days")
@@ -41,6 +46,10 @@ public class DaysResource {
     @GET("/events/{eventId}/days")
     @PermitAll
     public Iterable<Day> getEventDays(String eventId) {
-        return daysDataService.findByEvent(eventId);
+        if (ObjectId.isValid(eventId)) {
+            return daysDataService.findByEvent(eventId);
+        } else {
+            return daysDataService.findByEventAlias(eventId);
+        }
     }
 }

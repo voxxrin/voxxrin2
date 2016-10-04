@@ -91,6 +91,10 @@ public class PresentationsDataService extends DataService<Presentation> {
         return findAllAndSort("{ event: # }", "{ from: 1 }", ElementURI.of(Type.event, eventId).toString());
     }
 
+    public Iterable<Presentation> findByEventAlias(String eventAlias) {
+        return findAllAndSort("{ eventId: # }", "{ from: 1 }", eventAlias);
+    }
+
     public Iterable<Presentation> findByDay(String dayId) {
         return findAllAndSort("{ day: # }", "{ from: 1 }", ElementURI.of(Type.day, dayId).toString());
     }

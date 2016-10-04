@@ -24,11 +24,11 @@ angular.module('voxxrin')
         };
 
         $scope.goToDays = function (event) {
-            $state.go('events.days', {eventId: event._id});
+            $state.go('events.days', {eventId: event.eventId || event._id});
         };
 
         $scope.goToPresentations = function (day) {
-            $state.go('presentations.list', {eventId: day.event._id, dayId: day._id});
+            $state.go('presentations.list', {eventId: day.event.eventId || day.event._id, dayId: day.externalId || day._id });
         };
 
         $scope.goToPresentation = function (presentation) {

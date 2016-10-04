@@ -26,4 +26,8 @@ public class EventsDataService extends DataService<Event> {
         }
         return findAllAndSort("{ from: 1 }");
     }
+
+    public Optional<Event> findByAlias(String id) {
+        return Optional.fromNullable(find("{ eventId: # }", id));
+    }
 }

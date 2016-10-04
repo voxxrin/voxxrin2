@@ -1,6 +1,7 @@
 package voxxrin2.rest;
 
 import com.google.common.base.Optional;
+import org.bson.types.ObjectId;
 import restx.annotations.GET;
 import restx.annotations.POST;
 import restx.annotations.RestxResource;
@@ -29,7 +30,11 @@ public class EventsResource {
     @GET("/events/{id}")
     @PermitAll
     public Optional<Event> getEvent(String id) {
-        return eventsDataService.findById(id);
+        if (ObjectId.isValid(id)) {
+            return eventsDataService.findById(id);
+        } else {
+            return eventsDataService.findByAlias(id);
+        }
     }
 
     @POST("/events")

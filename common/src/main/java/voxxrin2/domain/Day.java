@@ -4,7 +4,7 @@ import org.joda.time.DateTime;
 import voxxrin2.domain.technical.Reference;
 import voxxrin2.domain.technical.Referenceable;
 
-public class Day extends Referenceable {
+public class Day extends Referenceable implements HasExternalId {
 
     public static final String COLLECTION = "day";
 
@@ -13,6 +13,8 @@ public class Day extends Referenceable {
     private DateTime date;
 
     private Reference<Event> event;
+
+    private String externalId;
 
     public String getName() {
         return name;
@@ -24,6 +26,11 @@ public class Day extends Referenceable {
 
     public Reference<Event> getEvent() {
         return event;
+    }
+
+    @Override
+    public String getExternalId() {
+        return externalId;
     }
 
     public Day setEvent(final Reference<Event> event) {
@@ -38,6 +45,11 @@ public class Day extends Referenceable {
 
     public Day setName(final String name) {
         this.name = name;
+        return this;
+    }
+
+    public Day setExternalId(final String externalId) {
+        this.externalId = externalId;
         return this;
     }
 }

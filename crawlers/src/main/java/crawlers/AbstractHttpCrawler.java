@@ -15,6 +15,8 @@ import voxxrin2.domain.Day;
 import voxxrin2.domain.Presentation;
 
 import java.io.IOException;
+import java.util.Collections;
+import java.util.Comparator;
 import java.util.List;
 
 public abstract class AbstractHttpCrawler {
@@ -48,6 +50,16 @@ public abstract class AbstractHttpCrawler {
             result.getEvent().setName(configuration.getEventName());
         }
         result.getEvent().setEventId(configuration.getEventId());
+        Collections.sort(result.getDays(), new Comparator<Day>() {
+            @Override
+            public int compare(Day o1, Day o2) {
+                return o1.getDate().compareTo(o2.getDate());
+            }
+        });
+        int index = 1;
+        for (Day day : result.getDays()) {
+            day.setExternalId(result.getEvent().getEventId() + "-" + (index++));
+        }
         return result;
     }
 
