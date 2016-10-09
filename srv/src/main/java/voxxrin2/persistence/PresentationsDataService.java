@@ -98,4 +98,8 @@ public class PresentationsDataService extends DataService<Presentation> {
     public Iterable<Presentation> findByDay(String dayId) {
         return findAllAndSort("{ day: # }", "{ from: 1 }", ElementURI.of(Type.day, dayId).toString());
     }
+
+    public Iterable<Presentation> search(String eventId, String title) {
+        return findAll("{ eventId: #, title: { $regex: #, $options: 'i' } }", eventId, title);
+    }
 }

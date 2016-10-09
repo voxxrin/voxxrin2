@@ -13,4 +13,7 @@ public class SpeakersDataService extends DataService<Speaker> {
         super(collection, Speaker.class);
     }
 
+    public Iterable<Speaker> search(String eventId, String name) {
+        return findAll("{ eventId: #, name: { $regex: #, $options: 'i' } }", eventId, name);
+    }
 }

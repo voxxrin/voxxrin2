@@ -12,4 +12,8 @@ public class RoomsDataService extends DataService<Room> {
     public RoomsDataService(@Named(Room.COLLECTION) JongoCollection collection) {
         super(collection, Room.class);
     }
+
+    public Iterable<Room> search(String eventId, String fullName) {
+        return findAll("{ eventId: #, fullName: { $regex : #, $options: 'i' } }", eventId, fullName);
+    }
 }
