@@ -28,7 +28,7 @@ angular.module('voxxrin')
         };
 
         $scope.goToPresentations = function (day) {
-            $state.go('presentations.list', {eventId: day.event.eventId || day.event._id, dayId: day.externalId || day._id });
+            $state.go('presentations.list', {eventId: day.eventId || day.event._id, dayId: day.externalId || day._id });
         };
 
         $scope.goToPresentation = function (presentation) {
