@@ -10,7 +10,7 @@ angular.module('voxxrin')
         };
 
         $scope.isActiveDay = function (day) {
-            if (day._id === $stateParams.dayId) {
+            if (day._id === $stateParams.dayId || day.externalId === $stateParams.dayId) {
                 return ['active'];
             }
             return [];
