@@ -3,6 +3,7 @@ package crawlers.impl;
 import com.github.kevinsawicki.http.HttpRequest;
 import com.google.common.base.Charsets;
 import com.google.common.base.Optional;
+import com.google.common.base.Strings;
 import crawlers.AbstractHttpCrawler;
 import crawlers.CrawlingResult;
 import crawlers.configuration.CrawlingConfiguration;
@@ -55,14 +56,7 @@ public abstract class LanyrdCrawler extends AbstractHttpCrawler {
         Elements items = root.select(".schedule-item");
         for (Element el : items) {
 
-            String detailLink = el.select("h2 > a").first().attr("href");
-
-            Presentation presentation = new Presentation()
-                    .setTitle(el.select("h2 > a").first().text())
-                    .setSummary(el.select(".desc > p").text())
-                    .setEvent(Reference.<Event>of(Type.event, event.getKey()))
-                    .setKind("Talk")
-                    .setExternalId(detailLink);
+            Presentation presentation = buildPresentation(event, el);
 
             DateTime start = DATE_TIME_FORMATTER.parseDateTime(el.select(".schedule-meta .dtstart > span").attr("title"));
             DateTime end = DATE_TIME_FORMATTER.parseDateTime(el.select(".schedule-meta .dtend > span").attr("title"));
@@ -72,7 +66,12 @@ public abstract class LanyrdCrawler extends AbstractHttpCrawler {
 
             extractDay(allDays, presentation, start, event);
 
-            extractRoom(allRooms, presentation, el.select(".schedule-meta p").get(1).text());
+            Elements scheduleMetas = el.select(".schedule-meta p");
+            if (scheduleMetas.size() > 1) {
+                extractRoom(allRooms, presentation, scheduleMetas.get(1).text());
+            } else {
+                extractRoom(allRooms, presentation, "-");
+            }
 
             extractSpeakers(allSpeakers, presentation, el.select(".session-speakers > a"));
 
@@ -87,6 +86,15 @@ public abstract class LanyrdCrawler extends AbstractHttpCrawler {
         setEventTemporalLimits(result);
 
         return result;
+    }
+
+    protected Presentation buildPresentation(Event event, Element el) {
+        return new Presentation()
+                .setTitle(el.select("h2 > a").first().text())
+                .setSummary(el.select(".desc").html())
+                .setEvent(Reference.<Event>of(Type.event, event.getKey()))
+                .setKind("Talk")
+                .setExternalId(el.select("h2 > a").first().attr("href"));
     }
 
     private void extractDay(Map<DateTime, Day> allDays, Presentation presentation, DateTime start, Event event) {
@@ -141,12 +149,17 @@ public abstract class LanyrdCrawler extends AbstractHttpCrawler {
         Speaker speaker = allSpeakers.get(username);
         if (speaker == null) {
 
-            Document root = Jsoup.parse(HttpRequest.get(BASE_URL + profileLink + "bio").body(), Charsets.UTF_8.name());
+            // Download full resolution image (if exists)
+            Document profilePage = Jsoup.parse(HttpRequest.get(BASE_URL + profileLink).body(), Charsets.UTF_8.name());
+            String avatarUrl = profilePage.select(".avatar > a > img").attr("src");
 
-            String name = root.select(".people .name").text();
-            String bio = root.select(".tagline").text();
-            String twitter = root.select(".people .handle").text();
-            String avatarUrl = root.select(".avatar img").attr("src");
+            Document bioPage = Jsoup.parse(HttpRequest.get(BASE_URL + profileLink + "bio").body(), Charsets.UTF_8.name());
+            String name = bioPage.select(".people .name").text();
+            String bio = bioPage.select(".tagline").text();
+            String twitter = bioPage.select(".people .handle").text();
+            if (Strings.isNullOrEmpty(avatarUrl)) {
+                avatarUrl = bioPage.select(".avatar img").attr("src");
+            }
 
             Speaker newSpeaker = (Speaker) new Speaker()
                     .setName(name)

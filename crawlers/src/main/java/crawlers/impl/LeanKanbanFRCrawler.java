@@ -9,4 +9,5 @@ public class LeanKanbanFRCrawler extends LanyrdCrawler {
     public LeanKanbanFRCrawler() {
         super("lkfr", ImmutableList.of("lkfr-publisher"));
     }
+
 }
