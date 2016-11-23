@@ -53,6 +53,28 @@ public abstract class LanyrdCrawler extends AbstractHttpCrawler {
         Map<String, Room> allRooms = new HashMap<>();
         Map<String, Speaker> allSpeakers = new HashMap<>();
 
+        int httpCode;
+        int counter = 2;
+        do {
+            extractSchedule(root, event, result, allDays, allRooms, allSpeakers);
+            eventUrl = BASE_URL + String.format("/%s/schedule?page=%d", configuration.getExternalEventRef(), counter++);
+            HttpRequest httpRequest = HttpRequest.get(eventUrl);
+            httpCode = httpRequest.code();
+            root = Jsoup.parse(httpRequest.body(), Charsets.UTF_8.name());
+        } while (httpCode == 200);
+
+        result.getSpeakers().addAll(allSpeakers.values());
+        result.getRooms().addAll(allRooms.values());
+        result.getDays().addAll(allDays.values());
+
+        // Compute some extra data
+        setEventTemporalLimits(result);
+
+        return result;
+    }
+
+    private void extractSchedule(Document root, Event event, CrawlingResult result, Map<DateTime, Day> allDays, Map<String, Room> allRooms, Map<String, Speaker> allSpeakers) {
+
         Elements items = root.select(".schedule-item");
         for (Element el : items) {
 
@@ -73,19 +95,10 @@ public abstract class LanyrdCrawler extends AbstractHttpCrawler {
                 extractRoom(allRooms, presentation, "-");
             }
 
-            extractSpeakers(allSpeakers, presentation, el.select(".session-speakers > a"));
+            extractSpeakers(allSpeakers, presentation, el.select(".session-speakers"));
 
             result.getPresentations().add(presentation);
         }
-
-        result.getSpeakers().addAll(allSpeakers.values());
-        result.getRooms().addAll(allRooms.values());
-        result.getDays().addAll(allDays.values());
-
-        // Compute some extra data
-        setEventTemporalLimits(result);
-
-        return result;
     }
 
     protected Presentation buildPresentation(Event event, Element el) {
@@ -122,8 +135,7 @@ public abstract class LanyrdCrawler extends AbstractHttpCrawler {
     private void extractSpeakers(Map<String, Speaker> allSpeakers, Presentation presentation, Elements sessionSpeakers) {
         presentation.setSpeakers(new ArrayList<Reference<Speaker>>());
         for (Element sessionSpeaker : sessionSpeakers) {
-            String href = sessionSpeaker.attr("href");
-            Optional<Speaker> registeredSpeaker = findOrRegisterSpeaker(href, allSpeakers);
+            Optional<Speaker> registeredSpeaker = findOrRegisterSpeaker(sessionSpeaker, allSpeakers);
             if (registeredSpeaker.isPresent()) {
                 presentation.getSpeakers().add(Reference.<Speaker>of(Type.speaker, registeredSpeaker.get().getKey()));
             }
@@ -138,11 +150,14 @@ public abstract class LanyrdCrawler extends AbstractHttpCrawler {
         return super.setup(result, configuration);
     }
 
-    private Optional<Speaker> findOrRegisterSpeaker(String profileLink, Map<String, Speaker> allSpeakers) {
+    private Optional<Speaker> findOrRegisterSpeaker(Element speakerElt, Map<String, Speaker> allSpeakers) {
 
+        String profileLink = speakerElt.select("a").attr("href");
         Matcher matcher = PROFILE_URL_PATTERN.matcher(profileLink);
         if (!matcher.matches()) {
-            return Optional.absent();
+            Speaker speaker = (Speaker) new Speaker().setName(speakerElt.text()).setKey(new ObjectId().toString());
+            allSpeakers.put(speakerElt.text().replaceAll("\\s", "").trim(), speaker);
+            return Optional.of(speaker);
         }
         String username = matcher.group(1);
 
