@@ -9,6 +9,7 @@ import crawlers.CrawlingResult;
 import crawlers.configuration.CrawlingConfiguration;
 import org.bson.types.ObjectId;
 import org.joda.time.DateTime;
+import org.joda.time.DateTimeZone;
 import org.joda.time.format.DateTimeFormat;
 import org.joda.time.format.DateTimeFormatter;
 import org.jsoup.Jsoup;
@@ -30,7 +31,8 @@ public abstract class LanyrdCrawler extends AbstractHttpCrawler {
 
     private static final String BASE_URL = "http://lanyrd.com";
     private static final Pattern PROFILE_URL_PATTERN = Pattern.compile("^[/]profile[/](.+)[/]$");
-    private static final DateTimeFormatter DATE_TIME_FORMATTER = DateTimeFormat.forPattern("YYYY-MM-dd'T'HH:mm:ss'+ZZ:ZZ'");
+    private static final DateTimeFormatter DATE_TIME_FORMATTER = DateTimeFormat.forPattern("YYYY-MM-dd'T'HH:mm:ss'+ZZ:ZZ'")
+            .withZone(DateTimeZone.forID("Europe/Paris"));
     private static final DateTimeFormatter DAY_NAME_FORMATTER = DateTimeFormat.forPattern("dd/MM/YYYY");
 
     public LanyrdCrawler(String id, List<String> roles) {
