@@ -12,10 +12,8 @@
 
 /* === Buttons === */
 
-.btn {
-    height: 100%;
-    border: 0;
-}
+.button { font-weight: normal; border: 0;}
+.button:before { position: relative; display: inline-block; vertical-align: baseline;}
 
 /* --- Colors Btn ---*/
 
@@ -24,6 +22,10 @@
 
 
 /* === Round Buttons === */
+
+.rounded {
+    border-radius: 50px;
+}
 
 .round-btn-hrz {
     display: inline-block;
@@ -42,6 +44,16 @@
 }
 
 /* --- Size ---*/
+
+.button-medium {
+    padding: 2px 4px 1px;
+    min-width: 28px;
+    min-height: 44px;
+    font-size: 16px;
+    line-height: 26px;
+}
+
+.button-medium:before { margin-right: 10px; font-size: 22px; top: 3px;}
 
 .small-btn  { height: 34px; width: 34px; padding: 3px 5px; font-size: 18px; border-width: 2px !important;}
 .medium-btn  { height: 48px; width: 48px; padding: 1px 11px; font-size: 24px;}
@@ -68,8 +80,8 @@
 
 /* --- Colors Round Btn ---*/
 
-.white-btn { transition: 200ms; color: #FFFFFF; border: 3px solid #FFFFFF;}
-.white-btn.activated { transition: 200ms; background: #FFFFFF; color: #e0223f; border-color: #FFFFFF;}
+.white-btn { transition: 200ms; background: white; color: #DB2D47;}
+.white-btn.activated { transition: 200ms; background: #FFFFFF; color: #DB2D47;}
 
 .primary-btn  { transition: 200ms; color: #e0223f; border: 3px solid #e0223f;}
 .primary-btn.activated { transition: 200ms; background: #e0223f;  color: #FFFFFF;  border-color: #e0223f;}
@@ -82,6 +94,16 @@
 
 .secondary-dark-btn  { transition: 200ms; color: #686868; border: 3px solid #686868;}
 .secondary-dark-btn.activated { transition: 200ms; background:  #686868; color: #FFFFFF; border-color: #686868;}
+
+.twitter-btn { transition: 200ms; color: #FFFFFF; background: #1da1f2;}
+.twitter-btn:hover { color: #FFFFFF;}
+.twitter-btn.activated { transition: 200ms; background: #1dabff; color: #FFFFFF !important;}
+
+.linkedin-btn { transition: 200ms; color: #FFFFFF; background: #0077b5;}
+.linkedin-btn:hover { color: #FFFFFF;}
+.linkedin-btn.activated { transition: 200ms; background: #008ad2; color: #FFFFFF !important;}
+
+
 
 
 /* --- Specials Colors Btn ---*/

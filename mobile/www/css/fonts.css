@@ -1,10 +1,24 @@
 /* ======== IMPORTS FONTS ======== */
 
-/* === Import Source Sans Pro  === */
+/* === Import Brandon Text  === */
 
 @font-face {
-    font-family: "Source Sans Pro";
-    src: url('../fonts/SourceSansPro-Regular.ttf') format("truetype");
+    font-family: "Brandon Text";
+    src: url('../fonts/Brandon%20Text%20Regular.otf') format("truetype");
     font-weight: normal;
+    font-style: normal;
+}
+
+@font-face {
+    font-family: "Brandon Text";
+    src: url('../fonts/Brandon%20Text%20Bold.otf') format("truetype");
+    font-weight: bold;
+    font-style: normal;
+}
+
+@font-face {
+    font-family: "Brandon Text Lighter";
+    src: url('../fonts/Brandon%20Text%20Light.otf') format("truetype");
+    font-weight: lighter;
     font-style: normal;
 }

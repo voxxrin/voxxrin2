@@ -1,7 +1,7 @@
 /* ======== LAYOUT ======== */
 
-body {
-    font-family: 'Source Sans Pro';
+* {
+    font-family: 'Brandon Text', "Helvetica Neue", "Roboto", "Segoe UI" !important;
 }
 
 /* === Header === */
