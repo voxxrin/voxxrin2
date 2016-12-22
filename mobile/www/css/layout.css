@@ -32,7 +32,14 @@
 
 /* --- Colors --- */
 
-.bar-primary { background: #e0223f;}
+.bar-primary {
+    background: #db2d5e;
+    background: -moz-linear-gradient(-45deg,  #db2d5e 0%, #e1223e 100%);
+    background: -webkit-linear-gradient(-45deg,  #db2d5e 0%,#e1223e 100%);
+    background: linear-gradient(135deg,  #db2d5e 0%,#e1223e 100%) !important;
+    filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#db2d5e', endColorstr='#e1223e',GradientType=1 );
+}
+
 .bar-primary .title { color: white;}
 
 .tabs-primary .tab-nav { padding-top: 0; color: #686868;}
@@ -48,15 +55,42 @@
 
 /* === Striped Bar === */
 
+a.tab-item {
+    display: inline-block;
+    line-height: 1;
+    height: 34px;
+    margin: 0 5px;
+    padding: 9px;
+    color: #e1223e !important;
+    border: solid #e1223e;
+    border-width: 1px !important;
+    border-radius: 50px;
+}
+
+.tabs-top.tabs-striped .tab-item.activated {
+    display: inline-block;
+    line-height: 1;
+    height: 34px;
+    margin: 0 5px;
+    padding: 9px;
+    color: #e1223e !important;
+    border: solid #e1223e;
+    border-width: 1px !important;
+    border-radius: 50px;
+    background-color: rgba(225, 35, 64, 0.10);
+}
+
 .tab-item { font-weight: bold;}
-.tabs-striped .tabs { border-bottom: 0;}
+
+.tabs-striped .tabs {
+    padding: 10px;
+    height: 58px;
+    border-bottom: 0;
+}
+
 .tabs-top.tabs-striped .tab-item.active { border-width: 0px 0px 4px 0px !important;}
 
 .tabs-bottom .tabs { height: 75px;}
-
-/* --- Colors --- */
-
-.tabs-background-primary .tabs { background: #e0223f;}
 
 /* === Separators === */
 
