@@ -12,7 +12,7 @@
 .part-top-login {
     display: block;
     width: 100%;
-    height: 65%;
+    height: 55%;
     min-height: 255px;
     padding-top: 10%;
     text-align: left;
@@ -37,6 +37,10 @@
 
 /* === Part Bottom === */
 
+.part-bottom-login {
+    height: 30%;
+}
+
 .connect-network {
     margin-bottom: 13px;
 }
@@ -50,12 +54,16 @@
 
 .footer-login {
     background: transparent;
+    padding: 0 30px;
+    height: 10%;
 }
 
 .legal-mention {
     width: 100%;
+    padding-top: 15px;
     color: #FFFFFF;
     font-size: 10px;
     font-weight: bold;
     line-height: 1.4;
+    text-align: center;
 }
