@@ -63,7 +63,11 @@
     padding-top: 15px;
     color: #FFFFFF;
     font-size: 10px;
-    font-weight: bold;
     line-height: 1.4;
     text-align: center;
+}
+
+.legal-mention a {
+    color: white;
+    font-weight: bold;
 }

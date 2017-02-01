@@ -1,7 +1,11 @@
 /* ======== MENU ======== */
 
 .menu-left {
-    background-color: #444444;
+    background: #db2d5e;
+    background: -moz-linear-gradient(-45deg,  #db2d5e 0%, #e1223e 100%);
+    background: -webkit-linear-gradient(-45deg,  #db2d5e 0%,#e1223e 100%);
+    background: linear-gradient(135deg,  #db2d5e 0%,#e1223e 100%) !important;
+    filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#db2d5e', endColorstr='#e1223e',GradientType=1 );
 }
 
 /* === Part Top === */
@@ -9,16 +13,14 @@
 .header-menu {
     display: block;
     width: 100%;
-    height: 40%;
-    min-height: 250px;
-    padding-top: 30px;
-    background: url("../img/bg-part-top-menu.png") no-repeat;
+    height: 24%;
+    background: rgba(0, 0, 0, 0.5);
     background-size: 100%;
 }
 
 /* === Part Bottom (menu) === */
 
-.menu-list { margin-top: 200px; }
+.menu-list { top: 24%;}
 
 .menu-list .list { line-height: 0;}
 
@@ -29,7 +31,7 @@
     margin-top: -1px;
     padding: 0;
     background: transparent;
-    border: 1px solid #373737;
+    border: 1px solid #cd223e;
     border-left: 0;
     border-right: 0;
     border-bottom: 0;
@@ -40,19 +42,24 @@
 }
 
 .menu-list .item:last-child {
-    border-bottom:  1px solid #373737;
+    border-bottom:  1px solid #cd223e;
 }
 
 .menu-list .item-content {
     transition: 250ms;
     padding: 12px;
+    opacity: 0;
     background: transparent;
     color: #FFFFFF;
+    transiton: 340ms;
 }
+
+.menu-list .item-content { left: -100%;}
+
 
 .menu-list .item-content.activated {
     transition: 250ms;
-    background: #e0223f;
+    background: rgba(0, 0, 0, 0.2);
     color: #FFFFFF;
 }
 
@@ -68,5 +75,11 @@
     width: 30px;
     margin-right: 15px;
     font-size: 24px;
-    color: #e0223f;
+    color: white;
 }
+
+/* === Animation Menu Open === */
+
+.menu-open .menu-list .item-content { opacity: 1;}
+
+.menu-open .menu-list .item-content { left: 0; transition: 300ms;}
