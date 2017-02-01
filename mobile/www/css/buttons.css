@@ -111,8 +111,11 @@
 .primary-hrz-btn {transition: 200ms; color: #686868; background: #edf0f5; border: none;}
 .primary-hrz-btn.activated { transition: 200ms; background: #95172a;  color: #FFFFFF;}
 
-.intro-btn { transition: 250ms; margin-right: 15px; background-color: white; color: #e0223f; border: none;}
+.intro-btn { position: relative; transition: 250ms; background-color: white; color: #e0223f; border: none;}
 .intro-btn.activated { transition: 250ms; background-color: #95172a; color: white; border: none;}
+
+.intro-btn-skip { top: 2px; margin-left: 15px; }
+.intro-btn-next { top: 1px; margin-right: 3%; }
 
 .fav-btn { transition: 250ms; background-color: #95172a; color: #e0223f; border: none;}
 .fav-btn.active { transition: 250ms; background-color: #FFFFFF; color: #e0223f; border: none;}

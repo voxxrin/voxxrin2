@@ -1,38 +1,82 @@
 /* ======== INTRO ======== */
 
-.intro { background-color: #e0223f;}
+.intro {
+    background: url('../../img/patern-intro.png');
+    background-size: 70px;
+}
+
+.intro:before {
+    position: absolute;
+    display: block;
+    height: 70%;
+    width: 100%;
+    content: '';
+    bottom: 0;
+    /* Permalink - use to edit and share this gradient: http://colorzilla.com/gradient-editor/#7db9e8+0,ffffff+100&0+0,1+100 */
+    background: -moz-linear-gradient(top,  rgba(125,185,232,0) 0%, rgba(255,255,255,1) 100%); /* FF3.6-15 */
+    background: -webkit-linear-gradient(top,  rgba(125,185,232,0) 0%,rgba(255,255,255,1) 100%); /* Chrome10-25,Safari5.1-6 */
+    background: linear-gradient(to bottom,  rgba(125,185,232,0) 0%,rgba(255,255,255,1) 100%); /* W3C, IE10+, FF16+, Chrome26+, Opera12+, Safari7+ */
+    filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#007db9e8', endColorstr='#ffffff',GradientType=0 ); /* IE6-9 */
+}
 
 .intro .slick-slider {
+    height: 100% !important;
     padding-top: 40px;
-    height: 85%;
     margin-bottom: 0;
 }
 
 .footer-intro {
-    height: 15%;
-    padding-top: 30px;
+    position: absolute;
+    bottom: 29px;
+    width: 100%;
 }
+
+.slick-list { overflow: visible;}
 
 .content-carousel {
     margin: 0 auto;
     width: 80%;
 }
 
-.content-carousel .text {
-    font-size: 15px;
-    color: white;
+.content-carousel .title {
+    font-size: 18px;
+    color: #e0223f;
+    font-weight: bold;
     text-align: center;
 }
 
+.content-carousel .text {
+    font-size: 15px;
+    color: #95989A;
+    text-align: center;
+    line-height: 1.5;
+}
+
+.content-carousel .text .twitter {
+    color: #1da1f2;
+}
+
 .content-carousel img {
-    width: 80%;
+    position: relative;
+    top: -40px;
+    width: 85%;
     margin: 0 auto;
+    opacity: 0;
+    transition: 540ms;
 }
 
 /* Dotted Carousel */
 
-.slick-dots { bottom: -15px;}
+.slick-dots {
+    bottom: 15px;
+    left: 49%;
+    width: 50%;
+    transform: translate(-50%,-50%);
+    z-index: 111;
+}
+.slick-dots li  { width: 15px;}
 .slick-dots li button { width: 30px; height: 20px;}
 .slick-dots li button.activated:before  { color:  #95172a;}
 .slick-dots li button:before { font-size: 12px;}
-.slick-dots li.slick-active button:before { color: white; opacity: 1;}
+.slick-dots li.slick-active button:before { color:  #e0223f; opacity: 1;}
+.slick-active .content-carousel img { transition: 540ms; top: 0; opacity: 1}
