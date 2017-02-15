@@ -37,19 +37,64 @@
 
 /* --- Avatar for user menu --- */
 
+.type-connect-user {
+    position: absolute;
+    display: block;
+    padding-left: 1px;
+    top: -16px;
+    left: 50%;
+    transform: translate(-50%,-50%);
+    height: 24px;
+    width: 24px;
+    border-radius: 100%;
+    background-color: white;
+    line-height: 1.88;
+    text-align: center;
+}
+
+.type-connect-user i {
+    color: #db2d5e;
+}
+
 .avatar.user {
-    width: 84px;
-    height: 84px;
+    margin-top: 8px;
+    width: 70px;
+    height: 70px;
     background: url("../img/no-image.png");
+    transform: rotate(-50deg) scale(0.7);
+    left: -30px;
+    opacity: 0;
+    transition: 340ms;
+}
+
+.menu-open .avatar.user {
+    transition: 340ms;
+    transform: rotate(0) scale(1);
+    left: 0;
+    opacity: 1;
 }
 
 .avatar.user img {
     width: 101% !important;
 }
 
-.user-connect i {
-    margin-right: 5px;
+.menu-open .user-name {
+    top: 0;
+    transition: 340ms;
+    opacity: 1;
 }
+
+.user-name  {
+    position: relative;
+    top: -40px;
+    display: block;
+    margin: 14px 0;
+    color: white;
+    font-weight: bold;
+    transition: 340ms;
+    opacity: 0;
+}
+
 
 /* --- Avatar for List divider --- */
 

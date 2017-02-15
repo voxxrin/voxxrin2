@@ -11,7 +11,7 @@
 .has-big-subheader { padding-top: 160px;}
 .header-item { font-weight: bold !important;}
 
-.bar .button.back-button { color: white;}
+.bar .button.back-button { margin-right: 0; color: white; width: 34px}
 
 .back-text { display: none !important;}
 
@@ -26,9 +26,11 @@
 
 /* --- Buttons --- */
 
-.ion-navicon { color: white !important;}
-.ion-navicon.activated { color: #FFFFFF !important;}
-.menu-open .ion-navicon:before { content: '\f129'; font-size: 22px !important; color: white;}
+.btn-nav { color: white !important; padding: 0 2px !important;}
+.btn-nav:before { font-size: 26px !important;}
+.btn-nav.activated { color: #FFFFFF !important;}
+.menu-open .btn-nav:before { transition: 240ms; content: '\28'; font-size: 28px !important; color: white;}
+.menu-open .back-button {display: none !important;}
 
 /* --- Colors --- */
 
