@@ -57,6 +57,17 @@
 
 /* === Striped Bar === */
 
+.tabs:after {
+    position: absolute;
+    bottom: -16px;
+    left: 0;
+    height: 16px;
+    width: 100%;
+    background: url("../img/scroll-white-gradient.png");
+    background-repeat: repeat-x;
+    content: '';
+}
+
 a.tab-item {
     display: inline-block;
     line-height: 1;

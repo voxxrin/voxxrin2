@@ -1,0 +1,32 @@
+.container-detail-conf {
+    margin-right: 70px;
+}
+
+.list-day {
+    position: absolute;
+    top: 44px;
+    right: 0;
+    left: initial !important;
+    width: 70px !important;
+    height: 100%;
+    border-left: 1px solid #EAEAEA;
+    background-color: white;
+    text-align: center;
+}
+
+.list-day .item-list-day {
+    color: #DB2D47;
+    border-left: none;
+    border-right: none;
+}
+
+.list-day i {
+    display: block;
+    font-size: 24px;
+    margin-bottom: 15px;
+}
+
+.list-day .day-name {
+    display: block;
+    font-size: 13px;
+}
