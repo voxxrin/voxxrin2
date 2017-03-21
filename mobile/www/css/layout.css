@@ -69,6 +69,11 @@ a.tab-item {
     border-radius: 50px;
 }
 
+.tabs-top.tabs-striped .tab-item.active {
+    background: linear-gradient(135deg, #db2d5e 0%,#e1223e 100%);
+    color: white !important;
+}
+
 .tabs-top.tabs-striped .tab-item.activated {
     display: inline-block;
     line-height: 1;
@@ -89,8 +94,6 @@ a.tab-item {
     height: 58px;
     border-bottom: 0;
 }
-
-.tabs-top.tabs-striped .tab-item.active { border-width: 0px 0px 4px 0px !important;}
 
 .tabs-bottom .tabs { height: 75px;}
 
