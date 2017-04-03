@@ -37,9 +37,9 @@ public abstract class DevoxxCFPCrawler extends AbstractHttpCrawler {
     public CrawlingResult crawl(CrawlingConfiguration configuration) throws IOException {
 
         String eventUrl = baseUrl + configuration.getExternalEventRef();
-        String roomsUrl = eventUrl + "/rooms";
-        String speakersUrl = eventUrl + "/speakers";
-        String daysUrl = eventUrl + "/schedules";
+        String roomsUrl = eventUrl + "/rooms/";
+        String speakersUrl = eventUrl + "/speakers/";
+        String daysUrl = eventUrl + "/schedules/";
 
         CFPEvent cfpEvent = MAPPER.readValue(httpGet(eventUrl, configuration).body(), CFPEvent.class);
         List<CFPLinks> cfpSpeakerLinks = MAPPER.readValue(httpGet(speakersUrl, configuration).body(), buildCollectionType(CFPLinks.class));
