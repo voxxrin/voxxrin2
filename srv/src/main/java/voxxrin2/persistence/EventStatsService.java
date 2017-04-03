@@ -42,6 +42,19 @@ public class EventStatsService {
         this.ratingService = ratingService;
     }
 
+    public EventStats buildPublic(Event event) {
+
+        EventStats eventStats = new EventStats();
+
+        ArrayList<Presentation> presentations = Lists.newArrayList(presentationsResource.getEventPresentations(event.getKey()));
+
+        return eventStats
+                .setEventId(event.getEventId())
+                .setEventName(event.getName())
+                .setTalksCount(presentations.size())
+                .setSpeakersCount(speakersCount(presentations));
+    }
+
     public EventStats build(Event event) {
 
         EventStats eventStats = new EventStats();
