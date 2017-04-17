@@ -1,24 +1,21 @@
 package crawlers.impl;
 
-import java.io.IOException;
-import java.util.*;
-
 import com.fasterxml.jackson.annotation.JsonProperty;
+import com.fasterxml.jackson.core.type.TypeReference;
+import com.github.kevinsawicki.http.HttpRequest;
 import com.google.common.collect.ImmutableList;
+import crawlers.AbstractHttpCrawler;
+import crawlers.CrawlingResult;
+import crawlers.configuration.CrawlingConfiguration;
 import org.bson.types.ObjectId;
 import org.joda.time.DateTime;
 import org.joda.time.format.DateTimeFormat;
 import org.joda.time.format.DateTimeFormatter;
-
 import voxxrin2.domain.*;
-
-import com.fasterxml.jackson.core.type.TypeReference;
-import com.github.kevinsawicki.http.HttpRequest;
-
-import crawlers.AbstractHttpCrawler;
-import crawlers.CrawlingResult;
-import crawlers.configuration.CrawlingConfiguration;
 import voxxrin2.domain.technical.Reference;
+
+import java.io.IOException;
+import java.util.*;
 
 public abstract class CfpIOCrawler extends AbstractHttpCrawler {
     
@@ -72,6 +69,8 @@ public abstract class CfpIOCrawler extends AbstractHttpCrawler {
         result.getRooms().addAll(allRooms.values());
         result.getSpeakers().addAll(speakers);
         result.getDays().addAll(allDays.values());
+
+        setEventTemporalLimits(result);
     
         return result;
     }
