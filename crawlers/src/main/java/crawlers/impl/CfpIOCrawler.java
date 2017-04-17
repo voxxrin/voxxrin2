@@ -50,6 +50,7 @@ public abstract class CfpIOCrawler extends AbstractHttpCrawler {
         for (Schedule schedule : schedules) {
 
             Presentation presentation = new Presentation()
+                    .setSpeakers(new ArrayList<Reference<Speaker>>())
                     .setTitle(schedule.name)
                     .setSummary(schedule.description)
                     .setEvent(Reference.<Event>of(Type.event, event.getKey()))
@@ -107,10 +108,10 @@ public abstract class CfpIOCrawler extends AbstractHttpCrawler {
     }
 
     private void extractSpeakers(Map<String, Speaker> allSpeakers, Presentation presentation, String speakers) {
+
         if (speakers == null)
             return;
 
-        presentation.setSpeakers(new ArrayList<Reference<Speaker>>());
         List<String> s = Arrays.asList(speakers.split(","));
         for (String speaker : s) {
             String trimmedSpeaker = speaker.trim().toLowerCase();
