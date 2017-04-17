@@ -50,6 +50,7 @@ public abstract class CfpIOCrawler extends AbstractHttpCrawler {
         for (Schedule schedule : schedules) {
 
             Presentation presentation = new Presentation()
+                    .setExternalId(schedule.id)
                     .setSpeakers(new ArrayList<Reference<Speaker>>())
                     .setTitle(schedule.name)
                     .setSummary(schedule.description)
@@ -133,6 +134,7 @@ public abstract class CfpIOCrawler extends AbstractHttpCrawler {
     }
 
     public static class Schedule {
+        public String id;
         public String active;
         public String name;
         @JsonProperty("event_start")
