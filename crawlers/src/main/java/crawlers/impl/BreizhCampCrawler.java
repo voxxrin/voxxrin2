@@ -55,13 +55,4 @@ public class BreizhCampCrawler extends CfpIOCrawler {
 
         return completedSpeakers;
     }
-
-    @Override
-    public String getEventName(CrawlingConfiguration configuration) {
-        String eventName = configuration.getEventName();
-        if (eventName == null) {
-            eventName = "BreizhCamp";
-        }
-        return eventName;
-    }
 }
