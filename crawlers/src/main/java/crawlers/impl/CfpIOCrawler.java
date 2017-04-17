@@ -33,15 +33,15 @@ public abstract class CfpIOCrawler extends AbstractHttpCrawler {
 
     protected abstract List<Speaker> completeSpeakers(Map<String, Speaker> speakers);
 
-    protected abstract String getEventName(final CrawlingConfiguration configuration);
-
     @Override
     public CrawlingResult crawl(final CrawlingConfiguration configuration) throws IOException {
 
         final List<Schedule> schedules = getSchedules(configuration.getExternalEventRef());
         
         final Event event = (Event) new Event()
-                .setName(getEventName(configuration))
+                .setEventId(configuration.getEventId())
+                .setLocation(configuration.getLocation())
+                .setImageUrl(configuration.getImageUrl())
                 .setKey(new ObjectId().toString());
 
         final CrawlingResult result = new CrawlingResult(event);
