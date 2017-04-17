@@ -123,13 +123,11 @@ public abstract class CfpIOCrawler extends AbstractHttpCrawler {
                 Speaker stdSpeaker = (Speaker) new Speaker()
                         .setName(trimmedSpeaker)
                         .setKey(new ObjectId().toString());
-
-                presentation.getSpeakers().add(Reference.<Speaker>of(Type.speaker, stdSpeaker.getKey()));
-
+                
                 allSpeakers.put(trimmedSpeaker, stdSpeaker);
-            } else {
-                presentation.getSpeakers().add(Reference.<Speaker>of(Type.speaker, trimmedSpeaker));
-            }
+            } 
+            
+            presentation.getSpeakers().add(Reference.<Speaker>of(Type.speaker, allSpeakers.get(trimmedSpeaker).getKey()));
         }
 
     }
