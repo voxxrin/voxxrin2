@@ -24,11 +24,12 @@ public class AppModule {
         return configLoader.fromResource("voxxrin2/settings");
     }
 
-    @Provides
+    @Provides(priority = -1000)
     public CORSAuthorizer CORSAuthorizer() {
         StdCORSAuthorizer.Builder builder = StdCORSAuthorizer.builder();
         return builder.setOriginMatcher(Predicates.<CharSequence>alwaysTrue())
-                .setAllowedHeaders(ImmutableList.of("Origin", "X-Requested-With", "Content-Type", "Accept", "If-Modified-Since"))
+                .setAllowedHeaders(ImmutableList.of("Authorization", "access-token", "Origin",
+                        "X-Requested-With", "Content-Type", "Accept", "If-Modified-Since"))
                 .setPathMatcher(Predicates.<CharSequence>alwaysTrue())
                 .setAllowedMethods(ImmutableList.of("GET", "POST", "PUT", "OPTIONS", "DELETE"))
                 .build();
