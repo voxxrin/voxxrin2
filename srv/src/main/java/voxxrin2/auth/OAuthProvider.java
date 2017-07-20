@@ -1,6 +1,7 @@
 package voxxrin2.auth;
 
 import com.google.common.base.Optional;
+import com.google.common.collect.Iterables;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import restx.RestxRequest;
@@ -12,6 +13,7 @@ import voxxrin2.domain.User;
 import java.io.IOException;
 import java.io.UnsupportedEncodingException;
 import java.net.URLEncoder;
+import java.util.List;
 import java.util.Map;
 
 public abstract class OAuthProvider {
@@ -57,5 +59,20 @@ public abstract class OAuthProvider {
                         .setHeader("Access-Control-Allow-Origin", "*");
             }
         };
+    }
+
+    @SuppressWarnings("unchecked")
+    protected <T extends Map<String, ?>> Map<String, List<String>> castParams(Optional<T> params) {
+        return (Map<String, List<String>>) params.get();
+    }
+
+    protected Optional<String> extractFirstParam(List<String> list) {
+        Optional<String> param;
+        if (list != null) {
+            param = Optional.fromNullable(Iterables.getFirst(list, null));
+        } else {
+            param = Optional.absent();
+        }
+        return param;
     }
 }

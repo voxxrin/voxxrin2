@@ -20,4 +20,10 @@ public interface OAuthSettings {
 
     @SettingsKey(key = "oauth.linkedin.apiSecret")
     String oauthLinkedinApiSecret();
+
+    @SettingsKey(key = "oauth.facebook.appId")
+    String oauthFacebookAppId();
+
+    @SettingsKey(key = "oauth.facebook.appSecret")
+    String oauthFacebookAppSecret();
 }

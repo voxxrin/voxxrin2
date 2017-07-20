@@ -4,7 +4,6 @@ import com.fasterxml.jackson.databind.JsonNode;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.google.common.base.Optional;
 import com.google.common.base.Splitter;
-import com.google.common.collect.Iterables;
 import com.google.common.collect.Maps;
 import org.bson.types.ObjectId;
 import org.scribe.builder.ServiceBuilder;
@@ -116,20 +115,5 @@ public class TwitterOAuthProvider extends OAuthProvider {
 
     private void addToProviderInfo(String key, Map<String, String> data, JsonNode jsonNode) {
         data.put(key, jsonNode.get(key).asText());
-    }
-
-    @SuppressWarnings("unchecked")
-    private <T extends Map<String, ?>> Map<String, List<String>> castParams(Optional<T> params) {
-        return (Map<String, List<String>>) params.get();
-    }
-
-    private Optional<String> extractFirstParam(List<String> list) {
-        Optional<String> param;
-        if (list != null) {
-            param = Optional.fromNullable(Iterables.getFirst(list, null));
-        } else {
-            param = Optional.absent();
-        }
-        return param;
     }
 }
