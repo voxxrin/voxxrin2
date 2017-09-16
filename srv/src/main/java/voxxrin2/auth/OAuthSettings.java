@@ -15,6 +15,12 @@ public interface OAuthSettings {
     @SettingsKey(key = "oauth.twitter.apiSecret")
     String oauthTwitterApiSecret();
 
+    @SettingsKey(key = "oauth.twitter.accessToken")
+    String oauthTwitterAccessToken();
+
+    @SettingsKey(key = "oauth.twitter.accessTokenSecret")
+    String oauthTwitterAccessTokenSecret();
+
     @SettingsKey(key = "oauth.linkedin.clientId")
     String oauthLinkedinClientId();
 
