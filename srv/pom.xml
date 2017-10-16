@@ -21,12 +21,14 @@
 
     <dependencies>
 
+        <!--voxxrin-->
         <dependency>
             <groupId>voxxrin2</groupId>
             <artifactId>common</artifactId>
             <version>${project.version}</version>
         </dependency>
 
+        <!--restx-->
         <dependency>
             <groupId>io.restx</groupId>
             <artifactId>restx-core</artifactId>
@@ -107,6 +109,8 @@
             <artifactId>restx-admin</artifactId>
             <version>${restx.version}</version>
         </dependency>
+
+        <!--other deps-->
         <dependency>
             <groupId>ch.qos.logback</groupId>
             <artifactId>logback-classic</artifactId>
@@ -132,6 +136,13 @@
             <artifactId>jmustache</artifactId>
             <version>1.8</version>
         </dependency>
+        <dependency>
+            <groupId>org.twitter4j</groupId>
+            <artifactId>twitter4j-core</artifactId>
+            <version>4.0.6</version>
+        </dependency>
+
+        <!--Test-->
         <dependency>
             <groupId>io.restx</groupId>
             <artifactId>restx-specs-tests</artifactId>

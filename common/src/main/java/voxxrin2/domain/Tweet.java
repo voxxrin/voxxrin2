@@ -1,18 +1,22 @@
 package voxxrin2.domain;
 
+import java.util.Date;
+
 public class Tweet {
 
-    private String createdAt;
+    private Date createdAt;
 
     private String text;
 
-    private String author;
+    private String authorName;
 
-    public String getCreatedAt() {
+    private String authorImage;
+
+    public Date getCreatedAt() {
         return createdAt;
     }
 
-    public Tweet setCreatedAt(String createdAt) {
+    public Tweet setCreatedAt(Date createdAt) {
         this.createdAt = createdAt;
         return this;
     }
@@ -26,12 +30,21 @@ public class Tweet {
         return this;
     }
 
-    public String getAuthor() {
-        return author;
+    public String getAuthorName() {
+        return authorName;
     }
 
-    public Tweet setAuthor(String author) {
-        this.author = author;
+    public Tweet setAuthorName(String authorName) {
+        this.authorName = authorName;
+        return this;
+    }
+
+    public String getAuthorImage() {
+        return authorImage;
+    }
+
+    public Tweet setAuthorImage(String authorImage) {
+        this.authorImage = authorImage;
         return this;
     }
 }
